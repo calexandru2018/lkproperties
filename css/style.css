@@ -665,7 +665,7 @@
 
 	#header
 	{
-		background: url(images/img01.jpg) repeat-x left top;
+		background: #fff;
 	}
 
 		#header .container
@@ -687,7 +687,7 @@
 	
 		#logo h1
 		{
-			color: #FFF;
+			color: #333;
 		}
 	
 		#logo a
@@ -697,7 +697,7 @@
 			font-size: 1.8em;
 			font-weight: 600;
 			line-height: 70px;
-			color: #FFF;
+			color: #333;
 		}
 
 /*********************************************************************************/
@@ -732,13 +732,13 @@
 				text-transform: uppercase;
 				font-size: 0.90em;
 				outline: 0;
-				color: #FFF;
+				color: #333;
 			}
 
 			#nav li.active a
 			{
-				background: #6e090b;
-				border-radius: 25px;
+				background: #333;
+				border-radius: 8px;
 				color: #FFF;
 			}
 
