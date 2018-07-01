@@ -43,9 +43,18 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Popular</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <h5 class="dropdown-header">Beaches</h5>
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="#">Praia da Rocha</a>
+                            <a class="dropdown-item" href="#">Meia-Praia</a>
+                            <a class="dropdown-item" href="#">Praia do Vau</a>
+                            <div class="dropdown-divider"></div>
+                            <h5 class="dropdown-header">Cities</h5>
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="#">Lisboa</a>
+                            <a class="dropdown-item" href="#">Porto</a>
+                            <a class="dropdown-item" href="#">Vilamoura</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -60,20 +69,223 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
-                    
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container-fluid mx-0 px-0 ">
-            <div class="card bg-dark text-white">
-                <img class="card-img" src="images/banner.jpg" alt="Card image">
-                <div class="card-img-overlay d-flex flex-column mb-0">
-                    <h5 class="card-title ">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text">Last updated 3 mins ago</p>
-                </div>
+    <div class="search-container-md container-fluid mx-auto px-0 ">
+        <div class="form-group form-inline d-none d-md-inline-block position-absolute mt-md-5 py-md-2 w-100 text-center">
+            <div class="d-inline-flex px-0 w-50" style="box-shadow: 0px 0px 45px -5px var(--warning);">
+                <input class="form-control w-75 ml-auto p-2" type="text" placeholder="Search">
+                <button class="btn btn-default w-25 btn-md mr-auto p-2" type="submit">Search</button>
             </div>
+        </div>    
+        <img class="img-fluid w-100" src="images/banner.jpg" alt="Card image">
+    </div>
+    <div class="search-container-xs container-fluid mx-0 px-0 d-md-none">
+        <div class="form-group form-inline mt-1 py-1 w-100">
+            <input class="form-control w-75 ml-auto mr-sm-3 p-1 p-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-default btn-md mr-auto p-1 p-sm-2" type="submit">Search</button>
+        </div>
+    </div>
+    <div class="filter-container-xs container-fluid d-md-none">
+        <div class="form-group">
+            <ul class="list-group mx-sm-4">
+                <li class="list-group-item">
+                    <div class="input-group-text mb-2 mb-2">
+                        <a href="#" role="button" data-toggle="collapse" data-target="#test" aria-haspopup="true" aria-expanded="false" aria-controls="test">
+                            Beach Distance
+                        </a>
+                    </div>
+                    <div class="collapse" id="test">
+                        <div class="container text-center" data-filtBy="filtBy-distance">
+                            <div class="row">
+                                <div class="col-6 col-sm-4">
+                                    <label class="form-check-label mx-auto">
+                                        <input type="checkbox" class="form-check-input" value="">100m
+                                    </label>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <label class="form-check-label mx-auto">
+                                        <input type="checkbox" class="form-check-input" value="">200m
+                                    </label>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <label class="form-check-label mx-auto">
+                                        <input type="checkbox" class="form-check-input" value="">300m
+                                    </label>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <label class="form-check-label mx-auto">
+                                        <input type="checkbox" class="form-check-input" value="">400m
+                                    </label>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <label class="form-check-label mx-auto">
+                                        <input type="checkbox" class="form-check-input" value="">500m
+                                    </label>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <label class="form-check-label mx-auto">
+                                        <input type="checkbox" class="form-check-input" value="">600m
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group-text mb-2">
+                        <span>Pool Access</span>
+                    </div>
+                    <div class="container text-center" data-filtBy="filtBy-pool">
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto ">
+                                    <input type="radio" class="form-check-input" value="1">Yes
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="radio" class="form-check-input" value="0">No
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="radio" class="form-check-input" value="2">Indifferent
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group-text mb-2">
+                        <span>View Type</span>
+                    </div>
+                    <div class="container text-center" data-filtBy="filtBy-view">
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="radio" class="form-check-input" value="1">Sea
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="radio" class="form-check-input" value="2">Pool
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="radio" class="form-check-input" value="0">Indifferent
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item text-center">
+                    <div class="input-group-text mb-2">
+                        <span>Room Ammount</span>
+                    </div>
+                    <div class="container text-center" data-filtBy="filtBy-room">
+                        <div class="row">
+                            <div class="col-6 col-sm-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 1
+                                </label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 2
+                                </label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 3
+                                </label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 4
+                                </label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 5
+                                </label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 6
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group-text mb-2">
+                        <span>Layout</span>
+                    </div>
+                    <div class="container text-center" data-filtBy="filtBy-layout">
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">T1
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">T2
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">T3
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">T4
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">T5
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">T6
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="input-group-text mb-2">
+                        <span>Wifi</span>
+                    </div>
+                    <div class="container text-center" data-filtBy="filtBy-wifi">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label mx-auto ">
+                                    <input type="radio" class="form-check-input" value="1">Yes
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-check-label mx-auto">
+                                    <input type="radio" class="form-check-input" value="0">No
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-check-label mx-auto">
+                                    <input type="radio" class="form-check-input" value="2">Indifferent
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>            
+        </div>
     </div>
     <main role="main">
         <div class="container">
