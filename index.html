@@ -89,7 +89,7 @@
     </nav>
     <div class="search-container-md container-fluid mx-auto px-0 mh-50">
         <div class="form-group form-inline d-none d-md-inline-block position-absolute mt-md-5 py-md-2 w-100 text-center">
-            <div class="d-inline-flex px-0 w-50" style="box-shadow: 0px 0px 45px -5px var(--warning);">
+            <div class="d-inline-flex px-0 w-50" style="box-shadow: 0px 0px 45px -5px #007bff9d ">
                 <input class="form-control w-75 ml-auto p-2" type="text" placeholder="Search">
                 <button class="btn btn-primary w-25 btn-md mr-auto p-2" type="submit">Search</button>
             </div>
@@ -102,15 +102,15 @@
            <img class="testImg" src="images/1.jpg" alt="Card image" />
         </div> -->
     </div>
-    <div class="search-container-xs container-fluid mx-0 px-0 d-md-none">
-        <div class="form-group form-inline mt-1 py-1 w-100">
-            <input class="form-control w-75 ml-auto mr-sm-3 p-1 p-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-primary btn-md mr-auto p-1 p-sm-2" type="submit">Search</button>
+    <div class="search-container-xs container-fluid p-0 d-md-none">
+        <div class="form-group form-inline w-100" style="box-shadow: 0px 0px 45px -5px #007bff9d">
+            <input class="form-control w-75 p-1 p-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-primary w-25 btn-md p-1 p-sm-2" type="submit">Search</button>
         </div>
     </div>
-    <div class="filter-container-xs container-fluid d-md-none">
+    <div class="filter-container-xs container-fluid p-0 d-md-none">
         <div class="form-group">
-            <ul class="list-group mx-sm-4">
+            <ul class="list-group mx-md-4">
                 <li class="list-group-item">
                     <div class="input-group-text mb-2 mb-2">
                         <a href="#" role="button" data-toggle="collapse" data-target="#test" aria-haspopup="true" aria-expanded="false" aria-controls="test">
@@ -162,17 +162,17 @@
                         <div class="row">
                             <div class="col-4">
                                 <label class="form-check-label mx-auto ">
-                                    <input type="radio" class="form-check-input" value="1">Yes
+                                    <input type="radio" class="form-check-input" name="filtBy-pool" data-filtBy-pool="1" value="1">Yes
                                 </label>
                             </div>
                             <div class="col-4">
                                 <label class="form-check-label mx-auto">
-                                    <input type="radio" class="form-check-input" value="0">No
+                                    <input type="radio" class="form-check-input" name="filtBy-pool" value="0">No
                                 </label>
                             </div>
                             <div class="col-4">
                                 <label class="form-check-label mx-auto">
-                                    <input type="radio" class="form-check-input" value="2">Indifferent
+                                    <input type="radio" class="form-check-input" name="filtBy-pool" value="2">Indifferent
                                 </label>
                             </div>
                         </div>
@@ -186,17 +186,17 @@
                         <div class="row">
                             <div class="col-4">
                                 <label class="form-check-label mx-auto">
-                                    <input type="radio" class="form-check-input" value="1">Sea
+                                    <input type="radio" class="form-check-input" name="filtBy-view" value="1">Sea
                                 </label>
                             </div>
                             <div class="col-4">
                                 <label class="form-check-label mx-auto">
-                                    <input type="radio" class="form-check-input" value="2">Pool
+                                    <input type="radio" class="form-check-input" name="filtBy-view" value="2">Pool
                                 </label>
                             </div>
                             <div class="col-4">
                                 <label class="form-check-label mx-auto">
-                                    <input type="radio" class="form-check-input" value="0">Indifferent
+                                    <input type="radio" class="form-check-input" name="filtBy-view" value="0">Indifferent
                                 </label>
                             </div>
                         </div>
@@ -288,17 +288,17 @@
                         <div class="row">
                             <div class="col-4">
                                 <label class="form-check-label mx-auto ">
-                                    <input type="radio" class="form-check-input" value="1">Yes
+                                    <input type="radio" class="form-check-input" name="filtBy-wifi" value="1">Yes
                                 </label>
                             </div>
                             <div class="col-4">
                                 <label class="form-check-label mx-auto">
-                                    <input type="radio" class="form-check-input" value="0">No
+                                    <input type="radio" class="form-check-input" name="filtBy-wifi" value="0">No
                                 </label>
                             </div>
                             <div class="col-4">
                                 <label class="form-check-label mx-auto">
-                                    <input type="radio" class="form-check-input" value="2">Indifferent
+                                    <input type="radio" class="form-check-input" name="filtBy-wifi" value="2">Indifferent
                                 </label>
                             </div>
                         </div>
@@ -308,9 +308,9 @@
         </div>
     </div>
     <main role="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
+        <div class="container p-0 mx-0 mx-sm-auto">
+            <div class="row mx-0">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
                     <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
                         <div class="card-header">
                             Featured
@@ -331,7 +331,7 @@
                         </div>
                     </div>
                 </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
                     <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
                         <div class="card-header">
                             Featured
@@ -352,7 +352,7 @@
                         </div>
                     </div>
                 </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
                     <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
                         <div class="card-header">
                             Featured
@@ -373,7 +373,7 @@
                         </div>
                     </div>
                 </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
                     <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
                         <div class="card-header">
                             Featured
@@ -394,9 +394,7 @@
                         </div>
                     </div>
                 </div>   
-            </div>
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-md-2">
                     <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
                         <div class="card-header">
                             Featured
@@ -417,28 +415,7 @@
                         </div>
                     </div>
                 </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush my-3">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-md-2">
                     <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
                         <div class="card-header">
                             Featured
@@ -459,7 +436,28 @@
                         </div>
                     </div>
                 </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-md-2">
+                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
+                        <div class="card-header">
+                            Featured
+                        </div>
+                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-md-2">
                     <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
                         <div class="card-header">
                             Featured
