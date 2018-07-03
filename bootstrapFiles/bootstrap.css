@@ -561,14 +561,26 @@ pre code {
   margin-left: auto;
 }
 
+.custom-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
   }
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) { */
+@media (min-width: 720px) {
   .container {
+    max-width: 720px;
+  }
+  .custom-container {
     max-width: 720px;
   }
 }
@@ -577,10 +589,16 @@ pre code {
   .container {
     max-width: 960px;
   }
+  .custom-container {
+    max-width: 960px;
+  }
 }
 
 @media (min-width: 1200px) {
   .container {
+    max-width: 1140px;
+  }
+  .custom-container {
     max-width: 1140px;
   }
 }

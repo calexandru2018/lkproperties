@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrapFiles/bootstrap.css">
     <title>LK-Properties</title>
     <style>
     /* Use these classes case the images will not get 
@@ -39,7 +39,8 @@
     } */
     footer{
         background-color: #3e4551; 
-        color: #ffffff;
+        /* color: #ffffff; */
+        color:#3e4551;
     }
     footer .footer-copyright{
         background-color: rgba(0,0,0,.2); 
@@ -47,84 +48,88 @@
         overflow: hidden;
     }
     footer a{
-        color: #ffffff;
+        color: #3e4551;
+        /* color: #ffffff; */
         text-decoration: none;
         -webkit-transition: width 2s; /* Safari */
         transition: width 2s;
     }
     footer a:active{
-        color: #ffffff;
+        color: #3e4551;
+        /* color: #ffffff; */
         text-decoration: none;
     }
     footer a:hover{
-        color: #ffffff67;
+        color: #3e4551;
+        /* color: #ffffff67; */
         text-decoration: none;
     }
     footer a:click{
-        color: #ffffff;
+        color: #3e4551;
+        /* color: #ffffff; */
         text-decoration: none;
     }
     footer a:visited{
-        color: #ffffff;
+        /* color: #ffffff; */
+        color: #3e4551;
         text-decoration: none;
     }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md py-md-4 navbar-light bg-light shadow-sm">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
-                LK-Properties
-            </a>
-            <div class="collapse navbar-collapse pull-right" id="main-navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Popular</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <!-- <div class="dropdown-divider"></div> -->
-                            <h5 class="dropdown-header">Beaches</h5>
-                            <!-- <div class="dropdown-divider"></div> -->
-                            <a class="dropdown-item" href="popular.html">Praia da Rocha</a>
-                            <a class="dropdown-item" href="popular.html">Meia-Praia</a>
-                            <a class="dropdown-item" href="popular.html">Praia do Vau</a>
-                            <div class="dropdown-divider"></div>
-                            <h5 class="dropdown-header">Cities</h5>
-                            <!-- <div class="dropdown-divider"></div> -->
-                            <a class="dropdown-item" href="popular.html">Lisboa</a>
-                            <a class="dropdown-item" href="popular.html">Porto</a>
-                            <a class="dropdown-item" href="popular.html">Vilamoura</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="activities.html">Activities</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="faq.html">F&Q</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="real-estate.html">Real Estate</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact-us.html">Contact Us</a>
-                </ul>
-            </div>
+    <nav class="navbar custom-container navbar-expand-md px-1 navbar-light bg-light shadow-sm border-left border-right">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mr-0" href="#">
+            <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+            LK-Properties
+        </a>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Popular</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <!-- <div class="dropdown-divider"></div> -->
+                        <h5 class="dropdown-header">Beaches</h5>
+                        <!-- <div class="dropdown-divider"></div> -->
+                        <a class="dropdown-item" href="popular.html">Praia da Rocha</a>
+                        <a class="dropdown-item" href="popular.html">Meia-Praia</a>
+                        <a class="dropdown-item" href="popular.html">Praia do Vau</a>
+                        <div class="dropdown-divider"></div>
+                        <h5 class="dropdown-header">Cities</h5>
+                        <!-- <div class="dropdown-divider"></div> -->
+                        <a class="dropdown-item" href="popular.html">Lisboa</a>
+                        <a class="dropdown-item" href="popular.html">Porto</a>
+                        <a class="dropdown-item" href="popular.html">Vilamoura</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="activities.html">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="faq.html">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="real-estate.html">Real Estate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact-us.html">Contact Us</a>
+                </li>
+            </ul>
         </div>
     </nav>
-    <div class="search-container-md container-fluid mx-auto px-0 mh-50">
-        <div class="form-group form-inline d-none d-md-inline-block position-absolute mt-md-5 py-md-2 w-100 text-center">
-            <div class="d-inline-flex px-0 w-50" style="box-shadow: 0px 0px 45px -5px #007bff9d ">
-                <input class="form-control w-75 ml-auto p-2" type="text" placeholder="Search">
-                <button class="btn btn-primary w-25 btn-md mr-auto p-2" type="submit">Search</button>
+    <div class="search-container-md custom-container mx-auto px-0 text-center">
+        <div class="custom-container form-inline d-none d-md-inline-block position-absolute mt-5 pt-5">
+            <div class="d-inline-flex w-75 mt-5" style="box-shadow: 0px 0px 45px -5px #007bff9d ">
+                <input class="form-control w-75 ml-auto p-1" type="text" placeholder="Search">
+                <button class="btn btn-primary w-25 btn-md mr-auto p-1" type="submit">Search</button>
             </div>
         </div>    
-        <img class="img-fluid w-100" src="images/mod2.jpg" alt="Card image" />
+        <img class="img-fluid" src="images/mod2.jpg" alt="Card image" />
         <!-- 
         Use this in case images are not gonna get cropped    
         <div class="center-cropped" 
@@ -132,50 +137,50 @@
            <img class="testImg" src="images/1.jpg" alt="Card image" />
         </div> -->
     </div>
-    <div class="search-container-xs container-fluid my-1 p-0 d-md-none">
+    <div class="search-container-xs custom-container my-1 p-0 d-md-none">
         <div class="form-group form-inline my-0 w-100" style="box-shadow: 0px 0px 50px 5px #007bff9d">
             <input class="form-control w-75 p-1 p-sm-2" type="text" placeholder="Search">
             <button class="btn btn-primary w-25 btn-md p-1 p-sm-2" type="submit">Search</button>
         </div>
     </div>
-    <div class="filter-container-xs container-fluid p-0 d-md-none">
+    <div class="filter-container-xs custom-container p-0 d-md-none">
         <div class="form-group">
             <ul class="list-group mx-md-4">
                 <li class="list-group-item">
-                    <div class="input-group-text mb-2 mb-2">
+                    <div class="input-group-text mb-2 mb-2 bg-info">
                         <a href="#" role="button" data-toggle="collapse" data-target="#test" aria-haspopup="true" aria-expanded="false" aria-controls="test">
-                            <div class="dropdown-toggle">Beach Distance</div>
+                            <div class="dropdown-toggle text-white">Beach Distance</div>
                         </a>
                     </div>
                     <div class="collapse" id="test">
                         <div class="container text-center" data-filtBy="filtBy-distance">
                             <div class="row">
-                                <div class="col-6 col-sm-4">
+                                <div class="col-4">
                                     <label class="form-check-label mx-auto">
                                         <input type="checkbox" class="form-check-input" value="">100m
                                     </label>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-4">
                                     <label class="form-check-label mx-auto">
                                         <input type="checkbox" class="form-check-input" value="">200m
                                     </label>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-4">
                                     <label class="form-check-label mx-auto">
                                         <input type="checkbox" class="form-check-input" value="">300m
                                     </label>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-4">
                                     <label class="form-check-label mx-auto">
                                         <input type="checkbox" class="form-check-input" value="">400m
                                     </label>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-4">
                                     <label class="form-check-label mx-auto">
                                         <input type="checkbox" class="form-check-input" value="">500m
                                     </label>
                                 </div>
-                                <div class="col-6 col-sm-4">
+                                <div class="col-4">
                                     <label class="form-check-label mx-auto">
                                         <input type="checkbox" class="form-check-input" value="">600m
                                     </label>
@@ -185,8 +190,8 @@
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <div class="input-group-text mb-2">
-                        <span>Pool Access</span>
+                    <div class="input-group-text mb-2 bg-info">
+                        <span class="text-white">Pool Access</span>
                     </div>
                     <div class="container text-center" data-filtBy="filtBy-pool">
                         <div class="row">
@@ -209,8 +214,8 @@
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <div class="input-group-text mb-2">
-                        <span>View Type</span>
+                    <div class="input-group-text mb-2 bg-info">
+                        <span class="text-white">View Type</span>
                     </div>
                     <div class="container text-center" data-filtBy="filtBy-view">
                         <div class="row">
@@ -233,37 +238,37 @@
                     </div>
                 </li>
                 <li class="list-group-item text-center">
-                    <div class="input-group-text mb-2">
-                        <span>Room Ammount</span>
+                    <div class="input-group-text mb-2 bg-info">
+                        <span class="text-white">Room Ammount</span>
                     </div>
                     <div class="container text-center" data-filtBy="filtBy-room">
                         <div class="row">
-                            <div class="col-6 col-sm-4">
+                            <div class="col-4">
                                 <label class="form-check-label mx-auto">
                                     <input type="checkbox" class="form-check-input" value="">Option 1
                                 </label>
                             </div>
-                            <div class="col-6 col-sm-4">
+                            <div class="col-4">
                                 <label class="form-check-label mx-auto">
                                     <input type="checkbox" class="form-check-input" value="">Option 2
                                 </label>
                             </div>
-                            <div class="col-6 col-sm-4">
+                            <div class="col-4">
                                 <label class="form-check-label mx-auto">
                                     <input type="checkbox" class="form-check-input" value="">Option 3
                                 </label>
                             </div>
-                            <div class="col-6 col-sm-4">
+                            <div class="col-4">
                                 <label class="form-check-label mx-auto">
                                     <input type="checkbox" class="form-check-input" value="">Option 4
                                 </label>
                             </div>
-                            <div class="col-6 col-sm-4">
+                            <div class="col-4">
                                 <label class="form-check-label mx-auto">
                                     <input type="checkbox" class="form-check-input" value="">Option 5
                                 </label>
                             </div>
-                            <div class="col-6 col-sm-4">
+                            <div class="col-4">
                                 <label class="form-check-label mx-auto">
                                     <input type="checkbox" class="form-check-input" value="">Option 6
                                 </label>
@@ -272,8 +277,8 @@
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <div class="input-group-text mb-2">
-                        <span>Layout</span>
+                    <div class="input-group-text mb-2 bg-info">
+                        <span class="text-white">Layout</span>
                     </div>
                     <div class="container text-center" data-filtBy="filtBy-layout">
                         <div class="row">
@@ -311,8 +316,8 @@
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <div class="input-group-text mb-2">
-                        <span>Wifi</span>
+                    <div class="input-group-text mb-2 bg-info">
+                        <span class="text-white">Wifi</span>
                     </div>
                     <div class="container text-center" data-filtBy="filtBy-wifi">
                         <div class="row">
@@ -337,16 +342,13 @@
             </ul>            
         </div>
     </div>
-    <main role="main">
-        <div class="container p-0 mx-0 mx-sm-auto">
-            <div class="row mx-0">
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
+    <main role="main" class="custom-container p-0 shadow">
+        <div class="p-0 mx-0 pb-5 mx-sm-auto border-left border-right">
+            <div class="row mx-0 mb-5">
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-2">
+                    <div class="card w-100 mx-auto mx-0-md bg-light border-0">
+                        <img class="card-img-top" src="images/pics04.jpg" alt="Card image cap">
+                        <div class="card-body bg-white">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -355,19 +357,12 @@
                             <li class="list-group-item">Dapibus ac facilisis in</li>
                             <li class="list-group-item">Vestibulum at eros</li>
                         </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
                     </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
+                </div>                
+                <div class="col-12 col-sm-6 col-lg-3 my-3 px-2">
+                    <div class="card w-100 mx-auto mx-0-md bg-light border-0">
+                        <img class="card-img-top" src="images/pics04.jpg" alt="Card image cap">
+                        <div class="card-body bg-white">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -376,249 +371,23 @@
                             <li class="list-group-item">Dapibus ac facilisis in</li>
                             <li class="list-group-item">Vestibulum at eros</li>
                         </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
                     </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>   
-                <div class="col-12 col-sm-6 col-lg-3 my-3 px-0 px-sm-2">
-                    <div class="card w-100 mx-auto mx-0-md bg-light" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <img class="card-img-top" src="images/pics03.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>   
+                </div>                
             </div>
         </div>
-    </main>
-    <footer class="page-footer font-small pt-4 mt-4">
-        <div class="container text-center text-md-left">
-          <div class="row pb-md-2">
-            <div class="col-md-4 mx-auto">
-              <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Footer Content</h5>
-              <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit.</p>
-            </div>
-            <hr class="clearfix w-100 d-md-none">
-            <div class="col-md-2 mx-auto">
-              <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#!">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!">Link 4</a>
-                </li>
-              </ul>
-            </div>
-            <hr class="clearfix w-100 d-md-none">
-            <div class="col-md-2 mx-auto">
-              <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#!">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!">Link 4</a>
-                </li>
-              </ul>
-            </div>
-            <hr class="clearfix w-100 d-md-none">
-            <div class="col-md-2 mx-auto">
-              <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Language</h5>
-              <ul class="list-unstyled">
-                    <li>
-                        <a href="#!">Italian</a>
-                    </li>
-                    <li>
-                        <a href="#!">English</a>
-                    </li>
-                    <li>
-                        <a href="#!">German</a>
-                    </li>
-                    <li>
-                        <a href="#!">Portuguese</a>
-                    </li>
-                </ul>
-            </div>
-          </div>
-        </div>
-       <!-- <hr>
-        Social buttons
-        <ul class="list-unstyled list-inline text-center">
-          <li class="list-inline-item">
-            <a class="btn-floating btn-fb mx-1">
-              <i class="fa fa-facebook"> </i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-tw mx-1">
-              <i class="fa fa-twitter"> </i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-gplus mx-1">
-              <i class="fa fa-google-plus"> </i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-li mx-1">
-              <i class="fa fa-linkedin"> </i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn-floating btn-dribbble mx-1">
-              <i class="fa fa-dribbble"> </i>
-            </a>
-          </li>
-        </ul> -->
-        <div class="footer-copyright text-center py-3">
+        <footer class="custom-container bg-white border text-center py-4">
             <div class="row">
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-6 text-md-left">
                     © 2018 Copyright: <a href="/">LK-Properties</a>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-6 text-md-right">
                     Developed by: <a href="https://se.linkedin.com/in/calexandru2018/en">Alexandru Cheltuitor</a>
                 </div>
-            </div>
-            
-           
-        </div>
-    </footer>
+            </div>  
+        </footer>
+    </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
+    <script src="bootstrapFiles/bootstrap.min.js"></script> 
 </body>
 </html>
