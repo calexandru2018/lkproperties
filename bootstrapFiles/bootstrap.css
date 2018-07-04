@@ -169,7 +169,30 @@ a {
 
 a:hover {
   color: #0056b3;
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.nav-buttons{
+  color: var(--gray) !important;
+  transition: 0.15s ease-in-out !important;
+}
+.nav-buttons:hover{
+  color: var(--info) !important;
+}
+
+.custom-focus{
+  color: inherit;
+  border: none !important;
+  outline: none !important;
+  outline-width: none !important;
+  box-shadow:none !important; 
+}
+
+.custom-focus:focus  {
+  color: inherit;
+  outline: none !important;
+  outline-width: none !important;
+  box-shadow:none !important;
 }
 
 a:not([href]):not([tabindex]) {
