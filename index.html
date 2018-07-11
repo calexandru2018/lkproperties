@@ -4,17 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122015083-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-122015083-1');
-    </script>-->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bootstrapFiles/bootstrap.css">
+    <link rel="stylesheet" href="bootstrapFiles/range-slider.css">
+    
+
     <title>LK-Properties</title>
     <style>
     /* Use these classes case the images will not get 
@@ -83,6 +77,14 @@
         color: #3e4551;
         text-decoration: none;
     }
+    output {
+            display: block;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            /* margin: 30px 0; */
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -164,12 +166,17 @@
             <div class="col-12 col-12 px-4 px-md-0">
                 <div class="row mx-0 collapse" id="filterDropdown"><!-- START UL -->
                     <div class="row mx-0 mb-3"> 
-                        <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
+                        <div class="col-12 col-md-6 list-group-item border-0 px-0 px-md-1">
                             <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
                                     <span class="text-info">Beach Distance</span>
                             </div>
-                            <div class="container" data-filtBy="filtBy-distance">
-                                <div class="row">
+                            <div class="container pt-2" data-filtBy="filtBy-distance">
+                                <!-- INSERT SLIDE PLUGIN -->
+                                
+                                <input type="range" min="50" max="2000" step="50" value="100" data-rangeSlider>
+                                <output class="pt-2">m</output>
+
+                                <!-- <div class="row">
                                     <div class="form-check col-4">
                                         <label class="form-check-label mx-auto">
                                             <input type="checkbox" class="form-check-input" value="">100m
@@ -200,7 +207,7 @@
                                             <input type="checkbox" class="form-check-input" value="">600m
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
@@ -473,8 +480,62 @@
     <script src="bootstrapFiles/bootstrap.min.js"></script> 
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="bootstrapFiles/range-slider.min.js"></script>
     <script>
-        feather.replace({'width' : 15});
+        feather.replace({'width' : 15});    
+        var slider = document.querySelectorAll('input[type="range"]');
+        (function () {
+            var selector = '[data-rangeSlider]',
+            elements = document.querySelectorAll(selector);
+
+            function valueOutput(element) {
+                var value = element.value,
+                    output = element.parentNode.getElementsByTagName('output')[0];
+                output.innerHTML = value + "m";
+            }
+
+            for (var i = elements.length - 1; i >= 0; i--) {
+                valueOutput(elements[i]);
+            }
+
+            Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
+                el.addEventListener('input', function (e) {
+                    valueOutput(e.target);
+                }, false);
+            });
+         })();
+
+        rangeSlider.create(slider, {
+            polyfill: true,     // Boolean, if true, custom markup will be created
+            rangeClass: 'rangeSlider',
+            fillClass: 'rangeSlider__fill',
+            // bufferClass: 'rangeSlider__buffer',
+            handleClass: 'rangeSlider__handle',
+            startEvent: ['mousedown', 'touchstart', 'pointerdown'],
+            moveEvent: ['mousemove', 'touchmove', 'pointermove'],
+            endEvent: ['mouseup', 'touchend', 'pointerup'],
+            vertical: false,    // Boolean, if true slider will be displayed in vertical orientation
+            min: null,          // Number , 0
+            max: null,          // Number, 100
+            step: null,         // Number, 1
+            value: null,        // Number, center of slider
+            buffer: null,       // Number, in percent, 0 by default
+            stick: null,        // [Number stickTo, Number stickRadius] : use it if handle should stick to stickTo-th value in stickRadius
+            borderRadius: 10,   // Number, if you use buffer + border-radius in css for looks good,
+            onInit: function () {
+                console.info('onInit')
+            },
+            onSlideStart: function (position, value) {
+                console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
+            },
+            onSlide: function (position, value) {
+                console.log('onSlide', 'position: ' + position, 'value: ' + value);
+            },
+            onSlideEnd: function (position, value) {
+                console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
+            }
+        });    
+        
     </script>
 </body>
 </html>
