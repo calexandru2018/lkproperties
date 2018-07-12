@@ -77,14 +77,6 @@
         color: #3e4551;
         text-decoration: none;
     }
-    output {
-            display: block;
-            font-size: 30px;
-            font-weight: bold;
-            text-align: center;
-            /* margin: 30px 0; */
-            width: 100%;
-        }
     </style>
 </head>
 <body>
@@ -171,40 +163,49 @@
                                     <span class="text-info">Beach Distance</span>
                             </div>
                             <div class="container pt-2" data-filtBy="filtBy-distance">
-                                <!-- INSERT SLIDE PLUGIN -->
-                                
-                                <input type="range" min="50" max="2000" step="50" value="100" data-rangeSlider>
-                                <output class="pt-2">m</output>
+                                <input type="range" min="50" max="2000" step="50" value="100" name="beachDistance" data-rangeSlider>
+                                <output class="pt-2"></output>m
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 list-group-item border-0 px-0 px-md-1">
+                            <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
+                                <span class="text-info">Room Quantity</span>
+                            </div>
+                            <div class="container" data-filtBy="filtBy-room">
+                                    <div class="container pt-2" data-filtBy="filtBy-room">
+                                        <input type="range" min="1" max="8" step="1" value="2" name="room" data-rangeSlider>
+                                        Up to <output class="pt-2"></output> rooms
+                                    </div>
 
                                 <!-- <div class="row">
                                     <div class="form-check col-4">
                                         <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">100m
+                                            <input type="checkbox" class="form-check-input" value="">Option 1
                                         </label>
                                     </div>
                                     <div class="form-check col-4">
                                         <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">200m
+                                            <input type="checkbox" class="form-check-input" value="">Option 2
                                         </label>
                                     </div>
                                     <div class="form-check col-4">
                                         <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">300m
+                                            <input type="checkbox" class="form-check-input" value="">Option 3
                                         </label>
                                     </div>
                                     <div class="form-check col-4">
                                         <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">400m
+                                            <input type="checkbox" class="form-check-input" value="">Option 4
                                         </label>
                                     </div>
                                     <div class="form-check col-4">
                                         <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">500m
+                                            <input type="checkbox" class="form-check-input" value="">Option 5
                                         </label>
                                     </div>
                                     <div class="form-check col-4">
                                         <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">600m
+                                            <input type="checkbox" class="form-check-input" value="">Option 6
                                         </label>
                                     </div>
                                 </div> -->
@@ -253,84 +254,6 @@
                                     <div class="col-4">
                                         <label class="form-check-label mx-auto">
                                             <input type="radio" class="form-check-input" name="filtBy-view" value="0">Indifferent
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
-                            <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                                <span class="text-info">Room Ammount</span>
-                            </div>
-                            <div class="container" data-filtBy="filtBy-room">
-                                <div class="row">
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 1
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 2
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 3
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 4
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 5
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 6
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
-                            <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                                <span class="text-info">Layout</span>
-                            </div>
-                            <div class="container text-center" data-filtBy="filtBy-layout">
-                                <div class="row">
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">T1
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">T2
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">T3
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">T4
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">T5
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">T6
                                         </label>
                                     </div>
                                 </div>
@@ -484,46 +407,37 @@
     <script>
         feather.replace({'width' : 15});    
         var slider = document.querySelectorAll('input[type="range"]');
-        (function () {
-            var selector = '[data-rangeSlider]',
-            elements = document.querySelectorAll(selector);
-
-            function valueOutput(element) {
-                var value = element.value,
-                    output = element.parentNode.getElementsByTagName('output')[0];
-                output.innerHTML = value + "m";
-            }
-
-            for (var i = elements.length - 1; i >= 0; i--) {
-                valueOutput(elements[i]);
-            }
-
-            Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
-                el.addEventListener('input', function (e) {
-                    valueOutput(e.target);
-                }, false);
-            });
-         })();
-
         rangeSlider.create(slider, {
             polyfill: true,     // Boolean, if true, custom markup will be created
             rangeClass: 'rangeSlider',
             fillClass: 'rangeSlider__fill',
-            // bufferClass: 'rangeSlider__buffer',
             handleClass: 'rangeSlider__handle',
             startEvent: ['mousedown', 'touchstart', 'pointerdown'],
             moveEvent: ['mousemove', 'touchmove', 'pointermove'],
             endEvent: ['mouseup', 'touchend', 'pointerup'],
             vertical: false,    // Boolean, if true slider will be displayed in vertical orientation
-            min: null,          // Number , 0
-            max: null,          // Number, 100
-            step: null,         // Number, 1
-            value: null,        // Number, center of slider
-            buffer: null,       // Number, in percent, 0 by default
             stick: null,        // [Number stickTo, Number stickRadius] : use it if handle should stick to stickTo-th value in stickRadius
             borderRadius: 10,   // Number, if you use buffer + border-radius in css for looks good,
             onInit: function () {
-                console.info('onInit')
+                var selector = '[data-rangeSlider]',
+                elements = document.querySelectorAll(selector);
+                function valueOutput(element) {
+                console.log(element.name);
+                    var value = element.value,
+                        output = element.parentNode.getElementsByTagName('output')[0];
+                    output.innerHTML = value;
+
+                }
+
+                for (var i = elements.length - 1; i >= 0; i--) {
+                    valueOutput(elements[i]);
+                }
+
+                Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
+                    el.addEventListener('input', function (e) {
+                        valueOutput(e.target);
+                    }, false);
+                });
             },
             onSlideStart: function (position, value) {
                 console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
