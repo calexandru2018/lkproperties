@@ -40,6 +40,9 @@
         /* modern browsers
         opacity: 0;
     } */
+    #custom-ul>li{
+        z-index: 0;
+    }
     footer{
         background-color: #3e4551; 
         /* color: #ffffff; */
@@ -164,53 +167,50 @@
                             </div>
                             <div class="container pt-2" data-filtBy="filtBy-distance">
                                 <input type="range" min="50" max="2000" step="50" value="100" name="beachDistance" data-rangeSlider>
-                                <output class="pt-2"></output>m
+                                Up to <output class="pt-2"></output>m
                             </div>
                         </div>
                         <div class="col-12 col-md-6 list-group-item border-0 px-0 px-md-1">
                             <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
                                 <span class="text-info">Room Quantity</span>
                             </div>
-                            <div class="container" data-filtBy="filtBy-room">
-                                    <div class="container pt-2" data-filtBy="filtBy-room">
-                                        <input type="range" min="1" max="8" step="1" value="2" name="room" data-rangeSlider>
-                                        Up to <output class="pt-2"></output> rooms
-                                    </div>
-
-                                <!-- <div class="row">
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 1
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 2
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 3
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 4
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 5
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-4">
-                                        <label class="form-check-label mx-auto">
-                                            <input type="checkbox" class="form-check-input" value="">Option 6
-                                        </label>
-                                    </div>
-                                </div> -->
-                            </div>
+                            <div class="container pt-2" data-filtBy="filtBy-room">
+                                <input type="range" min="1" max="8" step="1" value="2" name="room" data-rangeSlider>
+                                Up to <output class="pt-2"></output> rooms
+                             </div>
                         </div>
+                        <!-- <div class="row">
+                            <div class="form-check col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 1
+                                </label>
+                            </div>
+                            <div class="form-check col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 2
+                                </label>
+                            </div>
+                            <div class="form-check col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 3
+                                </label>
+                            </div>
+                            <div class="form-check col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 4
+                                </label>
+                            </div>
+                            <div class="form-check col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 5
+                                </label>
+                            </div>
+                            <div class="form-check col-4">
+                                <label class="form-check-label mx-auto">
+                                    <input type="checkbox" class="form-check-input" value="">Option 6
+                                </label>
+                            </div>
+                        </div> -->
                         <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
                             <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
                                 <span class="text-info">Pool Access</span>
@@ -308,10 +308,13 @@
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item px-0 text-justify">Cras justo odio</li>
-                            <li class="list-group-item px-0 text-justify">Dapibus ac facilisis in</li>
-                            <li class="list-group-item px-0 text-justify">Vestibulum at eros</li>
+                        <ul id="custom-ul" class="list-group list-group-flush d-flex flex-row flex-wrap bg-white">
+                            <li class="list-group-item px-0 text-center w-50">Barbeque</li>
+                            <li class="list-group-item px-0 text-center w-50">Quick beach access</li>
+                            <li class="list-group-item px-0 text-center w-50">Parking</li>
+                            <li class="list-group-item px-0 text-center w-50">Something else</li>
+                            <li class="list-group-item px-0 text-center w-50">Test 5</li>
+                            <!-- <li class="list-group-item px-0 text-center w-50 border-top border-bottom-0">Test 6</li> -->
                         </ul>
                     </div>
                 </div>                
