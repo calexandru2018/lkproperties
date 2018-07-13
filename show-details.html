@@ -18,25 +18,28 @@
         max-height: 450px;
         margin-bottom: 1rem;
     } */
-    .center-cropped {
-        width: 100%;
-        height: 450px;
-        background-position: center center;
-        background-repeat: no-repeat;
-        overflow: hidden;
-    }
+        .center-cropped {
+            width: 100%;
+            height: 450px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
 
-    /* Set the image to fill its parent and make transparent */
-    .center-cropped img {
-        min-height: 100%;
-        min-width: 100%;
-        /* IE 8 */
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-        /* IE 5-7 */
-        filter: alpha(opacity=0);
-        /* modern browsers */
-        opacity: 0;
-    } 
+        /* Set the image to fill its parent and make transparent */
+        .center-cropped img {
+            min-height: 100%;
+            min-width: 100%;
+            /* IE 8 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            /* IE 5-7 */
+            filter: alpha(opacity=0);
+            /* modern browsers */
+            opacity: 0;
+        } 
+        #custom-ul>li{
+            z-index: 0;
+        }
         footer{
             background-color: #3e4551; 
             /* color: #ffffff; */
@@ -128,10 +131,56 @@
         <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
             <div class="row">
                 <div class="col-12">
+                    <img src="images/org.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-12 my-2">
                     <h2>Encosta da Marina</h2>
                 </div>
-                <div class="col-12">
-                    <img src="images/org.jpg" class="img-fluid" alt="">
+                <div class="col-12 col-md-8 text-justify">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae odio ipsam consequatur deleniti ducimus veritatis obcaecati, eos esse cupiditate fugiat, saepe assumenda ipsa neque expedita, atque deserunt architecto nulla. Repellat.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quod soluta temporibus deleniti pariatur distinctio veniam, iste fugit sed facere repellat iusto suscipit impedit, delectus earum. Expedita hic voluptas ratione.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem consequuntur quidem nihil, laudantium delectus quaerat. Suscipit dolore quo culpa ad eos, omnis, maxime ex aliquid hic voluptates atque blanditiis minus.
+                    </p>
+                </div>
+                <div class="col-12 col-md-4 text-justify">
+                    <h5>Nearby: Praia da Rocha</h5>
+                    <section class="gallery-block grid-gallery py-0">
+                            <div class="row">
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="images/org.jpg">
+                                        <img class="img-fluid image scale-on-hover" src="images/org.jpg">
+                                    </a>
+                                </div>
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="images/org.jpg">
+                                        <img class="img-fluid image scale-on-hover" src="images/org.jpg">
+                                    </a>
+                                </div>
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="images/org.jpg">
+                                        <img class="img-fluid image scale-on-hover" src="images/org.jpg">
+                                    </a>
+                                </div>
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="images/org.jpg">
+                                        <img class="img-fluid image scale-on-hover" src="images/org.jpg">
+                                    </a>
+                                </div>
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="images/org.jpg">
+                                        <img class="img-fluid image scale-on-hover" src="images/org.jpg">
+                                    </a>
+                                </div>
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="images/org.jpg">
+                                        <img class="img-fluid image scale-on-hover" src="images/org.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
                 </div>
             </div>
         </div>
