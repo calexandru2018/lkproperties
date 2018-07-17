@@ -1,6 +1,8 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="pt" class="fullscreen-bg">
-
 <head>
 	<title>LK Properties - Painel de Administração</title>
 	<meta charset="utf-8">
@@ -14,12 +16,11 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.jpg">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.ico">
 </head>
-
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
         <?php
-            if(!isset($_SESSION['admin'])){
+            if(!isset($_SESSION['admin']) || empty($_SESSION['admin'])){
                 include('_include/_pages/login.php');
             }else{
         ?>
@@ -73,5 +74,4 @@
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
 	<script src="assets/js/klorofil-common.js"></script>
 </body>
-
 </html>

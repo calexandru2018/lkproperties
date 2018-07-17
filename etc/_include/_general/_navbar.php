@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="brand">
-        <a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+        <a href="index.php"><img src="assets/favicon.jpg" alt="Klorofil Logo" class="img-responsive logo" style="max-height: 70px"></a>
     </div>
     <div class="container-fluid">
         <div class="navbar-btn">
