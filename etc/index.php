@@ -35,7 +35,9 @@
                 <!-- MAIN CONTENT -->
                 <div class="main-content">
                     <div class="container-fluid">
+                    
                         <?php
+                        if(isset($_GET) && !empty($_GET)){
                             foreach ($_GET as $key => $value) {
                                 switch ($value) {
                                     case 'home' : include('_include/_pages/main.php');
@@ -61,6 +63,9 @@
                                         break;
                                 }
                             }
+                        }else{
+                            include('_include/_pages/main.php');   
+                        }
                         ?>
                     </div>
                 </div>
