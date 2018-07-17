@@ -2,15 +2,15 @@
     <div class="sidebar-scroll">
         <nav>
             <ul class="nav">
-                <li><a href="?home" class="active"><i class="lnr lnr-home"></i> <span>Home</span></a></li>
-                <li><a href="?cities"><i class="fa fa-map"></i> <span>Cidades</span></a></li>
-                <li><a href="?poi"><i class="fa fa-map-marker"></i> <span>Pontos de Interesse</span></a></li>
-                <li><a href="?activities"><i class="lnr lnr-heart"></i> <span>Actividades</span></a></li>
-                <li><a href="?faq"><i class="lnr lnr-question-circle"></i> <span>FAQ</span></a></li>
-                <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-                <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-                <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-                <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
+                <li><a href="?show=home" ><i class="lnr lnr-home"></i> <span>Home</span></a></li>
+                <li><a href="?show=cities"><i class="lnr lnr-map"></i> <span>Cidades</span></a></li>
+                <li><a href="?show=poi"><i class="lnr lnr-star-half"></i> <span>Pontos de Interesse</span></a></li>
+                <li><a href="?show=to-rent"><i class="lnr lnr-map-marker"></i> <span>Aluguer</span></a></li>
+                <li><a href="?show=activities"><i class="lnr lnr-heart"></i> <span>Actividades</span></a></li>
+                <li><a href="?show=real-estate"><i class="lnr lnr-apartment"></i> <span>Real Estate</span></a></li>
+                <li><a href="?show=faq"><i class="lnr lnr-question-circle"></i> <span>FAQ</span></a></li>
+                <li><a href="?show=contact-us"><i class="lnr lnr-phone-handset"></i> <span>Contacte-nos</span></a></li>
+                <li><a href="?show=administrators"><i class="lnr lnr-users"></i> <span>Administradores</span></a></li>
                 <li>
                     <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                     <div id="subPages" class="collapse ">
@@ -21,9 +21,6 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-                <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-                <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
             </ul>
         </nav>
     </div>

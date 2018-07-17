@@ -37,16 +37,24 @@
                     <div class="container-fluid">
                         <?php
                             foreach ($_GET as $key => $value) {
-                                switch ($key) {
+                                switch ($value) {
                                     case 'home' : include('_include/_pages/main.php');
                                         break;
                                     case 'cities' : include('_include/_pages/cities.php');
                                         break;
                                     case 'poi' : include('_include/_pages/poi.php');
                                         break;
+                                    case 'to-rent' : include('_include/_pages/to-rent.php');
+                                        break;
                                     case 'activities' : include('_include/_pages/activities.php');
                                         break;
                                     case 'faq' : include('_include/_pages/faq.php');
+                                        break;
+                                    case 'real-estate' : include('_include/_pages/real-estate.php');
+                                        break;
+                                    case 'contact-us' : include('_include/_pages/contact-us.php');
+                                        break;
+                                    case 'administrators' : include('_include/_pages/administrators.php');
                                         break;
                                     default :
                                         include('_include/_pages/main.php');
