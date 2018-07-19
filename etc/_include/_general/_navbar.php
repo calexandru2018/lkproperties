@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
     <div class="brand">
         <a href="index.php"><img src="assets/favicon.jpg" alt="Klorofil Logo" class="img-responsive logo" style="max-height: 70px"></a>
     </div>

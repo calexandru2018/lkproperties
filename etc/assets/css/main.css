@@ -83,14 +83,14 @@ footer {
   float: right;
   background-color: #f5f5fa; }
 
-#wrapper #sidebar-nav,
+/* #wrapper #sidebar-nav,
 #wrapper .main {
   padding-top: 80px; }
 
 @media screen and (max-width: 767px) {
   #wrapper #sidebar-nav,
   #wrapper .main {
-    padding-top: 130px; } }
+    padding-top: 130px; } } */
 
 .layout-fullwidth #wrapper .sidebar {
   left: -260px; }
