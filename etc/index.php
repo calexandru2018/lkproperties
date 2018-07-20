@@ -1,6 +1,4 @@
-<?php
-    session_start();
-    ?>
+<?php session_start();?>
 <!doctype html>
 <html lang="pt" class="fullscreen-bg">
 <head>
@@ -48,6 +46,10 @@
                                     case 'cities' : include('_include/_pages/cities.php');
                                         break;
                                     case 'poi' : include('_include/_pages/poi.php');
+                                        break;
+                                    case 'services' : include('_include/_pages/services.php');
+                                        break;
+                                    case 'unique-services' : include('_include/_pages/unique-services.php');
                                         break;
                                     case 'to-rent' : include('_include/_pages/to-rent.php');
                                         break;

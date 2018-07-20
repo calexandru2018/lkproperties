@@ -22,29 +22,32 @@
                             <span class="input-group-addon">Password</span>
                             <input type="text" name="adminPassword" class="form-control">
                             <span class="input-group-addon" style="padding:0">
-                                <button class="btn btn-xs btn-warning">Gerar password</button>
+                                <button class="btn btn-xs btn-info">Gerar password</button>
                             </span>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">
-                        <h5>Activar Conta</h5>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Sim
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
+                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                        <div class="input-group">
+                            <span class="input-group-addon">Previlégio</span>
+                            <select class="js-example-basic-multiple bg-white" name="poiCityName" style="width: 100%;">
+                                <option value="2">Gestor de Conteudo</option>
+                                    ...
+                                <option value="3">Editor de Aluguer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-xs-6 col-md-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
+                        <label class="fancy-checkbox">
+                            <input type="checkbox" name="isActive" value="1"><span>Activar conta</span>
                         </label>
                     </div>
-                    <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">
-                        <h5>Tornar Publico</h5>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Sim
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
+                    <div class="col-xs-6 col-md-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
+                        <label class="fancy-checkbox">
+                            <input type="checkbox" name="isPublic" value="1"><span>Tornar conta publica</span>
                         </label>
                     </div>
-                    <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
+                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
                     </div>
                 </div>
@@ -127,3 +130,8 @@
         </div>
     </div>
 </div>
+<script>
+    $( document ).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>

@@ -8,13 +8,13 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                            <input type="text" name="cityName-PT" class="form-control" aria-describedby="basic-addon1">
+                            <input type="text" name="cityName-PT" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                            <input type="text" name="cityName-EN" class="form-control" aria-describedby="basic-addon1">
+                            <input type="text" name="cityName-EN" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
@@ -29,8 +29,14 @@
                             <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
                         <!-- </div> -->
                     </div>
-                    <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                    <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
+                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Código Postal</span>
+                            <input type="text" name="postalCode" class="form-control" placeholder="8500 ou 8200">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                        <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
                     </div>
                 </div>
             </li>

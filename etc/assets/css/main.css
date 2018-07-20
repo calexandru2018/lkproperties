@@ -83,11 +83,11 @@ footer {
   float: right;
   background-color: #f5f5fa; }
 
-/* #wrapper #sidebar-nav,
+#wrapper #sidebar-nav,
 #wrapper .main {
   padding-top: 80px; }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   #wrapper #sidebar-nav,
   #wrapper .main {
     padding-top: 130px; } } */
@@ -184,7 +184,8 @@ html.fullscreen-bg #wrapper {
       display: none; } }
   @media screen and (max-width: 640px) {
     .navbar-default #navbar-menu {
-      float: right; } }
+      float: right; 
+      width: 15%;} }
 
 .navbar-btn {
   float: left;
@@ -198,7 +199,7 @@ html.fullscreen-bg #wrapper {
     outline: none; }
   @media screen and (max-width: 640px) {
     .navbar-btn {
-      padding-left: 0; } }
+      padding: 0 0 !important; } }
 
 .navbar-btn-right {
   float: right; }

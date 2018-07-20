@@ -5,6 +5,8 @@
                 <li><a href="?show=home" ><i class="lnr lnr-home"></i> <span>Home</span></a></li>
                 <li><a href="?show=cities"><i class="lnr lnr-map"></i> <span>Cidades</span></a></li>
                 <li><a href="?show=poi"><i class="lnr lnr-star-half"></i> <span>Pontos de Interesse</span></a></li>
+                <li><a href="?show=services"><i class="lnr lnr-menu-circle"></i> <span>Serviços</span></a></li>
+                <li><a href="?show=unique-services"><i class="lnr lnr-tag"></i> <span>Serviços Unicos</span></a></li>
                 <li><a href="?show=to-rent"><i class="lnr lnr-map-marker"></i> <span>Aluguer</span></a></li>
                 <li><a href="?show=activities"><i class="lnr lnr-heart"></i> <span>Actividades</span></a></li>
                 <li><a href="?show=real-estate"><i class="lnr lnr-apartment"></i> <span>Real Estate</span></a></li>
