@@ -1,6 +1,6 @@
 <?php
     session_start();
-?>
+    ?>
 <!doctype html>
 <html lang="pt" class="fullscreen-bg">
 <head>
@@ -12,9 +12,12 @@
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.jpg">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.ico">
+    
+    <script src="assets/js/jquery.min.js"></script>
 </head>
 <body>
 	<!-- WRAPPER -->
@@ -76,9 +79,10 @@
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
-	<script src="assets/js/klorofil-common.js"></script>
+    <script src="assets/js/klorofil-common.js"></script>
+    <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </body>
 </html>
