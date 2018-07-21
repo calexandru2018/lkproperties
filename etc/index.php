@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/dropzone.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/main.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -57,7 +58,7 @@
                                         break;
                                     case 'faq' : include('_include/_pages/faq.php');
                                         break;
-                                    case 'real-estate' : include('_include/_pages/real-estate.php');
+                                    case 'to-sell' : include('_include/_pages/to-sell.php');
                                         break;
                                     case 'contact-us' : include('_include/_pages/contact-us.php');
                                         break;
@@ -84,6 +85,7 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/klorofil-common.js"></script>
+    <script src="assets/js/dropzone.min.js"></script>
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </body>

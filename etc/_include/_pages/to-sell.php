@@ -7,7 +7,7 @@
     4-Bungalow
 */
 ?>
-<h3 class="page-title">Objectos para Aluger</h3>
+<h3 class="page-title">Objectos para Venda</h3>
 <div class="panel">
     <div class="panel-heading">
         <ul class="nav">
@@ -123,76 +123,18 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <h4>Preços</h4>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">
-                                <div class="input-group">
-                                    <input type="text" name="cat1" class="form-control" placeholder="Nov-Abr">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat2" class="form-control" placeholder="Maio">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat3" class="form-control" placeholder="1 1/2 Junho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat4" class="form-control" placeholder="2 1/2 Junho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat3" class="form-control" placeholder="1 1/2 Julho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat4" class="form-control" placeholder="2 1/2 Julho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat1" class="form-control" placeholder="Agosto">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat2" class="form-control" placeholder="1 1/2 Setembro">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="text" name="cat3" class="form-control" placeholder="2 1/2 Setembro">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">  
-                                <div class="input-group">
-                                    <input type="text" name="cat4" class="form-control" placeholder="Out">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
+                    <div class="clearfix"></div>
+                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                        <div class="input-group">
+                            <span class="input-group-addon">Preço</span>
+                            <input type="text" name="beachDistance" class="form-control">
+                            <span class="input-group-addon">€</span>
                         </div>
                     </div>
-                    <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" data-toggle="collapse" onClick="show()" class="btn btn-success pull-right">Inserir</button>
+                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                        <button  type="button" data-toggle="collapse" onClick="show()" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </li>
         </ul>
@@ -207,13 +149,13 @@
             <table class="table table-hover">
                 <thead>
                     <th>ID Publico</th>
+                    <th>Preço</th>
                     <th>Titulo(PT)</th>
                     <th>Cidade(PT)</th>
                     <th>Tipo de Propriedade</th>
                     <th>Vista</th>
                     <th>Acesso a Piscina</th>
                     <th>Qtd de Residentes</th>
-                    <th>Qtd de Quartos</th>
                     <th>Distância da Praia</th>
                     <th>Visivel</th>
                     <th>Criado</th>
@@ -225,6 +167,9 @@
                     <tr data-property-id="1">
                         <td>
                             85-2345
+                        </td>
+                        <td>
+                            110 000€
                         </td>
                         <td>
                             Encosta da Marina
@@ -239,13 +184,10 @@
                             Piscina
                         </td>
                         <td>
-                            Nao
+                            Sim
                         </td>
                         <td>
-                            6
-                        </td>
-                        <td>
-                            3
+                            4
                         </td>
                         <td>
                             800m
@@ -268,60 +210,8 @@
                             <buton class="btn btn-info btn-xs pull-left"><span class="lnr lnr-pencil"></span></buton>
                             <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
                         </td>
-                    </tr>                    
+                    </tr>
                     <tr id="collapseGallery-1" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form action="upload.php" class="dropzone"></form>
-                        </td>
-                    </tr>
-                    <tr data-property-id="2">
-                        <td>
-                            85-2355
-                        </td>
-                        <td>
-                            Marina de Portimao
-                        </td>
-                        <td>
-                            Portimao
-                        </td>
-                        <td>
-                            Casa
-                        </td>
-                        <td>
-                            Mar
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td>
-                            4
-                        </td>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            800m
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td>
-                            2018-09-23
-                        </td>
-                        <td>
-                            2018-09-23
-                        </td>
-                        <td class="text-center">
-                            <buton type="button" class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </buton>
-                        </td>
-                        <td>
-                            <buton class="btn btn-info btn-xs pull-left"><span class="lnr lnr-pencil"></span></buton>
-                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-2" class="collapse">
                         <td colspan="14" class="bg-info">
                             <form action="upload.php" class="dropzone"></form>
                         </td>
@@ -346,7 +236,4 @@
         console.log($('#viewType').select2('data'));
         console.log($('#city-poi').select2('data'));
     }
-    $(document).on('click', '#show-gallery', function(){
-        console.log($(this).closest('tr').data('property-id'));
-    });
 </script>

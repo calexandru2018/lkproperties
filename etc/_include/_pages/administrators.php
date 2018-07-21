@@ -26,17 +26,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <div class="input-group">
-                            <span class="input-group-addon">Previlégio</span>
-                            <select class="js-example-basic-multiple bg-white" name="poiCityName" style="width: 100%;">
-                                <option value="2">Gestor de Conteudo</option>
-                                    ...
-                                <option value="3">Editor de Aluguer</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
+                    
                     <div class="col-xs-6 col-md-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
                             <input type="checkbox" name="isActive" value="1"><span>Activar conta</span>
@@ -46,6 +36,17 @@
                         <label class="fancy-checkbox">
                             <input type="checkbox" name="isPublic" value="1"><span>Tornar conta publica</span>
                         </label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                        <div class="input-group">
+                            <span class="input-group-addon">Previlégio</span>
+                            <select class="js-example-basic-multiple bg-white" name="poiCityName" style="width: 100%;">
+                                <option value="2">Gestor de Conteudo</option>
+                                    ...
+                                <option value="3">Editor de Aluguer</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>

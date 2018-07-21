@@ -56,9 +56,10 @@
                     <th>Descrição(PT)</th>
                     <th>Nome(EN)</th>
                     <th>Descrição(EN)</th>
+                    <th>Galeria</th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr data-city-id="1">
                         <td>
                             1
                         </td>
@@ -75,8 +76,18 @@
                         <td>
                             It is a beatiful city
                         </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr id="collapseGallery-1" class="collapse">
+                        <td colspan="14" class="bg-info">
+                            <form action="upload.php" class="dropzone"></form>
+                        </td>
+                    </tr>
+                    <tr data-property-id="2">
                         <td>
                             2
                         </td>
@@ -92,8 +103,18 @@
                         <td>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptatum dolores dolor deleniti. Earum, optio dolorum a ea similique dolorem autem excepturi, ratione quidem quod perferendis placeat provident modi. Quis?
                         </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr id="collapseGallery-2" class="collapse">
+                        <td colspan="14" class="bg-info">
+                            <form action="upload.php" class="dropzone"></form>
+                        </td>
+                    </tr>
+                    <tr data-property-id="3">
                         <td>
                             3
                         </td>
@@ -109,8 +130,18 @@
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-3" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr id="collapseGallery-3" class="collapse">
+                        <td colspan="14" class="bg-info">
+                            <form action="upload.php" class="dropzone"></form>
+                        </td>
+                    </tr>
+                    <tr data-property-id="4">
                         <td>
                             4
                         </td>
@@ -126,8 +157,18 @@
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-4" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr id="collapseGallery-4" class="collapse">
+                        <td colspan="14" class="bg-info">
+                            <form action="upload.php" class="dropzone"></form>
+                        </td>
+                    </tr>
+                    <tr data-property-id="5">
                         <td>
                             5
                         </td>
@@ -142,6 +183,16 @@
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
+                        </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-5" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
+                    </tr>
+                    <tr id="collapseGallery-5" class="collapse">
+                        <td colspan="14" class="bg-info">
+                            <form action="upload.php" class="dropzone"></form>
                         </td>
                     </tr>
                 </tbody>

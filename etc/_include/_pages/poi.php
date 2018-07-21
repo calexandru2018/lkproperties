@@ -57,6 +57,8 @@
                     <th>Descrição(PT)</th>
                     <th>Nome(EN)</th>
                     <th>Descrição(EN)</th>
+                    <th>Galeria</th>
+                    <th>Ação</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -77,7 +79,16 @@
                             Rocha Beach
                         </td>
                         <td>
-                            It is a beatiful city
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique iusto earum voluptate quis excepturi. Quia doloribus veniam eligendi voluptatem ex vel sit explicabo facere maxime perferendis. Facilis eveniet mollitia voluptatem.
+                        </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
+                        <td>
+                            <buton class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></buton>
+                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
                         </td>
                     </tr>
                     <tr>
@@ -99,6 +110,15 @@
                         <td>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptatum dolores dolor deleniti. Earum, optio dolorum a ea similique dolorem autem excepturi, ratione quidem quod perferendis placeat provident modi. Quis?
                         </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
+                        <td>
+                            <buton class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></buton>
+                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -118,6 +138,15 @@
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
+                        </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-3" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
+                        <td>
+                            <buton class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></buton>
+                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
                         </td>
                     </tr>
                     <tr>
@@ -139,6 +168,15 @@
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-4" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
+                        <td>
+                            <buton class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></buton>
+                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -158,6 +196,15 @@
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
+                        </td>
+                        <td class="text-center">
+                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-5" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </buton>
+                        </td>
+                        <td>
+                            <buton class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></buton>
+                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
                         </td>
                     </tr>
                 </tbody>
