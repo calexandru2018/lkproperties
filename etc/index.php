@@ -1,4 +1,13 @@
-<?php session_start();?>
+<?php
+    session_start();
+    require_once('_include/_models/db.php');
+    $conn = new Database();
+    if(!isset($_SESSION['crsf_token']) || empty($_SESSION['crsf_token'])){
+        $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
+        header('Refresh: 0');
+    }
+    
+?>
 <!doctype html>
 <html lang="pt" class="fullscreen-bg">
 <head>
@@ -25,7 +34,7 @@
 	<!-- WRAPPER -->
 	<div id="wrapper">
         <?php
-            if(!isset($_SESSION['admin']) || empty($_SESSION['admin'])){
+            if(!isset($_SESSION['admin_ID']) || empty($_SESSION['admin_ID'])){
                 include('_include/_pages/login.php');
             }else{
         ?>
@@ -92,7 +101,7 @@
                                 }
                             }
                         }else{
-                            include('_include/_pages/main.php');   
+                            include('_include/_pages/show/show-main.php');   
                         }
                         ?>
                     </div>
