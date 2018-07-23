@@ -46,6 +46,7 @@
                     <th>Resposta(PT)</th>
                     <th>Pergunta(EN)</th>
                     <th>Resposta(EN)</th>
+                    <th>Ação</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -65,6 +66,10 @@
                         <td>
                             It is a beatiful city
                         </td>
+                        <td>
+                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -81,6 +86,10 @@
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptatum dolores dolor deleniti. Earum, optio dolorum a ea similique dolorem autem excepturi, ratione quidem quod perferendis placeat provident modi. Quis?
+                        </td>
+                        <td>
+                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr>
@@ -99,6 +108,10 @@
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
+                        <td>
+                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -116,6 +129,10 @@
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
+                        <td>
+                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -132,6 +149,10 @@
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
+                        </td>
+                        <td>
+                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                 </tbody>

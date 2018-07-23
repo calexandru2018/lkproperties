@@ -26,7 +26,6 @@
                             </span>
                         </div>
                     </div>
-                    
                     <div class="col-xs-6 col-md-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
                             <input type="checkbox" name="isActive" value="1"><span>Activar conta</span>
@@ -72,6 +71,7 @@
                     <th>Activo</th>
                     <th>Publico</th>
                     <th>Previlegio</th>
+                    <th>Ação</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -99,6 +99,10 @@
                         <td>
                             Super Admin
                         </td>
+                        <td>
+                            <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -124,6 +128,10 @@
                         </td>
                         <td>
                             Gestor de Conteudo
+                        </td>
+                        <td>
+                            <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                 </tbody>

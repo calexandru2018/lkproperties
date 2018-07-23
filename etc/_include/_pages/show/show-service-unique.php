@@ -1,28 +1,28 @@
-<h3 class="page-title">Serviços Comuns</h3>
+<h3 class="page-title">Serviços Únicos</h3>
 <div class="panel">
     <div class="panel-heading">
         <ul class="nav">
             <li>
-                <button href="#addCommonService" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo Serviço Comum</button>
-                <div id="addCommonService" class="row collapse">
+                <button href="#addUniqueService" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo Serviço Único</button>
+                <div id="addUniqueService" class="row collapse">
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(PT)</span>
-                            <input type="text" name="commonServiceNamePT-1" class="form-control">
+                            <input type="text" name="uniqueServiceNamePT-1" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(EN)</span>
-                            <input type="text" name="commonServiceNameEN-1" class="form-control">
+                            <input type="text" name="uniqueServiceNameEN-1" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                             <span class="input-group-addon" style="padding: 0 !important">
-                                <button type="button" data-toggle="collapse" class="btn btn-info btn-block pull-left" id="addFields">Adicionar</button>
+                                <button  type="button" data-toggle="collapse" class="btn btn-info btn-block pull-left"  id="addFields">Adicionar</button>
                             </span>
-                            <input type="text" id="rowsToAdd" class="form-control" style="padding: 17px 10px;">
+                            <input type="text" name="poiName-PT" id="rowsToAdd"  class="form-control" style="padding: 17px 10px;">
                             <span class="input-group-addon">
                                 Novos Campos
                             </span>
@@ -39,7 +39,7 @@
 </div>
 <div class="panel panel-info">
     <div class="panel-heading">
-        Serviços Comuns
+        Serviços Únicos Existentes
     </div>
     <div class="panel-body">
         <div class="table-responsive">
@@ -48,6 +48,7 @@
                     <th>ID</th>
                     <th>Nome(PT)</th>
                     <th>Nome(EN)</th>
+                    <th>Ação</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -55,10 +56,14 @@
                             1
                         </td>
                         <td>
-                            Maquina de Lavar
+                            Garagem Privada
                         </td>
                         <td>
-                            Washing Machine
+                            Private Garage
+                        </td>
+                        <td>
+                            <a href="?edit=service-unique&id=2" class="btn btn-info btn-xs pull-left"style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr>
@@ -66,10 +71,14 @@
                             2
                         </td>
                         <td>
-                            Maquina de Loiça
+                            Terreno Próprio
                         </td>
                         <td>
-                            Dishwashing Machine
+                            Own land
+                        </td>
+                        <td>
+                            <a href="?edit=service-unique&id=2" class="btn btn-info btn-xs pull-left"style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr>
@@ -77,10 +86,14 @@
                             3
                         </td>
                         <td>
-                            Utensilios de Cozinha
+                            Piscina Privada
                         </td>
                         <td>
-                            Kitchenware
+                            Private Pool
+                        </td>
+                        <td>
+                            <a href="?edit=service-unique&id=2" class="btn btn-info btn-xs pull-left"style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                 </tbody>
@@ -104,19 +117,20 @@
                     }
                     console.log('Row check: ' + rowCheck);
                     counter++;
-                    $('#addCommonService').prepend(`
+                    $('#addUniqueService').prepend(`
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(PT)</span>
-                                <input type="text" name="commonServiceNamePT-` + (parseInt(rowCheck) + parseInt((counter + 1)))  + `" class="form-control">
+                                <input type="text" name="uniqueServiceNamePT-` + (parseInt(rowCheck) + parseInt((counter + 1)))  + `" class="form-control">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(EN)</span>
-                                <input type="text" name="commonServiceNameEN-` + (parseInt(rowCheck) + parseInt((counter + 1)))  + `" class="form-control">
+                                <input type="text" name="uniqueServiceNameEN-` + (parseInt(rowCheck) + parseInt((counter + 1)))  + `" class="form-control">
                             </div>
                         </div>
+                        <hr>
                     `);
                     if(counter == rowsToAdd){
                         if(rowCounter == 0){

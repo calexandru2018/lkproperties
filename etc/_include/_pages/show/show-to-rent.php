@@ -28,26 +28,22 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                            <input type="text" name="cityName-PT" class="form-control">
+                            <input type="text" name="propertyName-PT" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                            <input type="text" name="cityName-EN" class="form-control">
+                            <input type="text" name="propertyName-EN" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <!-- <div class="input-group"> -->
-                            <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
-                            <textarea name="propertyDesc-PT" class="form-control" id="propertyDescPT" rows="4"></textarea>
-                        <!-- </div> -->
+                        <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
+                        <textarea name="propertyDesc-PT" class="form-control" id="propertyDescPT" rows="4"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <!-- <div class="input-group"> -->
-                            <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
-                            <textarea name="propertyDesc-EN" class="form-control" id="propertyDescEN" rows="4"></textarea>
-                        <!-- </div> -->
+                        <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
+                        <textarea name="propertyDesc-EN" class="form-control" id="propertyDescEN" rows="4"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
@@ -260,13 +256,13 @@
                             2018-09-23
                         </td>
                         <td class="text-center">
-                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
                                 <i class="lnr lnr-plus-circle"></i>
-                            </buton>
+                            </button>
                         </td>
                         <td>
-                            <buton class="btn btn-info btn-xs pull-left"><span class="lnr lnr-pencil"></span></buton>
-                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
+                            <a href="?edit=to-rent&id=2" class="btn btn-info btn-xs pull-left"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>                    
                     <tr id="collapseGallery-1" class="collapse">
@@ -312,13 +308,13 @@
                             2018-09-23
                         </td>
                         <td class="text-center">
-                            <buton type="button" class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
+                            <button type="button" class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
                                 <i class="lnr lnr-plus-circle"></i>
-                            </buton>
+                            </button>
                         </td>
                         <td>
-                            <buton class="btn btn-info btn-xs pull-left"><span class="lnr lnr-pencil"></span></buton>
-                            <buton class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></buton>
+                            <a href="?edit=to-rent&id=2" class="btn btn-info btn-xs pull-left"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr id="collapseGallery-2" class="collapse">

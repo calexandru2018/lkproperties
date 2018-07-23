@@ -1,41 +1,41 @@
-<h3 class="page-title">Cidades</h3>
+<h3 class="page-title">Actividades</h3>
 <div class="panel">
     <div class="panel-heading">
         <ul class="nav">
             <li>
-                <button href="#addCity" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Nova Cidade</button>
+                <button href="#addCity" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Nova Actividade</button>
                 <div id="addCity" class="row collapse">
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                            <input type="text" name="cityName-PT" class="form-control">
+                            <span class="input-group-addon">Nome(PT)</span>
+                            <input type="text" name="activityName-PT" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                            <input type="text" name="cityName-EN" class="form-control">
+                            <span class="input-group-addon">Nome(EN)</span>
+                            <input type="text" name="activityName-EN" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <!-- <div class="input-group"> -->
-                            <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
-                            <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
-                        <!-- </div> -->
+                        <span class="input-group-addon" >Descrição(PT)</span>
+                        <textarea name="activityDesc-PT" id="activityDescPT" class="form-control" rows="4"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <!-- <div class="input-group"> -->
-                            <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
-                            <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
-                        <!-- </div> -->
+                        <span class="input-group-addon" >Descrição(EN)</span>
+                        <textarea name="activityDesc-EN" id="activityDescEN" class="form-control" rows="4"></textarea>
                     </div>
-                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                    <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Código Postal</span>
-                            <input type="text" name="postalCode" class="form-control" placeholder="8500 ou 8200">
+                            <span class="input-group-addon">Cidade</span>
+                            <select class="js-example-basic-multiple bg-white" name="activityCityName" style="width: 100%;">
+                                <option value="AL">Alabama</option>
+                                    ...
+                                <option value="WY">Wyoming</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
+                    <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
                     </div>
                 </div>
@@ -45,21 +45,23 @@
 </div>
 <div class="panel panel-info">
     <div class="panel-heading">
-        Cidades Existentes
+        Actividades Existentes
     </div>
     <div class="panel-body">
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <th>ID</th>
+                    <th>Cidade</th>
                     <th>Nome(PT)</th>
                     <th>Descrição(PT)</th>
                     <th>Nome(EN)</th>
                     <th>Descrição(EN)</th>
                     <th>Galeria</th>
+                    <th>Ação</th>
                 </thead>
                 <tbody>
-                    <tr data-city-id="1">
+                    <tr>
                         <td>
                             1
                         </td>
@@ -67,19 +69,26 @@
                             Portimão
                         </td>
                         <td>
+                            Praia da Rocha
+                        </td>
+                        <td>
                             E uma cidade bonita
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis, quae perferendis sed, doloremque eligendi suscipit possimus eaque sapiente odit vero eius soluta perspiciatis vitae. Voluptatem quas fuga esse accusamus mollitia!
                         </td>
                         <td>
-                            Portimão
+                            Rocha Beach
                         </td>
                         <td>
                             It is a beatiful city
                         </td>
                         <td class="text-center">
-                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
                                 <i class="lnr lnr-plus-circle"></i>
-                            </buton>
+                            </button>
+                        </td>
+                        <td>
+                            <a href="?edit=activity&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr id="collapseGallery-1" class="collapse">
@@ -87,7 +96,7 @@
                             <form action="upload.php" class="dropzone"></form>
                         </td>
                     </tr>
-                    <tr data-property-id="2">
+                    <tr>
                         <td>
                             2
                         </td>
@@ -95,18 +104,25 @@
                             Alvor
                         </td>
                         <td>
+                            Praia de Alvor
+                        </td>
+                        <td>
                             Cidade pequena e simples
                         </td>
                         <td>
-                            Alvor
+                            Alvor Beach
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptatum dolores dolor deleniti. Earum, optio dolorum a ea similique dolorem autem excepturi, ratione quidem quod perferendis placeat provident modi. Quis?
                         </td>
                         <td class="text-center">
-                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
                                 <i class="lnr lnr-plus-circle"></i>
-                            </buton>
+                            </button>
+                        </td>
+                        <td>
+                            <a href="?edit=activity&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr id="collapseGallery-2" class="collapse">
@@ -114,26 +130,34 @@
                             <form action="upload.php" class="dropzone"></form>
                         </td>
                     </tr>
-                    <tr data-property-id="3">
+                    </tr>
+                    <tr>
                         <td>
                             3
                         </td>
                         <td>
-                            Lagos
+                            Lisboa
+                        </td>
+                        <td>
+                            Museu das Artes
                         </td>
                         <td>   
                             Cidade mutio turistica
                         </td>
                         <td>
-                            Lagos
+                            Art Meuseum
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
                         <td class="text-center">
-                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-3" data-toggle="collapse">
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-3" data-toggle="collapse">
                                 <i class="lnr lnr-plus-circle"></i>
-                            </buton>
+                            </button>
+                        </td>
+                        <td>
+                            <a href="?edit=activity&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr id="collapseGallery-3" class="collapse">
@@ -141,26 +165,34 @@
                             <form action="upload.php" class="dropzone"></form>
                         </td>
                     </tr>
-                    <tr data-property-id="4">
+                    </tr>
+                    <tr>
                         <td>
                             4
                         </td>
                         <td>
-                            Lagoa
+                            Lisboa
+                        </td>
+                        <td>
+                            Parque de Atrações
                         </td>
                         <td>   
                             Cidade mutio turistica
                         </td>
                         <td>
-                            Lagoa
+                            Atraction Park
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
                         <td class="text-center">
-                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-4" data-toggle="collapse">
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-4" data-toggle="collapse">
                                 <i class="lnr lnr-plus-circle"></i>
-                            </buton>
+                            </button>
+                        </td>
+                        <td>
+                            <a href="?edit=activity&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr id="collapseGallery-4" class="collapse">
@@ -168,26 +200,34 @@
                             <form action="upload.php" class="dropzone"></form>
                         </td>
                     </tr>
-                    <tr data-property-id="5">
+                    </tr>
+                    <tr>
                         <td>
                             5
                         </td>
                         <td>
-                            Lisboa
+                            Leiria
+                        </td>
+                        <td>
+                            Museu da Ciencia
                         </td>
                         <td>   
                             Cidade mutio turistica
                         </td>
                         <td>
-                            Lissbon
+                            Science museum
                         </td>
                         <td>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
                         </td>
                         <td class="text-center">
-                            <buton class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-5" data-toggle="collapse">
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-5" data-toggle="collapse">
                                 <i class="lnr lnr-plus-circle"></i>
-                            </buton>
+                            </button>
+                        </td>
+                        <td>
+                            <a href="?edit=activity&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                     <tr id="collapseGallery-5" class="collapse">
@@ -195,14 +235,16 @@
                             <form action="upload.php" class="dropzone"></form>
                         </td>
                     </tr>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        CKEDITOR.replace( 'cityDescPT' );
-        CKEDITOR.replace( 'cityDescEN' );
+    $( document ).ready(function() {
+        CKEDITOR.replace( 'activityDescPT' );
+        CKEDITOR.replace( 'activityDescEN' );
+        $('.js-example-basic-multiple').select2();
     });
 </script>

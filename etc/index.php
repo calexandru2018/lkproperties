@@ -9,10 +9,13 @@
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/css/dropzone.min.css">
+	<link rel="stylesheet" href="assets/css/toastr.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/main.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.jpg">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.ico">
     
@@ -41,32 +44,51 @@
                         <?php
                         if(isset($_GET) && !empty($_GET)){
                             foreach ($_GET as $key => $value) {
-                                switch ($value) {
-                                    case 'home' : include('_include/_pages/main.php');
-                                        break;
-                                    case 'cities' : include('_include/_pages/cities.php');
-                                        break;
-                                    case 'poi' : include('_include/_pages/poi.php');
-                                        break;
-                                    case 'services' : include('_include/_pages/services.php');
-                                        break;
-                                    case 'unique-services' : include('_include/_pages/unique-services.php');
-                                        break;
-                                    case 'to-rent' : include('_include/_pages/to-rent.php');
-                                        break;
-                                    case 'activities' : include('_include/_pages/activities.php');
-                                        break;
-                                    case 'faq' : include('_include/_pages/faq.php');
-                                        break;
-                                    case 'to-sell' : include('_include/_pages/to-sell.php');
-                                        break;
-                                    case 'contact-us' : include('_include/_pages/contact-us.php');
-                                        break;
-                                    case 'administrators' : include('_include/_pages/administrators.php');
-                                        break;
-                                    default :
-                                        include('_include/_pages/main.php');
-                                        break;
+                                if($key == 'show'){
+                                    switch ($value) {
+                                        case 'home' : include('_include/_pages/show/show-main.php');
+                                            break;
+                                        case 'city' : include('_include/_pages/show/show-city.php');
+                                            break;
+                                        case 'poi' : include('_include/_pages/show/show-poi.php');
+                                            break;
+                                        case 'service-common' : include('_include/_pages/show/show-service-common.php');
+                                            break;
+                                        case 'service-unique' : include('_include/_pages/show/show-service-unique.php');
+                                            break;
+                                        case 'activity' : include('_include/_pages/show/show-activity.php');
+                                            break;
+                                        case 'to-rent' : include('_include/_pages/show/show-to-rent.php');
+                                            break;
+                                        case 'to-sell' : include('_include/_pages/show/show-to-sell.php');
+                                            break;
+                                        case 'faq' : include('_include/_pages/show/show-faq.php');
+                                            break;
+                                        case 'administrator' : include('_include/_pages/show/show-administrator.php');
+                                            break;
+                                    }
+                                }
+                                if($key == 'edit'){
+                                    switch ($value) {
+                                        case 'city' : include('_include/_pages/edit/edit-city.php');
+                                            break;
+                                        case 'poi' : include('_include/_pages/edit/edit-poi.php');
+                                            break;
+                                        case 'service-common' : include('_include/_pages/edit/edit-service-common.php');
+                                            break;
+                                        case 'service-unique' : include('_include/_pages/edit/edit-service-unique.php');
+                                            break;
+                                        case 'activity' : include('_include/_pages/edit/edit-activity.php');
+                                            break;
+                                        case 'to-rent' : include('_include/_pages/edit/edit-to-rent.php');
+                                            break;
+                                        case 'to-sell' : include('_include/_pages/edit/edit-to-sell.php');
+                                            break;
+                                        case 'faq' : include('_include/_pages/edit/edit-faq.php');
+                                            break;
+                                        case 'administrator' : include('_include/_pages/edit/edit-administrator.php');
+                                            break;
+                                    }
                                 }
                             }
                         }else{
@@ -85,8 +107,10 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/klorofil-common.js"></script>
+    <script src="assets/js/toastr.min.js"></script>
     <script src="assets/js/dropzone.min.js"></script>
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 </body>
 </html>
