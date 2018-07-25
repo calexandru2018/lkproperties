@@ -28,19 +28,19 @@
                     </div>
                     <div class="col-xs-6 col-md-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="isActive" value="1"><span>Activar conta</span>
+                            <input type="checkbox" name="adminIsActive" value="1"><span>Activar conta</span>
                         </label>
                     </div>
                     <div class="col-xs-6 col-md-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="isPublic" value="1"><span>Tornar conta publica</span>
+                            <input type="checkbox" name="adminIsPublic" value="1"><span>Tornar conta publica</span>
                         </label>
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Previlégio</span>
-                            <select class="js-example-basic-multiple bg-white" name="poiCityName" style="width: 100%;">
+                            <select class="js-example-basic-multiple bg-white" name="adminPriveliege" style="width: 100%;">
                                 <option value="2">Gestor de Conteudo</option>
                                     ...
                                 <option value="3">Editor de Aluguer</option>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
+                        <button type="button" data-toggle="collapse" class="btn btn-success pull-right" id="add-admin">Inserir</button>
                     </div>
                 </div>
             </li>
@@ -71,6 +71,7 @@
                     <th>Activo</th>
                     <th>Publico</th>
                     <th>Previlegio</th>
+                    <th>Galeria</th>
                     <th>Ação</th>
                 </thead>
                 <tbody>
@@ -100,8 +101,18 @@
                             Super Admin
                         </td>
                         <td>
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </button>
+                        </td>
+                        <td>
                             <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
                             <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                        </td>
+                    </tr>
+                    <tr id="collapseGallery-1" class="collapse">
+                        <td colspan="14" class="bg-info">
+                            <form action="upload.php" class="dropzone"></form>
                         </td>
                     </tr>
                     <tr>
@@ -130,8 +141,18 @@
                             Gestor de Conteudo
                         </td>
                         <td>
+                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
+                                <i class="lnr lnr-plus-circle"></i>
+                            </button>
+                        </td>
+                        <td>
                             <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
                             <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                        </td>
+                    </tr>
+                    <tr id="collapseGallery-2" class="collapse">
+                        <td colspan="14" class="bg-info">
+                            <form action="ajax/gallery/gallery-admin.php" class="dropzone"></form>
                         </td>
                     </tr>
                 </tbody>
@@ -142,5 +163,32 @@
 <script>
     $( document ).ready(function() {
         $('.js-example-basic-multiple').select2();
+        let addAdminButton = document.getElementById('add-admin');
+        addAdminButton.onclick = function(){
+            let info = {};
+            info = document.querySelectorAll("[name^=admin");
+            var curatedObject = fiterContent(info);
+            axios.post('ajax/add-admin.php', {
+                curatedObject,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        } 
+        function fiterContent(arrayContent){
+            adminObject = {};
+            for(let x = 0; x < arrayContent.length; x++){
+                if(arrayContent[x].type == 'checkbox')
+                    if(arrayContent[x].checked)
+                        arrayContent[x].value = 1;
+                    else
+                        arrayContent[x].value = 0;
+                adminObject[arrayContent[x].name] = arrayContent[x].value;
+            }
+            return adminObject;
+        }
     });
 </script>

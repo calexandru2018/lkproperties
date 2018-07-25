@@ -1,19 +1,19 @@
 <?php
     session_start();
+    require_once('../_include/_models/admin.php');
     require_once('../_include/_models/db.php');
-    $login = new Database();
-    echo $login->lastError();
+    $loginConn = new Database();
+    $loginAdmin = new Administrator($loginConn->db);
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['crsf_token'])) {
         if (hash_equals($_SESSION['crsf_token'], $_POST['crsf_token'])) {
-           $email = mysqli_real_escape_string($login->db, $_POST['email']);
-           $pwd =  mysqli_real_escape_string($login->db, $_POST['password']);
-           $sql = 'select admin_ID, email, password, name from admin where email = "'.$email.'"';
-           echo $sql;
-           $checkUserExists = $login->q($sql);
-           $fetchAdminData = $checkUserExists->fetch_assoc();
-           if(password_verify($pwd, $fetchAdminData['password'])){
-               $_SESSION['admin_ID'] = $fetchAdminData['admin_ID'];
-               $_SESSION['name'] = $fetchAdminData['name'];
+            $email = mysqli_real_escape_string($loginConn->db, $_POST['email']);
+            $pwd =  mysqli_real_escape_string($loginConn->db, $_POST['password']);
+            $fetchAdminData = $loginAdmin->fetchAdmin('select admin_ID, adminPrivilege, email, password, name from admin where email = "'.$email.'"');
+            if(password_verify($pwd, $fetchAdminData->password)){
+               $_SESSION['admin_ID'] = $fetchAdminData->admin_ID;
+               $_SESSION['admin_privilege'] = $fetchAdminData->adminPrivilege;
+               $_SESSION['name'] = $fetchAdminData->name;
+               $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
                header('Location: ../');
             }else{
                echo "issue";

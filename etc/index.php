@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once('_include/_models/db.php');
-    $conn = new Database();
+    $MAIN = new Database();
     if(!isset($_SESSION['crsf_token']) || empty($_SESSION['crsf_token'])){
         $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
         header('Refresh: 0');
@@ -118,6 +118,7 @@
     <script src="assets/js/klorofil-common.js"></script>
     <script src="assets/js/toastr.min.js"></script>
     <script src="assets/js/dropzone.min.js"></script>
+    <script src="assets/js/axios.min.js"></script>
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
