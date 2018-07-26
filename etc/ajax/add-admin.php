@@ -1,5 +1,13 @@
 <?php
-    foreach ($_POST as $key => $value) {
-        # code...
-    }
+    $_POST = json_decode(file_get_contents('php://input'), true);
+
+    require_once('../_include/_models/admin.php');
+    require_once('../_include/_models/db.php');
+    $insertConn = new Database();
+    $insertAdmin = new Administrator($insertConn->db);
+    $response = $insertAdmin->insertAdmin($_POST);
+
+    $insertAdmin->closeConnection($insertConn->db);
+
+    echo $response;
 ?>

@@ -132,6 +132,7 @@
                 $('.js-example-basic-multiple').select2();
             });
         </script>
-<?php 
+<?php
+    $administrator->closeConnection();
     }
 ?>

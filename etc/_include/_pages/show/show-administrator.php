@@ -1,3 +1,8 @@
+<?php
+    include_once('_include/_models/admin.php');
+    $administrator = new Administrator($MAIN->db);
+    //var_dump($administrator->showAll());
+?>
 <h3 class="page-title">Gestão de Administradores</h3>
 <div class="panel">
     <div class="panel-heading">
@@ -14,7 +19,7 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Email</span>
-                            <input type="text" name="adminEmail" class="form-control">
+                            <input type="email" name="adminEmail" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
@@ -61,7 +66,7 @@
     </div>
     <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="admin-table">
                 <thead>
                     <th>ID</th>
                     <th>Nome</th>
@@ -163,32 +168,78 @@
 <script>
     $( document ).ready(function() {
         $('.js-example-basic-multiple').select2();
+
         let addAdminButton = document.getElementById('add-admin');
         addAdminButton.onclick = function(){
             let info = {};
             info = document.querySelectorAll("[name^=admin");
-            var curatedObject = fiterContent(info);
-            axios.post('ajax/add-admin.php', {
-                curatedObject,
-            })
+            var curatedObject = $.param(filterContent(info));
+            /* axios.post(
+                'ajax/add-admin.php', 
+                {
+                    curatedObject,
+                }, 
+                {
+                    headers: { 
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                } 
+            )
             .then(function (response) {
-                console.log(response);
+                if(response.data != false)
+                    alert('Inserted with ID: ' + response.data)
+                else
+                    alert('Did not insert')
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            }); */
+            var tableRef = document.getElementById('admin-table').getElementsByTagName('tbody')[0];
+            var firstRow   = tableRef.insertRow(tableRef.rows.length);
+            // var secondRow   = tableRef.insertRow(tableRef.rows.length); gallery row
+            var cell1 = firstRow.insertCell(0);
+            var cell2 = firstRow.insertCell(1);
+            var cell3 = firstRow.insertCell(2);
+            var cell4 = firstRow.insertCell(3);
+            var cell5 = firstRow.insertCell(4);
+            var cell6 = firstRow.insertCell(5);
+            var cell7 = firstRow.insertCell(6);
+            var cell8 = firstRow.insertCell(7);
+            var cell9 = firstRow.insertCell(8);
+            var cell10 = firstRow.insertCell(9);
+            cell1.innerHTML='1';
+            cell2.innerHTML='Test';
+            cell3.innerHTML='emails.test';
+            cell4.innerHTML='none';
+            cell5.innerHTML='none1';
+            cell6.innerHTML='Yes';
+            cell7.innerHTML='No';
+            cell8.innerHTML='SuperAdmin';
+            cell9.innerHTML=`
+                <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
+                    <i class="lnr lnr-plus-circle"></i>
+                </button>
+            `;
+            cell10.innerHTML=`
+                <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                        
+            `;
         } 
-        function fiterContent(arrayContent){
+        function filterContent(arrayContent){
             adminObject = {};
             for(let x = 0; x < arrayContent.length; x++){
                 if(arrayContent[x].type == 'checkbox')
-                    if(arrayContent[x].checked)
+                    if(arrayContent[x].checked){
                         arrayContent[x].value = 1;
-                    else
+                    }else{
                         arrayContent[x].value = 0;
+                    }
                 adminObject[arrayContent[x].name] = arrayContent[x].value;
             }
             return adminObject;
         }
+
+        
     });
 </script>
