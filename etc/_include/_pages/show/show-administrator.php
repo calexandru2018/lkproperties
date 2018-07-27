@@ -1,7 +1,7 @@
 <?php
     include_once('_include/_models/admin.php');
     $administrator = new Administrator($MAIN->db);
-    //var_dump($administrator->showAll());
+    // var_dump($administrator->showAll());
 ?>
 <h3 class="page-title">Gestão de Administradores</h3>
 <div class="panel">
@@ -80,86 +80,44 @@
                     <th>Ação</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Alexandru
-                        </td>
-                        <td>
-                            test@test.com
-                        </td>
-                        <td>
-                            2013-23-2
-                        </td>
-                        <td>
-                            2018-2-2
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td>
-                            Nao
-                        </td>
-                        <td>
-                            Super Admin
-                        </td>
-                        <td>
-                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-1" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form action="upload.php" class="dropzone"></form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Lilia
-                        </td>
-                        <td>
-                            test@test.com
-                        </td>
-                        <td>
-                            2013-23-2
-                        </td>
-                        <td>
-                            2018-2-2
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td>
-                            Gestor de Conteudo
-                        </td>
-                        <td>
-                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-2" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form action="ajax/gallery/gallery-admin.php" class="dropzone"></form>
-                        </td>
-                    </tr>
+                    
+                        <?php
+                        $resp = $administrator->showAll();
+                            for($adminCounter = 0; $adminCounter < count($resp); $adminCounter++){
+                                switch($resp[$adminCounter]->adminPrivilege){
+                                    case 1: $adminPriv = 'Super Admin';
+                                        break;
+                                    case 2: $adminPriv = 'Gestor de Conteudo';
+                                        break;
+                                    case 3: $adminPriv = 'Editor de Aluguer';
+                                        break;
+                                };
+                                echo '<tr><td>'.$resp[$adminCounter]->admin_ID.'</td>';
+                                echo '<td>'.$resp[$adminCounter]->name.'</td>';
+                                echo '<td>'.$resp[$adminCounter]->email.'</td>';
+                                echo '<td>'.$resp[$adminCounter]->dateCreated.'</td>';
+                                echo '<td>'.$resp[$adminCounter]->dateModified.'</td>';
+                                echo '<td>'.(($resp[$adminCounter]->isActive == 1)? 'Sim':'Não').'</td>';
+                                echo '<td>'.(($resp[$adminCounter]->isPublicVisible == 1)? 'Sim':'Não').'</td>';
+                                echo '<td>'.$adminPriv.'</td>';
+                                echo '<td>
+                                        <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$adminCounter]->admin_ID.'" data-toggle="collapse">
+                                            <i class="lnr lnr-plus-circle"></i>
+                                        </button>
+                                </td>';
+                                echo '<td>
+                                    <a href="?edit=administrator&id='.$resp[$adminCounter]->admin_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                    <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                                </td></tr>';
+                                echo'
+                                <tr id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
+                                    <td colspan="14" class="bg-info">
+                                        <form action="upload.php" class="dropzone"></form>
+                                    </td>
+                                </tr>
+                                ';
+                            }
+                        ?>
                 </tbody>
             </table>
         </div>
@@ -167,14 +125,16 @@
 </div>
 <script>
     $( document ).ready(function() {
+        /* Plugin scripts */
         $('.js-example-basic-multiple').select2();
+        /* Plugin scripts */
 
-        let addAdminButton = document.getElementById('add-admin');
-        addAdminButton.onclick = function(){
-            let info = {};
-            info = document.querySelectorAll("[name^=admin");
+        // let addAdminButton = 
+        document.getElementById('add-admin').onclick = function(){
+            let responseData = {}; 
+            let info = document.querySelectorAll("[name^=admin");
             var curatedObject = $.param(filterContent(info));
-            /* axios.post(
+            axios.post(
                 'ajax/add-admin.php', 
                 {
                     curatedObject,
@@ -186,46 +146,44 @@
                 } 
             )
             .then(function (response) {
-                if(response.data != false)
-                    alert('Inserted with ID: ' + response.data)
-                else
-                    alert('Did not insert')
+                if(response.data != false){
+                    console.log('Inserted with ID: ' + response.data);
+                    populateTable(response.data);
+                }else{
+                    alert('Did not insert');
+                }
             })
             .catch(function (error) {
                 console.log(error);
-            }); */
-            var tableRef = document.getElementById('admin-table').getElementsByTagName('tbody')[0];
-            var firstRow   = tableRef.insertRow(tableRef.rows.length);
-            // var secondRow   = tableRef.insertRow(tableRef.rows.length); gallery row
-            var cell1 = firstRow.insertCell(0);
-            var cell2 = firstRow.insertCell(1);
-            var cell3 = firstRow.insertCell(2);
-            var cell4 = firstRow.insertCell(3);
-            var cell5 = firstRow.insertCell(4);
-            var cell6 = firstRow.insertCell(5);
-            var cell7 = firstRow.insertCell(6);
-            var cell8 = firstRow.insertCell(7);
-            var cell9 = firstRow.insertCell(8);
-            var cell10 = firstRow.insertCell(9);
-            cell1.innerHTML='1';
-            cell2.innerHTML='Test';
-            cell3.innerHTML='emails.test';
-            cell4.innerHTML='none';
-            cell5.innerHTML='none1';
-            cell6.innerHTML='Yes';
-            cell7.innerHTML='No';
-            cell8.innerHTML='SuperAdmin';
-            cell9.innerHTML=`
-                <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
-                    <i class="lnr lnr-plus-circle"></i>
-                </button>
-            `;
-            cell10.innerHTML=`
-                <a href="?edit=administrator&id=2" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        
-            `;
+            });
+            
         } 
+        function populateTable(rowContent){
+            var tableRef = document.getElementById('admin-table').getElementsByTagName('tbody')[0];
+            createFirstRow(rowContent, tableRef);
+            
+        }
+        function createFirstRow(data, table){
+            data[1] = data[1].replace(/\\+/g, ' ');
+            
+            var firstRow   = table.insertRow(table.rows.length);
+            var cellArray = [];
+            for(var counter = 0; counter < data.length; counter++){
+                cellArray[counter] = firstRow.insertCell(counter);
+                cellArray[counter].innerHTML = data[counter];
+            }
+            createSecondRow(table, data[0]);
+        }
+        function createSecondRow(table, id){
+            var secondRow   = table.insertRow(table.rows.length);
+            secondRow.id = 'collapseGallery-' + id;
+            secondRow.className = 'collapse';
+            var galleryCell = secondRow.insertCell(0);
+            galleryCell.innerHTML = '<div id=dropzone-' + id + ' class="dropzone"></div>';
+            galleryCell.colSpan = 10;
+            var myDropzone = new Dropzone('div#dropzone-' + id, { url: "/file/post"});
+        }
+
         function filterContent(arrayContent){
             adminObject = {};
             for(let x = 0; x < arrayContent.length; x++){

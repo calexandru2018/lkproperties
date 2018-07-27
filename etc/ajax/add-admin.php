@@ -9,5 +9,5 @@
 
     $insertAdmin->closeConnection($insertConn->db);
 
-    echo $response;
+    echo json_encode($response);
 ?>

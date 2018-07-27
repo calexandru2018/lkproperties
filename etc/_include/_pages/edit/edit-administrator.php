@@ -133,6 +133,6 @@
             });
         </script>
 <?php
-    $administrator->closeConnection();
+    $administrator->closeConnection($MAIN->db);
     }
 ?>

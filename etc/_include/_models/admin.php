@@ -2,10 +2,10 @@
 
     class Administrator{
         
-        private $DBCONN;
+        private $db;
 
         function __construct($conn){
-            $this->DBCONN = $conn;
+            $this->db = $conn;
         }
         public function closeConnection($conn){
             mysqli_close($conn);
@@ -13,31 +13,58 @@
 
         /* DATABASE FUNCTIONS */
         public function showAll(){
-            $queryResult = $this->DBCONN->query('select * from admin');
-            return $queryResult->fetch_object();
+            $queryResult = $this->db->query('select  admin_ID , name , email , dateCreated , dateModified , isActive , isPublicVisible , adminPrivilege  from admin');
+            while($r=$queryResult->fetch_object()){
+                $output[] = $r;
+            }
+            return $output;
         }
         public function fetchAdmin(string $sql){
-            $queryResult = $this->DBCONN->query($sql);
+            $queryResult = $this->db->query($sql);
             return $queryResult->fetch_object();
         }
         public function insertAdmin(array $inputArray){
             $adminData = $this->validateInput($inputArray);
 
             $sqlCheckExists = 'select email from admin where email = "'.$adminData['adminEmail'].'"';
-            $queryCheckExists = $this->DBCONN->query($sqlCheckExists);
+            $queryCheckExists = $this->db->query($sqlCheckExists);
             if($queryCheckExists->num_rows > 0){
                 return false;
             }
             $sqlInsert = 'insert into admin 
                             (name, email, password, isActive, isPublicVisible, adminPrivilege)
                         values
-                            ("'.$adminData['adminName'].'","'.$adminData['adminEmail'].'","'.$adminData['adminPassword'].'","'.$adminData['adminIsActive'].'","'.$adminData['adminIsPublic'].'","'.$adminData['adminPriveliege'].'")
+                            ("'.str_replace('+',' ',$adminData['adminName']).'","'.$adminData['adminEmail'].'","'.$adminData['adminPassword'].'","'.$adminData['adminIsActive'].'","'.$adminData['adminIsPublic'].'","'.$adminData['adminPriveliege'].'")
             '; 
-            $queryInsert = $this->DBCONN->query($sqlInsert);
-            if($queryInsert)
-                return $this->DBCONN->insert_id;
-            else
+            $queryInsert = $this->db->query($sqlInsert);
+            if($queryInsert){
+                switch($adminData['adminPriveliege']){
+                    case 1: $adminPriv = 'Super Admin';
+                        break;
+                    case 2: $adminPriv = 'Gestor de Conteudo';
+                        break;
+                    case 3: $adminPriv = 'Editor de Aluguer';
+                        break;
+                };
+                $arrayToReturn = [
+                    $this->db->insert_id,
+                    str_replace('+',' ',$adminData['adminName']),
+                    $adminData['adminEmail'],
+                    date("Y-m-d H:i:s"),
+                    'N/A',
+                    (($adminData['adminIsActive'] == 1)? 'Sim':'Não'),
+                    (($adminData['adminIsPublic'] == 1)? 'Sim':'Não'),
+                    $adminPriv,
+                    '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
+                        <i class="lnr lnr-plus-circle"></i>
+                    </button>',
+                    '<a href="?edit=administrator&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                    <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>'
+                ];
+                return $arrayToReturn;
+            }else{
                 return false;
+            }
         }
         public function deleteAdmin(array $adminData){
 
@@ -45,10 +72,6 @@
 
         /* CONTROL CUSTOM FUNCTIONS */
         private function validateInput(array $inputArray){
-            /* 
-            ['adminName', 'adminEmail', 'adminPassword', 'adminIsActive', 'adminIsPublic', 'adminPriveliege'];
-            [string, string, string, int, int, int];
-            */
             $inputArray = $this->explodeArray($inputArray);
             $counter = 0;
             $filteredInput = [];
@@ -58,7 +81,7 @@
                 if($key == 'adminPassword')
                     $value = password_hash($value, PASSWORD_BCRYPT);
                 
-                $filteredInput[$key] = mysqli_real_escape_string($this->DBCONN, $value);
+                $filteredInput[$key] = mysqli_real_escape_string($this->db, $value);
             }
             return $filteredInput;
         }
