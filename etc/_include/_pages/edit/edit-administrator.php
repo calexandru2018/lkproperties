@@ -2,7 +2,7 @@
     include_once('_include/_models/admin.php');
     $administrator = new Administrator($MAIN->db);
     $adminData = $administrator->fetchAdmin('select * from admin where admin_ID = "'.(int)$_GET['id'].'"');
-    $canEdit = $administrator->showEditPage('($_GET["edit"] === "administrator" && is_int($_GET["id"]))', empty($adminData));
+    $canEdit = $administrator->showEditPage($_GET["edit"], $_GET["id"], empty($adminData));
     if($canEdit === 1)
     {
     ?>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button type="button" class="btn btn-success pull-right btn-toastr" data-context="success" data-message="Hi, I'm here" data-position="top-right">Guardar Alteração</button>
+                        <button type="button" class="btn btn-success pull-right" id="savePersInfo">Guardar Alteração</button>
                     </div>
                     <div class="alert alert-danger alert-dismissible" role="alert"> <!-- alert-success OR alert-danger-->
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" class="btn btn-success pull-right btn-toastr" data-context="success" data-message="Hi, I'm here" data-position="top-right">Guardar Alteração</button>
+                        <button  type="button" class="btn btn-success pull-right" id="savePassword">Guardar Alteração</button>
                     </div>
                     <div class="alert alert-success alert-dismissible" role="alert"> <!-- alert-success OR alert-danger-->
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -69,7 +69,7 @@
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Previlégio</span>
-                            <select class="js-example-basic-multiple bg-white" name="poiCityName" style="width: 100%;">
+                            <select class="js-example-basic-multiple bg-white" name="adminPriveliege" style="width: 100%;">
                                 <?php
                                     if($_SESSION['admin_privilege'] == 1)
                                         echo '<option value="2"'.(($adminData->adminPrivilege == 2)? "select=selected":"").'>Super Admin</option>';
@@ -81,16 +81,16 @@
                     </div>
                     <div class="col-xs-6 col-md-6 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="isActive" value="1" <?php echo (($adminData->isActive == 1)? 'checked=checked':''); ?>><span>Activar conta</span>
+                            <input type="checkbox" name="adminIsActive" value="1" <?php echo (($adminData->isActive == 1)? 'checked=checked':''); ?>><span>Activar conta</span>
                         </label>
                     </div>
                     <div class="col-xs-6 col-md-6 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="isPublic" value="1" <?php echo (($adminData->isPublicVisible == 1)? 'checked=checked':''); ?>><span>Tornar conta publica</span>
+                            <input type="checkbox" name="adminIsPublic" value="1" <?php echo (($adminData->isPublicVisible == 1)? 'checked=checked':''); ?>><span>Tornar conta publica</span>
                         </label>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" class="btn btn-success pull-right btn-toastr" data-context="success" data-message="Hi, I'm here" data-position="top-right">Guardar Alteração</button>
+                        <button  type="button" class="btn btn-success pull-right btn-toastr" id="saveOtherInfo">Guardar Alteração</button>
                     </div>
                     <div class="alert alert-success alert-dismissible" role="alert"> <!-- alert-success OR alert-danger-->
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

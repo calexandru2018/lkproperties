@@ -157,39 +157,46 @@
                         }
                         /* Show modal window */
 
-                        /* onClick close */
+                        /* onClick close modal */
                         $(document).on('click','#close-modal',function(){
                             $('#modal-window').html('');
                             $('#modal-window').css("display", "none");
                         });
-                        /* onClick close */
+                        /* onClick close modal */
 
-                        /* onClick confirm delete */
+                        /* onClick confirm modal delete row */
                         $(document).on('click','#delete-yes', function(){
                             var data = $(this).data();
                             console.log(data);
                             var url = 'ajax/' + data['contentType'] + '/delete-' + data['contentType'] + '.php';
-                            console.log('URL is: ' + url);
-                            axios.delete(
+                            axios.post(
                                 url
                                 , 
                                 {
                                     contentID: data['contentId'],
                                 }, 
-                                /* {
+                                 {
                                     headers: { 
                                         'Content-Type': 'application/x-www-form-urlencoded',
                                     }
-                                }  */
+                                }  
                             )
                             .then(function (response) {
-                                console.log(response);
+                                if(response.data == true){
+                                    $('.table tr[data-content-id="' + data['contentId'] + '"]').remove();
+                                    $('#modal-window').html('');
+                                    $('#modal-window').css("display", "none");
+                                }else{
+                                    $('#modal-window').html('');
+                                    $('#modal-window').css("display", "none");
+                                    alert('Unable to delete');
+                                }
                             })
                             .catch(function (error) {
                                 console.log(error);
                             });
                         });
-                        /* onClick confirm delete */
+                        /* onClick confirm modal delete row */
                     /* Moda window function */
                     </script>
                 </div>
