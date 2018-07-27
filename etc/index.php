@@ -18,7 +18,6 @@
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/css/dropzone.min.css">
-	<link rel="stylesheet" href="assets/css/toastr.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/main.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -46,10 +45,12 @@
 		<!-- END LEFT SIDEBAR -->
         <!-- MAIN -->
             <div class="main">
+                <div class="container" id="modal-window" style="z-index: 50; background-color: rgba(150,150,150, 0.2); height: 100%; width: 100%; position: absolute; display:none">
+                    
+                </div>
                 <!-- MAIN CONTENT -->
                 <div class="main-content">
                     <div class="container-fluid">
-                    
                         <?php
                         if(isset($_GET) && !empty($_GET)){
                             foreach ($_GET as $key => $value) {
@@ -105,6 +106,92 @@
                         }
                         ?>
                     </div>
+                    <script>
+                    /* Populate table with new input */ 
+                        function populateTable(rowContent, tableName, dataName){
+                            var tableRef = document.getElementById(tableName).getElementsByTagName('tbody')[0];
+                            createFirstRow(rowContent, tableRef, dataName);
+                        }
+                        function createFirstRow(data, table, dataName){
+                           data[1] = data[1].replace(/\\+/g, ' ');
+                            
+                            var firstRow   = table.insertRow(table.rows.length);
+                            firstRow.setAttribute(dataName, data[0]);
+                            var cellArray = [];
+                            for(var counter = 0; counter < data.length; counter++){
+                                cellArray[counter] = firstRow.insertCell(counter);
+                                cellArray[counter].innerHTML = data[counter];
+                            }
+                            createSecondRow(table, data[0]);
+                        }
+                        function createSecondRow(table, id){
+                            var secondRow   = table.insertRow(table.rows.length);
+                            secondRow.id = 'collapseGallery-' + id;
+                            secondRow.className = 'collapse';
+                            var galleryCell = secondRow.insertCell(0);
+                            galleryCell.className = 'bg-info'
+                            galleryCell.innerHTML = '<div id=dropzone-' + id + ' class="dropzone"></div>';
+                            galleryCell.colSpan = 10;
+                            var myDropzone = new Dropzone('div#dropzone-' + id, { url: "/file/post"});
+                        }
+                    /* Populate table with new input */ 
+
+                    /* Moda window function */ 
+                        /* Show modal window */
+                        function modalWindow(modalID, contentType, contentID){
+                            let div = document.getElementById(modalID);
+                            div.innerHTML = `<div class="panel panel-info text-center" style="position: absolute;top: 30%;left: 35%;">
+                                            <div class="panel-heading">
+                                                Eliminar ` + contentType.toUpperCase() + `
+                                            </div>
+                                            <div class="panel-body">
+                                                <button class="btn btn-danger pull-left" id="delete-yes" style="margin: 10px 60px 10px 0px" data-content-type = `  + contentType.toLowerCase() + ` data-content-id=` + contentID + `>
+                                                    Sim
+                                                </button>
+                                                <button class="btn btn-success pull-right" id="close-modal" style="margin: 10px 0px 10px 60px">
+                                                    Cancelar
+                                                </button>
+                                            </div>
+                                        </div>`;
+                            div.style.display = "block";
+                        }
+                        /* Show modal window */
+
+                        /* onClick close */
+                        $(document).on('click','#close-modal',function(){
+                            $('#modal-window').html('');
+                            $('#modal-window').css("display", "none");
+                        });
+                        /* onClick close */
+
+                        /* onClick confirm delete */
+                        $(document).on('click','#delete-yes', function(){
+                            var data = $(this).data();
+                            console.log(data);
+                            var url = 'ajax/' + data['contentType'] + '/delete-' + data['contentType'] + '.php';
+                            console.log('URL is: ' + url);
+                            axios.delete(
+                                url
+                                , 
+                                {
+                                    contentID: data['contentId'],
+                                }, 
+                                /* {
+                                    headers: { 
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    }
+                                }  */
+                            )
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                        });
+                        /* onClick confirm delete */
+                    /* Moda window function */
+                    </script>
                 </div>
                 <!-- END MAIN CONTENT -->
             </div>
@@ -116,7 +203,6 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/klorofil-common.js"></script>
-    <script src="assets/js/toastr.min.js"></script>
     <script src="assets/js/dropzone.min.js"></script>
     <script src="assets/js/axios.min.js"></script>
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>

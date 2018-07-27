@@ -51,7 +51,7 @@
                     str_replace('+',' ',$adminData['adminName']),
                     $adminData['adminEmail'],
                     date("Y-m-d H:i:s"),
-                    'N/A',
+                    '',
                     (($adminData['adminIsActive'] == 1)? 'Sim':'Não'),
                     (($adminData['adminIsPublic'] == 1)? 'Sim':'Não'),
                     $adminPriv,

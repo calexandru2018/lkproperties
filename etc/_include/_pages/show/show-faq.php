@@ -49,7 +49,7 @@
                     <th>Ação</th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr data-faq-id="4">
                         <td>
                             1
                         </td>
@@ -71,7 +71,7 @@
                             <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr data-faq-id="2">
                         <td>
                             2
                         </td>
@@ -92,7 +92,7 @@
                             <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr data-faq-id="3">
                         <td>
                             3
                         </td>
@@ -113,7 +113,7 @@
                             <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr data-faq-id="4">
                         <td>
                             4
                         </td>
@@ -131,10 +131,10 @@
                         </td>
                         <td>
                             <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                            <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr data-faq-id="5">
                         <td>
                             5
                         </td>
@@ -152,7 +152,7 @@
                         </td>
                         <td>
                             <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                            <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>
                         </td>
                     </tr>
                 </tbody>
@@ -164,5 +164,10 @@
     $( document ).ready(function() {
         CKEDITOR.replace( 'faqAnswerPT' );
         CKEDITOR.replace( 'faqAnswerEN' );
+
+        $(document).on('click', '#delete-faq', function(){
+            id = $(this).closest('tr').data('faq-id');
+            modalWindow('modal-window','Admin', 'User test', id);
+        });
     });
 </script>

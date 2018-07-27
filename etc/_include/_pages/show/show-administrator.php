@@ -92,7 +92,7 @@
                                     case 3: $adminPriv = 'Editor de Aluguer';
                                         break;
                                 };
-                                echo '<tr><td>'.$resp[$adminCounter]->admin_ID.'</td>';
+                                echo '<tr  data-content-type="admin" data-content-id="'.$resp[$adminCounter]->admin_ID.'"><td>'.$resp[$adminCounter]->admin_ID.'</td>';
                                 echo '<td>'.$resp[$adminCounter]->name.'</td>';
                                 echo '<td>'.$resp[$adminCounter]->email.'</td>';
                                 echo '<td>'.$resp[$adminCounter]->dateCreated.'</td>';
@@ -107,7 +107,7 @@
                                 </td>';
                                 echo '<td>
                                     <a href="?edit=administrator&id='.$resp[$adminCounter]->admin_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                                    <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
+                                    <button class="btn btn-danger btn-xs pull-right" id="delete-admin"><span class="lnr lnr-trash"></span></button>
                                 </td></tr>';
                                 echo'
                                 <tr id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
@@ -124,18 +124,18 @@
     </div>
 </div>
 <script>
-    $( document ).ready(function() {
-        /* Plugin scripts */
+    $(document).ready(function() {
+    /* Plugin scripts */
         $('.js-example-basic-multiple').select2();
-        /* Plugin scripts */
+    /* Plugin scripts */
 
-        // let addAdminButton = 
+    /* Add Admin functions */
         document.getElementById('add-admin').onclick = function(){
             let responseData = {}; 
             let info = document.querySelectorAll("[name^=admin");
             var curatedObject = $.param(filterContent(info));
             axios.post(
-                'ajax/add-admin.php', 
+                'ajax/admin/add-admin.php', 
                 {
                     curatedObject,
                 }, 
@@ -148,7 +148,7 @@
             .then(function (response) {
                 if(response.data != false){
                     console.log('Inserted with ID: ' + response.data);
-                    populateTable(response.data);
+                    populateTable(response.data, 'admin-table', 'data-admin-id');
                 }else{
                     alert('Did not insert');
                 }
@@ -156,34 +156,17 @@
             .catch(function (error) {
                 console.log(error);
             });
-            
-        } 
-        function populateTable(rowContent){
-            var tableRef = document.getElementById('admin-table').getElementsByTagName('tbody')[0];
-            createFirstRow(rowContent, tableRef);
-            
         }
-        function createFirstRow(data, table){
-            data[1] = data[1].replace(/\\+/g, ' ');
-            
-            var firstRow   = table.insertRow(table.rows.length);
-            var cellArray = [];
-            for(var counter = 0; counter < data.length; counter++){
-                cellArray[counter] = firstRow.insertCell(counter);
-                cellArray[counter].innerHTML = data[counter];
-            }
-            createSecondRow(table, data[0]);
-        }
-        function createSecondRow(table, id){
-            var secondRow   = table.insertRow(table.rows.length);
-            secondRow.id = 'collapseGallery-' + id;
-            secondRow.className = 'collapse';
-            var galleryCell = secondRow.insertCell(0);
-            galleryCell.innerHTML = '<div id=dropzone-' + id + ' class="dropzone"></div>';
-            galleryCell.colSpan = 10;
-            var myDropzone = new Dropzone('div#dropzone-' + id, { url: "/file/post"});
-        }
+    /* Add Admin functions */
 
+    /* Delete Admin start function */
+    $(document).on('click', '#delete-admin', function(){
+        let data = $(this).closest('tr').data();
+        modalWindow('modal-window',data['contentType'], data['contentId']);
+    });
+    /* Delete Admin start function */
+
+    /* Additional support functions */
         function filterContent(arrayContent){
             adminObject = {};
             for(let x = 0; x < arrayContent.length; x++){
@@ -197,7 +180,6 @@
             }
             return adminObject;
         }
-
-        
+    /* Additional support functions */
     });
 </script>
