@@ -9,10 +9,10 @@
     switch($_POST['contentType']){
         case 'savePersInfo': $response = $editAdmin->updateAdminPersInfo((int)$_POST['contentID'], $_POST['userInput']['adminName'][0], $_POST['userInput']['adminEmail'][0]);
             break;
-        /* case 'savePassword': $editAdmin->updateAdminPassword();
+        case 'savePassword': $response = $editAdmin->updateAdminPassword((int)$_POST['contentID'], $_POST['userInput']['adminPassword'][0]);
             break;
-        case 'saveOtherInfo': $editAdmin->updateAdminOtherSettings();
-            break; */
+        case 'saveOtherInfo': $response = $editAdmin->updateAdminOtherSettings((int)$_POST['contentID'], $_POST['userInput']['adminPriveliege'][0], $_POST['userInput']['adminIsActive'], $_POST['userInput']['adminIsPublic']);
+            break;
     }
 
     $editAdmin->closeConnection($editConn->db);

@@ -42,7 +42,7 @@
                             <span class="input-group-addon">Password</span>
                             <input type="text" name="adminPassword" class="form-control" placeholder="Escreva ou pressione no botao para gerar">
                             <span class="input-group-addon" style="padding:0">
-                                <button class="btn btn-xs btn-info">Gerar Nova Password</button>
+                                <a class="btn btn-xs btn-info" id="generate-password">Gerar Nova Password</a>
                             </span>
                         </div>
                     </div>
@@ -118,6 +118,19 @@
             $(document).ready(function() {
                 baguetteBox.run('.gallery-block');
                 $('.js-example-basic-multiple').select2();
+                document.getElementById("generate-password").onclick = function() {
+                    generatePassword();
+                };
+                function generatePassword() {
+                    var length = 8,
+                        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+                        retVal = "";
+                    for (var i = 0, n = charset.length; i < length; ++i) {
+                        retVal += charset.charAt(Math.floor(Math.random() * n));
+                    }
+                    document.querySelector('input[name="adminPassword"]').value = retVal;
+                    // return retVal;
+                }
             });
         </script>
 <?php

@@ -4,7 +4,10 @@
             <div class="left">
                 <div class="content">
                     <div class="header">
-                        <div class="logo text-center"><img src="assets/favicon.jpg" alt="Klorofil Logo" style="max-height:150px"></div>
+                        <div class="logo text-center"><img src="assets/favicon.jpg" alt="LK Properties Logo" style="max-height:150px"></div>
+                    </div>
+                    <div class="bg-warning hide" style="margin: 20px 0px; padding: 15px 0px; color:white !important; <?php echo (($_GET['login-error']) ? 'display: block !important':'')?>">
+                        Houve um problema ao fazer login
                     </div>
                     <form class="form-auth-small" method="POST" action="process/process-login.php">
                         <div class="form-group">
@@ -16,12 +19,6 @@
                             <input name="password" type="password" class="form-control" id="signin-password" placeholder="Password">
                         </div>
                         <input type="hidden" name="crsf_token" value="<?php echo $_SESSION['crsf_token'] ?>">
-                        <!-- <div class="form-group clearfix">
-                            <label class="fancy-checkbox element-left">
-                                <input type="checkbox">
-                                <span>Remember me</span>
-                            </label>
-                        </div> -->
                         <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
                         <div class="bottom">
                             <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Esqueceu-se da password?</a></span>
@@ -41,5 +38,6 @@
     </div>
 </div>
 <?php
-    echo password_hash('test', PASSWORD_BCRYPT);
+    echo password_hash(mysqli_real_escape_string($MAIN->db, 'test'), PASSWORD_BCRYPT);
+    mysqli_close($MAIN->db);
 ?>

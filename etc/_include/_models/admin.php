@@ -82,16 +82,20 @@
             else
                 return false;
         }
-        public function updateAdminPassword(id $adminID, string $newPass){
-            $sqlUpdateAdmin = 'update admin set password = '.password_hash($newPass, PASSWORD_BCRYPT).' where admin_ID = '.$adminID;
+        public function updateAdminPassword(int $adminID, string $newPass){
+            $sqlUpdateAdmin = 'update admin set password = "'.password_hash(mysqli_real_escape_string($this->db, $newPass), PASSWORD_BCRYPT).'" where admin_ID = '.$adminID;
             $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
             if($this->db->affected_rows == 1)
                 return true;
             else
                 return false;
         }
-        public function updateAdminOtherSettings(id $adminID, int $privilege, int $isActive, int $isPublic){
-            $sqlUpdateAdmin = 'update admin set isActive = '.$isActive.', isPublicVisible = '.$isPublic.', adminPrivilege = '.$privilege.' where admin_ID = '.$adminID;
+        public function updateAdminOtherSettings(int $adminID, int $privilege, string $isActive, string $isPublic){
+            $sqlUpdateAdmin = 'update admin set 
+                    isActive = "'.(($isActive == 'checked') ? 1:0).'", 
+                    isPublicVisible = "'.(($isPublic == 'checked') ? 1:0).'", 
+                    adminPrivilege = "'.$privilege.'" 
+                where admin_ID = '.$adminID;
             $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
             if($this->db->affected_rows == 1)
                 return true;
@@ -108,7 +112,7 @@
                 if($counter > 2)
                     $filteredInput = (int)$value;
                 if($key == 'adminPassword')
-                    $value = password_hash($value, PASSWORD_BCRYPT);
+                    $value = password_hash(mysqli_real_escape_string($this->db, $value), PASSWORD_BCRYPT);
                 
                 $filteredInput[$key] = mysqli_real_escape_string($this->db, $value);
             }
