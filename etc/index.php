@@ -288,5 +288,23 @@
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script>
+        var dropzoneEl = document.getElementById('dropzoneId0').id;
+        console.log(dropzoneEl);
+        // Dropzone.autoDiscover = false;
+        Dropzone.options.dropzoneId0 = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 50, // MB
+            createImageThumbnails: true,
+            thumbnailWidth: 365,
+            thumbnailHeight: 275,
+            thumbnailMethod: 'contain',
+
+            resizeQuality: 0.6,
+            resizeMethod: 'contain',
+            acceptedFiles: 'image/*',
+            addRemoveLinks: true
+        };
+    </script>
 </body>
 </html>

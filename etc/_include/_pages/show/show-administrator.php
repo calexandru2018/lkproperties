@@ -101,9 +101,9 @@
                                 echo '<td>'.(($resp[$adminCounter]->isPublicVisible == 1)? 'Sim':'Não').'</td>';
                                 echo '<td>'.$adminPriv.'</td>';
                                 echo '<td>
-                                        <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$adminCounter]->admin_ID.'" data-toggle="collapse">
+                                        <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$adminCounter]->admin_ID.'" data-toggle="collapse">
                                             <i class="lnr lnr-plus-circle"></i>
-                                        </button>
+                                        </a>
                                 </td>';
                                 echo '<td>
                                     <a href="?edit=administrator&id='.$resp[$adminCounter]->admin_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
@@ -112,7 +112,7 @@
                                 echo'
                                 <tr id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
                                     <td colspan="14" class="bg-info">
-                                        <form action="upload.php" class="dropzone"></form>
+                                        <form action="ajax/admin/gallery-admin.php" class="dropzone" id="dropzoneId'.$adminCounter.'" name="dropzoneId'.$adminCounter.'"></form>
                                     </td>
                                 </tr>
                                 ';
