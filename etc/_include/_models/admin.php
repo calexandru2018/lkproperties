@@ -74,8 +74,8 @@
             else
                 return false;
         }
-        public function updateAdminPersInfo(id $adminID, string $name, string $email){
-            $sqlUpdateAdmin = 'update table admin set password = '.$name.', email = '.$mail.' where admin_ID = '.$adminID;
+        public function updateAdminPersInfo(int $adminID, string $name, string $email){
+            $sqlUpdateAdmin = 'update admin set name = "'.$name.'", email = "'.$email.'" where admin_ID = '.$adminID;
             $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
             if($this->db->affected_rows == 1)
                 return true;
@@ -83,7 +83,7 @@
                 return false;
         }
         public function updateAdminPassword(id $adminID, string $newPass){
-            $sqlUpdateAdmin = 'update table admin set password = '.password_hash($newPass, PASSWORD_BCRYPT).' where admin_ID = '.$adminID;
+            $sqlUpdateAdmin = 'update admin set password = '.password_hash($newPass, PASSWORD_BCRYPT).' where admin_ID = '.$adminID;
             $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
             if($this->db->affected_rows == 1)
                 return true;
@@ -91,7 +91,7 @@
                 return false;
         }
         public function updateAdminOtherSettings(id $adminID, int $privilege, int $isActive, int $isPublic){
-            $sqlUpdateAdmin = 'update table admin set isActive = '.$isActive.', isPublicVisible = '.$isPublic.', adminPrivilege = '.$privilege.' where admin_ID = '.$adminID;
+            $sqlUpdateAdmin = 'update admin set isActive = '.$isActive.', isPublicVisible = '.$isPublic.', adminPrivilege = '.$privilege.' where admin_ID = '.$adminID;
             $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
             if($this->db->affected_rows == 1)
                 return true;

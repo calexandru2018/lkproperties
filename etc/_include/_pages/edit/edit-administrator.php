@@ -26,11 +26,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button type="button" class="btn btn-success pull-right" id="savePersInfo">Guardar Alteração</button>
-                    </div>
-                    <div class="alert alert-danger alert-dismissible" role="alert"> <!-- alert-success OR alert-danger-->
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <i class="fa fa-times-circle"></i> Error ao guardar alterações  <!-- fa fa-check-circle OR fa fa-times-circle-->
+                        <button type="button" class="btn btn-success pull-right" id="admin-savePersInfo">Guardar Alteração</button>
                     </div>
                 </div>
             </div>
@@ -51,11 +47,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" class="btn btn-success pull-right" id="savePassword">Guardar Alteração</button>
-                    </div>
-                    <div class="alert alert-success alert-dismissible" role="alert"> <!-- alert-success OR alert-danger-->
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <i class="fa fa-check-circle"></i> Alteração realizada com sucesso  <!-- fa fa-check-circle OR fa fa-times-circle-->
+                        <button  type="button" class="btn btn-success pull-right" id="admin-savePassword">Guardar Alteração</button>
                     </div>
                 </div>
             </div>
@@ -90,11 +82,7 @@
                         </label>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" class="btn btn-success pull-right btn-toastr" id="saveOtherInfo">Guardar Alteração</button>
-                    </div>
-                    <div class="alert alert-success alert-dismissible" role="alert"> <!-- alert-success OR alert-danger-->
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <i class="fa fa-check-circle"></i> Alteração realizada com sucesso  <!-- fa fa-check-circle OR fa fa-times-circle-->
+                        <button  type="button" class="btn btn-success pull-right btn-toastr" id="admin-saveOtherInfo">Guardar Alteração</button>
                     </div>
                 </div>
             </div>

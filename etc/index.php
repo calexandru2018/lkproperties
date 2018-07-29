@@ -175,7 +175,7 @@
                                 {
                                     contentID: data['contentId'],
                                 }, 
-                                 {
+                                {
                                     headers: { 
                                         'Content-Type': 'application/x-www-form-urlencoded',
                                     }
@@ -198,6 +198,79 @@
                         });
                         /* onClick confirm modal delete row */
                     /* Moda window function */
+                    
+                    /* Edit page input collector */
+                        document.querySelectorAll('button').forEach( function(btn) {
+                            btn.addEventListener('click', findInputs);
+                        });
+                        function findInputs() {  
+                            console.clear();
+                            var button_id = this.id.split('-');
+                            var userInput = {};
+                            var buttonLocation = this;
+                            this.closest('.panel-body').querySelectorAll('input, select').forEach( function(inp) {
+                                if(inp.type != 'checkbox'){
+                                    userInput[inp.name] = [inp.value];
+                                }
+                                if(inp.type == 'checkbox'){
+                                    if(inp.checked)
+                                        userInput[inp.name] = 'checked';
+                                    else
+                                        userInput[inp.name] = 'unchecked';
+                                }
+                            });
+                            var url = new URL(window.location.href);
+                            axios.post(
+                                'ajax/' + button_id[0] + '/edit-' + button_id[0] + '.php',
+                                {
+                                    contentID: url.searchParams.get('id'),
+                                    contentCategory: button_id[0],
+                                    contentType: button_id[1],
+                                    userInput
+                                },
+                                {
+                                    headers: { 
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    }
+                                }
+                            )
+                            .then(function(response){
+                                console.log(response);
+                                var parentNode = buttonLocation.closest('div');
+                                createAlert(response, parentNode);
+                                
+                            })
+                            .catch(function(error){
+                                console.log(error);
+                                var parentNode = buttonLocation.closest('div');
+                                createAlert(response, parentNode)
+                            });
+                        /* Creates the alert area to indicate success or issue at update */
+                            function createAlert(response, parentNode){
+                                var className = 'alert-success';
+                                var iconName = 'fa fa-check-circle';
+                                var text = 'Alterado com sucesso'
+                                if(response == false){
+                                    var className = 'alert-danger';
+                                    var iconName = 'fa fa-times-circle';
+                                    var text = 'Algo correu mal'
+                                }
+                                var newNode = document.createElement('div');
+                                newNode.classList.add('alert', className, 'alert-dismissible');
+                                newNode.innerHTML = `
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="fa ` + iconName +`"></i> ` + text;
+                                var insertedNode = insertAfter(newNode, parentNode);
+                            }
+                        /* Creates the alert area to indicate success or issue at update */
+
+                        /* Inserts after specified parent node */
+                            function insertAfter(newNode, referenceNode) {
+                                referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+                            }
+                        /* Inserts after specified parent node */
+                        };
+                    /* Edit page input collector */
                     </script>
                 </div>
                 <!-- END MAIN CONTENT -->
