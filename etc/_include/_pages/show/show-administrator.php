@@ -112,7 +112,10 @@
                                 echo'
                                 <tr id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
                                     <td colspan="14" class="bg-info">
-                                        <form action="ajax/admin/gallery-admin.php" class="dropzone" id="dropzoneId'.$adminCounter.'" name="dropzoneId'.$adminCounter.'"></form>
+                                        <form enctype="multipart/form-data" method="post" action="ajax/admin/gallery-admin.php">
+                                            <input type="file" class="btn btn-info pull-left" size="32" name="image_field[]" multiple>
+                                            <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                        </form>
                                     </td>
                                 </tr>
                                 ';
@@ -124,9 +127,44 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function(e) {
     /* Plugin scripts */
         $('.js-example-basic-multiple').select2();
+        
+    $("#form").on('submit',(function(e) {
+        e.preventDefault();
+        $.ajax({
+                url: "ajaxupload.php",
+        type: "POST",
+        data:  new FormData(this),
+        contentType: false,
+                cache: false,
+        processData:false,
+        beforeSend : function()
+        {
+            //$("#preview").fadeOut();
+            $("#err").fadeOut();
+        },
+        success: function(data)
+            {
+            if(data=='invalid')
+            {
+            // invalid file format.
+            $("#err").html("Invalid File !").fadeIn();
+            }
+            else
+            {
+            // view uploaded file.
+            $("#preview").html(data).fadeIn();
+            $("#form")[0].reset(); 
+            }
+            },
+            error: function(e) 
+            {
+            $("#err").html(e).fadeIn();
+            }          
+            });
+        }));
     /* Plugin scripts */
 
     /* Add Admin functions */
