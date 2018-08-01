@@ -92,7 +92,8 @@
                                     case 3: $adminPriv = 'Editor de Aluguer';
                                         break;
                                 };
-                                echo '<tr  data-content-type="admin" data-content-id="'.$resp[$adminCounter]->admin_ID.'"><td>'.$resp[$adminCounter]->admin_ID.'</td>';
+                                echo '<tr data-content-type="admin" data-content-id="'.$resp[$adminCounter]->admin_ID.'">';
+                                echo '<td>'.$resp[$adminCounter]->admin_ID.'</td>';
                                 echo '<td>'.$resp[$adminCounter]->name.'</td>';
                                 echo '<td>'.$resp[$adminCounter]->email.'</td>';
                                 echo '<td>'.$resp[$adminCounter]->dateCreated.'</td>';
@@ -110,10 +111,10 @@
                                     <button class="btn btn-danger btn-xs pull-right" id="delete-admin"><span class="lnr lnr-trash"></span></button>
                                 </td></tr>';
                                 echo'
-                                <tr id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
+                                <tr data-content-type="admin" data-content-id="'.$resp[$adminCounter]->admin_ID.'" id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
                                     <td colspan="14" class="bg-info">
                                     <!--action="ajax/admin/gallery-admin.php"-->
-                                        <form enctype="multipart/form-data" method="post" action="ajax/admin/gallery-admin.php" class="file-upload">
+                                        <form enctype="multipart/form-data" method="post" action="ajax/admin/gallery-admin.php" class="file-upload" id="'.$resp[$adminCounter]->admin_ID.'">
                                             <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple>
                                             <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                         </form>

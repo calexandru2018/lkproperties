@@ -102,6 +102,16 @@
             else
                 return false;
         }
+        public function AddAdminPhoto(int $adminID, string  $url){
+            $sqlUpdateAdmin = 'update admin set 
+                    thumbnailURL = "'.$url.'"
+                where admin_ID = '.$adminID;
+           $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
+            if($this->db->affected_rows == 1)
+                return true;
+            else
+                return false;
+        }
 
         /* CONTROL CUSTOM FUNCTIONS */
         private function validateInput(array $inputArray){

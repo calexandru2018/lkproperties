@@ -9,7 +9,9 @@
         <div id="navbar-menu">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><?php echo $_SESSION['name'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <?php if(isset($_SESSION['url'])) echo '<img src="../ourstaff/'.$_SESSION['url'].'" class="img-circle" alt="Avatar"> ';?> 
+                    <span><?php echo $_SESSION['name'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                         <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>

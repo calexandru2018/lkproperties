@@ -2,35 +2,41 @@ const url = 'ajax/admin/gallery-admin.php';
 const form = document.querySelectorAll('.file-upload');
 
 form.forEach(function(el){
-    console.log(el);
     el.addEventListener('submit', e => {
         e.preventDefault();
-        const files = document.querySelector('[type=file]').files;
-        console.log(files);
-        const formData = new FormData();
+        console.clear();
+        const files = el.querySelector('[type=file]').files;
+        const adminID = el.closest('tr').getAttribute('data-content-id');
+        console.log(adminID);
+        let formData = new FormData();
 
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
-            formData.append('image_field[]', file);
+            formData.append('image_field[]', file, adminID + '___' + file.name);
         }
-        console.log(formData);
         /* Original working */
-        /* fetch(url, {
+        fetch(url, {
             method: 'POST',
             body: formData
-        }).then(response => {
-            console.log(response);
-        }).catch(error => {
+        })
+        .then(response => {
+            // console.log(response);
+            alert('Upload feito');
+        })
+        .catch(error => {
             console.log(error);
-        }); */
-        axios.post(
+        });
+        /* Original working */
+
+        /* axios.post(
             url, 
             {
-                formData
-            },
+                body: formData
+            }
+            ,
             {
                 headers: { 
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data; charset=utf-8; boundary="???"'
                 }
             }
         )
@@ -39,7 +45,7 @@ form.forEach(function(el){
         })
         .catch(error => {
             console.log(error);
-        });
+        }); */
     });
 });
 
