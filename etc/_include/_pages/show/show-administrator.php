@@ -82,7 +82,7 @@
                 <tbody>
                     
                         <?php
-                        $resp = $administrator->showAll();
+                        $resp = $administrator->fetchAll();
                             for($adminCounter = 0; $adminCounter < count($resp); $adminCounter++){
                                 switch($resp[$adminCounter]->adminPrivilege){
                                     case 1: $adminPriv = 'Super Admin';

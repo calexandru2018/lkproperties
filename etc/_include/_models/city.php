@@ -1,6 +1,6 @@
 <?php
 
-    class Administrator{
+    class City{
         
         private $db;
 
@@ -19,11 +19,11 @@
             }
             return $output;
         }
-        public function fetchAdmin(string $sql){
+        public function fetchCity(string $sql){
             $queryResult = $this->db->query($sql);
             return $queryResult->fetch_object();
         }
-        public function insertAdmin(array $inputArray){
+        public function insertCity(array $inputArray){
             $adminData = $this->validateInput($inputArray);
 
             $sqlCheckExists = 'select email from admin where email = "'.$adminData['adminEmail'].'"';
@@ -66,7 +66,7 @@
                 return false;
             }
         }
-        public function deleteAdmin(int $adminID){
+        public function deleteCity(int $adminID){
             $sqlDelete = 'delete from admin where admin_ID = '.(int)$adminID;
             $queryDelete = $this->db->query($sqlDelete);
             if($this->db->affected_rows == 1)
@@ -74,7 +74,7 @@
             else
                 return false;
         }
-        public function updateAdminPersInfo(int $adminID, string $name, string $email){
+        /* public function updateAdminPersInfo(int $adminID, string $name, string $email){
             $sqlUpdateAdmin = 'update admin set name = "'.$name.'", email = "'.$email.'" where admin_ID = '.$adminID;
             $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
             if($this->db->affected_rows == 1)
@@ -101,8 +101,8 @@
                 return true;
             else
                 return false;
-        }
-        public function addAdminPhoto(int $adminID, string  $url){
+        } */
+        /* public function addAdminPhoto(int $adminID, string  $url){
             $sqlUpdateAdmin = 'update admin set 
                     thumbnailURL = "'.$url.'"
                 where admin_ID = '.$adminID;
@@ -126,7 +126,7 @@
                     else
                         return false;
                 }
-        }
+        } */
 
         /* CONTROL CUSTOM FUNCTIONS */
         private function validateInput(array $inputArray){
@@ -167,9 +167,5 @@
             /* if 1 then all ok, if 0 then one of the conditions has failed */
             return $x*$y;
         }
-
-
-        
-
     }
 ?>
