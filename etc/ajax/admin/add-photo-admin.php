@@ -31,13 +31,18 @@
                 $handle->image_resize = true;
                 $handle->image_ratio_y = true;
                 $handle->image_x = 2560;
-            } */
-            $handle->image_convert = 'jpeg';
-            $handle->jpeg_quality = 60;
+            }
             $handle->image_resize = true;
             $handle->image_ratio_y = true;
-            $handle->image_x = 800;
-            $handle->Process("../../../ourstaff");
+            $handle->image_x = 800; */
+
+            $handle->image_convert = 'jpeg';
+            $handle->jpeg_quality = 60;
+            $handle->image_resize          = true;
+            $handle->image_ratio_crop      = true;
+            $handle->image_y               = 300;
+            $handle->image_x               = 300;
+            $handle->Process("../../../assets/img/ourstaff");
             if ($handle->processed) {
                 if($addNewPhotoAdmin->addAdminPhoto($adminID, $handle->file_dst_name))
                     echo true;
