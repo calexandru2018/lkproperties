@@ -102,7 +102,7 @@
             else
                 return false;
         }
-        public function AddAdminPhoto(int $adminID, string  $url){
+        public function addAdminPhoto(int $adminID, string  $url){
             $sqlUpdateAdmin = 'update admin set 
                     thumbnailURL = "'.$url.'"
                 where admin_ID = '.$adminID;
@@ -111,6 +111,21 @@
                 return true;
             else
                 return false;
+        }
+        public function deleteAdminPhoto(int $adminID){
+            $sqlUpdateAdmin = 'update admin set 
+                        thumbnailURL = NULL
+                    where admin_ID = '.$adminID;
+            $sqlFetchURL = 'select thumbnailURL from admin where admin_ID = '.$adminID;
+            $queryFetchURL = $this->db->query($sqlFetchURL);
+                if($queryFetchURL){
+                    $queryFetchResult = $queryFetchURL->fetch_object();
+                    $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
+                    if($this->db->affected_rows == 1)
+                        return $queryFetchResult->thumbnailURL;
+                    else
+                        return false;
+                }
         }
 
         /* CONTROL CUSTOM FUNCTIONS */

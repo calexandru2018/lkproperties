@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button type="button" class="btn btn-success pull-right" id="admin-savePersInfo">Guardar Alteração</button>
+                        <button type="button" class="btn btn-success pull-right save" id="admin-savePersInfo">Guardar Alteração</button>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" class="btn btn-success pull-right" id="admin-savePassword">Guardar Alteração</button>
+                        <button  type="button" class="btn btn-success pull-right save" id="admin-savePassword" >Guardar Alteração</button>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                         </label>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" class="btn btn-success pull-right btn-toastr" id="admin-saveOtherInfo">Guardar Alteração</button>
+                        <button  type="button" class="btn btn-success pull-right save" id="admin-saveOtherInfo">Guardar Alteração</button>
                     </div>
                 </div>
             </div>
@@ -94,22 +94,16 @@
             <div class="panel-body">
                 <section class="gallery-block grid-gallery">
                     <div class="row" id="rowGallery">
+                    <?php if($adminData->thumbnailURL !== null){?>
                         <div class="col-xs-6 item" style="margin: 5px 0">
-                            <a class="lightbox" href="../assets/img/mod2.jpg">
-                                <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
+                            <a class="lightbox" href="../ourstaff/<?php echo $adminData->thumbnailURL; ?>">
+                                <img class="img-responsive image scale-on-hover" src="../ourstaff/<?php echo $adminData->thumbnailURL; ?>">
                             </a>
-                            <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
+                            <button class="btn btn-danger delete-photo" data-content-type="admin" data-content-id="<?php echo $adminData->admin_ID ;?>" style="position: absolute;z-index: 1;top: 0;">
                                 <i class="lnr lnr-trash"></i>
                             </button>
                         </div>
-                        <div class="col-xs-6 item" style="margin: 5px 0">
-                            <a class="lightbox" href="../assets/img/mod2.jpg">
-                                <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
-                            </a>
-                            <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
-                                <i class="lnr lnr-trash"></i>
-                            </button>
-                        </div>
+                    <?php }?>
                     </div>
                 </section>
             </div>

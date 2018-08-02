@@ -113,8 +113,7 @@
                                 echo'
                                 <tr data-content-type="admin" data-content-id="'.$resp[$adminCounter]->admin_ID.'" id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
                                     <td colspan="14" class="bg-info">
-                                    <!--action="ajax/admin/gallery-admin.php"-->
-                                        <form enctype="multipart/form-data" method="post" action="ajax/admin/gallery-admin.php" class="file-upload" id="'.$resp[$adminCounter]->admin_ID.'">
+                                        <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$adminCounter]->admin_ID.'">
                                             <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple>
                                             <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                         </form>

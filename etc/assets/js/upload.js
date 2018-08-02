@@ -1,4 +1,4 @@
-const url = 'ajax/admin/gallery-admin.php';
+const url = 'ajax/admin/add-photo-admin.php';
 const form = document.querySelectorAll('.file-upload');
 
 form.forEach(function(el){

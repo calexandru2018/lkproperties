@@ -39,8 +39,8 @@
             $handle->image_x = 800;
             $handle->Process("../../../ourstaff");
             if ($handle->processed) {
-                if($addNewPhotoAdmin->AddAdminPhoto($adminID, $handle->file_dst_name))
-                    echo 'OK';
+                if($addNewPhotoAdmin->addAdminPhoto($adminID, $handle->file_dst_name))
+                    echo true;
                 else 
                     echo 'issues updating';
             } else {
