@@ -1,32 +1,41 @@
-const url = 'ajax/admin/add-photo-admin.php';
-const form = document.querySelectorAll('.file-upload');
+function uploadPhotos(url, queryCollection){
+    this.url = url;
+    this.queryCollection = queryCollection;
 
-form.forEach(function(el){
-    el.addEventListener('submit', e => {
-        e.preventDefault();
-        console.clear();
-        const files = el.querySelector('[type=file]').files;
-        const adminID = el.closest('tr').getAttribute('data-content-id');
-        console.log(adminID);
-        let formData = new FormData();
+    this.upload = function(){
+        queryCollection.forEach(function(el){
+            el.addEventListener('submit', e => {
+                e.preventDefault();
+                console.clear();
+                const files = el.querySelector('[type=file]').files;
+                const contentID = el.closest('tr').getAttribute('data-content-id');
+                console.log(contentID);
+                let formData = new FormData();
 
-        for (let i = 0; i < files.length; i++) {
-            let file = files[i];
-            formData.append('image_field[]', file, adminID + '___' + file.name);
-        }
-        /* Original working */
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            // console.log(response);
-            alert('Upload feito');
-        })
-        .catch(error => {
-            console.log(error);
+                for (let i = 0; i < files.length; i++) {
+                    let file = files[i];
+                    formData.append('image_field[]', file, contentID + '___' + file.name);
+                }
+                /* Original working */
+             fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    // console.log(response);
+                    alert('Upload feito');
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+               
+            });
         });
-        /* Original working */
+    }
+}
+
+
+ /* Original working */
 
         /* axios.post(
             url, 
@@ -46,7 +55,3 @@ form.forEach(function(el){
         .catch(error => {
             console.log(error);
         }); */
-    });
-});
-
-

@@ -15,3 +15,4 @@
 <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.ico">
 
 <script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/upload.js"></script>

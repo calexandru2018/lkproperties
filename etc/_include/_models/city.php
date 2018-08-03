@@ -3,6 +3,12 @@
     class City{
         
         private $db;
+        private $langList = [
+                'portuguese' => 'pt', 
+                'english' => 'en',
+                'italian' => 'it',
+                'french' => 'fr'
+        ];
 
         function __construct($conn){
             $this->db = $conn;
@@ -13,7 +19,16 @@
 
         /* DATABASE FUNCTIONS */
         public function fetchAll(){
-            $queryResult = $this->db->query('select  admin_ID , name , email , dateCreated , dateModified , isActive , isPublicVisible , adminPrivilege  from admin');
+            $queryResult = $this->db->query('
+                select 
+                    *
+                from 
+                    city_link
+                left join 
+                    city_translation 
+                on
+                    city_link.city_link_ID = city_translation.city_link_ID
+            ');
             while($r=$queryResult->fetch_object()){
                 $output[] = $r;
             }
@@ -24,29 +39,70 @@
             return $queryResult->fetch_object();
         }
         public function insertCity(array $inputArray){
-            $adminData = $this->validateInput($inputArray);
-
-            $sqlCheckExists = 'select email from admin where email = "'.$adminData['adminEmail'].'"';
+            $cityData = $this->sanitizeInput($inputArray);
+            
+            $sqlCheckExists = ' 
+                select 
+                    city_translation_ID 
+                from city_translation 
+                where 
+                    (nameTranslated = "'.$cityData['cityName-PT'].'" and langCode = "pt")
+                or
+                (nameTranslated = "'.$cityData['cityName-EN'].'" and langCode = "en")
+            ';
             $queryCheckExists = $this->db->query($sqlCheckExists);
             if($queryCheckExists->num_rows > 0){
                 return false;
             }
-            $sqlInsert = 'insert into admin 
-                            (name, email, password, isActive, isPublicVisible, adminPrivilege)
-                        values
-                            ("'.str_replace('+',' ',$adminData['adminName']).'","'.$adminData['adminEmail'].'","'.$adminData['adminPassword'].'","'.$adminData['adminIsActive'].'","'.$adminData['adminIsPublic'].'","'.$adminData['adminPriveliege'].'")
+            $sqlInsert = '
+                insert into city_link 
+                    (videoURL, postalCode, isPopular)
+                values(
+                    "'.((empty($cityData['cityVideoURL']) == true) ? '': $cityData['cityVideoURL']).'",
+                    "'.$cityData['cityPostalCode'].'",
+                    "'.$cityData['cityIsPopular'].'"
+                )
             '; 
             $queryInsert = $this->db->query($sqlInsert);
             if($queryInsert){
-                switch($adminData['adminPriveliege']){
-                    case 1: $adminPriv = 'Super Admin';
-                        break;
-                    case 2: $adminPriv = 'Gestor de Conteudo';
-                        break;
-                    case 3: $adminPriv = 'Editor de Aluguer';
-                        break;
-                };
-                $arrayToReturn = [
+                $lastInsertedID = $this->db->insert_id;
+                $sqlInsertTranslation = '
+                    insert into city_translation
+                        (city_link_ID, langCode, nameTranslated, descriptionTranslated)
+                    values
+                        ( 
+                            "'.$lastInsertedID.'",
+                            "'.$this->langList['portuguese'].'",
+                            "'.$cityData['cityName-'.strtoupper($this->langList['portuguese'])].'",
+                            "'.$cityData['cityDesc-'.strtoupper($this->langList['portuguese'])].'"
+                        ),
+                        (
+                            "'.$lastInsertedID.'",
+                            "'.$this->langList['english'].'",
+                            "'.$cityData['cityName-'.strtoupper($this->langList['english'])].'",
+                            "'.$cityData['cityDesc-'.strtoupper($this->langList['english'])].'" 
+                        )
+                ';
+                $queryInsertTranslation = $this->db->query($sqlInsertTranslation);
+                if($queryInsertTranslation){
+                    $arrayToReturn = [
+                        $lastInsertedID,
+                        $cityData['cityName-'.strtoupper($this->langList['portuguese'])],
+                        $cityData['cityDesc-'.strtoupper($this->langList['portuguese'])],
+                        $cityData['cityName-'.strtoupper($this->langList['english'])],
+                        $cityData['cityDesc-'.strtoupper($this->langList['english'])],
+                        (($cityData['cityIsPopular'] == 0) ? 'Não':'Sim'),
+                        '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
+                            <i class="lnr lnr-plus-circle"></i>
+                        </button>',
+                        '<a href="?edit=city&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                        <button class="btn btn-danger btn-xs pull-right" id="delete-city"><span class="lnr lnr-trash"></span></button>'
+                    ];
+                    return $arrayToReturn;
+                }else{
+                    return false;
+                }
+                /* $arrayToReturn = [
                     $this->db->insert_id,
                     str_replace('+',' ',$adminData['adminName']),
                     $adminData['adminEmail'],
@@ -61,7 +117,7 @@
                     '<a href="?edit=administrator&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
                     <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>'
                 ];
-                return $arrayToReturn;
+                return $arrayToReturn; */
             }else{
                 return false;
             }
@@ -129,28 +185,14 @@
         } */
 
         /* CONTROL CUSTOM FUNCTIONS */
-        private function validateInput(array $inputArray){
-            $inputArray = $this->explodeArray($inputArray);
+        private function sanitizeInput(array $inputArray){
             $counter = 0;
             $filteredInput = [];
             foreach ($inputArray as $key => $value) {
-                if($counter > 2)
-                    $filteredInput = (int)$value;
-                if($key == 'adminPassword')
-                    $value = password_hash(mysqli_real_escape_string($this->db, $value), PASSWORD_BCRYPT);
-                
                 $filteredInput[$key] = mysqli_real_escape_string($this->db, $value);
             }
             return $filteredInput;
         }
-        private function explodeArray(array $post){
-            $firstFilter = explode('&', $post['curatedObject']);
-            for($c = 0; $c < count($firstFilter); $c++){
-                $secondFilter[$c] = explode('=', $firstFilter[$c]);
-                    $finalArray[$secondFilter[$c][0]] = $secondFilter[$c][1]; 
-            };
-            return $finalArray;
-        }        
 
         /* Checks if requirments are met to edit the administrator */
         public function showEditPage(string $var1, int $var2, bool $adminExists){

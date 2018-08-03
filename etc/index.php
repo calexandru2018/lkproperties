@@ -105,17 +105,23 @@
                                 cellArray[counter] = firstRow.insertCell(counter);
                                 cellArray[counter].innerHTML = data[counter];
                             }
-                            createSecondRow(table, data[0]);
+                            createSecondRow(table, data[0], dataName);
                         }
-                        function createSecondRow(table, id){
+                        function createSecondRow(table, id, dataName){
                             var secondRow   = table.insertRow(table.rows.length);
                             secondRow.id = 'collapseGallery-' + id;
                             secondRow.className = 'collapse';
                             var galleryCell = secondRow.insertCell(0);
+                            galleryCell.setAttribute('data-content-type', dataName);
+                            galleryCell.setAttribute('data-content-id', id);
                             galleryCell.className = 'bg-info'
-                            galleryCell.innerHTML = '<div id=dropzone-' + id + ' class="dropzone"></div>';
+                            galleryCell.innerHTML = `
+                                <form enctype="multipart/form-data" method="post" class="file-upload" id="` + id + `">
+                                    <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple>
+                                    <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                </form>
+                            `;
                             galleryCell.colSpan = 10;
-                            var myDropzone = new Dropzone('div#dropzone-' + id, { url: "/file/post"});
                         }
                     /* Populate table with new input */ 
 
@@ -300,7 +306,6 @@
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/klorofil-common.js"></script>
     <script src="assets/js/axios.min.js"></script>
-    <script src="assets/js/upload.js"></script>
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>

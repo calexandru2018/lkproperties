@@ -133,7 +133,12 @@
         $('.js-example-basic-multiple').select2();
     /* Plugin scripts */
 
-    /* Add Admin functions */
+    /* Upload script */
+        var newUpload = new uploadPhotos('ajax/admin/add-photo-admin.php', document.querySelectorAll('.file-upload'));
+        newUpload.upload();
+    /* Upload script */
+
+    /* Add Admin */
         document.getElementById('add-admin').onclick = function(){
             let responseData = {}; 
             let info = document.querySelectorAll("[name^=admin");
@@ -161,7 +166,7 @@
                 console.log(error);
             });
         }
-    /* Add Admin functions */
+    /* Add Admin */
 
     /* Delete Admin start function */
     $(document).on('click', '#delete-admin', function(){

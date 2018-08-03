@@ -24,7 +24,7 @@
             return $queryResult->fetch_object();
         }
         public function insertAdmin(array $inputArray){
-            $adminData = $this->validateInput($inputArray);
+            $adminData = $this->sanitizeInput($inputArray);
 
             $sqlCheckExists = 'select email from admin where email = "'.$adminData['adminEmail'].'"';
             $queryCheckExists = $this->db->query($sqlCheckExists);
@@ -59,7 +59,7 @@
                         <i class="lnr lnr-plus-circle"></i>
                     </button>',
                     '<a href="?edit=administrator&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                    <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>'
+                    <button class="btn btn-danger btn-xs pull-right" id="delete-admin"><span class="lnr lnr-trash"></span></button>'
                 ];
                 return $arrayToReturn;
             }else{
@@ -129,7 +129,7 @@
         }
 
         /* CONTROL CUSTOM FUNCTIONS */
-        private function validateInput(array $inputArray){
+        private function sanitizeInput(array $inputArray){
             $inputArray = $this->explodeArray($inputArray);
             $counter = 0;
             $filteredInput = [];
