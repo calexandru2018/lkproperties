@@ -8,7 +8,7 @@
         if (hash_equals($_SESSION['crsf_token'], $_POST['crsf_token'])) {
             $email = mysqli_real_escape_string($loginConn->db, $_POST['email']);
             $pwd =  mysqli_real_escape_string($loginConn->db, $_POST['password']);
-            $fetchAdminData = $loginAdmin->fetchAdmin('select admin_ID, adminPrivilege, thumbnailURL, email, password, name from admin where email = "'.$email.'"');
+            $fetchAdminData = $loginAdmin->fetchAdmin('login', $email, 0);
             if($fetchAdminData){
                 if(password_verify($pwd, $fetchAdminData->password)){
                     $_SESSION['admin_ID'] = $fetchAdminData->admin_ID;

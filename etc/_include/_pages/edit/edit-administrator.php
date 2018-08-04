@@ -1,11 +1,11 @@
 <?php
     include_once('_include/_models/admin.php');
     $administrator = new Administrator($MAIN->db);
-    $adminData = $administrator->fetchAdmin('select * from admin where admin_ID = "'.(int)$_GET['id'].'"');
+    $adminData = $administrator->fetchAdmin('edit','', (int)$_GET['id']);
     $canEdit = $administrator->showEditPage($_GET["edit"], $_GET["id"], empty($adminData));
     if($canEdit === 1)
     {
-    ?>
+?>
         <h3 class="page-title">Editar Administrador: <?php echo $adminData->name; ?></h3>
         <div class="panel panel-primary">
             <div class="panel-heading">

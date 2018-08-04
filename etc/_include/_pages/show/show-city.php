@@ -30,16 +30,12 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <!-- <div class="input-group"> -->
-                            <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
-                            <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
-                        <!-- </div> -->
+                        <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
+                        <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                        <!-- <div class="input-group"> -->
-                            <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
-                            <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
-                        <!-- </div> -->
+                        <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
+                        <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
@@ -48,9 +44,9 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                    <div class="input-group">
+                        <div class="input-group">
                             <span class="input-group-addon">Video(URL opcional)</span>
-                            <input type="text" name="cityVideoURL" class="form-control" placeholder="8500 ou 8200">
+                            <input type="text" name="cityVideoURL" class="form-control" placeholder="https://...">
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
@@ -193,7 +189,7 @@
             let info = document.querySelectorAll("[name^=city");
             info.forEach(function(el){
                 if(el.type == 'textarea'){
-                    CKEDITOR.instances[el.id].setData(fill()) ;
+                    CKEDITOR.instances[el.id].setData(fill());
                 }else if(el.name == 'cityPostalCode'){
                     el.value = 8500;
                 }else{

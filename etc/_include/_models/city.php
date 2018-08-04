@@ -7,7 +7,8 @@
                 'portuguese' => 'pt', 
                 'english' => 'en',
                 'italian' => 'it',
-                'french' => 'fr'
+                'french' => 'fr', 
+                'neutral'=> 'na'
         ];
 
         function __construct($conn){
@@ -29,16 +30,37 @@
                 on
                     city_link.city_link_ID = city_translation.city_link_ID
                 where
-                    langCode = "pt"
+                    langCode = "'.$this->langList['portuguese'].'"
             ');
             while($r=$queryResult->fetch_object()){
                 $output[] = $r;
             }
             return $output;
         }
-        public function fetchCity(string $sql){
-            $queryResult = $this->db->query($sql);
-            return $queryResult->fetch_object();
+        /* fetchCity had to be fetched as an assoc array, so it could be arranged based on language */
+        public function fetchCity(int $cityID){
+            $sqlFetchCity = '
+                select
+                    *
+                from
+                    city_link
+                left join
+                    city_translation
+                on
+                    city_link.city_link_ID = city_translation.city_link_ID
+                where
+                    city_link.city_link_ID = "'.$cityID.'"
+            ';
+            $queryResult = $this->db->query($sqlFetchCity);
+            while($r=$queryResult->fetch_assoc()){
+                switch($r['langCode']){
+                    case $this->langList['portuguese']: $output[$this->langList['portuguese']] = $r;
+                        break;
+                    case $this->langList['english']: $output[$this->langList['english']] = $r;
+                        break;
+                }
+            }
+            return $output;
         }
         public function insertCity(array $inputArray){
             $cityData = $this->sanitizeInput($inputArray);
@@ -115,29 +137,45 @@
             else
                 return false;
         }
-        /* public function updateAdminPersInfo(int $adminID, string $name, string $email){
-            $sqlUpdateAdmin = 'update admin set name = "'.$name.'", email = "'.$email.'" where admin_ID = '.$adminID;
-            $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
-            if($this->db->affected_rows == 1)
+        public function updateCityName(int $cityID, array $cityNames){
+            $langSortedCityName = array();
+            $errorCather = 0;
+            $langCounter = 0;
+            foreach($cityNames as $key => $value){
+                $holder[] = explode('-', $key);                
+                $langSortedCityName[strtolower($holder[$langCounter][1])][] = $value[0];
+                $langCounter++;
+            }
+            var_dump($langSortedCityName);
+            foreach($langSortedCityName as $lang => $name){
+                $sqlUpdateCity = '
+                update 
+                    city_translation 
+                set 
+                    nameTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
+                where 
+                    langCode = "'.$lang.'"
+                and
+                    city_link_ID = '.$cityID;
+                $queryUpdateAdmin = $this->db->query($sqlUpdateCity);
+                if($this->db->affected_rows == 1)
+                    $errorCather += 0;
+                else
+                    $errorCather += 1;
+                
+            }
+            if($errorCather == 0)
                 return true;
             else
                 return false;
         }
-        public function updateAdminPassword(int $adminID, string $newPass){
-            $sqlUpdateAdmin = 'update admin set password = "'.password_hash(mysqli_real_escape_string($this->db, $newPass), PASSWORD_BCRYPT).'" where admin_ID = '.$adminID;
-            $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
-            if($this->db->affected_rows == 1)
-                return true;
-            else
-                return false;
-        }
-        public function updateAdminOtherSettings(int $adminID, int $privilege, string $isActive, string $isPublic){
-            $sqlUpdateAdmin = 'update admin set 
+        /*public function updateAdminOtherSettings(int $adminID, int $privilege, string $isActive, string $isPublic){
+            $sqlUpdateCity = 'update admin set 
                     isActive = "'.(($isActive == 'checked') ? 1:0).'", 
                     isPublicVisible = "'.(($isPublic == 'checked') ? 1:0).'", 
                     adminPrivilege = "'.$privilege.'" 
                 where admin_ID = '.$adminID;
-            $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
+            $queryUpdateAdmin = $this->db->query($sqlUpdateCity);
             if($this->db->affected_rows == 1)
                 return true;
             else
@@ -163,20 +201,18 @@
             else
                 return false;
         }
-        public function deleteCityPhoto(int $adminID){
-            $sqlUpdateAdmin = 'update admin set 
-                        thumbnailURL = NULL
-                    where admin_ID = '.$adminID;
-            $sqlFetchURL = 'select thumbnailURL from admin where admin_ID = '.$adminID;
-            $queryFetchURL = $this->db->query($sqlFetchURL);
-                if($queryFetchURL){
-                    $queryFetchResult = $queryFetchURL->fetch_object();
-                    $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
-                    if($this->db->affected_rows == 1)
-                        return $queryFetchResult->thumbnailURL;
-                    else
-                        return false;
-                }
+        public function deleteCityPhoto(int $photoID){
+            $sqlDeletePhoto = '
+                delete from
+                    city_gallery
+                where   
+                    city_gallery_ID = '.$photoID;
+            $queryDeletePhoto = $this->db->query($sqlDeletePhoto);
+            if($queryDeletePhoto){
+                return true;
+            }else {
+                return false;
+            }
         }
 
         /* CONTROL CUSTOM FUNCTIONS */
@@ -190,13 +226,13 @@
         }
 
         /* Checks if requirments are met to edit the administrator */
-        public function showEditPage(string $var1, int $var2, bool $adminExists){
-            if($var1 === "administrator" && is_int($var2)){
+        public function showEditPage(string $contentCategory, int $contentID, bool $cityExists){
+            if($contentCategory === "city" && is_int($contentID)){
                 $x = 1;
             }else{ 
                 $x = 0;
             }
-            if($adminExists == false){
+            if($cityExists == false){
                 $y = 1;
             }else{ 
                 $y = 0;

@@ -19,8 +19,13 @@
             }
             return $output;
         }
-        public function fetchAdmin(string $sql){
-            $queryResult = $this->db->query($sql);
+        public function fetchAdmin(string $actionType, string $email, int $adminID){
+            if($actionType == 'login')
+                $sqlFetchAdmin = 'select admin_ID, adminPrivilege, thumbnailURL, email, password, name from admin where email = "'.$email.'"';
+            else if($actionType == 'edit')    
+                $sqlFetchAdmin = 'select * from admin where admin_ID = "'.$adminID.'"';
+            
+            $queryResult = $this->db->query($sqlFetchAdmin);
             return $queryResult->fetch_object();
         }
         public function insertAdmin(array $inputArray){
