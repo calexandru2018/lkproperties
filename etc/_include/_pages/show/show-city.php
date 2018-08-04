@@ -67,14 +67,15 @@
     </div>
     <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-hover" id="admin-table">
+            <table class="table table-hover" id="city-table">
                 <thead>
                     <th>ID</th>
                     <th>Nome(PT)</th>
                     <th>Descrição(PT)</th>
-                    <th>Nome(EN)</th>
-                    <th>Descrição(EN)</th>
+                    <!-- <th>Nome(EN)</th>
+                    <th>Descrição(EN)</th> -->
                     <th>Popular</th>
+                    <th>Data Adicionado</th>
                     <th>Galeria</th>
                     <th>Ação</th>
                 </thead>
@@ -100,14 +101,14 @@
                                     </a>
                             </td>';
                             echo '<td>
-                                <a href="?edit=administrator&id='.$resp[$cityCounter]->city_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                                <button class="btn btn-danger btn-xs pull-right" id="delete-admin"><span class="lnr lnr-trash"></span></button>
+                                <a href="?edit=city&id='.$resp[$cityCounter]->city_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                <button class="btn btn-danger btn-xs pull-right" id="delete-city"><span class="lnr lnr-trash"></span></button>
                             </td></tr>';
                             echo'
-                            <tr data-content-type="admin" data-content-id="'.$resp[$cityCounter]->city_link_ID.'" id="collapseGallery-'.$resp[$cityCounter]->city_link_ID.'" class="collapse">
+                            <tr data-content-type="city" data-content-id="'.$resp[$cityCounter]->city_link_ID.'" id="collapseGallery-'.$resp[$cityCounter]->city_link_ID.'" class="collapse">
                                 <td colspan="14" class="bg-info">
                                     <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$cityCounter]->city_link_ID.'">
-                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple>
+                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
                                         <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                     </form>
                                 </td>
@@ -115,180 +116,6 @@
                             ';
                         }
                     ?>
-                    <tr data-content-type="admin" data-content-id="1">
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Portimão
-                        </td>
-                        <td>
-                            E uma cidade bonita
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis, quae perferendis sed, doloremque eligendi suscipit possimus eaque sapiente odit vero eius soluta perspiciatis vitae. Voluptatem quas fuga esse accusamus mollitia!
-                        </td>
-                        <td>
-                            Portimão
-                        </td>
-                        <td>
-                            It is a beatiful city
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-1" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="?edit=city&id=1" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-1" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form enctype="multipart/form-data" method="post" class="file-upload" id="1">
-                                <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple>
-                                <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr data-property-id="2">
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Alvor
-                        </td>
-                        <td>
-                            Cidade pequena e simples
-                        </td>
-                        <td>
-                            Alvor
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptatum dolores dolor deleniti. Earum, optio dolorum a ea similique dolorem autem excepturi, ratione quidem quod perferendis placeat provident modi. Quis?
-                        </td>
-                        <td>
-                            Nao
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-2" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="?edit=city&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-2" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form action="upload.php" class="dropzone"></form>
-                        </td>
-                    </tr>
-                    <tr data-property-id="3">
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Lagos
-                        </td>
-                        <td>   
-                            Cidade mutio turistica
-                        </td>
-                        <td>
-                            Lagos
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-3" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="?edit=city&id=3" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-3" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form action="upload.php" class="dropzone"></form>
-                        </td>
-                    </tr>
-                    <tr data-property-id="4">
-                        <td>
-                            4
-                        </td>
-                        <td>
-                            Lagoa
-                        </td>
-                        <td>   
-                            Cidade mutio turistica
-                        </td>
-                        <td>
-                            Lagoa
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
-                        </td>
-                        <td>
-                            Sim
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-4" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="?edit=city&id=4" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-4" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form action="upload.php" class="dropzone"></form>
-                        </td>
-                    </tr>
-                    <tr data-property-id="5">
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            Lisboa
-                        </td>
-                        <td>   
-                            Cidade mutio turistica
-                        </td>
-                        <td>
-                            Lissbon
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
-                        </td>
-                        <td>
-                            Nao
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-5" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="?edit=city&id=5" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr id="collapseGallery-5" class="collapse">
-                        <td colspan="14" class="bg-info">
-                            <form action="upload.php" class="dropzone"></form>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -303,7 +130,7 @@
 
     /* Upload script */
         var newUpload = new uploadPhotos('ajax/city/add-photo-city.php', document.querySelectorAll('.file-upload'));
-        // newUpload.upload();
+        newUpload.upload();
     /* Upload script */
 
     /* Add City */
@@ -333,6 +160,13 @@
             });
         };
     /* Add City */
+
+    /* Delete City */
+        $(document).on('click', '#delete-city', function(){
+            let data = $(this).closest('tr').data();
+            modalWindow('modal-window',data['contentType'], data['contentId']);
+        });
+    /* Delete City */
 
     /* Additional support functions */
         function filterContent(arrayContent){

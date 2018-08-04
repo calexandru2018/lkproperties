@@ -28,6 +28,8 @@
                     city_translation 
                 on
                     city_link.city_link_ID = city_translation.city_link_ID
+                where
+                    langCode = "pt"
             ');
             while($r=$queryResult->fetch_object()){
                 $output[] = $r;
@@ -44,12 +46,13 @@
             $sqlCheckExists = ' 
                 select 
                     city_translation_ID 
-                from city_translation 
+                from 
+                    city_translation 
                 where 
-                    (nameTranslated = "'.$cityData['cityName-PT'].'" and langCode = "pt")
-                or
-                (nameTranslated = "'.$cityData['cityName-EN'].'" and langCode = "en")
+                    nameTranslated = "'.$cityData['cityName-'.strtoupper($this->langList['portuguese'])].'" and langCode = "'.$this->langList['portuguese'].'"
             ';
+            /* or
+                (nameTranslated = "'.$cityData['cityName-EN'].'" and langCode = "en") */
             $queryCheckExists = $this->db->query($sqlCheckExists);
             if($queryCheckExists->num_rows > 0){
                 return false;
@@ -89,8 +92,6 @@
                         $lastInsertedID,
                         $cityData['cityName-'.strtoupper($this->langList['portuguese'])],
                         $cityData['cityDesc-'.strtoupper($this->langList['portuguese'])],
-                        $cityData['cityName-'.strtoupper($this->langList['english'])],
-                        $cityData['cityDesc-'.strtoupper($this->langList['english'])],
                         (($cityData['cityIsPopular'] == 0) ? 'Não':'Sim'),
                         '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
                             <i class="lnr lnr-plus-circle"></i>
@@ -102,28 +103,12 @@
                 }else{
                     return false;
                 }
-                /* $arrayToReturn = [
-                    $this->db->insert_id,
-                    str_replace('+',' ',$adminData['adminName']),
-                    $adminData['adminEmail'],
-                    date("Y-m-d H:i:s"),
-                    '',
-                    (($adminData['adminIsActive'] == 1)? 'Sim':'Não'),
-                    (($adminData['adminIsPublic'] == 1)? 'Sim':'Não'),
-                    $adminPriv,
-                    '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
-                        <i class="lnr lnr-plus-circle"></i>
-                    </button>',
-                    '<a href="?edit=administrator&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                    <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>'
-                ];
-                return $arrayToReturn; */
             }else{
                 return false;
             }
         }
-        public function deleteCity(int $adminID){
-            $sqlDelete = 'delete from admin where admin_ID = '.(int)$adminID;
+        public function deleteCity(int $cityID){
+            $sqlDelete = 'delete from city_link where city_link_ID = '.$cityID;
             $queryDelete = $this->db->query($sqlDelete);
             if($this->db->affected_rows == 1)
                 return true;
@@ -158,17 +143,27 @@
             else
                 return false;
         } */
-        /* public function addAdminPhoto(int $adminID, string  $url){
-            $sqlUpdateAdmin = 'update admin set 
-                    thumbnailURL = "'.$url.'"
-                where admin_ID = '.$adminID;
-           $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
+        public function addCityPhoto(int $cityID, string $thumbnailURL, string  $fullsizeURL){
+            $sqlInsertPhoto = '
+                insert into
+                    city_gallery(
+                        city_link_ID,
+                        thumbnailURL,
+                        fullsizeURL
+                    )
+                    values(
+                        "'.mysqli_real_escape_string($this->db, $cityID).'",
+                        "'.mysqli_real_escape_string($this->db, $thumbnailURL).'",
+                        "'.mysqli_real_escape_string($this->db, $fullsizeURL).'"
+                    )
+            ';
+           $queryInsertPhoto = $this->db->query($sqlInsertPhoto);
             if($this->db->affected_rows == 1)
                 return true;
             else
                 return false;
         }
-        public function deleteAdminPhoto(int $adminID){
+        public function deleteCityPhoto(int $adminID){
             $sqlUpdateAdmin = 'update admin set 
                         thumbnailURL = NULL
                     where admin_ID = '.$adminID;
@@ -182,7 +177,7 @@
                     else
                         return false;
                 }
-        } */
+        }
 
         /* CONTROL CUSTOM FUNCTIONS */
         private function sanitizeInput(array $inputArray){

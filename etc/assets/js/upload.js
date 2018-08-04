@@ -16,19 +16,19 @@ function uploadPhotos(url, queryCollection){
                     let file = files[i];
                     formData.append('image_field[]', file, contentID + '___' + file.name);
                 }
+                console.log(files);
                 /* Original working */
-             fetch(url, {
+                fetch(url, {
                     method: 'POST',
                     body: formData
                 })
-                .then(response => {
-                    // console.log(response);
+                .then(function(response){
+                    console.log(response);
                     alert('Upload feito');
                 })
-                .catch(error => {
+                .catch(function(error){
                     console.log(error);
                 });
-               
             });
         });
     }

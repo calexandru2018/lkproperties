@@ -109,15 +109,19 @@
                         }
                         function createSecondRow(table, id, dataName){
                             var secondRow   = table.insertRow(table.rows.length);
+                            var multiple = '';
                             secondRow.id = 'collapseGallery-' + id;
                             secondRow.className = 'collapse';
                             var galleryCell = secondRow.insertCell(0);
                             galleryCell.setAttribute('data-content-type', dataName);
                             galleryCell.setAttribute('data-content-id', id);
+                            if(dataName != admin)   {
+                                multiple = 'multiple = "multiple"';
+                            }
                             galleryCell.className = 'bg-info'
                             galleryCell.innerHTML = `
                                 <form enctype="multipart/form-data" method="post" class="file-upload" id="` + id + `">
-                                    <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple>
+                                    <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" ` + multiple + `>
                                     <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                 </form>
                             `;
@@ -179,6 +183,7 @@
                                     $('#modal-window').html('');
                                     $('#modal-window').css("display", "none");
                                     alert('Unable to delete');
+                                    console.log(response);
                                 }
                             })
                             .catch(function (error) {
@@ -267,6 +272,7 @@
                                 var parentNode = buttonLocation.closest('div');
                                 createAlert(response, parentNode)
                             });
+                            
                         /* Creates the alert area to indicate success or issue at update */
                             function createAlert(response, parentNode){
                                 var className = 'alert-success';
