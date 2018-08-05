@@ -1,13 +1,12 @@
 <?php
     include_once('_include/_models/city.php');
     $city = new City($MAIN->db);
-    $cityData = $city->fetchCity((int)$_GET['id']);
-    var_dump($cityData);
+    $cityData = $city->fetchCity($_GET['id']);
     $canEdit = $city->showEditPage($_GET["edit"], $_GET["id"], empty($cityData));
     if($canEdit === 1)
     {
 ?>
-    <h3 class="page-title">Editar Cidade: <?php echo $cityData['pt']['nameTranslated']; ?></h3>
+    <h3 class="page-title">Editar Cidade: <?php echo utf8_encode($cityData['pt']['nameTranslated']); ?></h3>
     <div class="panel panel-primary">
         <div class="panel-heading">
             Nome
@@ -17,13 +16,13 @@
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                        <input type="text" name="cityName-PT" class="form-control" value="<?php echo $cityData['pt']['nameTranslated'];?>">
+                        <input type="text" name="cityName-PT" class="form-control" value="<?php echo utf8_encode($cityData['pt']['nameTranslated']);?>">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                        <input type="text" name="cityName-EN" class="form-control" value="<?php echo $cityData['en']['nameTranslated'];?>">
+                        <input type="text" name="cityName-EN" class="form-control" value="<?php echo utf8_encode($cityData['en']['nameTranslated']);?>">
                     </div>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
@@ -42,14 +41,14 @@
                     <!-- <div class="input-group"> -->
                         <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
                         <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
-                        <div id="cityDescPTHolder" style="visibility: hidden"><?php echo $cityData['pt']['descriptionTranslated'];?></div>
+                        <div id="cityDescPTHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['pt']['descriptionTranslated']);?></div>
                     <!-- </div> -->
                 </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <!-- <div class="input-group"> -->
                         <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
                         <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
-                        <div id="cityDescENHolder" style="visibility: hidden"><?php echo $cityData['en']['descriptionTranslated'];?></div>
+                        <div id="cityDescENHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['en']['descriptionTranslated']);?></div>
                     <!-- </div> -->
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
@@ -94,54 +93,23 @@
         <div class="panel-body">
             <section class="gallery-block grid-gallery">
                 <div class="row" id="rowGallery">
-                    <div class="col-xs-4 item" style="margin: 5px 0">
-                        <a class="lightbox" href="../assets/img/mod2.jpg">
-                            <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
-                        </a>
-                        <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
-                            <i class="lnr lnr-trash"></i>
-                        </button>
-                    </div>
-                    <div class="col-xs-4 item" style="margin: 5px 0">
-                        <a class="lightbox" href="../assets/img/mod2.jpg">
-                            <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
-                        </a>
-                        <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
-                            <i class="lnr lnr-trash"></i>
-                        </button>
-                    </div>
-                    <div class="col-xs-4 item" style="margin: 5px 0">
-                        <a class="lightbox" href="../assets/img/mod2.jpg">
-                            <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
-                        </a>
-                        <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
-                            <i class="lnr lnr-trash"></i>
-                        </button>
-                    </div>
-                    <div class="col-xs-4 item" style="margin: 5px 0">
-                        <a class="lightbox" href="../assets/img/mod2.jpg">
-                            <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
-                        </a>
-                        <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
-                            <i class="lnr lnr-trash"></i>
-                        </button>
-                    </div>
-                    <div class="col-xs-4 item" style="margin: 5px 0">
-                        <a class="lightbox" href="../assets/img/mod2.jpg">
-                            <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
-                        </a>
-                        <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
-                            <i class="lnr lnr-trash"></i>
-                        </button>
-                    </div>
-                    <div class="col-xs-4 item" style="margin: 5px 0">
-                        <a class="lightbox" href="../assets/img/mod2.jpg">
-                            <img class="img-responsive image scale-on-hover" src="../assets/img/mod2.jpg">
-                        </a>
-                        <button class="btn btn-danger" style="position: absolute;z-index: 1;top: 0;">
-                            <i class="lnr lnr-trash"></i>
-                        </button>
-                    </div>
+                    <?php
+                        $resp = $city->fetchAllCityPhotos($_GET['id']);
+                        if(!empty($resp)){
+                            for($photoCounter = 0; $photoCounter < count($resp); $photoCounter++){
+                                echo '
+                                    <div class="col-xs-4 item" style="margin: 5px 0">
+                                        <a class="lightbox" href="../assets/img/gallery/'.$_GET['id'].'/fullsize/'.$resp[$photoCounter]->fullsizeURL.'">
+                                            <img class="img-responsive image scale-on-hover" src="../assets/img/gallery/'.$_GET['id'].'/thumbnail/'.$resp[$photoCounter]->fullsizeURL.'"g">
+                                        </a>
+                                        <button class="btn btn-danger delete-photo" data-content-type="city" data-content-id="'.$_GET['id'].'-'.$resp[$photoCounter]->city_gallery_ID.'"  style="position: absolute;z-index: 1;top: 0;">
+                                            <i class="lnr lnr-trash"></i>
+                                        </button>
+                                    </div>
+                                ';
+                            }
+                        }
+                    ?>
                 </div>
             </section>
         </div>

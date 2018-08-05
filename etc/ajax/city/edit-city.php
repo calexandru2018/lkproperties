@@ -7,18 +7,15 @@
     $editCity = new City($editConn->db);
 
   switch($_POST['contentType']){
-        case 'saveName': $response = $editCity->updateCityName((int)$_POST['contentID'], $_POST['userInput']);
+        case 'saveName': $response = $editCity->updateCityName($_POST['contentID'], $_POST['userInput']);
             break;
-        /*case 'savePassword': $response = $editAdmin->updateAdminPassword((int)$_POST['contentID'], $_POST['userInput']['adminPassword'][0]);
+        case 'saveDesc': $response = $editCity->updateCityDesc($_POST['contentID'], $_POST['userInput']);
             break;
-        case 'saveOtherInfo': $response = $editAdmin->updateAdminOtherSettings((int)$_POST['contentID'], $_POST['userInput']['adminPriveliege'][0], $_POST['userInput']['adminIsActive'], $_POST['userInput']['adminIsPublic']);
-            break; */
+        case 'saveOther': $response = $editCity->updateCityOther($_POST['contentID'], $_POST['userInput']['postalCode'][0], $_POST['userInput']['cityVideoURL'][0], $_POST['userInput']['cityIsPopular']);
+            break;
     }
 
     $editCity->closeConnection($editConn->db);
-  /*   foreach($_POST['userInput'] as $key => $value){
-        $holder = explode('-', $key);
-        $langSortedCityName[strtolower($holder[1])] = $value[0];
-    } */
+
     echo json_encode($response);
 ?>

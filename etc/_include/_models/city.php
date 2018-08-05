@@ -62,6 +62,21 @@
             }
             return $output;
         }
+        public function fetchAllCityPhotos(int $cityID){
+            $sqlFetchPhotos = '
+                select 
+                    *
+                from
+                    city_gallery
+                where 
+                    city_link_ID = "'.$cityID.'"
+            ';
+            $queryResult = $this->db->query($sqlFetchPhotos);
+            while($r=$queryResult->fetch_object()){
+                $output[] = $r;
+            }
+            return ((empty($output)) ? '': $output);
+        }
         public function insertCity(array $inputArray){
             $cityData = $this->sanitizeInput($inputArray);
             
@@ -146,7 +161,6 @@
                 $langSortedCityName[strtolower($holder[$langCounter][1])][] = $value[0];
                 $langCounter++;
             }
-            var_dump($langSortedCityName);
             foreach($langSortedCityName as $lang => $name){
                 $sqlUpdateCity = '
                 update 
@@ -169,18 +183,54 @@
             else
                 return false;
         }
-        /*public function updateAdminOtherSettings(int $adminID, int $privilege, string $isActive, string $isPublic){
-            $sqlUpdateCity = 'update admin set 
-                    isActive = "'.(($isActive == 'checked') ? 1:0).'", 
-                    isPublicVisible = "'.(($isPublic == 'checked') ? 1:0).'", 
-                    adminPrivilege = "'.$privilege.'" 
-                where admin_ID = '.$adminID;
-            $queryUpdateAdmin = $this->db->query($sqlUpdateCity);
-            if($this->db->affected_rows == 1)
+        public function updateCityDesc(int $cityID, array $cityNames){
+            $langSortedCityDesc = array();
+            $errorCather = 0;
+            $langCounter = 0;
+            foreach($cityNames as $key => $value){
+                $holder[] = explode('-', $key);                
+                $langSortedCityDesc[strtolower($holder[$langCounter][1])][] = $value;
+                $langCounter++;
+            }
+            foreach($langSortedCityDesc as $lang => $desc){
+                $sqlUpdateCity = '
+                update 
+                    city_translation 
+                set 
+                    descriptionTranslated = "'.mysqli_real_escape_string($this->db, $desc[0]).'"
+                where 
+                    langCode = "'.$lang.'"
+                and
+                    city_link_ID = '.$cityID;
+                $queryUpdateAdmin = $this->db->query($sqlUpdateCity);
+                if($this->db->error)
+                    $errorCather += 1;
+                else
+                    $errorCather += 0;
+                
+            }
+            if($errorCather == 0)
                 return true;
             else
                 return false;
-        } */
+        }
+        public function updateCityOther(int $cityID, int $postalCode, $videoURL, string $isPopular){
+            $sqlUpdateCity = '
+                update
+                    city_link
+                set
+                    videoURL = "'.mysqli_real_escape_string($this->db, $videoURL).'",
+                    postalCode = "'.mysqli_real_escape_string($this->db, $postalCode).'",
+                    isPopular = "'.(($isPopular == 'checked') ? 1:0).'"
+                where
+                    city_link_ID = "'.$cityID.'"
+            ';
+            $queryUpdateCity = $this->db->query($sqlUpdateCity);
+            if($this->db->error)
+                return false;
+            else    
+                return true;
+        }
         public function addCityPhoto(int $cityID, string $thumbnailURL, string  $fullsizeURL){
             $sqlInsertPhoto = '
                 insert into
@@ -201,17 +251,35 @@
             else
                 return false;
         }
-        public function deleteCityPhoto(int $photoID){
-            $sqlDeletePhoto = '
-                delete from
+        public function deleteCityPhoto(string $photoID){
+            $cityPhotoID = explode('-', $photoID);
+            $sqlSearchURL = '
+                select 
+                    fullsizeURL,
+                    thumbnailURL
+                from
                     city_gallery
-                where   
-                    city_gallery_ID = '.$photoID;
-            $queryDeletePhoto = $this->db->query($sqlDeletePhoto);
-            if($queryDeletePhoto){
-                return true;
-            }else {
-                return false;
+                where 
+                    city_link_ID = "'.$cityPhotoID[0].'"
+                    and
+                    city_gallery_ID = "'.$cityPhotoID[1].'"
+            ';
+            if($queryDeletePhoto = $this->db->query($sqlSearchURL)){
+                $urlHolder = $queryDeletePhoto->fetch_object();
+                $sqlDeletePhoto = '
+                    delete from
+                        city_gallery
+                    where   
+                        city_link_ID = "'.$cityPhotoID[0].'"
+                        and
+                        city_gallery_ID = "'.$cityPhotoID[1].'"';
+                
+                $queryDeletePhoto = $this->db->query($sqlDeletePhoto);
+                if($queryDeletePhoto){
+                    return $urlHolder;
+                }else {
+                    return false;
+                }
             }
         }
 

@@ -6,6 +6,7 @@
         $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
         header('Refresh: 0');
     }
+    // echo phpinfo();
 ?>
 <!DOCTYPE html>
 <html lang="pt" class="fullscreen-bg">
@@ -202,7 +203,7 @@
                             const thisBtn = this;
                             const contentType = this.getAttribute('data-content-type');
                             const contentID = this.getAttribute('data-content-id');
-                            // console.log(contentType, contentID);
+                            console.log(contentType, contentID);
                             axios.post(
                                 'ajax/' + contentType + '/delete-photo-' + contentType + '.php',
                                 {
@@ -235,7 +236,7 @@
                             var button_id = this.id.split('-');
                             var userInput = {};
                             var buttonLocation = this;
-                            this.closest('.panel-body').querySelectorAll('input, select').forEach( function(inp) {
+                            this.closest('.panel-body').querySelectorAll('input, select, textarea').forEach( function(inp) {
                                 if(inp.type != 'checkbox'){
                                     userInput[inp.name] = [inp.value];
                                 }
@@ -244,6 +245,9 @@
                                         userInput[inp.name] = 'checked';
                                     else
                                         userInput[inp.name] = 'unchecked';
+                                }
+                                if(inp.type == 'textarea'){
+                                    userInput[inp.name] = CKEDITOR.instances[inp.id].getData();
                                 }
                             });
                             var url = new URL(window.location.href);

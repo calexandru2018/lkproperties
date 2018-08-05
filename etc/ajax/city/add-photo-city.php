@@ -37,7 +37,7 @@
                 $fullsizeHandle->image_x = 2560;
             }
             $fullsizeHandle->dir_auto_create = true;
-            $fullsizeHandle->Process("../../../assets/img/gallery/{$cityID}/fullzise/");
+            $fullsizeHandle->Process("../../../assets/img/gallery/{$cityID}/fullsize/");
         /* Fullsize handler */
 
         /* Thumbnail handler */
