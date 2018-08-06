@@ -2,8 +2,8 @@
     include('../class.upload.php');
     require_once('../../_include/_models/db.php');
     require_once('../../_include/_models/city.php');
-    $addNewPhotoConn = new Database();
-    $addNewPhotoCity = new City($addNewPhotoConn->db);
+    $conn = new Database();
+    $photo = new City($conn->db);
 
     $files = array();
     $cityID = 0;
@@ -20,7 +20,7 @@
                 }
         }
     }
-    var_dump($files);
+    // var_dump($files);
     foreach ($files as $file) {
         $fullsizeHandle = new Upload($file);
         $thumbnailHandle = new Upload($file);
@@ -53,7 +53,7 @@
         /* Thumbnail handler */
 
             if ($fullsizeHandle->processed && $thumbnailHandle->processed) {
-                if($addNewPhotoCity->addCityPhoto($cityID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name))
+                if($photo->addCityPhoto($cityID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name))
                     echo true;
                 else 
                     echo 'issues updating';
@@ -66,5 +66,5 @@
         unset($fullsizeHandle);
         unset($thumbnailHandle);
     }
-    
+    $city->closeConnection($conn->db);
 ?>   

@@ -9,8 +9,7 @@
         <ul class="nav">
             <li>
                 <button href="#addCity" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Nova Cidade</button>
-                <button type="button" class="btn btn-warning pull-right" id="puplate-input">Populate input</button>
-                
+
                 <div id="addCity" class="row collapse">
                     <div class="col-xs-12" style="margin-top: 2%">
                         <label class="fancy-checkbox">
@@ -68,10 +67,8 @@
                     <th>ID</th>
                     <th>Nome(PT)</th>
                     <th>Descrição(PT)</th>
-                    <!-- <th>Nome(EN)</th>
-                    <th>Descrição(EN)</th> -->
                     <th>Popular</th>
-                    <th>Data Adicionado</th>
+                    <th>Adicionado</th>
                     <th>Galeria</th>
                     <th>Ação</th>
                 </thead>
@@ -163,49 +160,5 @@
             modalWindow('modal-window',data['contentType'], data['contentId']);
         });
     /* Delete City */
-
-    /* Additional support functions */
-        function filterContent(arrayContent){
-            cityObject = {};
-            for(let x = 0; x < arrayContent.length; x++){
-               if(arrayContent[x].type == 'checkbox')
-                    if(arrayContent[x].checked){
-                        arrayContent[x].value = 1;
-                    }else{
-                        arrayContent[x].value = 0;
-                    }
-                    if(arrayContent[x].type == 'textarea'){
-                        cityObject[arrayContent[x].name] = CKEDITOR.instances[arrayContent[x].id].getData();
-                    }else{
-                        cityObject[arrayContent[x].name] = arrayContent[x].value;
-                    }
-            }
-            return cityObject;
-        }
-    /* Additional support functions */
-
-    /* Populate with dummy text */
-        document.getElementById('puplate-input').onclick = function(){
-            let info = document.querySelectorAll("[name^=city");
-            info.forEach(function(el){
-                if(el.type == 'textarea'){
-                    CKEDITOR.instances[el.id].setData(fill());
-                }else if(el.name == 'cityPostalCode'){
-                    el.value = 8500;
-                }else{
-                    el.value = fill();
-                }
-            });
-            function fill() {
-                var text = "";
-                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-                for (var i = 0; i < 9; i++)
-                    text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-                return text;
-            }
-        }
-    /* Populate with dummy text */
     });
 </script>

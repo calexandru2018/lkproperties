@@ -130,6 +130,7 @@
                         $cityData['cityName-'.strtoupper($this->langList['portuguese'])],
                         $cityData['cityDesc-'.strtoupper($this->langList['portuguese'])],
                         (($cityData['cityIsPopular'] == 0) ? 'Não':'Sim'),
+                        'Agora',
                         '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
                             <i class="lnr lnr-plus-circle"></i>
                         </button>',
@@ -171,8 +172,8 @@
                     langCode = "'.$lang.'"
                 and
                     city_link_ID = '.$cityID;
-                $queryUpdateAdmin = $this->db->query($sqlUpdateCity);
-                if($this->db->affected_rows == 1)
+                $queryUpdateName = $this->db->query($sqlUpdateCity);
+                if($this->db->error)
                     $errorCather += 0;
                 else
                     $errorCather += 1;
@@ -183,11 +184,11 @@
             else
                 return false;
         }
-        public function updateCityDesc(int $cityID, array $cityNames){
+        public function updateCityDesc(int $cityID, array $cityDesc){
             $langSortedCityDesc = array();
             $errorCather = 0;
             $langCounter = 0;
-            foreach($cityNames as $key => $value){
+            foreach($cityDesc as $key => $value){
                 $holder[] = explode('-', $key);                
                 $langSortedCityDesc[strtolower($holder[$langCounter][1])][] = $value;
                 $langCounter++;
@@ -202,7 +203,7 @@
                     langCode = "'.$lang.'"
                 and
                     city_link_ID = '.$cityID;
-                $queryUpdateAdmin = $this->db->query($sqlUpdateCity);
+                $queryUpdateDesc = $this->db->query($sqlUpdateCity);
                 if($this->db->error)
                     $errorCather += 1;
                 else

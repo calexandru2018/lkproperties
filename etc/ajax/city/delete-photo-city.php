@@ -3,9 +3,9 @@
 
     require_once('../../_include/_models/db.php');
     require_once('../../_include/_models/city.php');
-    $deletePhotoConn = new Database();
-    $deletePhotoCity = new City($deletePhotoConn->db);
-    $response = $deletePhotoCity->deleteCityPhoto($_POST['contentID']);
+    $conn = new Database();
+    $city = new City($conn->db);
+    $response = $city->deleteCityPhoto($_POST['contentID']);
     $id = explode('-', $_POST['contentID']);
     if($response != false){
         $base_directory = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/assets/img/gallery/'.$id[0].'/';
@@ -14,6 +14,6 @@
         else 
             $response = false;
     }
-    $deletePhotoCity->closeConnection($deletePhotoConn->db);
+    $city->closeConnection($conn->db);
     echo json_encode($response);
 ?>

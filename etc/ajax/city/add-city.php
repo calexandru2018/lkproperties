@@ -3,11 +3,11 @@
 
     require_once('../../_include/_models/db.php');
     require_once('../../_include/_models/city.php');
-    $insertConn = new Database();
-    $insertCity = new City($insertConn->db);
-    $response = $insertCity->insertCity($_POST['curatedObject']);
+    $conn = new Database();
+    $city = new City($conn->db);
+    $response = $city->insertCity($_POST['curatedObject']);
 
-    $insertCity->closeConnection($insertConn->db);
+    $city->closeConnection($conn->db);
 
     echo json_encode($response);
 ?>

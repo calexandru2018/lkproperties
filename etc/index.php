@@ -96,6 +96,7 @@
                             var tableRef = document.getElementById(tableName).getElementsByTagName('tbody')[0];
                             createFirstRow(rowContent, tableRef, dataName);
                         }
+
                         function createFirstRow(data, table, dataName){
                            data[1] = data[1].replace(/\\+/g, ' ');
                             
@@ -108,6 +109,7 @@
                             }
                             createSecondRow(table, data[0], dataName);
                         }
+
                         function createSecondRow(table, id, dataName){
                             var secondRow   = table.insertRow(table.rows.length);
                             var multiple = '';
@@ -116,7 +118,7 @@
                             var galleryCell = secondRow.insertCell(0);
                             galleryCell.setAttribute('data-content-type', dataName);
                             galleryCell.setAttribute('data-content-id', id);
-                            if(dataName != admin)   {
+                            if(dataName != 'admin')   {
                                 multiple = 'multiple = "multiple"';
                             }
                             galleryCell.className = 'bg-info'
@@ -299,10 +301,30 @@
                         /* Inserts after specified parent node */
                             function insertAfter(newNode, referenceNode) {
                                 referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-                            }
+                            }e
                         /* Inserts after specified parent node */
                         };
                     /* Edit page input collector */
+
+                    /* Additional support functions */
+                        function filterContent(arrayContent){
+                            cityObject = {};
+                            for(let x = 0; x < arrayContent.length; x++){
+                            if(arrayContent[x].type == 'checkbox')
+                                    if(arrayContent[x].checked){
+                                        arrayContent[x].value = 1;
+                                    }else{
+                                        arrayContent[x].value = 0;
+                                    }
+                                    if(arrayContent[x].type == 'textarea'){
+                                        cityObject[arrayContent[x].name] = CKEDITOR.instances[arrayContent[x].id].getData();
+                                    }else{
+                                        cityObject[arrayContent[x].name] = arrayContent[x].value;
+                                    }
+                            }
+                            return cityObject;
+                        }
+                    /* Additional support functions */
                     </script>
                 </div>
                 <!-- END MAIN CONTENT -->
