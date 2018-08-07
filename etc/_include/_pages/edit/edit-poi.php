@@ -3,6 +3,7 @@
     $poi = new Poi($MAIN->db);
     $poiData = $poi->fetchPoi($_GET['id']);
     $canEdit = $poi->showEditPage($_GET["edit"], $_GET["id"], empty($poiData));
+    var_dump($poiData);
     if($canEdit === 1)
     {
 ?>
@@ -78,7 +79,7 @@
                             ');
                             while($r=$queryResult->fetch_object()){
                                 echo '
-                                    <option value="'.$r->city_link_ID.'"'.(($poiData->city_link_ID == $r->city_link_ID) ? 'selected="selected"':'').'>'.$r->nameTranslated.'</option>
+                                    <option value="'. $poiData['pt']['city_poi_link_ID'].'-'.$r->city_link_ID.'"'.(($poiData['pt']['city_link_ID'] == $r->city_link_ID) ? 'selected="selected"':'').'>'.$r->nameTranslated.'</option>
                                 ';
                             }
                         ?>
@@ -92,7 +93,7 @@
                 </div>
                 <div class="col-xs-6" style="margin-top: 2%">
                     <label class="fancy-checkbox">
-                        <input type="checkbox" name="poiIsAlgarve" value="1" <?php echo (($poiData['pt']['isPopular'] == 1) ? 'checked="check"':'')?>><span>Algarve</span>
+                        <input type="checkbox" name="poiIsAlgarve" value="1" <?php echo (($poiData['pt']['isAlgarve'] == 1) ? 'checked="check"':'')?>><span>Algarve</span>
                     </label>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">

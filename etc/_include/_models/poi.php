@@ -61,6 +61,7 @@
             $sqlFetch2 = '
                 select 
                     city_poi_link.isAlgarve,
+                    city_poi_link.city_poi_link_ID,
                     city_link.city_link_ID,
                     poi_link.poi_link_ID,
                     poi_translation.nameTranslated,
@@ -308,7 +309,7 @@
             else
                 return false;
         }
-        public function updatePoiOther(int $poiID, string $isPopular, string $isAlgarve, int $cityID){
+        public function updatePoiOther(int $poiID, string $isPopular, string $isAlgarve, int $cityID, int $cityPoiLinkID){
             $errorCather = [];
             $sqlUpdateIsAlgarve = '
                 update
@@ -316,9 +317,7 @@
                 set
                     isAlgarve = "'.(($isAlgarve == 'checked') ? 1:0).'"
                 where
-                    poi_link_ID = "'.$poiID.'"
-                    and
-                    city_link_ID = "'.$cityID.'"
+                    city_poi_link_ID = "'.$cityPoiLinkID.'"
             ';
             $queryUpdate = $this->db->query($sqlUpdateIsAlgarve);
             if($this->db->error)
@@ -330,9 +329,7 @@
                 set 
                     city_link_ID = "'.$cityID.'"
                 where
-                    poi_link_ID = "'.$poiID.'"
-                    and
-                    city_link_ID = "'.$cityID.'"
+                    city_poi_link_ID = "'.$cityPoiLinkID.'"
             ';
             $queryUpdateCity = $this->db->query($sqlUpdateCity);
             if($this->db->error)
