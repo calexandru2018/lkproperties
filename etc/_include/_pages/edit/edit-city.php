@@ -38,18 +38,14 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                    <!-- <div class="input-group"> -->
-                        <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
-                        <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
-                        <div id="cityDescPTHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['pt']['descriptionTranslated']);?></div>
-                    <!-- </div> -->
+                    <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
+                    <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
+                    <div id="cityDescPTHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['pt']['descriptionTranslated']);?></div>
                 </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
-                    <!-- <div class="input-group"> -->
-                        <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
-                        <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
-                        <div id="cityDescENHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['en']['descriptionTranslated']);?></div>
-                    <!-- </div> -->
+                    <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
+                    <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
+                    <div id="cityDescENHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['en']['descriptionTranslated']);?></div>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                     <button type="button" class="btn btn-success pull-right save" id="city-saveDesc">Guardar Alteração</button>
@@ -99,8 +95,8 @@
                             for($photoCounter = 0; $photoCounter < count($resp); $photoCounter++){
                                 echo '
                                     <div class="col-xs-4 item" style="margin: 5px 0">
-                                        <a class="lightbox" href="../assets/img/gallery/'.$_GET['id'].'/fullsize/'.$resp[$photoCounter]->fullsizeURL.'">
-                                            <img class="img-responsive image scale-on-hover" src="../assets/img/gallery/'.$_GET['id'].'/thumbnail/'.$resp[$photoCounter]->fullsizeURL.'"g">
+                                        <a class="lightbox" href="../assets/img/gallery/city/'.$_GET['id'].'/fullsize/'.$resp[$photoCounter]->fullsizeURL.'">
+                                            <img class="img-responsive image scale-on-hover" src="../assets/img/gallery/city/'.$_GET['id'].'/thumbnail/'.$resp[$photoCounter]->fullsizeURL.'"g">
                                         </a>
                                         <button class="btn btn-danger delete-photo" data-content-type="city" data-content-id="'.$_GET['id'].'-'.$resp[$photoCounter]->city_gallery_ID.'"  style="position: absolute;z-index: 1;top: 0;">
                                             <i class="lnr lnr-trash"></i>

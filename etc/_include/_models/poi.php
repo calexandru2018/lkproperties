@@ -58,6 +58,39 @@
         }
         /* fetchpoi had to be fetched as an assoc array, so it could be arranged based on language */
         public function fetchPoi(int $poiID){
+            $sqlFetch2 = '
+                select 
+                    city_poi_link.isAlgarve,
+                    city_link.city_link_ID,
+                    poi_link.poi_link_ID,
+                    poi_translation.nameTranslated,
+                    poi_translation.descriptionTranslated,
+                    poi_link.isPopular,
+                    poi_translation.langCode
+                from 
+                    city_poi_link
+                left join 
+                    city_link 
+                on
+                    city_poi_link.city_link_ID = city_link.city_link_ID
+                left JOIN
+                    city_translation
+                ON
+                    city_link.city_link_ID = city_translation.city_link_ID
+                left join 
+                    poi_link
+                ON	
+                    city_poi_link.poi_link_ID = poi_link.poi_link_ID
+                LEFT JOIN
+                    poi_translation
+                ON
+                    poi_link.poi_link_ID = poi_translation.poi_link_ID
+                WHERE
+                    poi_link.poi_link_ID = "'.$poiID.'"
+                GROUP BY
+                    poi_translation.langCode
+            ';
+            
             $sqlFetch = '
                 select
                     *
@@ -70,7 +103,7 @@
                 where
                     poi_link.poi_link_ID = "'.$poiID.'"
             ';
-            $queryResult = $this->db->query($sqlFetch);
+            $queryResult = $this->db->query($sqlFetch2);
             while($r=$queryResult->fetch_assoc()){
                 switch($r['langCode']){
                     case $this->langList['portuguese']: $output[$this->langList['portuguese']] = $r;
@@ -161,19 +194,36 @@
                     ';
                     $queryCreateCityPoiLink = $this->db->query($sqlCreateCityPoiLink);
                     if($queryCreateCityPoiLink){
-                        $arrayToReturn = [
-                            $lastInsertedID,
-                            $poiData['poiName-'.strtoupper($this->langList['portuguese'])],
-                            $poiData['poiDesc-'.strtoupper($this->langList['portuguese'])],
-                            'Agora',
-                            (($poiData['poiIsPopular'] == 0) ? 'Não':'Sim'),
-                            '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>',
-                            '<a href="?edit=poi&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-poi"><span class="lnr lnr-trash"></span></button>'
-                        ];
-                        return $arrayToReturn;
+                        $sqlCityName = '
+                            select 
+                                nameTranslated
+                            from    
+                                city_translation
+                            where
+                                city_link_ID = "'.$poiData['poiCityName'].'"
+                            and
+                                langCode = "'.$this->langList['portuguese'].'"
+                        ';
+                        $queryCityName = $this->db->query($sqlCityName);
+                        if($queryCityName->num_rows == 1){
+                            $fetchCityName = $queryCityName->fetch_object();
+                            $arrayToReturn = [
+                                $lastInsertedID,
+                                $fetchCityName->nameTranslated,
+                                $poiData['poiName-'.strtoupper($this->langList['portuguese'])],
+                                $poiData['poiDesc-'.strtoupper($this->langList['portuguese'])],
+                                (($poiData['poiIsPopular'] == 0) ? 'Não':'Sim'),
+                                'Agora',
+                                '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
+                                    <i class="lnr lnr-plus-circle"></i>
+                                </button>',
+                                '<a href="?edit=poi&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                <button class="btn btn-danger btn-xs pull-right" id="delete-poi"><span class="lnr lnr-trash"></span></button>'
+                            ];
+                            return $arrayToReturn;
+                        }else{
+                            return false;
+                        }
                     }else{
                         return $this->db->error;
                     }
@@ -185,7 +235,11 @@
             }
         }
         public function deletePoi(int $poiID){
-            $sqlDelete = 'delete from poi_link where poi_link_ID = '.$poiID;
+            $sqlDelete = '
+                delete from 
+                    poi_link 
+                where 
+                    poi_link_ID = '.$poiID;
             $queryDelete = $this->db->query($sqlDelete);
             if($this->db->affected_rows == 1)
                 return true;
@@ -203,14 +257,14 @@
             }
             foreach($langSortedpoiName as $lang => $name){
                 $sqlUpdatepoi = '
-                update 
-                    poi_translation 
-                set 
-                    nameTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
-                where 
-                    langCode = "'.$lang.'"
-                and
-                    poi_link_ID = '.$poiID;
+                    update 
+                        poi_translation 
+                    set 
+                        nameTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
+                    where 
+                        langCode = "'.$lang.'"
+                    and
+                        poi_link_ID = '.$poiID;
                 $queryUpdateDes = $this->db->query($sqlUpdatepoi);
                 if($this->db->affected_rows == 1)
                     $errorCather += 0;
@@ -234,14 +288,14 @@
             }
             foreach($langSortedpoiDesc as $lang => $desc){
                 $sqlUpdatepoi = '
-                update 
-                    poi_translation 
-                set 
-                    descriptionTranslated = "'.mysqli_real_escape_string($this->db, $desc[0]).'"
-                where 
-                    langCode = "'.$lang.'"
-                and
-                    poi_link_ID = '.$poiID;
+                    update 
+                        poi_translation 
+                    set 
+                        descriptionTranslated = "'.mysqli_real_escape_string($this->db, $desc[0]).'"
+                    where 
+                        langCode = "'.$lang.'"
+                        and
+                        poi_link_ID = '.$poiID;
                 $queryUpdateAdmin = $this->db->query($sqlUpdatepoi);
                 if($this->db->error)
                     $errorCather += 1;
@@ -254,23 +308,52 @@
             else
                 return false;
         }
-        /* public function updatePoiOther(int $poiID, int $postalCode, $videoURL, string $isPopular){
-            $sqlUpdatepoi = '
+        public function updatePoiOther(int $poiID, string $isPopular, string $isAlgarve, int $cityID){
+            $errorCather = [];
+            $sqlUpdateIsAlgarve = '
                 update
-                    poi_link
+                    city_poi_link
                 set
-                    videoURL = "'.mysqli_real_escape_string($this->db, $videoURL).'",
-                    postalCode = "'.mysqli_real_escape_string($this->db, $postalCode).'",
-                    isPopular = "'.(($isPopular == 'checked') ? 1:0).'"
+                    isAlgarve = "'.(($isAlgarve == 'checked') ? 1:0).'"
                 where
                     poi_link_ID = "'.$poiID.'"
+                    and
+                    city_link_ID = "'.$cityID.'"
             ';
-            $queryUpdatepoi = $this->db->query($sqlUpdatepoi);
+            $queryUpdate = $this->db->query($sqlUpdateIsAlgarve);
             if($this->db->error)
-                return false;
-            else    
+                $errorCather[] = $this->db->error;
+
+            $sqlUpdateCity = '
+                update
+                    city_poi_link
+                set 
+                    city_link_ID = "'.$cityID.'"
+                where
+                    poi_link_ID = "'.$poiID.'"
+                    and
+                    city_link_ID = "'.$cityID.'"
+            ';
+            $queryUpdateCity = $this->db->query($sqlUpdateCity);
+            if($this->db->error)
+                $errorCather[] = $this->db->error;
+
+            $sqlUpdateIsPopular = '
+                update 
+                    poi_link
+                set 
+                    isPopular = "'.(($isPopular == 'checked') ? 1:0).'"
+            ';
+            $queryUpdateIsPopular = $this->db->query($sqlUpdateIsPopular);
+            if($this->db->error)
+                $errorCather[] = $this->db->error;
+
+            /* if($errorCather == 0 || $errorCather == '0')
                 return true;
-        } */
+            else  */
+                return $errorCather;
+            
+        }
         public function addPoiPhoto(int $poiID, string $thumbnailURL, string  $fullsizeURL){
             $sqlInsert = '
                 insert into

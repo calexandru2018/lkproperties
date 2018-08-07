@@ -169,10 +169,10 @@
     /* Add Admin */
 
     /* Delete Admin start function */
-    $(document).on('click', '#delete-admin', function(){
-        let data = $(this).closest('tr').data();
-        modalWindow('modal-window',data['contentType'], data['contentId']);
-    });
+        $(document).on('click', '#delete-admin', function(){
+            let data = $(this).closest('tr').data();
+            modalWindow('modal-window',data['contentType'], data['contentId']);
+        });
     /* Delete Admin start function */
 
     /* Additional support functions */

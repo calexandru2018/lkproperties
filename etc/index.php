@@ -301,7 +301,7 @@
                         /* Inserts after specified parent node */
                             function insertAfter(newNode, referenceNode) {
                                 referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-                            }e
+                            }
                         /* Inserts after specified parent node */
                         };
                     /* Edit page input collector */

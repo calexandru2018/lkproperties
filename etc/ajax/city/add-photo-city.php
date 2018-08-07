@@ -7,6 +7,7 @@
 
     $files = array();
     $cityID = 0;
+    $commonURL = '../../../assets/img/gallery/city/';
     foreach ($_FILES['image_field'] as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files))
@@ -37,7 +38,7 @@
                 $fullsizeHandle->image_x = 2560;
             }
             $fullsizeHandle->dir_auto_create = true;
-            $fullsizeHandle->Process("../../../assets/img/gallery/{$cityID}/fullsize/");
+            $fullsizeHandle->Process($commonURL.$cityID.'/fullsize/');
         /* Fullsize handler */
 
         /* Thumbnail handler */
@@ -49,7 +50,7 @@
             $thumbnailHandle->image_ratio_y = true;
             $thumbnailHandle->image_x = 365;
             $thumbnailHandle->dir_auto_create = true;
-            $thumbnailHandle->Process("../../../assets/img/gallery/{$cityID}/thumbnail/");
+            $thumbnailHandle->Process($commonURL.$cityID.'/thumbnail/');
         /* Thumbnail handler */
 
             if ($fullsizeHandle->processed && $thumbnailHandle->processed) {
@@ -66,5 +67,5 @@
         unset($fullsizeHandle);
         unset($thumbnailHandle);
     }
-    $city->closeConnection($conn->db);
+    $photo->closeConnection($conn->db);
 ?>   

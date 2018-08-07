@@ -13,10 +13,10 @@
 
                 <div id="addpoi" class="row collapse">
                     <div class="col-xs-12" style="margin-top: 2%">
-                            <label class="fancy-checkbox">
-                                <input type="checkbox" name="poiIsPopular" value="1"><span>Destacar como "Popular"</span>
-                            </label>
-                        </div>
+                        <label class="fancy-checkbox">
+                            <input type="checkbox" name="poiIsPopular" value="1"><span>Destacar como "Popular"</span>
+                        </label>
+                    </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(PT)</span>
@@ -144,6 +144,11 @@
         CKEDITOR.replace( 'poiDescEN' );
         $('.poiSelector').select2();
 
+        /* Upload script */
+            var newUpload = new uploadPhotos('ajax/poi/add-photo-poi.php', document.querySelectorAll('.file-upload'));
+            newUpload.upload();
+        /* Upload script */
+
         /* Add City */
             document.getElementById('add-poi').onclick = function(){
                 console.clear();
@@ -173,6 +178,12 @@
             };
         /* Add City */
 
+        /* Delete Admin start function */
+            $(document).on('click', '#delete-poi', function(){
+                let data = $(this).closest('tr').data();
+                modalWindow('modal-window',data['contentType'], data['contentId']);
+            });
+        /* Delete Admin start function */
 
         /* fill input with dummy text */
             document.getElementById('puplate-input').onclick = function(){
