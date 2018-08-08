@@ -1,7 +1,7 @@
 <?php
     include_once('_include/_models/faq.php');
     $faq = new Faq($MAIN->db);
-    var_dump($faq->fetchAll());
+    // var_dump($faq->fetchAll());
 ?>
 <h3 class="page-title">Perguntas e Respostas</h3>
 <div class="panel">
@@ -46,45 +46,38 @@
     </div>
     <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="faq-table">
                 <thead>
                     <th>ID</th>
                     <th>Pergunta(PT)</th>
-                    <th>Resposta(PT)</th>
                     <th>Pergunta(EN)</th>
-                    <th>Resposta(EN)</th>
                     <th>Ação</th>
                 </thead>
                 <tbody>
                 <?php
-                   /*  $resp = $faq->fetchAll();
-                    for($faqCounter = 0; $faqCounter < count($resp); $faqCounter++){
-                        echo '<tr data-content-type="faq" data-content-id="'.$resp[$faqCounter]->faq_link_ID.'">';
-                        echo '<td>'.$resp[$faqCounter]->faq_link_ID.'</td>';
-                        echo '<td>'.$resp[$faqCounter]->cityNameTranslated.'</td>';
-                        echo '<td>'.$resp[$faqCounter]->nameTranslated.'</td>';
-                        echo '<td>'.$resp[$faqCounter]->descriptionTranslated.'</td>';
-                        echo '<td>'.$resp[$faqCounter]->dateCreated.'</td>';
-                        echo '<td>
-                                <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$faqCounter]->faq_link_ID.'" data-toggle="collapse">
-                                    <i class="lnr lnr-plus-circle"></i>
-                                </a>
-                        </td>';
-                        echo '<td>
-                            <a href="?edit=faq&id='.$resp[$faqCounter]->faq_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>
-                        </td></tr>';
-                        echo'
-                        <tr data-content-type="faq" data-content-id="'.$resp[$faqCounter]->faq_link_ID.'" id="collapseGallery-'.$resp[$faqCounter]->faq_link_ID.'" class="collapse">
-                            <td colspan="14" class="bg-info">
-                                <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$faqCounter]->faq_link_ID.'">
-                                    <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
-                                    <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
-                                </form>
-                            </td>
-                        </tr>
-                        ';
-                    } */
+                    $resp = $faq->fetchAll();
+                    if(!empty($resp)){
+                        for($faqCounter = 0; $faqCounter < count($resp); $faqCounter++){
+                            echo '<tr data-content-type="faq" data-content-id="'.$resp[$faqCounter]->faq_link_ID.'">';
+                            echo '<td>'.$resp[$faqCounter]->faq_link_ID.'</td>';
+                            echo '<td>'.$resp[$faqCounter]->questionTranslated.'</td>';
+                            echo '<td>'.$resp[$faqCounter]->answerTranslated.'</td>';
+                            echo '<td>
+                                <a href="?edit=faq&id='.$resp[$faqCounter]->faq_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>
+                            </td></tr>';
+                            echo'
+                            <tr data-content-type="faq" data-content-id="'.$resp[$faqCounter]->faq_link_ID.'" id="collapseGallery-'.$resp[$faqCounter]->faq_link_ID.'" class="collapse">
+                                <td colspan="14" class="bg-info">
+                                    <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$faqCounter]->faq_link_ID.'">
+                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
+                                        <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                    </form>
+                                </td>
+                            </tr>
+                            ';
+                        }
+                    }
                 ?>
                 </tbody>
             </table>

@@ -22,77 +22,57 @@
         public function fetchAll(){
             $queryResult = $this->db->query('
                 select 
-                    city_translation.nameTranslated as cityNameTranslated,
-                    activity_link.activity_link_ID,
-                    activity_link.dateCreated,
-                    activity_translation.nameTranslated,
-                    activity_translation.descriptionTranslated
+                    *
                 from 
-                    activity_link
+                    faq_link
                 left join 
-                    city_link 
+                    faq_question_translation 
                 on
-                    activity_link.city_link_ID = city_link.city_link_ID
-                left JOIN
-                    city_translation
-                ON
-                    city_link.city_link_ID = city_translation.city_link_ID
+                    faq_link.faq_link_ID = faq_question_translation.faq_link_ID
                 LEFT JOIN
-                    activity_translation
+                    faq_answer_translation
                 ON
-                    activity_link.activity_link_ID = activity_translation.activity_link_ID
+                    faq_link.faq_link_ID = faq_answer_translation.faq_link_ID
                 where
-                    activity_translation.langCode = "'.$this->langList['portuguese'].'"
+                    faq_question_translation.langCode = "'.$this->langList['portuguese'].'"
                 AND
-                    city_translation.langCode = "'.$this->langList['portuguese'].'"
+                    faq_answer_translation.langCode = "'.$this->langList['portuguese'].'"
             ');
             while($r=$queryResult->fetch_object()){
                 $output[] = $r;
             }
-            return $output;
+            return ((empty($output)) ? '': $output);
         }
-        /* fetchactivity had to be fetched as an assoc array, so it could be arranged based on language */
-        public function fetchActivity(int $activityID){
+        /* fetchfaq had to be fetched as an assoc array, so it could be arranged based on language */
+        public function fetchFaq(int $faqID){
             $sqlFetch2 = '
                 select 
-                    city_translation.nameTranslated as cityNameTranslated,
-                    activity_link.activity_link_ID,
-                    activity_link.city_link_ID,
-                    activity_link.dateCreated,
-                    activity_translation.langCode,
-                    activity_translation.nameTranslated,
-                    activity_translation.descriptionTranslated
+                    *
                 from 
-                    activity_link
+                    faq_link
                 left join 
-                    city_link 
+                    faq_question_translation 
                 on
-                    activity_link.city_link_ID = city_link.city_link_ID
-                left JOIN
-                    city_translation
-                ON
-                    city_link.city_link_ID = city_translation.city_link_ID
+                    faq_link.faq_link_ID = faq_question_translation.faq_link_ID
                 LEFT JOIN
-                    activity_translation
+                    faq_answer_translation
                 ON
-                    activity_link.activity_link_ID = activity_translation.activity_link_ID
+                    faq_link.faq_link_ID = faq_answer_translation.faq_link_ID
                 where
-                    activity_link.activity_link_ID = "'.$activityID.'"
-                GROUP BY
-                    activity_translation.langCode
+                    faq_link.faq_link_ID = "'.$faqID.'"
             ';
             
             $sqlFetch = '
                 select
                     *
                 from
-                    activity_link
+                    faq_link
                 left join
-                    activity_translation
+                    faq_translation
                 on
-                    activity_link.activity_link_ID = activity_translation.activity_link_ID
+                    faq_link.faq_link_ID = faq_translation.faq_link_ID
                 where
-                    activity_link.activity_link_ID = "'.$activityID.'"
+                    faq_link.faq_link_ID = "'.$faqID.'"
             ';
             $queryResult = $this->db->query($sqlFetch2);
             while($r=$queryResult->fetch_assoc()){
@@ -105,136 +85,133 @@
             }
             return $output;
         }
-        public function fetchAllActivityPhotos(int $activityID){
-            $sqlFetch = '
+        public function insertFaq(array $inputArray){
+            $faqData = $this->sanitizeInput($inputArray);
+            $errorCatcher = array();
+
+            $sqlCheckQuestion = '
                 select 
-                    *
-                from
-                    activity_gallery
+                    questionTranslated
+                from    
+                    faq_question_translation
                 where 
-                    activity_link_ID = "'.$activityID.'"
+                    questionTranslated like "'.$faqData['faqQuestion-'.strtoupper($this->langList['portuguese'])].'"
+                    and
+                    langCode = "'.$this->langList['portuguese'].'"
             ';
-            $queryResult = $this->db->query($sqlFetch);
-            while($r=$queryResult->fetch_object()){
-                $output[] = $r;
-            }
-            return ((empty($output)) ? '': $output);
-        }
-        public function insertActivity(array $inputArray){
-            $activityData = $this->sanitizeInput($inputArray);
-            $sqlCheckExists = ' 
-                select 
-                    activity_translation_ID 
-                from 
-                    activity_translation 
-                where 
-                    nameTranslated like "'.$activityData['activityName-'.strtoupper($this->langList['portuguese'])].'" and langCode = "'.$this->langList['portuguese'].'"
-            ';
-            /* or
-                (nameTranslated = "'.$activityData['activityName-EN'].'" and langCode = "en") */
-            $queryCheckExists = $this->db->query($sqlCheckExists);
-            if($queryCheckExists->num_rows > 0){
-                return false;
-            }
-            $sqlInsert = '
+            $queryCheckExists = $this->db->query($sqlCheckQuestion);
+            if($queryCheckExists->num_rows > 0)
+                $errorCatcher[] = $this->db->error;
+            
+            /* TEMPORARY VALUES */
+            $sqlFaqLinkInsert = '
                 insert into 
-                    activity_link(
-                        city_link_ID
+                    faq_link(
+                        isVisible,
+                        admin
                     )
                 values(
-                    "'.(int)$activityData['activityCityName'].'"
+                    1,
+                    1
                 )
-            '; 
-            $queryInsert = $this->db->query($sqlInsert);
-            if($queryInsert){
-                $lastInsertedID = $this->db->insert_id;
-                $sqlInsertTranslation = '
-                    insert into activity_translation
-                        (activity_link_ID, langCode, nameTranslated, descriptionTranslated)
-                    values
-                        ( 
-                            "'.$lastInsertedID.'",
-                            "'.$this->langList['portuguese'].'",
-                            "'.$activityData['activityName-'.strtoupper($this->langList['portuguese'])].'",
-                            "'.$activityData['activityDesc-'.strtoupper($this->langList['portuguese'])].'"
-                        ),
-                        (
-                            "'.$lastInsertedID.'",
-                            "'.$this->langList['english'].'",
-                            "'.$activityData['activityName-'.strtoupper($this->langList['english'])].'",
-                            "'.$activityData['activityDesc-'.strtoupper($this->langList['english'])].'" 
-                        )
-                ';
-                $queryInsertTranslation = $this->db->query($sqlInsertTranslation);
-                if($queryInsertTranslation){
-                    $sqlCityName = '
-                        select 
-                            nameTranslated
-                        from    
-                            city_translation
-                        where
-                            city_link_ID = "'.$activityData['activityCityName'].'"
-                        and
-                            langCode = "'.$this->langList['portuguese'].'"
-                    ';
-                    $queryCityName = $this->db->query($sqlCityName);
-                    if($queryCityName->num_rows == 1){
-                        $fetchCityName = $queryCityName->fetch_object();
-                        $arrayToReturn = [
-                            $lastInsertedID,
-                            $fetchCityName->nameTranslated,
-                            $activityData['activityName-'.strtoupper($this->langList['portuguese'])],
-                            $activityData['activityDesc-'.strtoupper($this->langList['portuguese'])],
-                            'Agora',
-                            '<button class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$this->db->insert_id.'" data-toggle="collapse">
-                                <i class="lnr lnr-plus-circle"></i>
-                            </button>',
-                            '<a href="?edit=activity&id='.$this->db->insert_id.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-activity"><span class="lnr lnr-trash"></span></button>'
-                        ];
-                        return $arrayToReturn;
-                    }else{
-                        false;
-                    }
-                }else{
-                    return false;
-                }
+            ';
+            $queryFaqLinkInsert = $this->db->query($sqlFaqLinkInsert);
+            if($this->db->error)
+                $errorCatcher[] = $this->db->error;
+            
+            $lastInsertedID = $this->db->insert_id;  
+            $sqlInsertQuestion = '
+                insert into
+                    faq_question_translation(
+                        faq_link_ID,
+                        langCode,
+                        questionTranslated
+                    )
+                values
+                    (
+                        "'.$lastInsertedID.'",
+                        "'.$this->langList['portuguese'].'",
+                        "'.$faqData['faqQuestion-'.strtoupper($this->langList['portuguese'])].'"
+                    ),
+                    (
+                        "'.$lastInsertedID.'",
+                        "'.$this->langList['english'].'",
+                        "'.$faqData['faqQuestion-'.strtoupper($this->langList['english'])].'"
+                    )
+            ';
+            $queryInsertQuestion = $this->db->query($sqlInsertQuestion);
+            if($this->db->error)
+                $errorCatcher[] = $this->db->error;
+                        
+            $sqlInsertAnswer = '
+                insert into
+                    faq_answer_translation(
+                        faq_link_ID,
+                        langCode,
+                        answerTranslated
+                    )
+                values
+                    (
+                        "'.$lastInsertedID.'",
+                        "'.$this->langList['portuguese'].'",
+                        "'.$faqData['faqAnswer-'.strtoupper($this->langList['portuguese'])].'"
+                    ),
+                    (
+                        "'.$lastInsertedID.'",
+                        "'.$this->langList['english'].'",
+                        "'.$faqData['faqAnswer-'.strtoupper($this->langList['english'])].'"
+                    )
+            ';
+            $queryInsertAnswer = $this->db->query($sqlInsertAnswer);
+            if($this->db->error)
+                $errorCatcher[] = $this->db->error;
+            
+            if(empty($errorCatcher)){
+                $row = [
+                    $lastInsertedID,
+                    $faqData['faqQuestion-'.strtoupper($this->langList['portuguese'])],
+                    $faqData['faqAnswer-'.strtoupper($this->langList['portuguese'])],
+                    '<a href="?edit=faq&id='.$lastInsertedID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                    <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>'
+                ];
+                return $row;
             }else{
                 return false;
             }
+                
         }
-        public function deleteActivity(int $activityID){
+        public function deleteFaq(int $faqID){
             $sqlDelete = '
                 delete from 
-                    activity_link 
+                    faq_link 
                 where 
-                    activity_link_ID = '.$activityID;
+                    faq_link_ID = '.$faqID;
             $queryDelete = $this->db->query($sqlDelete);
             if($this->db->affected_rows == 1)
                 return true;
             else
                 return false;
         }
-        public function updateActivityName(int $activityID, array $activityNames){
-            $langSortedactivityName = array();
+        public function updateFaqQuestion(int $faqID, array $faqNames){
+            $langSortedfaqName = array();
             $errorCather = 0;
             $langCounter = 0;
-            foreach($activityNames as $key => $value){
+            foreach($faqNames as $key => $value){
                 $holder[] = explode('-', $key);                
-                $langSortedactivityName[strtolower($holder[$langCounter][1])][] = $value[0];
+                $langSortedfaqName[strtolower($holder[$langCounter][1])][] = $value[0];
                 $langCounter++;
             }
-            foreach($langSortedactivityName as $lang => $name){
-                $sqlUpdateactivity = '
+            foreach($langSortedfaqName as $lang => $name){
+                $sqlUpdatefaq = '
                     update 
-                        activity_translation 
+                        faq_question_translation 
                     set 
                         nameTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
                     where 
                         langCode = "'.$lang.'"
                     and
-                        activity_link_ID = '.$activityID;
-                $queryUpdateDes = $this->db->query($sqlUpdateactivity);
+                        faq_link_ID = '.$faqID;
+                $queryUpdateDes = $this->db->query($sqlUpdatefaq);
                 if($this->db->affected_rows == 1)
                     $errorCather += 0;
                 else
@@ -246,26 +223,26 @@
             else
                 return false;
         }
-        public function updateActivityDesc(int $activityID, array $activityDescs){
-            $langSortedactivityDesc = array();
+        public function updateFaqAnswer(int $faqID, array $faqDescs){
+            $langSortedfaqDesc = array();
             $errorCather = 0;
             $langCounter = 0;
-            foreach($activityDescs as $key => $value){
+            foreach($faqDescs as $key => $value){
                 $holder[] = explode('-', $key);                
-                $langSortedactivityDesc[strtolower($holder[$langCounter][1])][] = $value;
+                $langSortedfaqDesc[strtolower($holder[$langCounter][1])][] = $value;
                 $langCounter++;
             }
-            foreach($langSortedactivityDesc as $lang => $desc){
-                $sqlUpdateactivity = '
+            foreach($langSortedfaqDesc as $lang => $desc){
+                $sqlUpdatefaq = '
                     update 
-                        activity_translation 
+                        faq_translation 
                     set 
                         descriptionTranslated = "'.mysqli_real_escape_string($this->db, $desc[0]).'"
                     where 
                         langCode = "'.$lang.'"
                         and
-                        activity_link_ID = '.$activityID;
-                $queryUpdateAdmin = $this->db->query($sqlUpdateactivity);
+                        faq_link_ID = '.$faqID;
+                $queryUpdateAdmin = $this->db->query($sqlUpdatefaq);
                 if($this->db->error)
                     $errorCather += 1;
                 else
@@ -277,74 +254,6 @@
             else
                 return false;
         }
-        public function updateActivityOther(int $activityID, int $newCityID){
-            $sqlUpdateIsPopular = '
-                update 
-                    activity_link
-                set 
-                    city_link_ID = "'.$newCityID.'"
-                where
-                    activity_link_ID = "'.$activityID.'"
-
-            ';
-            $queryUpdateIsPopular = $this->db->query($sqlUpdateIsPopular);
-            if($this->db->error)
-                return $this->db->error;
-            else
-                return true;
-        }
-        public function addActivityPhoto(int $activityID, string $thumbnailURL, string  $fullsizeURL){
-            $sqlInsert = '
-                insert into
-                    activity_gallery(
-                        activity_link_ID,
-                        thumbnailURL,
-                        fullsizeURL
-                    )
-                    values(
-                        "'.mysqli_real_escape_string($this->db, $activityID).'",
-                        "'.mysqli_real_escape_string($this->db, $thumbnailURL).'",
-                        "'.mysqli_real_escape_string($this->db, $fullsizeURL).'"
-                    )
-            ';
-           $queryInsert = $this->db->query($sqlInsert);
-            if($this->db->affected_rows == 1)
-                return true;
-            else
-                return false;
-        }
-        public function deleteActivityPhoto(string $photoID){
-            $activityPhotoID = explode('-', $photoID);
-            $sqlSearchURL = '
-                select 
-                    fullsizeURL,
-                    thumbnailURL
-                from
-                    activity_gallery
-                where 
-                    activity_link_ID = "'.$activityPhotoID[0].'"
-                    and
-                    activity_gallery_ID = "'.$activityPhotoID[1].'"
-            ';
-            if($queryDelete = $this->db->query($sqlSearchURL)){
-                $urlHolder = $queryDelete->fetch_object();
-                $sqlDeletePhoto = '
-                    delete from
-                        activity_gallery
-                    where   
-                        activity_link_ID = "'.$activityPhotoID[0].'"
-                        and
-                        activity_gallery_ID = "'.$activityPhotoID[1].'"';
-                
-                $queryDelete = $this->db->query($sqlDeletePhoto);
-                if($queryDelete){
-                    return $urlHolder;
-                }else {
-                    return false;
-                }
-            }
-        }
-
         /* CONTROL CUSTOM FUNCTIONS */
         private function sanitizeInput(array $inputArray){
             $counter = 0;
@@ -356,13 +265,13 @@
         }
 
         /* Checks if requirments are met to edit the administrator */
-        public function showEditPage(string $contentCategory, int $contentID, bool $activityExists){
-            if($contentCategory === "activity" && is_int($contentID)){
+        public function showEditPage(string $contentCategory, int $contentID, bool $faqExists){
+            if($contentCategory === "faq" && is_int($contentID)){
                 $x = 1;
             }else{ 
                 $x = 0;
             }
-            if($activityExists == false){
+            if($faqExists == false){
                 $y = 1;
             }else{ 
                 $y = 0;

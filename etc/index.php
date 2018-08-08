@@ -107,7 +107,8 @@
                                 cellArray[counter] = firstRow.insertCell(counter);
                                 cellArray[counter].innerHTML = data[counter];
                             }
-                            createSecondRow(table, data[0], dataName);
+                            if(dataName != 'faq')
+                                createSecondRow(table, data[0], dataName);
                         }
 
                         function createSecondRow(table, id, dataName){
@@ -203,7 +204,6 @@
                             let responseData = {}; 
                             let info = document.querySelectorAll("[name^=" + splittedID[1]);
                             var curatedObject = filterContent(info);
-                            console.log(curatedObject);
                             axios.post(
                                 'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
                                 {
@@ -396,6 +396,5 @@
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    sript
 </body>
 </html>

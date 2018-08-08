@@ -2,12 +2,12 @@
     $_POST = json_decode(file_get_contents('php://input'), true);
 
     require_once('../../_include/_models/db.php');
-    require_once('../../_include/_models/activity.php');
+    require_once('../../_include/_models/faq.php');
     $conn = new Database();
-    $activity = new Activity($conn->db);
-    $response = $activity->insertActivity($_POST['curatedObject']);
+    $faq = new Faq($conn->db);
+    $response = $faq->insertFaq($_POST['curatedObject']);
 
-    $activity->closeConnection($conn->db);
+    $faq->closeConnection($conn->db);
 
     echo json_encode($response);
 ?>
