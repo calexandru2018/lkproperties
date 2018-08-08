@@ -196,6 +196,37 @@
                         /* onClick confirm modal delete row */
                     /* Moda window function */
                     
+                    /* Add function */
+                        function addContent(type){
+                            var splittedID = type.split('-');
+                            console.clear();
+                            let responseData = {}; 
+                            let info = document.querySelectorAll("[name^=" + splittedID[1]);
+                            var curatedObject = filterContent(info);
+                            console.log(curatedObject);
+                            axios.post(
+                                'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
+                                {
+                                    curatedObject,
+                                }, 
+                                {
+                                    headers: { 
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    }
+                                } 
+                            )
+                            .then(function (response) {
+                                if(response.data != false)
+                                    populateTable(response.data, splittedID[1] + '-table', 'data-' + splittedID[1] + '-id');
+                                
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                    /* Add function */
+
                     /* Delete photos in edit page */
                         document.querySelectorAll('button.delete-photo').forEach( function(btn) {
                             btn.addEventListener('click', deletePhotoInputCollector);
@@ -338,15 +369,15 @@
                                     el.value = fill();
                                 }
                             });
-                            function fill() {
-                                var text = "";
-                                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                        }
+                        function fill() {
+                            var text = "";
+                            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-                                for (var i = 0; i < 9; i++)
-                                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+                            for (var i = 0; i < 9; i++)
+                                text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-                                return text;
-                            }
+                            return text;
                         }
                     /* Dummy text filler function */
                     </script>

@@ -117,55 +117,33 @@
 </div>
 <script>
     $(document).ready(function() {
-    /* Plugin scripts */
-        CKEDITOR.replace( 'cityDescPT' );
-        CKEDITOR.replace( 'cityDescEN' );
-    /* Plugin scripts */
+        /* Plugin scripts */
+            CKEDITOR.replace( 'cityDescPT' );
+            CKEDITOR.replace( 'cityDescEN' );
+        /* Plugin scripts */
 
-    /* Upload script */
-        var newUpload = new uploadPhotos('ajax/city/add-photo-city.php', document.querySelectorAll('.file-upload'));
-        newUpload.upload();
-    /* Upload script */
+        /* Upload script */
+            var newUpload = new uploadPhotos('ajax/city/add-photo-city.php', document.querySelectorAll('.file-upload'));
+            newUpload.upload();
+        /* Upload script */
 
-    /* Add City */
-        document.getElementById('add-city').onclick = function(){
-            let responseData = {}; 
-            let info = document.querySelectorAll("[name^=city");
-            var curatedObject = filterContent(info);
-            axios.post(
-                'ajax/city/add-city.php', 
-                {
-                    curatedObject,
-                }, 
-                {
-                    headers: { 
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    }
-                } 
-            )
-            .then(function (response) {
-                if(response.data != false)
-                    populateTable(response.data, 'city-table', 'data-city-id');
-                
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
+            /* Create new entry */
+                document.getElementById('add-city').onclick = function(){
+                    addContent(this.id);
+                };
+            /* Create new entry */
+
+        /* Delete City */
+            $(document).on('click', '#delete-city', function(){
+                let data = $(this).closest('tr').data();
+                modalWindow('modal-window',data['contentType'], data['contentId']);
             });
-        };
-    /* Add City */
+        /* Delete City */
 
-    /* Delete City */
-        $(document).on('click', '#delete-city', function(){
-            let data = $(this).closest('tr').data();
-            modalWindow('modal-window',data['contentType'], data['contentId']);
-        });
-    /* Delete City */
-
-    /* fill input with dummy text */
-        document.getElementById('puplate-input').onclick = function(){
-            inputFiller('activity');
-        }
-    /* fill input with dummy text */
-    );
+        /* fill input with dummy text */
+            document.getElementById('puplate-input').onclick = function(){
+                inputFiller('city');
+            };
+        /* fill input with dummy text */
+    });
 </script>

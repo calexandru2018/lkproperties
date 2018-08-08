@@ -148,34 +148,11 @@
             newUpload.upload();
         /* Upload script */
 
-        /* Add City */
+        /* Create new entry */
             document.getElementById('add-poi').onclick = function(){
-                console.clear();
-                let responseData = {}; 
-                let info = document.querySelectorAll("[name^=poi");
-                var curatedObject = filterContent(info);
-                axios.post(
-                    'ajax/poi/add-poi.php', 
-                    {
-                        curatedObject,
-                    }, 
-                    {
-                        headers: { 
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        }
-                    } 
-                )
-                .then(function (response) {
-                    if(response.data != false)
-                        populateTable(response.data, 'poi-table', 'data-poi-id');
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                addContent(this.id);
             };
-        /* Add City */
+        /* Create new entry */
 
         /* Delete poi start function */
             $(document).on('click', '#delete-poi', function(){

@@ -1,10 +1,17 @@
+<?php
+    include_once('_include/_models/faq.php');
+    $faq = new Faq($MAIN->db);
+    var_dump($faq->fetchAll());
+?>
 <h3 class="page-title">Perguntas e Respostas</h3>
 <div class="panel">
     <div class="panel-heading">
         <ul class="nav">
             <li>
-                <button href="#addCity" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Nova Pergunta&Resposta</button>
-                <div id="addCity" class="row collapse">
+                <button href="#addFaq" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Nova Pergunta&Resposta</button>
+                <button type="button" class="btn btn-warning pull-right" id="puplate-input">Populate input</button>
+
+                <div id="addFaq" class="row collapse">
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Pergunta(PT)</span>
@@ -26,7 +33,7 @@
                         <textarea name="faqAnswer-EN" id="faqAnswerEN" class="form-control" rows="4"></textarea>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                        <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
+                        <button  type="button" data-toggle="collapse" class="btn btn-success pull-right" id="add-faq">Inserir</button>
                     </div>
                 </div>
             </li>
@@ -49,112 +56,36 @@
                     <th>Ação</th>
                 </thead>
                 <tbody>
-                    <tr data-faq-id="4">
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Praia da Rocha
-                        </td>
-                        <td>
-                            E uma cidade bonita
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis, quae perferendis sed, doloremque eligendi suscipit possimus eaque sapiente odit vero eius soluta perspiciatis vitae. Voluptatem quas fuga esse accusamus mollitia!
-                        </td>
-                        <td>
-                            Rocha Beach
-                        </td>
-                        <td>
-                            It is a beatiful city
-                        </td>
-                        <td>
-                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr data-faq-id="2">
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Praia de Alvor
-                        </td>
-                        <td>
-                            Cidade pequena e simples
-                        </td>
-                        <td>
-                            Alvor Beach
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptatum dolores dolor deleniti. Earum, optio dolorum a ea similique dolorem autem excepturi, ratione quidem quod perferendis placeat provident modi. Quis?
-                        </td>
-                        <td>
-                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr data-faq-id="3">
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Museu das Artes
-                        </td>
-                        <td>   
-                            Cidade mutio turistica
-                        </td>
-                        <td>
-                            Art Meuseum
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
-                        </td>
-                        <td>
-                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr data-faq-id="4">
-                        <td>
-                            4
-                        </td>
-                        <td>
-                            Parque de Atrações
-                        </td>
-                        <td>   
-                            Cidade mutio turistica
-                        </td>
-                        <td>
-                            Atraction Park
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
-                        </td>
-                        <td>
-                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                <?php
+                   /*  $resp = $faq->fetchAll();
+                    for($faqCounter = 0; $faqCounter < count($resp); $faqCounter++){
+                        echo '<tr data-content-type="faq" data-content-id="'.$resp[$faqCounter]->faq_link_ID.'">';
+                        echo '<td>'.$resp[$faqCounter]->faq_link_ID.'</td>';
+                        echo '<td>'.$resp[$faqCounter]->cityNameTranslated.'</td>';
+                        echo '<td>'.$resp[$faqCounter]->nameTranslated.'</td>';
+                        echo '<td>'.$resp[$faqCounter]->descriptionTranslated.'</td>';
+                        echo '<td>'.$resp[$faqCounter]->dateCreated.'</td>';
+                        echo '<td>
+                                <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$faqCounter]->faq_link_ID.'" data-toggle="collapse">
+                                    <i class="lnr lnr-plus-circle"></i>
+                                </a>
+                        </td>';
+                        echo '<td>
+                            <a href="?edit=faq&id='.$resp[$faqCounter]->faq_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
                             <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr data-faq-id="5">
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            Museu da Ciencia
-                        </td>
-                        <td>   
-                            Cidade mutio turistica
-                        </td>
-                        <td>
-                            Science museum
-                        </td>
-                        <td>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione iste optio atque obcaecati accusamus, error veniam sapiente quae, quos reiciendis quidem, cupiditate dolore! Neque modi veniam cum hic, dicta officia.
-                        </td>
-                        <td>
-                            <a href="?edit=faq&id=2" class="btn btn-info btn-xs pull-left" style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
+                        </td></tr>';
+                        echo'
+                        <tr data-content-type="faq" data-content-id="'.$resp[$faqCounter]->faq_link_ID.'" id="collapseGallery-'.$resp[$faqCounter]->faq_link_ID.'" class="collapse">
+                            <td colspan="14" class="bg-info">
+                                <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$faqCounter]->faq_link_ID.'">
+                                    <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
+                                    <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                </form>
+                            </td>
+                        </tr>
+                        ';
+                    } */
+                ?>
                 </tbody>
             </table>
         </div>
@@ -164,10 +95,24 @@
     $( document ).ready(function() {
         CKEDITOR.replace( 'faqAnswerPT' );
         CKEDITOR.replace( 'faqAnswerEN' );
+        
+        /* Create new entry */
+            document.getElementById('add-faq').onclick = function(){
+                addContent(this.id);
+            };
+        /* Create new entry */
 
-        $(document).on('click', '#delete-faq', function(){
-            id = $(this).closest('tr').data('faq-id');
-            modalWindow('modal-window','Admin', 'User test', id);
-        });
+        /* Delete faq start function */
+            $(document).on('click', '#delete-faq', function(){
+                let data = $(this).closest('tr').data();
+                modalWindow('modal-window',data['contentType'], data['contentId']);
+            });
+        /* Delete faq start function */
+
+        /* fill input with dummy text */
+            document.getElementById('puplate-input').onclick = function(){
+                inputFiller('faq');
+            };
+        /* fill input with dummy text */
     });
 </script>

@@ -27,7 +27,7 @@
                             <span class="input-group-addon">Password</span>
                             <input type="text" name="adminPassword" class="form-control">
                             <span class="input-group-addon" style="padding:0">
-                                <button class="btn btn-xs btn-info">Gerar password</button>
+                                <button class="btn btn-xs btn-info" id="generate-password">Gerar password</button>
                             </span>
                         </div>
                     </div>
@@ -129,66 +129,49 @@
 </div>
 <script>
     $(document).ready(function(e) {
-    /* Plugin scripts */
-        $('.js-example-basic-multiple').select2();
-    /* Plugin scripts */
+        /* Plugin scripts */
+            $('.js-example-basic-multiple').select2();
+        /* Plugin scripts */
 
-    /* Upload script */
-        var newUpload = new uploadPhotos('ajax/admin/add-photo-admin.php', document.querySelectorAll('.file-upload'));
-        newUpload.upload();
-    /* Upload script */
+        /* Upload script */
+            var newUpload = new uploadPhotos('ajax/admin/add-photo-admin.php', document.querySelectorAll('.file-upload'));
+            newUpload.upload();
+        /* Upload script */
 
-    /* Add Admin */
-        document.getElementById('add-admin').onclick = function(){
-            let responseData = {}; 
-            let info = document.querySelectorAll("[name^=admin");
-            var curatedObject = $.param(filterContent(info));
-            axios.post(
-                'ajax/admin/add-admin.php', 
-                {
-                    curatedObject,
-                }, 
-                {
-                    headers: { 
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    }
-                } 
-            )
-            .then(function (response) {
-                if(response.data != false){
-                    console.log('Inserted with ID: ' + response.data);
-                    populateTable(response.data, 'admin-table', 'data-admin-id');
-                }else{
-                    alert('Did not insert');
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
+        /* Create new entry */
+            document.getElementById('add-admin').onclick = function(){
+                addContent(this.id);
+            };
+        /* Create new entry */
+
+        /* Delete Admin start function */
+            $(document).on('click', '#delete-admin', function(){
+                let data = $(this).closest('tr').data();
+                modalWindow('modal-window',data['contentType'], data['contentId']);
             });
-        }
-    /* Add Admin */
+        /* Delete Admin start function */
 
-    /* Delete Admin start function */
-        $(document).on('click', '#delete-admin', function(){
-            let data = $(this).closest('tr').data();
-            modalWindow('modal-window',data['contentType'], data['contentId']);
-        });
-    /* Delete Admin start function */
-
-    /* Additional support functions */
-        function filterContent(arrayContent){
-            adminObject = {};
-            for(let x = 0; x < arrayContent.length; x++){
-                if(arrayContent[x].type == 'checkbox')
-                    if(arrayContent[x].checked){
-                        arrayContent[x].value = 1;
-                    }else{
-                        arrayContent[x].value = 0;
-                    }
-                adminObject[arrayContent[x].name] = arrayContent[x].value;
+        /* Additional support functions */
+            function filterContent(arrayContent){
+                adminObject = {};
+                for(let x = 0; x < arrayContent.length; x++){
+                    if(arrayContent[x].type == 'checkbox')
+                        if(arrayContent[x].checked){
+                            arrayContent[x].value = 1;
+                        }else{
+                            arrayContent[x].value = 0;
+                        }
+                    adminObject[arrayContent[x].name] = arrayContent[x].value;
+                }
+                return adminObject;
             }
-            return adminObject;
+        /* Additional support functions */
+
+        /* Password generator */
+        document.getElementById('generate-password').onclick = function(){
+            let info = document.querySelectorAll("[name=adminPassword");
+                info[0].value = fill();
         }
-    /* Additional support functions */
+        /* Password generator */
     });
 </script>

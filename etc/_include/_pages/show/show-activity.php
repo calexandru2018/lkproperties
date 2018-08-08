@@ -130,42 +130,18 @@
             newUpload.upload();
         /* Upload script */
 
-        /* Add City */
+        /* Create new entry */
             document.getElementById('add-activity').onclick = function(){
-                var splittedID = this.id.split('-');
-                console.clear();
-                let responseData = {}; 
-                let info = document.querySelectorAll("[name^=" + splittedID[1]);
-                var curatedObject = filterContent(info);
-                axios.post(
-                    'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
-                    {
-                        curatedObject,
-                    }, 
-                    {
-                        headers: { 
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        }
-                    } 
-                )
-                .then(function (response) {
-                    if(response.data != false)
-                        populateTable(response.data, splittedID[1] + '-table', 'data-' + splittedID[1] + '-id');
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                addContent(this.id);
             };
-        /* Add City */
+        /* Create new entry */
 
-        /* Delete poi start function */
+        /* Delete activity start function */
             $(document).on('click', '#delete-activity', function(){
                 let data = $(this).closest('tr').data();
                 modalWindow('modal-window',data['contentType'], data['contentId']);
             });
-        /* Delete poi start function */
+        /* Delete activity start function */
 
         /* fill input with dummy text */
             document.getElementById('puplate-input').onclick = function(){

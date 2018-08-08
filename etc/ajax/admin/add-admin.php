@@ -5,7 +5,7 @@
     require_once('../../_include/_models/admin.php');
     $insertConn = new Database();
     $insertAdmin = new Administrator($insertConn->db);
-    $response = $insertAdmin->insertAdmin($_POST);
+    $response = $insertAdmin->insertAdmin($_POST['curatedObject']);
 
     $insertAdmin->closeConnection($insertConn->db);
 
