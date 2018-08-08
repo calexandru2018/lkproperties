@@ -3,7 +3,6 @@
     $poi = new Poi($MAIN->db);
     $poiData = $poi->fetchPoi($_GET['id']);
     $canEdit = $poi->showEditPage($_GET["edit"], $_GET["id"], empty($poiData));
-    var_dump($poiData);
     if($canEdit === 1)
     {
 ?>

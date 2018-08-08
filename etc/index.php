@@ -98,7 +98,7 @@
                         }
 
                         function createFirstRow(data, table, dataName){
-                           data[1] = data[1].replace(/\\+/g, ' ');
+                            data[1] = data[1].replace(/\\+/g, ' ');
                             
                             var firstRow   = table.insertRow(table.rows.length);
                             firstRow.setAttribute(dataName, data[0]);
@@ -325,6 +325,30 @@
                             return cityObject;
                         }
                     /* Additional support functions */
+
+                    /* Dummy text filler function */
+                        function inputFiller(type){
+                            let info = document.querySelectorAll("[name^=" + type);
+                            info.forEach(function(el){
+                                if(el.type == 'textarea'){
+                                    CKEDITOR.instances[el.id].setData(fill());
+                                }else if(el.name == 'poiPostalCode'){
+                                    el.value = 8500;
+                                }else{
+                                    el.value = fill();
+                                }
+                            });
+                            function fill() {
+                                var text = "";
+                                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+                                for (var i = 0; i < 9; i++)
+                                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                                return text;
+                            }
+                        }
+                    /* Dummy text filler function */
                     </script>
                 </div>
                 <!-- END MAIN CONTENT -->
@@ -341,5 +365,6 @@
     <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    sript
 </body>
 </html>

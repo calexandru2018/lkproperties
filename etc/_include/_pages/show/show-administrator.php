@@ -114,7 +114,7 @@
                                 <tr data-content-type="admin" data-content-id="'.$resp[$adminCounter]->admin_ID.'" id="collapseGallery-'.$resp[$adminCounter]->admin_ID.'" class="collapse">
                                     <td colspan="14" class="bg-info">
                                         <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$adminCounter]->admin_ID.'">
-                                            <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple>
+                                            <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]">
                                             <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                         </form>
                                     </td>

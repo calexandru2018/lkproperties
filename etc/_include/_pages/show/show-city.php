@@ -9,6 +9,7 @@
         <ul class="nav">
             <li>
                 <button href="#addCity" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Nova Cidade</button>
+                <button type="button" class="btn btn-warning pull-right" id="puplate-input">Populate input</button>
 
                 <div id="addCity" class="row collapse">
                     <div class="col-xs-12" style="margin-top: 2%">
@@ -160,5 +161,11 @@
             modalWindow('modal-window',data['contentType'], data['contentId']);
         });
     /* Delete City */
-    });
+
+    /* fill input with dummy text */
+        document.getElementById('puplate-input').onclick = function(){
+            inputFiller('activity');
+        }
+    /* fill input with dummy text */
+    );
 </script>

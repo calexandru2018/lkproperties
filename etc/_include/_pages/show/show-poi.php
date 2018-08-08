@@ -1,7 +1,6 @@
 <?php
     include_once('_include/_models/poi.php');
     $poi = new Poi($MAIN->db);
-    // var_dump($administrator->showAll());
 ?>
 <h3 class="page-title">Pontos de Interesse(Point Of Interest)</h3>
 <div class="panel">
@@ -44,17 +43,17 @@
                                 <option value="null" disabled selected>Escolha um cidade...</option>
                                 <?php
                                     $queryResult = $MAIN->db->query('
-                                    select 
-                                        *
-                                    from 
-                                        city_link
-                                    left join 
-                                        city_translation 
-                                    on
-                                        city_link.city_link_ID = city_translation.city_link_ID
-                                    where
-                                        langCode = "pt"
-                                ');
+                                        select 
+                                            *
+                                        from 
+                                            city_link
+                                        left join 
+                                            city_translation 
+                                        on
+                                            city_link.city_link_ID = city_translation.city_link_ID
+                                        where
+                                            langCode = "pt"
+                                    ');
                                     while($r=$queryResult->fetch_object()){
                                         echo '
                                             <option value="'.$r->city_link_ID.'">'.$r->nameTranslated.'</option>
@@ -178,35 +177,17 @@
             };
         /* Add City */
 
-        /* Delete Admin start function */
+        /* Delete poi start function */
             $(document).on('click', '#delete-poi', function(){
                 let data = $(this).closest('tr').data();
                 modalWindow('modal-window',data['contentType'], data['contentId']);
             });
-        /* Delete Admin start function */
+        /* Delete poi start function */
 
         /* fill input with dummy text */
-            document.getElementById('puplate-input').onclick = function(){
-                let info = document.querySelectorAll("[name^=poi");
-                info.forEach(function(el){
-                    if(el.type == 'textarea'){
-                        CKEDITOR.instances[el.id].setData(fill());
-                    }else if(el.name == 'poiPostalCode'){
-                        el.value = 8500;
-                    }else{
-                        el.value = fill();
-                    }
-                });
-                function fill() {
-                    var text = "";
-                    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-                    for (var i = 0; i < 9; i++)
-                        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-                    return text;
-                }
-            };
+        document.getElementById('puplate-input').onclick = function(){
+                inputFiller('poi');
+            }
         /* fill input with dummy text */
     });
 </script>
