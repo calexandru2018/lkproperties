@@ -66,16 +66,6 @@
                                 <a href="?edit=faq&id='.$resp[$faqCounter]->faq_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
                                 <button class="btn btn-danger btn-xs pull-right" id="delete-faq"><span class="lnr lnr-trash"></span></button>
                             </td></tr>';
-                            echo'
-                            <tr data-content-type="faq" data-content-id="'.$resp[$faqCounter]->faq_link_ID.'" id="collapseGallery-'.$resp[$faqCounter]->faq_link_ID.'" class="collapse">
-                                <td colspan="14" class="bg-info">
-                                    <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$faqCounter]->faq_link_ID.'">
-                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
-                                        <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
-                                    </form>
-                                </td>
-                            </tr>
-                            ';
                         }
                     }
                 ?>
@@ -91,7 +81,7 @@
         
         /* Create new entry */
             document.getElementById('add-faq').onclick = function(){
-                addContent(this.id);
+                addContent(this.id, false, true);
             };
         /* Create new entry */
 

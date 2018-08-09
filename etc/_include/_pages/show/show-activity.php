@@ -132,7 +132,7 @@
 
         /* Create new entry */
             document.getElementById('add-activity').onclick = function(){
-                addContent(this.id);
+                addContent(this.id, false, true);
             };
         /* Create new entry */
 

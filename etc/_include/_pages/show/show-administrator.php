@@ -140,7 +140,7 @@
 
         /* Create new entry */
             document.getElementById('add-admin').onclick = function(){
-                addContent(this.id);
+                addContent(this.id, false, true);
             };
         /* Create new entry */
 
@@ -150,22 +150,6 @@
                 modalWindow('modal-window',data['contentType'], data['contentId']);
             });
         /* Delete Admin start function */
-
-        /* Additional support functions */
-            function filterContent(arrayContent){
-                adminObject = {};
-                for(let x = 0; x < arrayContent.length; x++){
-                    if(arrayContent[x].type == 'checkbox')
-                        if(arrayContent[x].checked){
-                            arrayContent[x].value = 1;
-                        }else{
-                            arrayContent[x].value = 0;
-                        }
-                    adminObject[arrayContent[x].name] = arrayContent[x].value;
-                }
-                return adminObject;
-            }
-        /* Additional support functions */
 
         /* Password generator */
         document.getElementById('generate-password').onclick = function(){

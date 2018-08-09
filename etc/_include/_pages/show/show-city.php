@@ -129,7 +129,7 @@
 
             /* Create new entry */
                 document.getElementById('add-city').onclick = function(){
-                    addContent(this.id);
+                    addContent(this.id, false, true);
                 };
             /* Create new entry */
 

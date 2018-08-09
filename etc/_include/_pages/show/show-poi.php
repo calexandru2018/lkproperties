@@ -150,7 +150,7 @@
 
         /* Create new entry */
             document.getElementById('add-poi').onclick = function(){
-                addContent(this.id);
+                addContent(this.id, false, true);
             };
         /* Create new entry */
 
