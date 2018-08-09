@@ -1,7 +1,64 @@
+
+/* Add function */
+function addContent(type, debugMode, postAsync){
+    console.clear();
+    var splittedID = type.split('-');
+    var info = document.querySelectorAll("[name^=" + splittedID[1]);
+    var curatedObject = filterContent(info, splittedID[1]);        
+    
+    if(splittedID[1] == 'service_common' || splittedID[1] == 'service_unique' ){
+        var customID = splittedID[1].split('_');
+        splittedID[1] = customID[0] + '-' + customID[1].toLowerCase();
+        var curatedObject = filterContent(info, splittedID[1]);
+    }else{
+        var curatedObject = filterContent(info, splittedID[1]);
+    }
+    if(debugMode == true)
+        console.log(curatedObject);
+
+    if(postAsync == true){
+        axios.post(
+            'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
+            {
+                curatedObject,
+            }, 
+            {
+                headers: { 
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            } 
+        )
+        .then(function (response) {
+            var idHolder = splittedID[1].split('-');
+            splittedID[1] = idHolder[0] + '_' + idHolder[1];
+            if(response.data != false)
+                if(debugMode == false)
+                    populateTable(response.data, splittedID[1] + '-table', splittedID[1]);
+                
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+}
+/* Add function */
+
 /* Populate table with new input */ 
     function populateTable(rowContent, tableName, dataName){
         var tableRef = document.getElementById(tableName).getElementsByTagName('tbody')[0];
-        createFirstRow(rowContent, tableRef, dataName);
+        switch(dataName) {
+            case 'activity':
+            case 'administrator':
+            case 'city':
+            case 'poi':
+                createFirstRow(rowContent, tableRef, dataName);
+                break;
+            case 'service_common':
+            case 'service_unique':
+                populateMultipleRows(rowContent, tableRef, dataName);
+                break;
+        }
     }
 
     function createFirstRow(data, table, dataName){
@@ -14,11 +71,10 @@
             cellArray[counter] = firstRow.insertCell(counter);
             cellArray[counter].innerHTML = data[counter];
         }
-        if(dataName != 'faq')
-            createSecondRow(table, data[0], dataName);
+        createGalleryRow(table, data[0], dataName);
     }
 
-    function createSecondRow(table, id, dataName){
+    function createGalleryRow(table, id, dataName){
         var secondRow   = table.insertRow(table.rows.length);
         var multiple = '';
         secondRow.id = 'collapseGallery-' + id;
@@ -37,6 +93,20 @@
             </form>
         `;
         galleryCell.colSpan = 10;
+    }
+    function populateMultipleRows(data, table, dataName){
+        for(var c = 0; c < data.length; c++){
+            var cellArray = [];
+            for(var c2 = 0; c2 < data[c].length; c2++){
+                var newRow   = table.insertRow(table.rows.length);
+                newRow.setAttribute('data-content-type', dataName);
+                newRow.setAttribute('data-content-id', data[c][c2][0]);
+                for(var c3 = 0; c3 < data[c][c2].length; c3++){
+                    cellArray[c2] = newRow.insertCell(c3);
+                    cellArray[c2].innerHTML = data[c][c2][c3];
+                }
+            }
+        }
     }
 /* Populate table with new input */ 
 
@@ -90,6 +160,7 @@
                 $('.table tr[data-content-id="' + data['contentId'] + '"]').remove();
                 $('#modal-window').html('');
                 $('#modal-window').css("display", "none");
+                console.log(response);
             }else{
                 $('#modal-window').html('');
                 $('#modal-window').css("display", "none");
@@ -103,51 +174,6 @@
     });
     /* onClick confirm modal delete row */
 /* Moda window function */
-
-/* Add function */
-    function addContent(type, debugMode, postAsync){
-        console.clear();
-        var splittedID = type.split('-');
-        var info = document.querySelectorAll("[name^=" + splittedID[1]);
-        var curatedObject = filterContent(info, splittedID[1]);        
-        
-        if(splittedID[1] == 'service_Common' || splittedID[1] == 'service_Unique' ){
-            var customID = splittedID[1].split('_');
-            splittedID[1] = customID[0] + '-' + customID[1].toLowerCase();
-            console.log(splittedID);
-            var curatedObject = filterContent(info, splittedID[1]);
-        }else{
-            var curatedObject = filterContent(info, splittedID[1]);
-        }
-        
-        if(debugMode == true)
-            console.log(curatedObject);
-
-        if(postAsync == true){
-            axios.post(
-                'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
-                {
-                    curatedObject,
-                }, 
-                {
-                    headers: { 
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    }
-                } 
-            )
-            .then(function (response) {
-                if(response.data != false)
-                    if(debugMode == false)
-                        populateTable(response.data, splittedID[1] + '-table', 'data-' + splittedID[1] + '-id');
-                
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        }
-}
-/* Add function */
 
 /* Delete photos in edit page */
     document.querySelectorAll('button.delete-photo').forEach( function(btn) {
@@ -189,6 +215,10 @@
     function editPageInputCollector() {  
         console.clear();
         var button_id = this.id.split('-');
+        if(button_id[0].indexOf('_')){
+            var tempIDHolder = button_id[0].split('_');
+            button_id[0] = tempIDHolder[0] + '-' + tempIDHolder[1];
+        }
         var userInput = {};
         var buttonLocation = this;
         this.closest('.panel-body').querySelectorAll('input, select, textarea').forEach( function(inp) {
@@ -231,33 +261,33 @@
             var parentNode = buttonLocation.closest('div');
             createAlert(response, parentNode)
         });
-        
-    /* Creates the alert area to indicate success or issue at update */
-        function createAlert(response, parentNode){
-            var className = 'alert-success';
-            var iconName = 'fa fa-check-circle';
-            var text = 'Alterado com sucesso'
-            if(response == false){
-                var className = 'alert-danger';
-                var iconName = 'fa fa-times-circle';
-                var text = 'Algo correu mal'
-            }
-            var newNode = document.createElement('div');
-            newNode.classList.add('alert', className, 'alert-dismissible');
-            newNode.innerHTML = `
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <i class="fa ` + iconName +`"></i> ` + text;
-            var insertedNode = insertAfter(newNode, parentNode);
-        }
-    /* Creates the alert area to indicate success or issue at update */
-
-    /* Inserts after specified parent node */
-        function insertAfter(newNode, referenceNode) {
-            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-        }
-    /* Inserts after specified parent node */
     };
 /* Edit page input collector */
+
+/* Creates the alert area to indicate success or issue at update */
+    function createAlert(response, parentNode){
+        var className = 'alert-success';
+        var iconName = 'fa fa-check-circle';
+        var text = 'Alterado com sucesso'
+        if(response == false){
+            var className = 'alert-danger';
+            var iconName = 'fa fa-times-circle';
+            var text = 'Algo correu mal'
+        }
+        var newNode = document.createElement('div');
+        newNode.classList.add('alert', className, 'alert-dismissible');
+        newNode.innerHTML = `
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="fa ` + iconName +`"></i> ` + text;
+        var insertedNode = insertAfter(newNode, parentNode);
+    }
+/* Creates the alert area to indicate success or issue at update */
+
+/* Inserts after specified parent node */
+    function insertAfter(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    }
+/* Inserts after specified parent node */
 
 /* Additional support functions */
     function filterContent(arrayContent, contentType){
@@ -295,8 +325,6 @@
         return obj;
     }
 /* Additional support functions */
-
-
 
 /* Dummy text filler function */
     function inputFiller(type){

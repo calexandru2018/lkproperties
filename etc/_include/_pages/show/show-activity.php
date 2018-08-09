@@ -1,7 +1,6 @@
 <?php
     include_once('_include/_models/activity.php');
     $activity = new Activity($MAIN->db);
-    var_dump($activity->fetchAll());
 ?>
 <h3 class="page-title">Actividades</h3>
 <div class="panel">

@@ -39,39 +39,17 @@
         }
         /* fetchsc had to be fetched as an assoc array, so it could be arranged based on language */
         public function fetchSC(int $scID){
-            $sqlFetch2 = '
-                SELECT 
-                    sc_question_translation.questionTranslated as contentResponse, 
-                    sc_question_translation.langCode 
-                FROM 
-                    sc_question_translation
-                where 
-                    sc_question_translation.sc_link_ID = "'.$scID.'"
-                UNION
-                SELECT 
-                    sc_answer_translation.answerTranslated, 
-                    sc_answer_translation.langCode 
-                FROM 
-                    sc_answer_translation
-                where 
-                    sc_answer_translation.sc_link_ID = "'.$scID.'"
-            ';
-            
             $sqlFetch = '
                 select
                     *
                 from
-                    sc_link
-                left join
-                    sc_translation
-                on
-                    sc_link.sc_link_ID = sc_translation.sc_link_ID
+                    common_service_translation
                 where
-                    sc_link.sc_link_ID = "'.$scID.'"
+                common_service_translation.common_service_link_ID = "'.$scID.'"
             ';
-            $queryResult = $this->db->query($sqlFetch2);
+            $queryResult = $this->db->query($sqlFetch);
             while($r=$queryResult->fetch_assoc()){
-                $output[$r['langCode']][] = $r['contentResponse'];
+                $output[$r['langCode']] = $r;
             }
             return $output;
         }
@@ -125,32 +103,38 @@
                             "'.$content[$this->langList['english']][$c].'"
                         )
                 ';
+                $toReturn[$c][] = [
+                    $insertedID[$c],
+                    $content[$this->langList['portuguese']][$c],
+                    'Agora',
+                    '<a href="?edit=service-common&id='.$insertedID[$c].'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                    <button class="btn btn-danger btn-xs pull-right" id="delete-service_common"><span class="lnr lnr-trash"></span></button>'
+                        
+                ];
                 $queryInsertSCTranslation = $this->db->query($sqlInsertSCTranslation);
                 
                 if($this->db->error)
                     $errorCather[] = $this->db->error;
-                else
-                    $errorCather[$c][] = 'worked';
                 
             }
             if(empty($errorCatcher))
-                return true;
+                return $toReturn;
             else
                 return $errorCatcher;
         }
         public function deleteSC(int $scID){
             $sqlDelete = '
                 delete from 
-                    sc_link 
+                    common_service_link 
                 where 
-                    sc_link_ID = '.$scID;
+                    common_service_link_ID = '.$scID;
             $queryDelete = $this->db->query($sqlDelete);
-            if($this->db->affected_rows == 1)
-                return true;
+            if($this->db->error)
+                return $this->db->error;
             else
-                return false;
+                return true;
         }
-        public function updateSCQuestion(int $scID, array $scNames){
+        public function updateSC(int $scID, array $scNames){
             $langSortedscName = array();
             $errorCatcher = array();
             $langCounter = 0;
@@ -162,51 +146,21 @@
             foreach($langSortedscName as $lang => $name){
                 $sqlUpdatesc = '
                     update 
-                        sc_question_translation 
+                        common_service_translation 
                     set 
-                        questionTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
+                        serviceTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
                     where 
                         langCode = "'.$lang.'"
                     and
-                        sc_link_ID = '.$scID;
+                        common_service_link_ID = '.$scID;
                 $queryUpdateDes = $this->db->query($sqlUpdatesc);
                 if($this->db->error)
                     $errorCather[] = $this->db->error;
-                
             }
             if(empty($errorCather))
                 return true;
             else
                 return $errorCather;
-        }
-        public function updateSCAnswer(int $scID, array $scDescs){
-            $langSortedscDesc = array();
-            $errorCatcher = array();
-            $langCounter = 0;
-            foreach($scDescs as $key => $value){
-                $holder[] = explode('-', $key);                
-                $langSortedscDesc[strtolower($holder[$langCounter][1])][] = $value;
-                $langCounter++;
-            }
-            foreach($langSortedscDesc as $lang => $desc){
-                $sqlUpdatesc = '
-                    update 
-                        sc_answer_translation 
-                    set 
-                        answerTranslated = "'.mysqli_real_escape_string($this->db, $desc[0]).'"
-                    where 
-                        langCode = "'.$lang.'"
-                        and
-                        sc_link_ID = '.$scID;
-                $queryUpdateAdmin = $this->db->query($sqlUpdatesc);
-                if($this->db->error)
-                    $errorCather[] = $this->db->error;
-                
-            }
-            if(empty($errorCather))
-                return true;
-            else
-                return false;
         }
         /* CONTROL CUSTOM FUNCTIONS */
         private function sanitizeInput(array $inputArray){
@@ -220,7 +174,7 @@
 
         /* Checks if requirments are met to edit the administrator */
         public function showEditPage(string $contentCategory, int $contentID, bool $scExists){
-            if($contentCategory === "sc" && is_int($contentID)){
+            if($contentCategory === "service-common" && is_int($contentID)){
                 $x = 1;
             }else{ 
                 $x = 0;

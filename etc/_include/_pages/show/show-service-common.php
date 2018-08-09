@@ -15,13 +15,13 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(PT)</span>
-                            <input type="text" name="service_CommonName-PT" class="form-control">
+                            <input type="text" name="service_commonName-PT" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(EN)</span>
-                            <input type="text" name="service_CommonName-EN" class="form-control">
+                            <input type="text" name="service_commonName-EN" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <input type="hidden" id="rowCounter" name="rowCounter" />
-                        <button  type="button" data-toggle="collapse" class="btn btn-success pull-right"  id="add-service_Common">Inserir</button>
+                        <button  type="button" data-toggle="collapse" class="btn btn-success pull-right"  id="add-service_common">Inserir</button>
                     </div>
                 </div>
             </li>
@@ -50,7 +50,7 @@
     </div>
     <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-hover" id="service_Common-table">
+            <table class="table table-hover" id="service_common-table">
                 <thead>
                     <th>ID</th>
                     <th>Nome(PT)</th>
@@ -61,13 +61,13 @@
                 <?php
                     $resp = $sc->fetchAll();
                     for($scCounter = 0; $scCounter < count($resp); $scCounter++){
-                        echo '<tr data-content-type="service_Common" data-content-id="'.$resp[$scCounter]->common_service_link_ID.'">';
+                        echo '<tr data-content-type="service_common" data-content-id="'.$resp[$scCounter]->common_service_link_ID.'">';
                         echo '<td>'.$resp[$scCounter]->common_service_link_ID.'</td>';
                         echo '<td>'.$resp[$scCounter]->serviceTranslated.'</td>';
                         echo '<td>'.$resp[$scCounter]->dateCreated.'</td>';
                         echo '<td>
                             <a href="?edit=service-common&id='.$resp[$scCounter]->common_service_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-service_Common"><span class="lnr lnr-trash"></span></button>
+                            <button class="btn btn-danger btn-xs pull-right" id="delete-service_common"><span class="lnr lnr-trash"></span></button>
                         </td></tr>';
                     }
                 ?>
@@ -79,21 +79,23 @@
 <script>
     $(document).ready(function() {
         /* Create new entry */
-            document.getElementById('add-service_Common').onclick = function(){
-                addContent(this.id, true, true);
+            document.getElementById('add-service_common').onclick = function(){
+                addContent(this.id, false, true);
             };
         /* Create new entry */
 
-        /* Delete service_Common start function */
-            $(document).on('click', '#delete-service_Common', function(){
+        /* Delete service_common start function */
+            $(document).on('click', '#delete-service_common', function(){
                 let data = $(this).closest('tr').data();
-                modalWindow('modal-window',data['contentType'], data['contentId']);
+                var contentHolder = data['contentType'].split('_');
+                var contentType = contentHolder[0] + '-' + contentHolder[1];
+                modalWindow('modal-window',contentType, data['contentId']);
             });
-        /* Delete service_Common start function */
+        /* Delete service_common start function */
 
         /* fill input with dummy text */
             document.getElementById('puplate-input').onclick = function(){
-                inputFiller('service_Common');
+                inputFiller('service_common');
             }
         /* fill input with dummy text */
 
@@ -115,13 +117,13 @@
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(PT)</span>
-                                <input type="text" name="service_CommonName-PT" class="form-control">
+                                <input type="text" name="service_commonName-PT" class="form-control">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(EN)</span>
-                                <input type="text" name="service_CommonName-EN" class="form-control">
+                                <input type="text" name="service_commonName-EN" class="form-control">
                             </div>
                         </div>
                     `);

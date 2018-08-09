@@ -2,12 +2,12 @@
     $_POST = json_decode(file_get_contents('php://input'), true);
 
     require_once('../../_include/_models/db.php');
-    require_once('../../_include/_models/faq.php');
+    require_once('../../_include/_models/service-common.php');
     $conn = new Database();
-    $faq = new Faq($conn->db);
-    $response = $faq->deleteFaq($_POST['contentID']);
+    $sc = new SC($conn->db);
+    $response = $sc->deleteSC($_POST['contentID']);
 
-    $faq->closeConnection($conn->db);
+    $sc->closeConnection($conn->db);
 
     echo json_encode($response);
 ?>
