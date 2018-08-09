@@ -2,19 +2,17 @@
     $_POST = json_decode(file_get_contents('php://input'), true);
 
     require_once('../../_include/_models/db.php');
-    require_once('../../_include/_models/activity.php');
+    require_once('../../_include/_models/faq.php');
     $conn = new Database();
-    $activity = new Activity($conn->db);
+    $faq = new Faq($conn->db);
     switch($_POST['contentType']){
-        case 'saveName': $response = $activity->updateActivityName($_POST['contentID'], $_POST['userInput']);
+        case 'saveQuestion': $response = $faq->updateFaqQuestion($_POST['contentID'], $_POST['userInput']);
             break;
-        case 'saveDesc': $response = $activity->updateActivityDesc($_POST['contentID'], $_POST['userInput']);
-            break;
-        case 'saveOther': $response = $activity->updateActivityOther($_POST['contentID'], $_POST['userInput']['activityCityName'][0]);
+        case 'saveAnswer': $response = $faq->updateFaqAnswer($_POST['contentID'], $_POST['userInput']);
             break;
     }
 
-    $activity->closeConnection($conn->db);
+    $faq->closeConnection($conn->db);
 
     echo json_encode($response);
 ?>

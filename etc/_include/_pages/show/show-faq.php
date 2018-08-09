@@ -50,7 +50,7 @@
                 <thead>
                     <th>ID</th>
                     <th>Pergunta(PT)</th>
-                    <th>Pergunta(EN)</th>
+                    <th>Resposta(PT)</th>
                     <th>Ação</th>
                 </thead>
                 <tbody>

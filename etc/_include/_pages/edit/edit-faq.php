@@ -3,11 +3,10 @@
     $faq = new Faq($MAIN->db);
     $faqData = $faq->fetchFaq($_GET['id']);
     $canEdit = $faq->showEditPage($_GET["edit"], $_GET["id"], empty($faqData));
-    var_dump($faqData);
     if($canEdit === 1)
     {
 ?>
-    <h3 class="page-title">FAQ: <?php echo $faqData['pt']['questionTranslated']; ?></h3>
+    <h3 class="page-title">FAQ: <?php echo $faqData['pt'][0]; ?></h3>
     <div class="panel panel-primary">
         <div class="panel-heading">
             Perguntas
@@ -17,13 +16,13 @@
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon">Pergunta(PT)</span>
-                        <input type="text" name="faqQuestion-PT" class="form-control" value="<?php echo $faqData['pt']['questionTranslated'];?>">
+                        <input type="text" name="faqQuestion-PT" class="form-control" value="<?php echo $faqData['pt'][0];?>">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon">Pergunta(EN)</span>
-                        <input type="text" name="faqQuestion-EN" class="form-control" value="<?php echo $faqData['en']['questionTranslated'];?>">
+                        <input type="text" name="faqQuestion-EN" class="form-control" value="<?php echo $faqData['en'][0];?>">
                     </div>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
@@ -41,12 +40,12 @@
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <span class="input-group-addon" >Resposta(PT)</span>
                     <textarea name="faqAnswer-PT" id="faqAnswerPT" class="form-control" rows="4"></textarea>
-                    <div id="faqDescENHolder" style="visibility: hidden"><?php echo $faqData['pt']['answerTranslated'];?></div>
+                    <div id="faqAnswerPTHolder" style="visibility: hidden"><?php echo $faqData['pt'][1];?></div>
                     </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <span class="input-group-addon" >Resposta(EN)</span>
                     <textarea name="faqAnswer-EN" id="faqAnswerEN" class="form-control" rows="4"></textarea>
-                    <div id="faqDescENHolder" style="visibility: hidden"><?php echo $faqData['en']['answerTranslated'];?></div>
+                    <div id="faqAnswerENHolder" style="visibility: hidden"><?php echo $faqData['en'][1];?></div>
                     </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                     <button  type="button" class="btn btn-success pull-right save" id="faq-saveAnswer">Guardar Alteração</button>
@@ -59,10 +58,10 @@
             baguetteBox.run('.gallery-block');
             CKEDITOR.replace( 'faqAnswerPT' );
             CKEDITOR.replace( 'faqAnswerEN' );
-            var descPT = document.querySelector('#faqDescPTHolder').innerHTML;
-            var descEN = document.querySelector('#faqDescENHolder').innerHTML;
-            CKEDITOR.instances['faqDescPT'].setData(descPT) ;
-            CKEDITOR.instances['faqDescEN'].setData(descEN) ;
+            var descPT = document.querySelector('#faqAnswerPTHolder').innerHTML;
+            var descEN = document.querySelector('#faqAnswerENHolder').innerHTML;
+            CKEDITOR.instances['faqAnswerPT'].setData(descPT) ;
+            CKEDITOR.instances['faqAnswerEN'].setData(descEN) ;
         });
     </script>
 <?php } ?>

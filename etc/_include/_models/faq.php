@@ -46,20 +46,21 @@
         /* fetchfaq had to be fetched as an assoc array, so it could be arranged based on language */
         public function fetchFaq(int $faqID){
             $sqlFetch2 = '
-                select 
-                    *
-                from 
-                    faq_link
-                left join 
-                    faq_question_translation 
-                on
-                    faq_link.faq_link_ID = faq_question_translation.faq_link_ID
-                LEFT JOIN
+                SELECT 
+                    faq_question_translation.questionTranslated as contentResponse, 
+                    faq_question_translation.langCode 
+                FROM 
+                    faq_question_translation
+                where 
+                    faq_question_translation.faq_link_ID = "'.$faqID.'"
+                UNION
+                SELECT 
+                    faq_answer_translation.answerTranslated, 
+                    faq_answer_translation.langCode 
+                FROM 
                     faq_answer_translation
-                ON
-                    faq_link.faq_link_ID = faq_answer_translation.faq_link_ID
-                where
-                    faq_link.faq_link_ID = "'.$faqID.'"
+                where 
+                    faq_answer_translation.faq_link_ID = "'.$faqID.'"
             ';
             
             $sqlFetch = '
@@ -76,12 +77,7 @@
             ';
             $queryResult = $this->db->query($sqlFetch2);
             while($r=$queryResult->fetch_assoc()){
-                switch($r['langCode']){
-                    case $this->langList['portuguese']: $output[$this->langList['portuguese']] = $r;
-                        break;
-                    case $this->langList['english']: $output[$this->langList['english']] = $r;
-                        break;
-                }
+                $output[$r['langCode']][] = $r['contentResponse'];
             }
             return $output;
         }
@@ -194,7 +190,7 @@
         }
         public function updateFaqQuestion(int $faqID, array $faqNames){
             $langSortedfaqName = array();
-            $errorCather = 0;
+            $errorCatcher = array();
             $langCounter = 0;
             foreach($faqNames as $key => $value){
                 $holder[] = explode('-', $key);                
@@ -206,26 +202,24 @@
                     update 
                         faq_question_translation 
                     set 
-                        nameTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
+                        questionTranslated = "'.mysqli_real_escape_string($this->db, $name[0]).'"
                     where 
                         langCode = "'.$lang.'"
                     and
                         faq_link_ID = '.$faqID;
                 $queryUpdateDes = $this->db->query($sqlUpdatefaq);
-                if($this->db->affected_rows == 1)
-                    $errorCather += 0;
-                else
-                    $errorCather += 1;
+                if($this->db->error)
+                    $errorCather[] = $this->db->error;
                 
             }
-            if($errorCather == 0)
+            if(empty($errorCather))
                 return true;
             else
-                return false;
+                return $errorCather;
         }
         public function updateFaqAnswer(int $faqID, array $faqDescs){
             $langSortedfaqDesc = array();
-            $errorCather = 0;
+            $errorCatcher = array();
             $langCounter = 0;
             foreach($faqDescs as $key => $value){
                 $holder[] = explode('-', $key);                
@@ -235,21 +229,19 @@
             foreach($langSortedfaqDesc as $lang => $desc){
                 $sqlUpdatefaq = '
                     update 
-                        faq_translation 
+                        faq_answer_translation 
                     set 
-                        descriptionTranslated = "'.mysqli_real_escape_string($this->db, $desc[0]).'"
+                        answerTranslated = "'.mysqli_real_escape_string($this->db, $desc[0]).'"
                     where 
                         langCode = "'.$lang.'"
                         and
                         faq_link_ID = '.$faqID;
                 $queryUpdateAdmin = $this->db->query($sqlUpdatefaq);
                 if($this->db->error)
-                    $errorCather += 1;
-                else
-                    $errorCather += 0;
+                    $errorCather[] = $this->db->error;
                 
             }
-            if($errorCather == 0)
+            if(empty($errorCather))
                 return true;
             else
                 return false;
