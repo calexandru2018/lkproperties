@@ -4,33 +4,35 @@
         <ul class="nav">
             <li>
                 <button href="#addUniqueService" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo Serviço Único</button>
+                <button type="button" class="btn btn-warning pull-right" id="puplate-input">Populate input</button>
+
                 <div id="addUniqueService" class="row collapse">
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(PT)</span>
-                            <input type="text" name="uniqueServiceNamePT-1" class="form-control">
+                            <input type="text" name="service_uniqueName-PT" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(EN)</span>
-                            <input type="text" name="uniqueServiceNameEN-1" class="form-control">
+                            <input type="text" name="service_uniqueName-EN" class="form-control">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
-                            <span class="input-group-addon" style="padding: 0 !important">
-                                <button  type="button" data-toggle="collapse" class="btn btn-info btn-block pull-left"  id="addFields">Adicionar</button>
-                            </span>
-                            <input type="text" name="poiName-PT" id="rowsToAdd"  class="form-control" style="padding: 17px 10px;">
                             <span class="input-group-addon">
                                 Novos Campos
+                            </span>
+                            <input type="text" id="rowsToAdd" class="form-control" style="padding: 17px 10px;">
+                            <span class="input-group-addon" style="padding: 0 !important">
+                                <button  type="button" data-toggle="collapse" class="btn btn-info btn-block pull-left"  id="addFields">Adicionar</button>
                             </span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <input type="hidden" id="rowCounter" name="rowCounter" />
-                        <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right">Inserir</button>
+                        <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right"  id="add-service_unique">Inserir</button>
                     </div>
                 </div>
             </li>
@@ -43,7 +45,7 @@
     </div>
     <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover"id="service_unique-table">
                 <thead>
                     <th>ID</th>
                     <th>Nome(PT)</th>
@@ -51,51 +53,7 @@
                     <th>Ação</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Garagem Privada
-                        </td>
-                        <td>
-                            Private Garage
-                        </td>
-                        <td>
-                            <a href="?edit=service-unique&id=2" class="btn btn-info btn-xs pull-left"style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Terreno Próprio
-                        </td>
-                        <td>
-                            Own land
-                        </td>
-                        <td>
-                            <a href="?edit=service-unique&id=2" class="btn btn-info btn-xs pull-left"style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Piscina Privada
-                        </td>
-                        <td>
-                            Private Pool
-                        </td>
-                        <td>
-                            <a href="?edit=service-unique&id=2" class="btn btn-info btn-xs pull-left"style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right"><span class="lnr lnr-trash"></span></button>
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -103,6 +61,26 @@
 </div>
 <script>
     $(document).ready(function() {
+        /* Create new entry */
+            document.getElementById('add-service_unique').onclick = function(){
+                addContent(this.id, true, false);
+            };
+        /* Create new entry */
+
+        /* Delete service_unique start function */
+            $(document).on('click', '#delete-service_unique', function(){
+                let data = $(this).closest('tr').data();
+                var contentHolder = data['contentType'].split('_');
+                var contentType = contentHolder[0] + '-' + contentHolder[1];
+                modalWindow('modal-window',contentType, data['contentId']);
+            });
+        /* Delete service_unique start function */
+
+        /* fill input with dummy text */
+            document.getElementById('puplate-input').onclick = function(){
+                inputFiller('service_unique');
+            }
+        /* fill input with dummy text */
         var counter = 0;
         $(document).on('click', '#addFields', function(){
             var rowsToAdd = $('#rowsToAdd').val();
@@ -121,13 +99,13 @@
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(PT)</span>
-                                <input type="text" name="uniqueServiceNamePT-` + (parseInt(rowCheck) + parseInt((counter + 1)))  + `" class="form-control">
+                                <input type="text" name="service_uniqueName-PT" class="form-control">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(EN)</span>
-                                <input type="text" name="uniqueServiceNameEN-` + (parseInt(rowCheck) + parseInt((counter + 1)))  + `" class="form-control">
+                                <input type="text" name="service_uniqueName-EN" class="form-control">
                             </div>
                         </div>
                         <hr>
