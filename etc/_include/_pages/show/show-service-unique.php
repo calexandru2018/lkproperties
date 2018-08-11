@@ -1,3 +1,8 @@
+<?php
+    include_once('_include/_models/service-unique.php');
+    $su = new SU($MAIN->db);
+    // var_dump($administrator->showAll());
+?>
 <h3 class="page-title">Serviços Únicos</h3>
 <div class="panel">
     <div class="panel-heading">
@@ -49,11 +54,23 @@
                 <thead>
                     <th>ID</th>
                     <th>Nome(PT)</th>
-                    <th>Nome(EN)</th>
+                    <th>Adicionado</th>
                     <th>Ação</th>
                 </thead>
                 <tbody>
-
+                <?php
+                    $resp = $su->fetchAll();
+                    for($suCounter = 0; $suCounter < count($resp); $suCounter++){
+                        echo '<tr data-content-type="service_unique" data-content-id="'.$resp[$suCounter]->unique_service_link_ID.'">';
+                        echo '<td>'.$resp[$suCounter]->unique_service_link_ID.'</td>';
+                        echo '<td>'.$resp[$suCounter]->uniqueServiceTranslated.'</td>';
+                        echo '<td>'.$resp[$suCounter]->dateCreated.'</td>';
+                        echo '<td>
+                            <a href="?edit=service-unique&id='.$resp[$suCounter]->unique_service_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                            <button class="btn btn-danger btn-xs pull-right" id="delete-service_unique"><span class="lnr lnr-trash"></span></button>
+                        </td></tr>';
+                    }
+                ?>
                 </tbody>
             </table>
         </div>
@@ -63,7 +80,7 @@
     $(document).ready(function() {
         /* Create new entry */
             document.getElementById('add-service_unique').onclick = function(){
-                addContent(this.id, true, false);
+                addContent(this.id, false, true);
             };
         /* Create new entry */
 
