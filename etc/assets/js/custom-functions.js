@@ -4,9 +4,9 @@ function addContent(type, debugMode, postAsync){
     console.clear();
     var splittedID = type.split('-');
     var info = document.querySelectorAll("[name^=" + splittedID[1]);
-    var curatedObject = filterContent(info, splittedID[1]);        
     
-    if(splittedID[1] == 'service_common' || splittedID[1] == 'service_unique' ){
+    /* In case the names contain underscores, then it should be "rewritten" */
+    if(splittedID[1] == 'service_common' || splittedID[1] == 'service_unique' || splittedID[1] == 'to_rent' || splittedID[1] == 'to_sell'){
         var customID = splittedID[1].split('_');
         splittedID[1] = customID[0] + '-' + customID[1].toLowerCase();
         var curatedObject = filterContent(info, splittedID[1]);
@@ -52,6 +52,8 @@ function addContent(type, debugMode, postAsync){
             case 'administrator':
             case 'city':
             case 'poi':
+            case 'to_rent':
+            case 'to_sell':
                 createFirstRow(rowContent, tableRef, dataName);
                 break;
             case 'service_common':
@@ -300,6 +302,12 @@ function addContent(type, debugMode, postAsync){
                     arrayContent[x].value = 1;
                 }else{
                     arrayContent[x].value = 0;
+                }
+            }
+            if(arrayContent[x].type == 'select-multiple'){
+                var cityPoi = $('#' + arrayContent[x].id).find(':selected');
+                for(var c = 0; c < cityPoi.length; c++){
+                    returnObject[arrayContent[x].name + '_' + c] = cityPoi[c].value;
                 }
             }
             if(arrayContent[x].type == 'textarea'){

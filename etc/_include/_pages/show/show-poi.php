@@ -7,10 +7,10 @@
     <div class="panel-heading">
         <ul class="nav">
             <li>
-                <button href="#addpoi" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo POI</button>
+                <button href="#addPoi" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo POI</button>
                 <button type="button" class="btn btn-warning pull-right" id="puplate-input">Populate input</button>
 
-                <div id="addpoi" class="row collapse">
+                <div id="addPoi" class="row collapse">
                     <div class="col-xs-12" style="margin-top: 2%">
                         <label class="fancy-checkbox">
                             <input type="checkbox" name="poiIsPopular" value="1"><span>Destacar como "Popular"</span>
