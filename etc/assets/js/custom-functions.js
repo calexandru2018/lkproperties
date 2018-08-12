@@ -339,20 +339,29 @@ function addContent(type, debugMode, postAsync){
         let info = document.querySelectorAll("[name^=" + type);
         info.forEach(function(el){
             if(el.type == 'textarea'){
-                CKEDITOR.instances[el.id].setData(fill());
+                CKEDITOR.instances[el.id].setData(fill(false));
             }else if(el.name == 'cityPostalCode'){
                 el.value = 8500;
+            }else if(el.type == 'number'){
+                el.value = fill(true);;
             }else{
-                el.value = fill();
+                el.value = fill(false);
             }
         });
     }
-    function fill() {
+    function fill(numberAlso) {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        for (var i = 0; i < 9; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        if(numberAlso == true){
+            var possible = "0123456789";
+            for (var i = 0; i < 4; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }else{
+            for (var i = 0; i < 9; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
 
         return text;
     }

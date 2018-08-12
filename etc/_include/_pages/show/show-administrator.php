@@ -80,8 +80,7 @@
                     <th>Ação</th>
                 </thead>
                 <tbody>
-                    
-                        <?php
+                    <?php
                         $resp = $administrator->fetchAll();
                             for($adminCounter = 0; $adminCounter < count($resp); $adminCounter++){
                                 switch($resp[$adminCounter]->adminPrivilege){
