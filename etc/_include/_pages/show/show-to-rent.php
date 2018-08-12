@@ -6,6 +6,8 @@
     3-Villa
     4-Bungalow
 */
+    include_once('_include/_models/to-rent.php');
+    $toRent = new ToRent($MAIN->db);
 ?>
 <h3 class="page-title">Objectos para Aluger</h3>
 <div class="panel">
@@ -19,7 +21,7 @@
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Tipo de Properiedade</span>
-                            <select class="select bg-white" name="to_rentType" id="to_rentPropertyType" style="width: 100%;">
+                            <select class="select bg-white" name="to_rentPropertyType" id="to_rentPropertyType" style="width: 100%;">
                                 <option value="" selected disabled>Escolha tipo de apartamento...</option>
                                 <option value="1">Apartamento</option>
                                 <option value="2">Casa</option>
@@ -90,12 +92,45 @@
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon">POI/Cidade</span>
+                            <span class="input-group-addon">POI</span>
                             <select class="select bg-white" name="to_rentCityPoi" id="city-poi" style="width: 100%;">
-                                <option value="" selected disabled>Escolha um...</option>
-                                <option value="1">Praia da Rocha</option>
-                                <option value="2">Alvor</option>
-                                <option value="3">Carvoeiro</option>
+                            <option value="null" disabled selected>Escolha um POI...</option>
+                                <?php
+                                    $queryResult = $MAIN->db->query('
+                                        select 
+                                            city_poi_link.city_poi_link_ID,
+                                            city_translation.nameTranslated as cityName,
+                                            poi_translation.nameTranslated as poiName,
+                                            city_link.postalCode
+                                        from
+                                            city_poi_link
+                                        left join
+                                            city_link
+                                        on
+                                            city_poi_link.city_link_ID = city_link.city_link_ID
+                                        left join
+                                            city_translation
+                                        on
+                                            city_link.city_link_ID = city_translation.city_link_ID
+                                        left join
+                                            poi_link
+                                        on
+                                            city_poi_link.poi_link_ID = poi_link.poi_link_ID
+                                        left join
+                                            poi_translation
+                                        on
+                                            poi_link.poi_link_ID = poi_translation.poi_link_ID
+                                        where 
+                                            city_translation.langCode = "pt"
+                                            and
+                                            poi_translation.langCode = "pt"
+                                    ');
+                                    while($r=$queryResult->fetch_object()){
+                                        echo '
+                                            <option value="'.$r->city_poi_link_ID.'-'.$r->postalCode.'">'.$r->cityName.' - '.$r->poiName.'</option>
+                                        ';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -104,11 +139,25 @@
                         <div class="input-group">
                             <span class="input-group-addon">Serviços</span>
                             <select class="select bg-white" name="to_rentCommonService" multiple="multiple" id="common-services" style="width: 100%;">
-                                <option value="1">Utensilios de Cozinha</option>
-                                <option value="2">Utensilios de Loiça</option>
-                                <option value="4">Utensilios de Roupa</option>
-                                <option value="5">Utensilios de Limpeza</option>
-                                <option value="6">Maquina de lavar</option>
+                                <?php
+                                    $queryCSResult = $MAIN->db->query('
+                                        select 
+                                            *
+                                        from    
+                                            common_service_link
+                                        left join
+                                            common_service_translation
+                                        on
+                                            common_service_link.common_service_link_ID = common_service_translation.common_service_link_ID
+                                        where
+                                            langCode = "pt"
+                                    ');
+                                    while($cs=$queryCSResult->fetch_object()){
+                                        echo '
+                                            <option value="'.$cs->common_service_link_ID.'">'.$cs->serviceTranslated.'</option>
+                                        ';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -116,9 +165,25 @@
                         <div class="input-group">
                             <span class="input-group-addon">Serviços Especificos</span>
                             <select class="select bg-white" name="to_rentUniqueService" multiple="multiple" id="unique-services" style="width: 100%;">
-                                <option value="1">Barbque</option>
-                                <option value="2">Piscina Privada</option>
-                                <option value="3">Garagem Privada</option>
+                            <?php
+                                    $queryUSResult = $MAIN->db->query('
+                                        select 
+                                            *
+                                        from    
+                                            unique_service_link
+                                        left join
+                                            unique_service_translation
+                                        on
+                                            unique_service_link.unique_service_link_ID = unique_service_translation.unique_service_link_ID
+                                        where
+                                            langCode = "pt"
+                                    ');
+                                    while($us=$queryUSResult->fetch_object()){
+                                        echo '
+                                            <option value="'.$us->unique_service_link_ID.'">'.$us->uniqueServiceTranslated.'</option>
+                                        ';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>

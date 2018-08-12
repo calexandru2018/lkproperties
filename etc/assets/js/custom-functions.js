@@ -217,16 +217,13 @@ function addContent(type, debugMode, postAsync){
     function editPageInputCollector() {  
         console.clear();
         var button_id = this.id.split('-');
-        if(button_id[0].indexOf('_')){
+        if(button_id[0].indexOf('_') == true){
             var tempIDHolder = button_id[0].split('_');
             button_id[0] = tempIDHolder[0] + '-' + tempIDHolder[1];
         }
         var userInput = {};
         var buttonLocation = this;
         this.closest('.panel-body').querySelectorAll('input, select, textarea').forEach( function(inp) {
-            if(inp.type != 'checkbox'){
-                userInput[inp.name] = [inp.value];
-            }
             if(inp.type == 'checkbox'){
                 if(inp.checked)
                     userInput[inp.name] = 'checked';
@@ -235,6 +232,9 @@ function addContent(type, debugMode, postAsync){
             }
             if(inp.type == 'textarea'){
                 userInput[inp.name] = CKEDITOR.instances[inp.id].getData();
+            }
+            if(inp.type != 'checkbox'){
+                userInput[inp.name] = [inp.value];
             }
         });
         var url = new URL(window.location.href);
