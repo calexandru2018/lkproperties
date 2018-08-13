@@ -124,7 +124,7 @@
             }
 
 			public function fetchToRentServiceCommon(int $propertyID){
-				$sqlFetch = '
+				$sqlFetch = $this->db->query('
 					select 
 						common_service_translation.common_service_link_ID,
 						common_service_translation.serviceTranslated
@@ -142,15 +142,16 @@
 						property_common_service.property_ID = "'.$propertyID.'" 
 					and 
 						common_service_translation.langCode = "'.$this->langList['portuguese'].'"
-				';
-				while($r=$sqlFetch->fetch_object()){
+				');
+
+				while($r=$sqlFetch->fetch_assoc()){
 						$output[]= $r;
 				}
 				return $output;
 			}
 
 			public function fetchToRentServiceUnique(int $propertyID){
-				$sqlFetch = '
+				$sqlFetch = $this->db->query('
 					select 
 						unique_service_translation.unique_service_link_ID,
 						unique_service_translation.uniqueServiceTranslated
@@ -168,23 +169,23 @@
 						property_unique_service.property_ID = "'.$propertyID.'" 
 					and 
 						unique_service_translation.langCode = "'.$this->langList['portuguese'].'"
-				';
-				while($r=$sqlFetch->fetch_object()){
+				');
+				while($r=$sqlFetch->fetch_assoc()){
 						$output[]= $r;
 				}
 				return $output;
 			}
 
 			public function fetchToRentPrice(int $propertyID){
-				$sqlFetch = '
+				$sqlFetch = $this->db->query('
 					select 
 						*
 					from
 						property_price
 					where
 						property_ID = "'.$propertyID.'"
-				';
-				while($r=$sqlFetch->fetch_object()){
+				');
+				while($r=$sqlFetch->fetch_assoc()){
 					$output[]= $r;
 				}
 				return $output;

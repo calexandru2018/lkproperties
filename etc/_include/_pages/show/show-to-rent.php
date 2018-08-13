@@ -189,7 +189,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                         <div class="input-group">
                             <span class="input-group-addon">Serviços Especificos</span>
                             <select class="select bg-white" name="to_rentUniqueService" multiple="multiple" id="unique-services" style="width: 100%;">
-                            <?php
+                                <?php
                                     $queryUSResult = $MAIN->db->query('
                                         select 
                                             *
