@@ -64,8 +64,131 @@
             }
 
             public function fetchToRent(){
+				$sqlFetchProperty = '
+					select 
+						property.*,
+						title_translation.title,
+						title_translation.langCode as titleLangCode,
+						short_desc_translation.shortDescription,
+						short_desc_translation.langCode as shortLangCode,
+						long_desc_translation.longDescription,
+						long_desc_translation.langCode as longLangCode,
+						property_city_poi.city_poi_link_ID
+					from 
+						property
+					inner join
+						title_link
+					on
+						property.property_ID = title_link.property_ID
+					left join
+						title_translation
+					on
+						title_link.title_link_ID = title_translation.title_link_ID
+					inner join
+						short_desc_link
+					on
+						property.property_ID = short_desc_link.property_ID
+					left join
+						short_desc_translation
+					on
+						short_desc_link.short_desc_link_ID = short_desc_translation.short_desc_link_ID
+					inner join
+						long_desc_link
+					on
+						property.property_ID = long_desc_link.property_ID
+					left join
+						long_desc_translation
+					on
+						long_desc_link.long_desc_link_ID = long_desc_translation.long_desc_link_ID
+					left join 
+						property_city_poi
+					on	
+						property.property_ID = property_city_poi.property_ID
+					where
+						property.property_ID = 10
+				';
+				$queryFetchProperty = $this->db->query($sqlFetchProperty);
+				if($this->db->error)
+					return $this->db->error;
 
+				$c = 0;
+				while($r=$queryFetchProperty->fetch_assoc()){
+					if($r['titleLangCode'] == $this->langList['portuguese'] || $r['shortLangCode'] == $this->langList['portuguese'] || $r['longLangCode'] == $this->langList['portuguese']){
+						$output[$this->langList['portuguese'].'_'.$c][] = $r;
+					}elseif($r['titleLangCode'] == $this->langList['english'] || $r['shortLangCode'] == $this->langList['english'] || $r['longLangCode'] == $this->langList['english']){	
+						$output[$this->langList['english'].'_'.$c][] = $r;
+					}
+					$c++;
+				}
+				return $output;
             }
+
+			public function fetchToRentServiceCommon(int $propertyID){
+				$sqlFetch = '
+					select 
+						common_service_translation.common_service_link_ID,
+						common_service_translation.serviceTranslated
+					FROM
+						common_service_translation
+					RIGHT JOIN
+						common_service_link
+					ON
+						common_service_translation.common_service_link_ID = common_service_link.common_service_link_ID
+					right JOIN
+						property_common_service
+					ON
+						common_service_link.common_service_link_ID = property_common_service.common_service_link_ID 
+					where 
+						property_common_service.property_ID = "'.$propertyID.'" 
+					and 
+						common_service_translation.langCode = "'.$this->langList['portuguese'].'"
+				';
+				while($r=$sqlFetch->fetch_object()){
+						$output[]= $r;
+				}
+				return $output;
+			}
+
+			public function fetchToRentServiceUnique(int $propertyID){
+				$sqlFetch = '
+					select 
+						unique_service_translation.unique_service_link_ID,
+						unique_service_translation.uniqueServiceTranslated
+					FROM
+						unique_service_translation
+					RIGHT JOIN
+						unique_service_link
+					ON
+						unique_service_translation.unique_service_link_ID = unique_service_link.unique_service_link_ID
+					right JOIN
+						property_unique_service
+					ON
+						unique_service_link.unique_service_link_ID = property_unique_service.unique_service_link_ID 
+					where 
+						property_unique_service.property_ID = "'.$propertyID.'" 
+					and 
+						unique_service_translation.langCode = "'.$this->langList['portuguese'].'"
+				';
+				while($r=$sqlFetch->fetch_object()){
+						$output[]= $r;
+				}
+				return $output;
+			}
+
+			public function fetchToRentPrice(int $propertyID){
+				$sqlFetch = '
+					select 
+						*
+					from
+						property_price
+					where
+						property_ID = "'.$propertyID.'"
+				';
+				while($r=$sqlFetch->fetch_object()){
+					$output[]= $r;
+				}
+				return $output;
+			}
 
             public function insertToRent(array $inputArray){
                 $toRentData = $this->sanitizeInput($inputArray);
@@ -371,11 +494,56 @@
                 return true;
             }
 
-            public function addToRentPhoto(){
-                
+            public function addToRentPhoto(int $propertyID, string $thumbnailURL, string  $fullsizeURL){
+				$sqlInsert = '
+					insert into
+						property_gallery(
+							property_ID,
+							thumbnailURL,
+							fullsizeURL
+						)
+						values(
+							"'.mysqli_real_escape_string($this->db, $propertyID).'",
+							"'.mysqli_real_escape_string($this->db, $thumbnailURL).'",
+							"'.mysqli_real_escape_string($this->db, $fullsizeURL).'"
+						)
+				';
+			$queryInsert = $this->db->query($sqlInsert);
+				if($this->db->error)
+					return false;
+				else
+					return true;
             }
-            public function deleteToRentPhoto(){
-
+            public function deleteToRentPhoto(string $photoID){
+				$propertyPhotoID = explode('-', $photoID);
+				$sqlSearchURL = '
+					select 
+						fullsizeURL,
+						thumbnailURL
+					from
+						property_gallery
+					where 
+						property_link_ID = "'.$propertyPhotoID[0].'"
+						and
+						property_gallery_ID = "'.$propertyPhotoID[1].'"
+				';
+				if($queryDelete = $this->db->query($sqlSearchURL)){
+					$urlHolder = $queryDelete->fetch_object();
+					$sqlDeletePhoto = '
+						delete from
+							property_gallery
+						where   
+							property_link_ID = "'.$propertyPhotoID[0].'"
+							and
+							property_gallery_ID = "'.$propertyPhotoID[1].'"';
+					
+					$queryDelete = $this->db->query($sqlDeletePhoto);
+					if($queryDelete){
+						return $urlHolder;
+					}else {
+						return false;
+					}
+				}
             }
         /* Database Functions */
 
@@ -445,7 +613,7 @@
 
             /* Checks if requirments are met to edit the administrator */
             public function showEditPage(string $var1, int $var2, bool $adminExists){
-                if($var1 === "administrator" && is_int($var2)){
+                if($var1 === "to-rent" && is_int($var2)){
                     $x = 1;
                 }else{ 
                     $x = 0;

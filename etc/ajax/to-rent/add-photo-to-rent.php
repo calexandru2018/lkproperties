@@ -43,7 +43,7 @@
 
         /* Thumbnail handler */
             $thumbnailHandle->image_convert = 'jpeg';
-            $thumbnailHandle->jpeg_quality = 40;
+            $thumbnailHandle->jpeg_quality = 70;
             $thumbnailHandle->file_safe_name = true;
             $thumbnailHandle->file_auto_rename = true;
             $thumbnailHandle->image_resize = true;

@@ -118,7 +118,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                         <div class="input-group">
                             <span class="input-group-addon">POI</span>
                             <select class="select bg-white" name="to_rentCityPoi" id="city-poi" style="width: 100%;">
-                            <option value="null" disabled selected>Escolha um POI...</option>
+                                <option value="null" disabled selected>Escolha um POI...</option>
                                 <?php
                                     $queryResult = $MAIN->db->query('
                                         select 
@@ -358,7 +358,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                             <tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'" id="collapseGallery-'.$resp[$toRentCounter]->property_ID.'" class="collapse">
                                 <td colspan="14" class="bg-info">
                                     <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$toRentCounter]->property_ID.'">
-                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]">
+                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
                                         <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                     </form>
                                 </td>
@@ -384,7 +384,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
         
         /* Upload script */
         var newUpload = new uploadPhotos('ajax/to-rent/add-photo-to-rent.php', document.querySelectorAll('.file-upload'));
-            // newUpload.upload();
+            newUpload.upload();
         /* Upload script */
 
         /* Create new entry */
@@ -403,7 +403,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
         /* Delete poi start function */
 
         /* fill input with dummy text */
-        document.getElementById('puplate-input').onclick = function(){
+            document.getElementById('puplate-input').onclick = function(){
                 inputFiller('to_rent');
             }
         /* fill input with dummy text */
