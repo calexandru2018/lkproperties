@@ -73,7 +73,8 @@
 						short_desc_translation.langCode as shortLangCode,
 						long_desc_translation.longDescription,
 						long_desc_translation.langCode as longLangCode,
-						property_city_poi.city_poi_link_ID
+						property_city_poi.city_poi_link_ID,
+                        property_city_poi.property_city_poi_ID
 					from 
 						property
 					inner join
@@ -179,13 +180,23 @@
 			public function fetchToRentPrice(int $propertyID){
 				$sqlFetch = $this->db->query('
 					select 
-						*
+						property_price_ID,
+						cat1,
+						cat2,
+						cat3,
+						cat4,
+						cat5,
+						cat6,
+						cat7,
+						cat8,
+						cat9,
+						cat10
 					from
 						property_price
 					where
 						property_ID = "'.$propertyID.'"
 				');
-				while($r=$sqlFetch->fetch_assoc()){
+				while($r=$sqlFetch->fetch_row()){
 					$output[]= $r;
 				}
 				return $output;
@@ -488,12 +499,28 @@
                     property 
                 where 
                     property_ID = '.$propertyID;
-            $queryDelete = $this->db->query($sqlDelete);
-            if($this->db->error)
-                return $this->db->error;
-            else
-                return true;
-            }
+				$queryDelete = $this->db->query($sqlDelete);
+				if($this->db->error)
+					return $this->db->error;
+				else
+					return true;
+			}
+
+			public function fetchAllPhotos(string $propertyID){
+				$sqlFetch = '
+					select 
+						*
+					from
+						property_gallery
+					where 
+						property_ID = "'.$propertyID.'"
+				';
+				$queryResult = $this->db->query($sqlFetch);
+				while($r=$queryResult->fetch_object()){
+					$output[] = $r;
+				}
+				return ((empty($output)) ? '': $output);
+			}
 
             public function addToRentPhoto(int $propertyID, string $thumbnailURL, string  $fullsizeURL){
 				$sqlInsert = '
@@ -524,8 +551,8 @@
 					from
 						property_gallery
 					where 
-						property_link_ID = "'.$propertyPhotoID[0].'"
-						and
+						property_ID = "'.$propertyPhotoID[0].'"
+					and
 						property_gallery_ID = "'.$propertyPhotoID[1].'"
 				';
 				if($queryDelete = $this->db->query($sqlSearchURL)){
@@ -534,18 +561,206 @@
 						delete from
 							property_gallery
 						where   
-							property_link_ID = "'.$propertyPhotoID[0].'"
-							and
+							property_ID = "'.$propertyPhotoID[0].'"
+						and
 							property_gallery_ID = "'.$propertyPhotoID[1].'"';
 					
 					$queryDelete = $this->db->query($sqlDeletePhoto);
 					if($queryDelete){
 						return $urlHolder;
 					}else {
-						return false;
+						return 555;
 					}
 				}
-            }
+			}
+			
+			public function updateName(int $propertyID, array $inputArray){
+				$langSortedNames = array();
+				$errorCather = array();
+				$langCounter = 0;
+				foreach($inputArray as $key => $value){
+					$holder[] = explode('-', $key);                
+					$langSortedNames[strtolower($holder[$langCounter][1])][] = $value[0];
+					$langCounter++;
+				}
+				$fetchTitleLinkID = $this->db->query('
+					select 
+						title_link_ID
+					from
+						title_link
+					where
+						property_ID = "'.$propertyID.'"
+				');
+				$fetchedObject = $fetchTitleLinkID->fetch_object();
+				foreach($langSortedNames as $lang => $name){
+					$sqlUpdatepoi = '
+						update 
+							title_translation 
+						set 
+							title = "'.mysqli_real_escape_string($this->db, $name[0]).'"
+						where 
+							langCode = "'.$lang.'"
+						and
+							title_link_ID = '.$fetchedObject->title_link_ID;
+					$queryUpdateDes = $this->db->query($sqlUpdatepoi);
+					if($this->db->error)
+						$errorCather[] = $this->db->error;
+				}
+				if(empty($errorCather))
+					return true;
+				else
+					return false;
+			} 
+			public function updateShortDesc(int $propertyID, array $inputArray){
+				$langSortedNames = array();
+				$errorCather = array();
+				$langCounter = 0;
+				foreach($inputArray as $key => $value){
+					$holder[] = explode('-', $key);                
+					$langSortedNames[strtolower($holder[$langCounter][1])][] = $value[0];
+					$langCounter++;
+				}
+				$fetchTitleLinkID = $this->db->query('
+					select 
+						short_desc_link_ID
+					from
+						short_desc_link
+					where
+						property_ID = "'.$propertyID.'"
+				');
+				$fetchedObject = $fetchTitleLinkID->fetch_object();
+				foreach($langSortedNames as $lang => $name){
+					$sqlUpdatepoi = '
+						update 
+							short_desc_translation 
+						set 
+							shortDescription = "'.mysqli_real_escape_string($this->db, $name[0]).'"
+						where 
+							langCode = "'.$lang.'"
+						and
+							short_desc_link_ID = '.$fetchedObject->short_desc_link_ID;
+					$queryUpdateDes = $this->db->query($sqlUpdatepoi);
+					if($this->db->error)
+						$errorCather[] = $this->db->error;
+				}
+				if(empty($errorCather))
+					return true;
+				else
+					return false;
+			} 
+			public function updateLongDesc(int $propertyID, array $inputArray){
+				$langSortedNames = array();
+				$errorCather = array();
+				$langCounter = 0;
+				var_dump($inputArray);
+				foreach($inputArray as $key => $value){
+					$holder[] = explode('-', $key);                
+					$langSortedNames[strtolower($holder[$langCounter][1])][] = $value;
+					$langCounter++;
+				}
+				var_dump($langSortedNames);
+				$fetchTitleLinkID = $this->db->query('
+					select 
+						long_desc_link_ID
+					from
+						long_desc_link
+					where
+						property_ID = "'.$propertyID.'"
+				');
+				$fetchedObject = $fetchTitleLinkID->fetch_object();
+				foreach($langSortedNames as $lang => $name){
+					$sqlUpdatepoi = '
+						update 
+							long_desc_translation 
+						set 
+							longDescription = "'.mysqli_real_escape_string($this->db, $name[0]).'"
+						where 
+							langCode = "'.$lang.'"
+						and
+							long_desc_link_ID = '.$fetchedObject->long_desc_link_ID;
+					$queryUpdateDes = $this->db->query($sqlUpdatepoi);
+					if($this->db->error)
+						$errorCather[] = $this->db->error;
+				}
+				if(empty($errorCather))
+					return true;
+				else
+					return false;
+			} 
+			public function updateService(int $propertyID, array $inputArray){
+				var_dump($inputArray);
+			}
+			public function updateOther(int $propertyID, array $inputArray){
+				var_dump($inputArray);
+				$errorCatcher = array();
+				$sqlUpdateProperty = '
+					update
+						property
+					set
+						propertyType ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentPropertyType'][0]).'",
+						viewType ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentViewType'][0]).'",
+						hasPoolAccess ="'.(($inputArray['to_rentHasPoolAccess'] == 'checked') ? 1 : 0).'",
+						isVisible ="'.(($inputArray['to_rentIsVisible'] == 'checked') ? 1 : 0).'",
+						roomAmmount ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentRoomAmmount'][0]).'",
+						maxAllowedGuests ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentMaxAllowedGuests'][0]).'",
+						beachDistance ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentBeachDistance'][0]).'"
+				';
+				$queryUpdateProperty = $this->db->query($sqlUpdateProperty);
+				if($this->db->error)
+					$errorCatcher[] = $this->db->error;
+
+				$explodedID = explode('-', $inputArray['to_rentCityPoi'][0]);
+				$sqlUpdatePropertyCityPoi = '
+					update
+						property_city_poi
+					set
+						city_poi_link_ID = "'.$explodedID[1].'"
+					where
+						property_ID = "'.$propertyID.'"
+					and
+						property_city_poi_ID = "'.$explodedID[0].'"
+				';
+				$queryUpdatePropertyCityPoi = $this->db->query($sqlUpdatePropertyCityPoi);
+				if($this->db->error)
+					$errorCatcher[] = $this->db->error;
+
+				if(empty($errorCatcher))
+					return true;
+				else
+					return $errorCatcher;
+			}
+			public function updatePriceList(int $propertyID, array $inputArray){
+
+				$c = 1;
+				$fetchPropertyPriceID = $this->db->query('
+					select 
+						property_price_ID
+					from
+						property_price
+					where
+						property_ID = "'.$propertyID.'"
+				');
+				$fetchedObject = $fetchPropertyPriceID->fetch_object();
+				foreach($inputArray as $key => $value){
+					var_dump($key, $value[0], $c);
+					$sqlUpdatepoi = '
+						update 
+							property_price 
+						set 
+							cat'.$c.' = "'.mysqli_real_escape_string($this->db, $value[0]).'"
+						where 
+							property_price_ID = '.$fetchedObject->property_price_ID;
+						$queryUpdateDes = $this->db->query($sqlUpdatepoi);
+						if($this->db->error)
+							$errorCather[] = $this->db->error;
+						
+					$c++;
+				}
+ 				if(empty($errorCather))
+					return true;
+				else
+					return false;
+			}
         /* Database Functions */
 
         /* Check and attributes new publicID  */

@@ -6,53 +6,56 @@
     $uniqueServiceList = $toRent->fetchToRentServiceUnique((int)$_GET['id']);
     $priceList = $toRent->fetchToRentPrice((int)$_GET['id']);
     $priceCategorization =[
-        'to_rentCat1' => 'Nov-Abr',
-        'to_rentCat2' => 'Maio',
-        'to_rentCat3' => '1 1/2 Junho',
-        'to_rentCat4' => '2 1/2 Junho',
-        'to_rentCat5' => '1 1/2 Julho',
-        'to_rentCat6' => '2 1/2 Julho',
-        'to_rentCat7' => 'Agosto',
-        'to_rentCat8' => '1 1/2 Setembro',
-        'to_rentCat9' => '2 1/2 Setembro',
-        'to_rentCat10' => 'Out'
+        [
+            'name'=>'to_rentCat1', 
+            'placeholder' => 'Nov-Abr'
+        ],
+        [
+            'name'=>'to_rentCat2', 
+            'placeholder' => 'Maio'
+        ],
+        [
+            'name'=>'to_rentCat3', 
+            'placeholder' => '1 1/2 Junho'
+        ],
+        [
+            'name'=>'to_rentCat4', 
+            'placeholder' => '2 1/2 Junho'
+        ],
+        [
+            'name'=>'to_rentCat5', 
+            'placeholder' => '1 1/2 Julho'
+        ],
+        [
+            'name'=>'to_rentCat6', 
+            'placeholder' => '2 1/2 Julho'
+        ],
+        [
+            'name'=>'to_rentCat7', 
+            'placeholder' => 'Agosto'
+        ],
+        [            
+            'name'=>'to_rentCat8', 
+            'placeholder' => '1 1/2 Setembro'
+        ],
+        [            
+            'name'=>'to_rentCat9', 
+            'placeholder' => '2 1/2 Setembro'
+        ],
+        [            
+            'name'=>'to_rentCat10', 
+            'placeholder' => 'Out'
+        ],
     ];
-    // print_r($serviceCommonList);
-    // print_r($uniqueServiceList);
-    print_r($priceList);
+    // print_r($priceList);
+    // print_r($priceCategorization);
     $canEdit = $toRent->showEditPage($_GET["edit"], $_GET["id"], empty($toRentData));
-    // print_r($toRentData);
     $propertyType = ['Apartamento', 'Casa', 'Vila', 'Bungalow'];
     $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
     if($canEdit === 1)
     {
 ?>
     <h3 class="page-title">Editar Objecto de Aluguer: <?php echo $toRentData['pt_0'][0]['title']?></h3>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            Tipo de Prioridade
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                    <div class="input-group">
-                        <span class="input-group-addon">Tipo de Properiedade</span>
-                        <select class="select bg-white" name="propertyType" id="propertyType" style="width: 100%;">
-                            <?php
-                            echo $toRentData['pt_0'][0]['propertyType'];
-                                for($c = 0; $c < count($propertyType); $c++){
-                                    echo '<option value="'.$c.'"'.(($c == $toRentData['pt_0'][0]['propertyType']) ? 'selected="selected"':'').'>'.$propertyType[$c].'</option>';
-                                }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                    <button type="button" class="btn btn-success pull-right save" id="to_rent-propertyType">Guardar Alteração</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
             Nome
@@ -109,12 +112,12 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
-                    <textarea name="to_rentPropertyDesc-PT" class="form-control" id="propertyDescPT" rows="4"></textarea>
+                    <textarea name="to_rentDescLong-PT" class="form-control" id="propertyDescPT" rows="4"></textarea>
                     <div id="toRentDescPTHolder" style="visibility: hidden"><?php echo $toRentData['pt_0'][0]['longDescription'];?></div>
                 </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
-                    <textarea name="to_rentPropertyDesc-EN" class="form-control" id="propertyDescEN" rows="4"></textarea>
+                    <textarea name="to_rentDescLong-EN" class="form-control" id="propertyDescEN" rows="4"></textarea>
                     <div id="toRentDescENHolder" style="visibility: hidden"><?php echo $toRentData['en_7'][0]['longDescription'];?></div>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
@@ -125,7 +128,79 @@
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Detalhes
+            Tipos de Serviço
+        </div>
+        <div class="panel-body">
+            <div class="row">
+            <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
+                <div class="input-group">
+                    <span class="input-group-addon">Serviços</span>
+                        <select class="select bg-white" name="to_rentCommonService" multiple="multiple" id="services" style="width: 100%;">
+                            <?php 
+                                $queryCSResult = $MAIN->db->query('
+                                    select 
+                                        *
+                                    from    
+                                        common_service_link
+                                    left join
+                                        common_service_translation
+                                    on
+                                        common_service_link.common_service_link_ID = common_service_translation.common_service_link_ID
+                                    where
+                                        langCode = "pt"
+                                ');
+                                while($cs=$queryCSResult->fetch_object()){
+                                    for($c = 0; $c < count($serviceCommonList); $c++){
+                                        if($serviceCommonList[$c]['common_service_link_ID'] == $cs->common_service_link_ID){
+                                            echo '<option value="'.$cs->common_service_link_ID.'_'.$value.'"selected="selected">'.$cs->serviceTranslated.'</option>';
+                                        }else{
+                                            echo '<option value="'.$cs->common_service_link_ID.'">'.$cs->serviceTranslated.'</option>';
+                                        }
+                                    }
+                                }  
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
+                    <div class="input-group">
+                        <span class="input-group-addon">Serviços Unicos</span>
+                        <select class="select bg-white" name="to_rentUniqueService" multiple="multiple" id="unique-services" style="width: 100%;">
+                            <?php
+                                $queryUSResult = $MAIN->db->query('
+                                select 
+                                        *
+                                        from    
+                                        unique_service_link
+                                        left join
+                                        unique_service_translation
+                                        on
+                                        unique_service_link.unique_service_link_ID = unique_service_translation.unique_service_link_ID
+                                        where
+                                        langCode = "pt"
+                                        ');
+                                        while($us=$queryUSResult->fetch_object()){ 
+                                    for($c = 0; $c < count($uniqueServiceList); $c++){
+                                        if($uniqueServiceList[$c]['unique_service_link_ID'] == $us->unique_service_link_ID){
+                                            echo '<option value="'.$us->unique_service_link_ID.'"selected="selected">'.$us->uniqueServiceTranslated.'</option>';
+                                        }else{
+                                            echo '<option value="'.$us->unique_service_link_ID.'">'.$us->uniqueServiceTranslated.'</option>';
+                                        }
+                                    }
+                                }
+                                ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
+                    <button type="button" class="btn btn-success pull-right save" id="to_rent-serviceType">Guardar Alteração</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Outros Detalhes
         </div>
         <div class="panel-body">
             <div class="row">
@@ -133,36 +208,36 @@
                 <div class="col-xs-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon">Qtd de Residentes</span>
-                        <input type="text" name="maxAllowedGuests" class="form-control" value="<?php echo $toRentData['pt_0'][0]['maxAllowedGuests']; ?>">
+                        <input type="text" name="to_rentMaxAllowedGuests" class="form-control" value="<?php echo $toRentData['pt_0'][0]['maxAllowedGuests']; ?>">
                     </div>
                 </div>
                 <div class="col-xs-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon">Nr de Quartos</span>
-                        <input type="text" name="roomAmmount" class="form-control" value="<?php echo $toRentData['pt_0'][0]['roomAmmount']; ?>">
+                        <input type="text" name="to_rentRoomAmmount" class="form-control" value="<?php echo $toRentData['pt_0'][0]['roomAmmount']; ?>">
                     </div>
                 </div>
                 <div class="col-xs-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon">Distancia da praia</span>
-                        <input type="text" name="beachDistance" class="form-control" value="<?php echo $toRentData['pt_0'][0]['beachDistance']; ?>">
+                        <input type="text" name="to_rentBeachDistance" class="form-control" value="<?php echo $toRentData['pt_0'][0]['beachDistance']; ?>">
                     </div>
                 </div>
                 <div class="col-xs-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                     <label class="fancy-checkbox">
-                        <input type="checkbox" name="hasPoolAccess" value="1" <?php echo (($toRentData['pt_0'][0]['hasPoolAccess'] == 1) ? 'checked="checked"':'');?>><span>Acesso a Piscina</span>
+                        <input type="checkbox" name="to_rentHasPoolAccess" value="1" <?php echo (($toRentData['pt_0'][0]['hasPoolAccess'] == 1) ? 'checked="checked"':'');?>><span>Acesso a Piscina</span>
                     </label>
                 </div><!-- 
                 <div class="clearclearfix"></div> -->
                 <div class="col-xs-3 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                     <label class="fancy-checkbox">
-                        <input type="checkbox" name="isVisible" value="1" <?php echo (($toRentData['pt_0'][0]['isVisible'] == 1) ? 'checked="checked"':'');?>><span>Publicar</span>
+                        <input type="checkbox" name="to_rentIsVisible" value="1" <?php echo (($toRentData['pt_0'][0]['isVisible'] == 1) ? 'checked="checked"':'');?>><span>Publicar</span>
                     </label>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon">POI</span>
-                        <select class="select bg-white" name="city-poi" id="city-poi" style="width: 100%;">
+                        <select class="select bg-white" name="to_rentCityPoi" id="city-poi" style="width: 100%;">
                                 <?php
                                     $queryResult = $MAIN->db->query('
                                         select 
@@ -195,7 +270,7 @@
                                     ');
                                     while($r=$queryResult->fetch_object()){
                                         echo '
-                                            <option value="'.$r->city_poi_link_ID.'-'.$r->postalCode.'"'.(($toRentData['pt_0'][0]['city_poi_link_ID'] == $r->city_poi_link_ID) ? 'selected="selected"':'').'>'.$r->cityName.' - '.$r->poiName.'</option>
+                                            <option value="'.$toRentData['pt_0'][0]['property_city_poi_ID'].'-'.$r->city_poi_link_ID.'"'.(($toRentData['pt_0'][0]['city_poi_link_ID'] == $r->city_poi_link_ID) ? 'selected="selected"':'').'>'.$r->cityName.' - '.$r->poiName.'</option>
                                         ';
                                     }
                                 ?>
@@ -205,10 +280,10 @@
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon">Vista</span>
-                        <select class="select bg-white" name="viewType" id="viewType" style="width: 100%;">
+                        <select class="select bg-white" name="to_rentViewType" id="viewType" style="width: 100%;">
                             <?php
                                 for($c = 0; $c < count($propertyView); $c++){
-                                    echo '<option value="'.$c.'"'.(($c == $toRentData['pt_0'][0]['propertyType']) ? 'selected="selected"':'').'>'.$propertyView[$c].'</option>';
+                                    echo '<option value="'.$c.'"'.(($c == $toRentData['pt_0'][0]['viewType']) ? 'selected="selected"':'').'>'.$propertyView[$c].'</option>';
                                 }
                             ?>
                         </select>
@@ -216,59 +291,12 @@
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
-                        <span class="input-group-addon">Serviços</span>
-                        <select class="select bg-white" name="services" multiple="multiple" id="services" style="width: 100%;">
-                            <?php 
-                                $queryCSResult = $MAIN->db->query('
-                                            select 
-                                                *
-                                            from    
-                                                common_service_link
-                                            left join
-                                                common_service_translation
-                                            on
-                                                common_service_link.common_service_link_ID = common_service_translation.common_service_link_ID
-                                            where
-                                                langCode = "pt"
-                                        ');
-                                        while($cs=$queryCSResult->fetch_object()){
-                                            for($c = 0; $c < count($serviceCommonList); $c++){
-                                                if($serviceCommonList[$c]['common_service_link_ID'] == $cs->common_service_link_ID){
-                                                    echo '<option value="'.$cs->common_service_link_ID.'_'.$value.'"selected="selected">'.$cs->serviceTranslated.'</option>';
-                                                }else{
-                                                    echo '<option value="'.$cs->common_service_link_ID.'">'.$cs->serviceTranslated.'</option>';
-                                                }
-                                            }
-                                        }
-                                ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
-                    <div class="input-group">
-                        <span class="input-group-addon">Serviços Unicos</span>
-                        <select class="select bg-white" name="unique-services" multiple="multiple" id="unique-services" style="width: 100%;">
+                        <span class="input-group-addon">Tipo de Properiedade</span>
+                        <select class="select bg-white" name="to_rentPropertyType" id="propertyType" style="width: 100%;">
                             <?php
-                                $queryUSResult = $MAIN->db->query('
-                                    select 
-                                        *
-                                    from    
-                                        unique_service_link
-                                    left join
-                                        unique_service_translation
-                                    on
-                                        unique_service_link.unique_service_link_ID = unique_service_translation.unique_service_link_ID
-                                    where
-                                        langCode = "pt"
-                                ');
-                                while($us=$queryUSResult->fetch_object()){ 
-                                    for($c = 0; $c < count($uniqueServiceList); $c++){
-                                        if($uniqueServiceList[$c]['unique_service_link_ID'] == $us->unique_service_link_ID){
-                                            echo '<option value="'.$us->unique_service_link_ID.'"selected="selected">'.$us->uniqueServiceTranslated.'</option>';
-                                        }else{
-                                            echo '<option value="'.$us->unique_service_link_ID.'">'.$us->uniqueServiceTranslated.'</option>';
-                                        }
-                                    }
+                            echo $toRentData['pt_0'][0]['propertyType'];
+                                for($c = 0; $c < count($propertyType); $c++){
+                                    echo '<option value="'.$c.'"'.(($c == $toRentData['pt_0'][0]['propertyType']) ? 'selected="selected"':'').'>'.$propertyType[$c].'</option>';
                                 }
                             ?>
                         </select>
@@ -286,16 +314,18 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">
-                    <?php
-                        
-                    ?>
-                    <div class="input-group">
-                        <input type="text" name="cat1" class="form-control" placeholder="Nov-Abr">
-                        <span class="input-group-addon">€</span>
-                    </div>
-                </div>
-
+                <?php 
+                    for($c = 0; $c < count($priceCategorization); $c++){
+                        echo '
+                        <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
+                                <div class="input-group">
+                                    <span class="input-group-addon">'.$priceCategorization[$c]['placeholder'].'</span>
+                                    <input type="text" name="'.$priceCategorization[$c]['name'].'" class="form-control" placeholder="'.$priceCategorization[$c]['placeholder'].'"value="'.$priceList[0][$c+1].'">
+                                    <span class="input-group-addon">€</span>
+                                </div>
+                            </div>';
+                    }
+                ?>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                     <button type="button" class="btn btn-success pull-right save" id="to_rent-price">Guardar Alteração</button>
                 </div>
@@ -309,7 +339,23 @@
         <div class="panel-body">
             <section class="gallery-block grid-gallery">
                 <div class="row" id="rowGallery">
-
+                    <?php
+                        $resp = $toRent->fetchAllPhotos($_GET['id']);
+                        if(!empty($resp)){
+                            for($photoCounter = 0; $photoCounter < count($resp); $photoCounter++){
+                                echo '
+                                    <div class="col-xs-4 item" style="margin: 5px 0">
+                                        <a class="lightbox" href="../assets/img/gallery/rental/'.(int)$_GET['id'].'/fullsize/'.$resp[$photoCounter]->fullsizeURL.'">
+                                            <img class="img-responsive image scale-on-hover" src="../assets/img/gallery/rental/'.(int)$_GET['id'].'/thumbnail/'.$resp[$photoCounter]->fullsizeURL.'">
+                                        </a>
+                                        <button class="btn btn-danger delete-photo" data-content-type="to-rent" data-content-id="'.(int)$_GET['id'].'-'.$resp[$photoCounter]->property_gallery_ID.'"  style="position: absolute;z-index: 1;top: 0;">
+                                            <i class="lnr lnr-trash"></i>
+                                        </button>
+                                    </div>
+                                ';
+                            }
+                        }
+                    ?>
                 </div>
             </section>
         </div>

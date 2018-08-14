@@ -267,10 +267,10 @@
                     and
                         poi_link_ID = '.$poiID;
                 $queryUpdateDes = $this->db->query($sqlUpdatepoi);
-                if($this->db->affected_rows == 1)
-                    $errorCather += 0;
-                else
+                if($this->db->error)
                     $errorCather += 1;
+                else
+                    $errorCather += 0;
                 
             }
             if($errorCather == 0)

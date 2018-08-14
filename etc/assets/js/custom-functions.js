@@ -215,9 +215,9 @@ function addContent(type, debugMode, postAsync){
         btn.addEventListener('click', editPageInputCollector);
     });
     function editPageInputCollector() {  
-        console.clear();
+        // console.clear();
         var button_id = this.id.split('-');
-        if(button_id[0].indexOf('_') == true){
+        if(button_id[0].indexOf('_') > 0){
             var tempIDHolder = button_id[0].split('_');
             button_id[0] = tempIDHolder[0] + '-' + tempIDHolder[1];
         }
@@ -229,11 +229,9 @@ function addContent(type, debugMode, postAsync){
                     userInput[inp.name] = 'checked';
                 else
                     userInput[inp.name] = 'unchecked';
-            }
-            if(inp.type == 'textarea'){
+            }else if(inp.type == 'textarea'){
                 userInput[inp.name] = CKEDITOR.instances[inp.id].getData();
-            }
-            if(inp.type != 'checkbox'){
+            }else if(inp.type != 'checkbox'){
                 userInput[inp.name] = [inp.value];
             }
         });

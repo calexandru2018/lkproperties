@@ -5,17 +5,22 @@
     require_once('../../_include/_models/to-rent.php');
     $conn = new Database();
     $toRent = new ToRent($conn->db);
-   /*  $cityToRentIDCityID = explode('-',$_POST['userInput']['toRentCityName'][0]);
     switch($_POST['contentType']){
-        case 'saveName': $response = $toRent->updateToRentName($_POST['contentID'], $_POST['userInput']);
+        case 'saveName': $response = $toRent->updateName($_POST['contentID'], $_POST['userInput']);
             break;
-        case 'saveDesc': $response = $toRent->updateToRentDesc($_POST['contentID'], $_POST['userInput']);
+        case 'shortDesc': $response = $toRent->updateShortDesc($_POST['contentID'], $_POST['userInput']);
             break;
-        case 'saveOther': $response = $toRent->updateToRentOther($_POST['contentID'], $_POST['userInput']['toRentIsPopular'], $_POST['userInput']['toRentIsAlgarve'], $cityToRentIDCityID[1], $cityToRentIDCityID[0]);
+        case 'longDesc': $response = $toRent->updateLongDesc($_POST['contentID'], $_POST['userInput']);
             break;
-    } */
+        case 'serviceType': $response = $toRent->updateService($_POST['contentID'], $_POST['userInput']);
+            break;
+        case 'details': $response = $toRent->updateOther($_POST['contentID'], $_POST['userInput']);
+            break;
+        case 'price': $response = $toRent->updatePriceList($_POST['contentID'], $_POST['userInput']);
+            break;
+    } 
 
     $toRent->closeConnection($conn->db);
 
-    echo json_encode($_POST);
+    echo json_encode($response);
 ?>
