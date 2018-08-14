@@ -31,9 +31,10 @@ function addContent(type, debugMode, postAsync){
         .then(function (response) {
             var idHolder = splittedID[1].split('-');
             splittedID[1] = idHolder[0] + '_' + idHolder[1];
-            if(response.data != false)
+            if(response.data != false){
                 if(debugMode == false)
                     populateTable(response.data, splittedID[1] + '-table', splittedID[1]);
+            }
                 
             console.log(response);
         })

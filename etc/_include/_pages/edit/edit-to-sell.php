@@ -322,7 +322,7 @@
                 <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                     <div class="input-group">
                         <span class="input-group-addon">Preço</span>
-                        <input type="text" name="to_sellPrice" class="form-control" value="<?php echo $priceList[1]; ?>">
+                        <input type="number" name="to_sellPrice" class="form-control" value="<?php echo $priceList[1]; ?>">
                         <span class="input-group-addon">€</span>
                     </div>
                 </div>
@@ -348,7 +348,7 @@
                                         <a class="lightbox" href="../assets/img/gallery/sale/'.(int)$_GET['id'].'/fullsize/'.$resp[$photoCounter]->fullsizeURL.'">
                                             <img class="img-responsive image scale-on-hover" src="../assets/img/gallery/sale/'.(int)$_GET['id'].'/thumbnail/'.$resp[$photoCounter]->fullsizeURL.'">
                                         </a>
-                                        <button class="btn btn-danger delete-photo" data-content-type="to-rent" data-content-id="'.(int)$_GET['id'].'-'.$resp[$photoCounter]->property_gallery_ID.'"  style="position: absolute;z-index: 1;top: 0;">
+                                        <button class="btn btn-danger delete-photo" data-content-type="to-sell" data-content-id="'.(int)$_GET['id'].'-'.$resp[$photoCounter]->property_gallery_ID.'"  style="position: absolute;z-index: 1;top: 0;">
                                             <i class="lnr lnr-trash"></i>
                                         </button>
                                     </div>
@@ -370,7 +370,7 @@
             CKEDITOR.instances['propertyDescPT'].setData(descPT) ;
             CKEDITOR.instances['propertyDescEN'].setData(descEN) ;
             $('#propertyType').select2();
-            $('#propertyType').select2('data', {id: '1049', text: 'MyLabel'});
+            $('#propertyType').select2();
             $('#viewType').select2();
             $('#city-poi').select2();
             $('#services').select2();

@@ -199,8 +199,7 @@
 
             public function insert(array $inputArray){
                 $toRentData = $this->sanitizeInput($inputArray);
-                
-                $errorCatcher = Array();
+				$errorCatcher = Array();
 				$poiPostalCode = explode('-', $toRentData['property']['cityPoi']);
 				$publicID = (int)$this->generatePublicID($poiPostalCode[1]);
                 $sqlProperty = '
@@ -445,16 +444,16 @@
 							values
 								(
 									"'.$propertyID.'",
-									'.$toRentData['priceList'][0].',
-									'.$toRentData['priceList'][1].',
-									'.$toRentData['priceList'][2].',
-									'.$toRentData['priceList'][3].',
-									'.$toRentData['priceList'][4].',
-									'.$toRentData['priceList'][5].',
-									'.$toRentData['priceList'][6].',
-									'.$toRentData['priceList'][7].',
-									'.$toRentData['priceList'][8].',
-									'.$toRentData['priceList'][9].'
+									"'.$toRentData['priceList'][0].'",
+									"0",
+									"0",
+									"0",
+									"0",
+									"0",
+									"0",
+									"0",
+									"0",
+									"0"
 								)
 					';
 					$queryPrice = $this->db->query($sqlPrice);
@@ -531,11 +530,11 @@
 							"'.mysqli_real_escape_string($this->db, $fullsizeURL).'"
 						)
 				';
-			$queryInsert = $this->db->query($sqlInsert);
-				if($this->db->error)
-					return false;
-				else
-					return true;
+				$queryInsert = $this->db->query($sqlInsert);
+					if($this->db->error)
+						return false;
+					else
+						return true;
             }
             public function deletePhoto(string $photoID){
 				$propertyPhotoID = explode('-', $photoID);
@@ -854,7 +853,7 @@
                     }elseif(substr($key, 0, 21) == 'to_sellUniqueService_'){
                         $filteredInput['uniqueServiceList'][] = mysqli_real_escape_string($this->db, $value);
                         unset($filteredInput[$key]);
-                	}elseif(substr($key, 0, 10) == 'to_sellCat'){
+                	}elseif(substr($key, 0, 12) == 'to_sellPrice'){
 						$filteredInput['priceList'][] = mysqli_real_escape_string($this->db, $value);
 						unset($filteredInput[$key]);
                     }elseif(substr($key, 0, 12) == 'to_sellName-'){

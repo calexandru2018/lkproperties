@@ -325,7 +325,7 @@
                         <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
                                     <span class="input-group-addon">'.$priceCategorization[$c]['placeholder'].'</span>
-                                    <input type="text" name="'.$priceCategorization[$c]['name'].'" class="form-control" placeholder="'.$priceCategorization[$c]['placeholder'].'"value="'.$priceList[0][$c+1].'">
+                                    <input type="number" name="'.$priceCategorization[$c]['name'].'" class="form-control" placeholder="'.$priceCategorization[$c]['placeholder'].'"value="'.$priceList[0][$c+1].'">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>';

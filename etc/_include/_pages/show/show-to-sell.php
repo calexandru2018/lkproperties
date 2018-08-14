@@ -214,65 +214,12 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h4>Preços</h4>
+                                <h4>Preço</h4>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">
                                 <div class="input-group">
-                                    <input type="number" name="to_sellCat1" class="form-control" placeholder="Nov-Abr">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat2" class="form-control" placeholder="Maio">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat3" class="form-control" placeholder="1 1/2 Junho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat4" class="form-control" placeholder="2 1/2 Junho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat5" class="form-control" placeholder="1 1/2 Julho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat6" class="form-control" placeholder="2 1/2 Julho">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat7" class="form-control" placeholder="Agosto">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat8" class="form-control" placeholder="1 1/2 Setembro">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat9" class="form-control" placeholder="2 1/2 Setembro">
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">  
-                                <div class="input-group">
-                                    <input type="number" name="to_sellCat10" class="form-control" placeholder="Out">
+                                    <span class="input-group-addon">Preço</span>
+                                    <input type="number" name="to_sellPrice" class="form-control">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
