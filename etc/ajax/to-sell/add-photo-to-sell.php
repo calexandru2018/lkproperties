@@ -1,20 +1,20 @@
 <?php
     include('../class.upload.php');
     require_once('../../_include/_models/db.php');
-    require_once('../../_include/_models/to-rent.php');
+    require_once('../../_include/_models/to-sell.php');
     $conn = new Database();
-    $photo = new ToRent($conn->db);
+    $photo = new ToSell($conn->db);
 
     $files = array();
-    $toRentID = 0;
-    $commonURL = '../../../assets/img/gallery/rental/';
+    $toSellID = 0;
+    $commonURL = '../../../assets/img/gallery/sale/';
     foreach ($_FILES['image_field'] as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files))
                 $files[$i] = array();
                 if($k == 'name'){
                     $expl = explode('___', $v);
-                    $toRentID = $expl[0];
+                    $toSellID = $expl[0];
                     $files[$i][$k] = $expl[1];
                 }else{
                     $files[$i][$k] = $v;
@@ -38,7 +38,7 @@
                 $fullsizeHandle->image_x = 2560;
             }
             $fullsizeHandle->dir_auto_create = true;
-            $fullsizeHandle->Process($commonURL.$toRentID.'/fullsize/');
+            $fullsizeHandle->Process($commonURL.$toSellID.'/fullsize/');
         /* Fullsize handler */
 
         /* Thumbnail handler */
@@ -50,11 +50,11 @@
             $thumbnailHandle->image_ratio_y = true;
             $thumbnailHandle->image_x = 365;
             $thumbnailHandle->dir_auto_create = true;
-            $thumbnailHandle->Process($commonURL.$toRentID.'/thumbnail/');
+            $thumbnailHandle->Process($commonURL.$toSellID.'/thumbnail/');
         /* Thumbnail handler */
 
             if ($fullsizeHandle->processed && $thumbnailHandle->processed) {
-                if($photo->addPhoto($toRentID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name))
+                if($photo->addPhoto($toSellID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name))
                     echo true;
                 else 
                     echo 'issues updating';

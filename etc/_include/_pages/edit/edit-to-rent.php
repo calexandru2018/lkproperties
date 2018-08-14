@@ -1,10 +1,10 @@
 <?php
     include_once('_include/_models/to-rent.php');
     $toRent = new ToRent($MAIN->db);
-    $toRentData = $toRent->fetchToRent($_GET['id']);
-    $serviceCommonList = $toRent->fetchToRentServiceCommon((int)$_GET['id']);
-    $uniqueServiceList = $toRent->fetchToRentServiceUnique((int)$_GET['id']);
-    $priceList = $toRent->fetchToRentPrice((int)$_GET['id']);
+    $toRentData = $toRent->fetch($_GET['id']);
+    $serviceCommonList = $toRent->fetchServiceCommon((int)$_GET['id']);
+    $uniqueServiceList = $toRent->fetchServiceUnique((int)$_GET['id']);
+    $priceList = $toRent->fetchPrice((int)$_GET['id']);
     $priceCategorization =[
         [
             'name'=>'to_rentCat1', 
@@ -47,8 +47,7 @@
             'placeholder' => 'Out'
         ],
     ];
-    // print_r($priceList);
-    // print_r($priceCategorization);
+    // print_r($serviceCommonList);
     $canEdit = $toRent->showEditPage($_GET["edit"], $_GET["id"], empty($toRentData));
     $propertyType = ['Apartamento', 'Casa', 'Vila', 'Bungalow'];
     $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
@@ -150,13 +149,16 @@
                                         langCode = "pt"
                                 ');
                                 while($cs=$queryCSResult->fetch_object()){
+                                    $serviceList[$cs->common_service_link_ID] = $cs->serviceTranslated;
+                                }
+                                foreach($serviceList as $key => $value){
+                                    $toShowCS = '<option value="'.$key.'">'.$value.'</option>';
                                     for($c = 0; $c < count($serviceCommonList); $c++){
-                                        if($serviceCommonList[$c]['common_service_link_ID'] == $cs->common_service_link_ID){
-                                            echo '<option value="'.$cs->common_service_link_ID.'_'.$value.'"selected="selected">'.$cs->serviceTranslated.'</option>';
-                                        }else{
-                                            echo '<option value="'.$cs->common_service_link_ID.'">'.$cs->serviceTranslated.'</option>';
+                                        if($serviceCommonList[$c]['common_service_link_ID'] == $key){
+                                            $toShowCS = '<option value="'.$key.'"selected="selected">'.$value.'</option>';
                                         }
                                     }
+                                    echo $toShowCS;
                                 }  
                             ?>
                         </select>
@@ -169,26 +171,29 @@
                             <?php
                                 $queryUSResult = $MAIN->db->query('
                                 select 
-                                        *
-                                        from    
-                                        unique_service_link
-                                        left join
-                                        unique_service_translation
-                                        on
-                                        unique_service_link.unique_service_link_ID = unique_service_translation.unique_service_link_ID
-                                        where
-                                        langCode = "pt"
-                                        ');
-                                        while($us=$queryUSResult->fetch_object()){ 
+                                    *
+                                from    
+                                    unique_service_link
+                                left join
+                                    unique_service_translation
+                                on
+                                    unique_service_link.unique_service_link_ID = unique_service_translation.unique_service_link_ID
+                                where
+                                    langCode = "pt"
+                                    ');
+                                while($us=$queryUSResult->fetch_object()){
+                                    $unqiueServiceList[$us->unique_service_link_ID] = $us->uniqueServiceTranslated;
+                                }
+                                foreach($unqiueServiceList as $key => $value){
+                                    $toShowUS = '<option value="'.$key.'">'.$value.'</option>';
                                     for($c = 0; $c < count($uniqueServiceList); $c++){
-                                        if($uniqueServiceList[$c]['unique_service_link_ID'] == $us->unique_service_link_ID){
-                                            echo '<option value="'.$us->unique_service_link_ID.'"selected="selected">'.$us->uniqueServiceTranslated.'</option>';
-                                        }else{
-                                            echo '<option value="'.$us->unique_service_link_ID.'">'.$us->uniqueServiceTranslated.'</option>';
+                                        if($uniqueServiceList[$c]['unique_service_link_ID'] == $key){
+                                            $toShowUS = '<option value="'.$key.'"selected="selected">'.$value.'</option>';
                                         }
                                     }
-                                }
-                                ?>
+                                    echo $toShowUS;
+                                }  
+                            ?>
                         </select>
                     </div>
                 </div>

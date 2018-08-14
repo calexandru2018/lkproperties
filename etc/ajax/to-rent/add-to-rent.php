@@ -5,7 +5,7 @@
     require_once('../../_include/_models/to-rent.php');
     $conn = new Database();
     $toRent = new ToRent($conn->db);
-    $response = $toRent->insertToRent($_POST['curatedObject']);
+    $response = $toRent->insert($_POST['curatedObject']);
 
     $toRent->closeConnection($conn->db);
 

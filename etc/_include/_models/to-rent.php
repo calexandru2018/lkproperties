@@ -53,8 +53,10 @@
 						poi_link.poi_link_ID = poi_translation.poi_link_ID
 					where
 						poi_translation.langCode = "'.$this->langList['portuguese'].'"
-						and
+					and
 						title_translation.langCode = "'.$this->langList['portuguese'].'"
+					and
+						property.isForSale = 0
 				';
 				$queryResult = $this->db->query($sqlFetchAll);
 				while($r=$queryResult->fetch_object()){
@@ -63,7 +65,7 @@
 				return ((empty($output))? '' : $output);
             }
 
-            public function fetchToRent(){
+            public function fetch(int $propertyID){
 				$sqlFetchProperty = '
 					select 
 						property.*,
@@ -106,7 +108,9 @@
 					on	
 						property.property_ID = property_city_poi.property_ID
 					where
-						property.property_ID = 10
+						property.property_ID = "'.$propertyID.'"
+					and
+						property.isForSale = 0
 				';
 				$queryFetchProperty = $this->db->query($sqlFetchProperty);
 				if($this->db->error)
@@ -124,11 +128,12 @@
 				return $output;
             }
 
-			public function fetchToRentServiceCommon(int $propertyID){
+			public function fetchServiceCommon(int $propertyID){
 				$sqlFetch = $this->db->query('
 					select 
 						common_service_translation.common_service_link_ID,
-						common_service_translation.serviceTranslated
+						common_service_translation.serviceTranslated,
+						property_common_service.property_service_ID
 					FROM
 						common_service_translation
 					RIGHT JOIN
@@ -148,21 +153,22 @@
 				while($r=$sqlFetch->fetch_assoc()){
 						$output[]= $r;
 				}
-				return $output;
+				return ((empty($output)) ? '': $output);;
 			}
 
-			public function fetchToRentServiceUnique(int $propertyID){
+			public function fetchServiceUnique(int $propertyID){
 				$sqlFetch = $this->db->query('
 					select 
 						unique_service_translation.unique_service_link_ID,
-						unique_service_translation.uniqueServiceTranslated
+						unique_service_translation.uniqueServiceTranslated,
+						property_unique_service.property_unique_service_ID
 					FROM
 						unique_service_translation
 					RIGHT JOIN
 						unique_service_link
 					ON
 						unique_service_translation.unique_service_link_ID = unique_service_link.unique_service_link_ID
-					right JOIN
+					right join
 						property_unique_service
 					ON
 						unique_service_link.unique_service_link_ID = property_unique_service.unique_service_link_ID 
@@ -174,10 +180,10 @@
 				while($r=$sqlFetch->fetch_assoc()){
 						$output[]= $r;
 				}
-				return $output;
+				return ((empty($output)) ? '': $output);
 			}
 
-			public function fetchToRentPrice(int $propertyID){
+			public function fetchPrice(int $propertyID){
 				$sqlFetch = $this->db->query('
 					select 
 						property_price_ID,
@@ -202,7 +208,7 @@
 				return $output;
 			}
 
-            public function insertToRent(array $inputArray){
+            public function insert(array $inputArray){
                 $toRentData = $this->sanitizeInput($inputArray);
                 
                 $errorCatcher = Array();
@@ -493,7 +499,7 @@
 				}
             }
 
-            public function deleteToRent($propertyID){
+            public function delete($propertyID){
 				$sqlDelete = '
                 delete from 
                     property 
@@ -522,7 +528,7 @@
 				return ((empty($output)) ? '': $output);
 			}
 
-            public function addToRentPhoto(int $propertyID, string $thumbnailURL, string  $fullsizeURL){
+            public function addPhoto(int $propertyID, string $thumbnailURL, string  $fullsizeURL){
 				$sqlInsert = '
 					insert into
 						property_gallery(
@@ -542,7 +548,7 @@
 				else
 					return true;
             }
-            public function deleteToRentPhoto(string $photoID){
+            public function deletePhoto(string $photoID){
 				$propertyPhotoID = explode('-', $photoID);
 				$sqlSearchURL = '
 					select 
@@ -688,7 +694,75 @@
 					return false;
 			} 
 			public function updateService(int $propertyID, array $inputArray){
-				var_dump($inputArray);
+				$servicesData = $this->sanitizeInput($inputArray);
+				print_r($servicesData);
+				$errorCatcher = [];
+ 
+				$sqlDropCommonService = '
+					delete from
+						property_common_service
+					where
+						property_ID = "'.$propertyID.'"
+				';
+				$queryDropCommonService = $this->db->query($sqlDropCommonService);
+				if($this->db->error)
+					$errorCatcher['drop common service'] = $this->db->error; 
+
+				$sqlInsertCommonService = '
+					insert into
+						property_common_service
+							(
+								property_ID,
+								common_service_link_ID
+							)
+					values 
+				'; 
+				for($c = 0; $c < count($servicesData['commonServiceList']); $c++){
+					if($c == (count($servicesData['commonServiceList']) - 1))	
+						$sqlInsertCommonService = $sqlInsertCommonService.'("'.$propertyID.'","'.$servicesData['commonServiceList'][$c].'")';
+					else
+						$sqlInsertCommonService = $sqlInsertCommonService.'("'.$propertyID.'","'.$servicesData['commonServiceList'][$c].'"), ';
+				}
+				$queryInsertCommonService = $this->db->query($sqlInsertCommonService);
+				if($this->db->error)
+					$errorCatcher['insert common service'] = $this->db->error;
+
+				$sqlDropUniqueService = '
+					delete from
+						property_unique_service
+					where
+						property_ID = "'.$propertyID.'"
+				';
+				$querylDropUniqueService = $this->db->query($sqlDropUniqueService);
+				if($this->db->error)
+					$errorCatcher['drop unique service'] = $this->db->error; 
+
+				$sqlInsertUniqueService = '
+					insert into
+						property_unique_service
+							(
+								property_ID,
+								unique_service_link_ID
+							)
+					values 
+				'; 
+				for($c = 0; $c < count($servicesData['uniqueServiceList']); $c++){
+					if($c == (count($servicesData['uniqueServiceList']) - 1))	
+						$sqlInsertUniqueService = $sqlInsertUniqueService.'("'.$propertyID.'","'.$servicesData['uniqueServiceList'][$c].'")';
+					else
+						$sqlInsertUniqueService = $sqlInsertUniqueService.'("'.$propertyID.'","'.$servicesData['uniqueServiceList'][$c].'"), ';
+				}
+ 				$queryInsertUniqueService = $this->db->query($sqlInsertUniqueService);
+				if($this->db->error)
+					$errorCatcher['add unique service'] = $this->db->error;
+
+				if(empty($errorCatcher))
+					return true;
+				else
+					return $errorCatcher; 
+					// print_r($sqlInsertCommonService);
+					// print_r($sqlInsertUniqueService);
+
 			}
 			public function updateOther(int $propertyID, array $inputArray){
 				var_dump($inputArray);

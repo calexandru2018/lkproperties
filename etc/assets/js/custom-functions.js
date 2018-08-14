@@ -215,7 +215,7 @@ function addContent(type, debugMode, postAsync){
         btn.addEventListener('click', editPageInputCollector);
     });
     function editPageInputCollector() {  
-        // console.clear();
+        console.clear();
         var button_id = this.id.split('-');
         if(button_id[0].indexOf('_') > 0){
             var tempIDHolder = button_id[0].split('_');
@@ -231,9 +231,16 @@ function addContent(type, debugMode, postAsync){
                     userInput[inp.name] = 'unchecked';
             }else if(inp.type == 'textarea'){
                 userInput[inp.name] = CKEDITOR.instances[inp.id].getData();
-            }else if(inp.type != 'checkbox'){
+            }else if(inp.type == 'select-multiple' && button_id[1] == 'serviceType'){
+                var services = $('#' + inp.id).find(':selected');
+                for(var c = 0; c < services.length; c++){
+                    console.log(services[c].label,services[c].value);
+                    userInput[inp.name + '_' + c] = services[c].value;
+                }
+            }else if(inp.type == 'text' || inp.type == 'number' || inp.type == 'email' || inp.type == 'select-one'){
                 userInput[inp.name] = [inp.value];
             }
+            console.log(inp.type, inp.value);
         });
         var url = new URL(window.location.href);
         axios.post(

@@ -2,12 +2,12 @@
     $_POST = json_decode(file_get_contents('php://input'), true);
 
     require_once('../../_include/_models/db.php');
-    require_once('../../_include/_models/to-rent.php');
+    require_once('../../_include/_models/to-sell.php');
     $conn = new Database();
-    $toRent = new ToRent($conn->db);
-    $response = $toRent->delete($_POST['contentID']);
+    $toSell = new ToSell($conn->db);
+    $response = $toSell->delete($_POST['contentID']);
 
-    $toRent->closeConnection($conn->db);
+    $toSell->closeConnection($conn->db);
 
     echo json_encode($response);
 ?>
