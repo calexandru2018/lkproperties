@@ -2,11 +2,11 @@
 /* Add function */
 function addContent(type, debugMode, postAsync){
     console.clear();
-    var splittedID = type.split('-');
+    let splittedID = String(type).split('-');
     var info = document.querySelectorAll("[name^=" + splittedID[1]);
     
     /* In case the names contain underscores, then it should be "rewritten" */
-    if(splittedID[1] == 'service_common' || splittedID[1] == 'service_unique' || splittedID[1] == 'to_rent' || splittedID[1] == 'to_sell'){
+    if((splittedID[1] == 'service_common') || (splittedID[1] == 'service_unique') || (splittedID[1] == 'to_rent') || (splittedID[1] == 'to_sell')){
         var customID = splittedID[1].split('_');
         splittedID[1] = customID[0] + '-' + customID[1].toLowerCase();
         var curatedObject = filterContent(info, splittedID[1]);
@@ -15,7 +15,8 @@ function addContent(type, debugMode, postAsync){
     }
     if(debugMode == true)
         console.log(curatedObject);
-
+    
+        
     if(postAsync == true){
         axios.post(
             'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
@@ -29,8 +30,10 @@ function addContent(type, debugMode, postAsync){
             } 
         )
         .then(function (response) {
-            var idHolder = splittedID[1].split('-');
-            splittedID[1] = idHolder[0] + '_' + idHolder[1];
+            if(splittedID[1].indexOf('-') > 0){
+                var idHolder = splittedID[1].split('-');
+                splittedID[1] = idHolder[0] + '_' + idHolder[1];
+            }
             if(response.data != false){
                 if(debugMode == false)
                     populateTable(response.data, splittedID[1] + '-table', splittedID[1]);
@@ -122,10 +125,10 @@ function addContent(type, debugMode, postAsync){
                             Eliminar ` + contentType.toUpperCase() + `
                         </div>
                         <div class="panel-body">
-                            <button class="btn btn-danger pull-left" id="delete-yes" style="margin: 10px 60px 10px 0px" data-content-type = `  + contentType.toLowerCase() + ` data-content-id=` + contentID + `>
+                            <button class="btn btn-danger pull-left" id="delete-yes" style="margin: 10px 60px 10px 0px" data-content-type = `  + contentType.toLowerCase() + ` data-content-id=` + contentID + ` tabindex="1">
                                 Sim
                             </button>
-                            <button class="btn btn-success pull-right" id="close-modal" style="margin: 10px 0px 10px 60px">
+                            <button class="btn btn-success pull-right" id="close-modal" style="margin: 10px 0px 10px 60px" tabindex="2">
                                 Cancelar
                             </button>
                         </div>

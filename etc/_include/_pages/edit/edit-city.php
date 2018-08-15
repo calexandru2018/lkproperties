@@ -6,7 +6,7 @@
     if($canEdit === 1)
     {
 ?>
-    <h3 class="page-title">Editar Cidade: <?php echo utf8_encode($cityData['pt']['nameTranslated']); ?></h3>
+    <h3 class="page-title">Editar Cidade: <?php echo $cityData['pt']['nameTranslated']; ?></h3>
     <div class="panel panel-primary">
         <div class="panel-heading">
             Nome
@@ -16,13 +16,13 @@
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                        <input type="text" name="cityName-PT" class="form-control" value="<?php echo utf8_encode($cityData['pt']['nameTranslated']);?>">
+                        <input type="text" name="cityName-PT" class="form-control" value="<?php echo $cityData['pt']['nameTranslated'];?>">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                        <input type="text" name="cityName-EN" class="form-control" value="<?php echo utf8_encode($cityData['en']['nameTranslated']);?>">
+                        <input type="text" name="cityName-EN" class="form-control" value="<?php echo $cityData['en']['nameTranslated'];?>">
                     </div>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
@@ -40,12 +40,12 @@
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
                     <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
-                    <div id="cityDescPTHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['pt']['descriptionTranslated']);?></div>
+                    <div id="cityDescPTHolder" style="visibility: hidden"><?php echo $cityData['pt']['descriptionTranslated'];?></div>
                 </div>
                 <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
                     <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
-                    <div id="cityDescENHolder" style="visibility: hidden"><?php echo utf8_encode($cityData['en']['descriptionTranslated']);?></div>
+                    <div id="cityDescENHolder" style="visibility: hidden"><?php echo $cityData['en']['descriptionTranslated'];?></div>
                 </div>
                 <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                     <button type="button" class="btn btn-success pull-right save" id="city-saveDesc">Guardar Alteração</button>
