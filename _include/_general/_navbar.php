@@ -3,7 +3,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand mr-0" href="/">
+        <a class="navbar-brand mr-0" href="index.php">
             <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
             LK Properties
         </a>

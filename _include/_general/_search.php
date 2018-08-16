@@ -1,16 +1,46 @@
+<?php
+    /* 
+        CSS is loaded on this specific page so that other pages dont load unnecessary files,
+        to help speed up loading time
+    */
+?>  
+<link rel="stylesheet" href="assets/css/range-slider.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
+
+<?php
+    /* 
+        Custom styling for this select.
+    */
+?>  
+<style>
+    .select2-selection, .select2-selection--single{
+        height: 100% !important;
+    }
+    .select2-selection__rendered{
+        padding-top: 5px;
+    }
+    .select2-selection__arrow{
+        margin-top: 5px;
+    }
+</style>
 <div class="search-container custom-container my-1 px-4 px-md-2">
     <div class="input-group my-0 w-100" >
         <div class="input-group-prepend">
-            <button class="btn btn-primary pb-0" type="submit">
-                <i data-feather="search"></i>
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i>
                 <span class="border-0 align-top text-white d-none d-md-inline">Search</span>
             </button>
         </div>
-        <input class="form-control p-1 px-md-2 custom-focus border-bottom rounded-0" type="text" placeholder="Try searching for Rocha">
+        <select class="custom-select form-control custom-focus border-bottom rounded-0" name="state" multiple="multiple">
+            <option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option>
+        </select>
         <div class="input-group-append">
-            <button class="btn btn-success pb-0" role="button" data-toggle="collapse" data-target="#filterDropdown" aria-haspopup="true" aria-expanded="false" aria-controls="filterDropdown">
-                <i data-feather="filter"></i>
-                <span class="border-0 align-top text-white d-none d-md-inline" id="">Filter By</span>
+            <button class="btn btn-success" role="button" data-toggle="collapse" data-target="#filterDropdown" aria-haspopup="true" aria-expanded="false" aria-controls="filterDropdown">
+                <i class="fas fa-filter"></i>
+                <span class="border-0 align-top text-white d-none d-md-inline" id="">Filter</span>
             </button>
         </div>
     </div>
@@ -115,3 +145,54 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="assets/js/range-slider.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.custom-select').select2();
+        
+        var slider = document.querySelectorAll('input[type="range"]');
+        rangeSlider.create(slider, {
+            polyfill: true,     // Boolean, if true, custom markup will be created
+            rangeClass: 'rangeSlider',
+            fillClass: 'rangeSlider__fill',
+            handleClass: 'rangeSlider__handle',
+            startEvent: ['mousedown', 'touchstart', 'pointerdown'],
+            moveEvent: ['mousemove', 'touchmove', 'pointermove'],
+            endEvent: ['mouseup', 'touchend', 'pointerup'],
+            vertical: false,    // Boolean, if true slider will be displayed in vertical orientation
+            stick: null,        // [Number stickTo, Number stickRadius] : use it if handle should stick to stickTo-th value in stickRadius
+            borderRadius: 10,   // Number, if you use buffer + border-radius in css for looks good,
+            onInit: function () {
+                var selector = '[data-rangeSlider]',
+                elements = document.querySelectorAll(selector);
+                function valueOutput(element) {
+                console.log(element.name);
+                    var value = element.value,
+                        output = element.parentNode.getElementsByTagName('output')[0];
+                    output.innerHTML = value;
+
+                }
+
+                for (var i = elements.length - 1; i >= 0; i--) {
+                    valueOutput(elements[i]);
+                }
+
+                Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
+                    el.addEventListener('input', function (e) {
+                        valueOutput(e.target);
+                    }, false);
+                });
+            },
+            onSlideStart: function (position, value) {
+                console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
+            },
+            onSlide: function (position, value) {
+                console.log('onSlide', 'position: ' + position, 'value: ' + value);
+            },
+            onSlideEnd: function (position, value) {
+                console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
+            }
+        });    
+    });
+</script>

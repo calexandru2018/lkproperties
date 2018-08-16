@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css" integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
+
 <div class="custom-container mb-5 pb-5 px-4 px-md-2 rounded text-muted">
     <div class="row">
         <div class="col-12">
@@ -72,7 +76,7 @@
                     <div class="row mx-2 pb-md-3 pt-md-2 h-100">
                         <div class="col-6 p-3 border-bottom border-right">
                             <a href="https://www.facebook.com/gerencialiliaungureanu/" target="_new">
-                                <i data-feather="facebook"></i>
+                            <i class="fab fa-facebook"></i>
                             </a>
                         </div>
                         <div class="col-6 p-3 border-bottom">
@@ -120,3 +124,12 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#date", {
+            mode: "range",
+            onChange: function(selectedDates, dateStr, instance) {
+                console.log(document.querySelector("#myID").value);
+            }
+        });
+</script>
