@@ -1,10 +1,17 @@
 <?php
+    // var_dump($lang);
     session_start();
+    if(!isset($_COOKIE["lang"]) && empty($_COOKIE["lang"])){
+        setcookie("lang", "en",  time()+60*60*24*30, "/lkproperties");
+        header("Location: index.php");
+    }
+    include("assets/lang/".$_COOKIE["lang"].".php"); 
+
     require_once('_include/_models/db.php');
     $CONN = new Database();
 ?>
 <!DOCTYPE html>
-<html lang="pt" class="fullscreen-bg">
+<html lang="<?php $_COOKIE["lang"]?>" class="fullscreen-bg">
 <head>
 	<?php require_once('_include/_general/_head.php'); ?>
 </head>
@@ -12,34 +19,53 @@
     <?php require_once('_include/_general/_navbar.php'); ?>
     <?php 
         if(empty($_GET)){
-
+            include_once('_include/_general/_home.php');            
+            include_once('_include/_general/_search.php'); 
+        }elseif($_GET['show'] == 'for-sale' || $_GET['show'] == 'popular'){
+            include_once('_include/_general/_search.php'); 
+        }elseif($_GET['show'] == 'contact-us'){
+            include_once('_include/_general/_home.php'); 
         }
-            require_once('_include/_general/_home.php');            
-            require_once('_include/_general/_search.php'); 
     ?>
-
     <main role="main" class="custom-container p-0 mb-md-5 text-muted" style="box-shadow: 0px 27px 70px -35px var(--gray);">
         <?php 
-        
             if(isset($_GET['show']) && !empty($_GET['show'])){
                 switch ($_GET['show']){
                     case 'popular': include('_include/_pages/popular.php');
                         break;
                     case 'activities': include('_include/_pages/activity-list.php');
                         break;
-                    case 'faq': include('_include/_pages/faq.php');;
+                    case 'faq': include('_include/_pages/faq.php');
                         break;
-                    case 'for-sale': include('_include/_pages/sell-list.php');;
+                    case 'for-sale': include('_include/_pages/sell-list.php');
                         break;
-                    case 'contact-us': include('_include/_pages/contact-us.php');;
+                    case 'contact-us': include('_include/_pages/contact-us.php');
                         break;
                 }
             }else{
                 include('_include/_pages/rent-list.php');
             }
-        require_once('_include/_general/_footer.php'); ?>
+        include_once('_include/_general/_footer.php'); ?>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js"></script> 
+    <script>
+        $(document).on("click", "[name='language']", function(){
+            var langPref = $(this).data();
+            console.log(langPref['language']);
+            fetch('process/set-lang.php', {
+                    method: 'POST',
+                    body: langPref
+                })
+                .then(function(response){
+                    document.location.reload(true);
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+        });
+    </script>
 </body>
 </html>
+<?php
+    mysqli_close($CONN->db);
+?>

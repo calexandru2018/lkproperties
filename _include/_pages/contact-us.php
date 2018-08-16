@@ -70,28 +70,28 @@
                 </div>
             </form>
         </div>  
-        <div class="col-12 col-md-6 pt-5 pb-5 pt-md-4 pb-md-0">
+        <div class="col-12 col-md-6 pb-5 pb-md-0">
             <div class="row h-100">
                 <div class="col-12">
-                    <div class="row mx-2 pb-md-3 pt-md-2 h-100">
-                        <div class="col-6 p-3 border-bottom border-right">
+                    <div class="row mx-2 pb-md-3 h-100 text-center">
+                        <div class="col-12 col-md-6 pt-1 pb-2">
                             <a href="https://www.facebook.com/gerencialiliaungureanu/" target="_new">
-                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-facebook fa-10x"></i>
                             </a>
                         </div>
-                        <div class="col-6 p-3 border-bottom">
+                        <div class="col-12 col-md-6 pt-1 pb-2">
                             <a href="https://www.instagram.com/" target="_new">
-                                <i data-feather="instagram"></i>
+                                <i class="fab fa-instagram fa-10x"></i>
                             </a>
                         </div>
-                        <div class="col-6 p-3 border-right pt-md-5">
+                        <div class="col-12 col-md-6 pt-1 pb-2 pt-md-5">
                             <a href="https://www.twitter.com/" target="_new">
-                                <i data-feather="twitter"></i>
+                                <i class="fab fa-twitter-square fa-10x"></i>
                             </a>
                         </div>
-                        <div class="col-6 p-3 pt-md-5">
+                        <div class="col-12 col-md-6 pt-1 pb-2 pt-md-5">
                             <a href="https://www.linkedin.com/" target="_new">
-                                <i data-feather="linkedin"></i>
+                                <i class="fab fa-linkedin fa-10x"></i>
                             </a>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
     <div class="row my-md-5 pt-5 pt-md-3 text-muted">
         <div class="col-12">
             <div class="row">
-                <div class="col-12 col-md-12 text-center mb-2 mb-md-4">
+                <div class="col-12 col-md-12 text-center mb-2">
                     <div class="row"></div>
                     <h3>Our Staff</h3>
                 </div>

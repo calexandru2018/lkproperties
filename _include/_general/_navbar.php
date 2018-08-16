@@ -10,13 +10,13 @@
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link nav-hover" href="index.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link nav-hover" href="index.php"><?php echo $lang['navbar']['home']; ?> <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Popular</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <!-- <div class="dropdown-divider"></div> -->
-                        <h5 class="dropdown-header">Beaches</h5>
+                        <h5 class="dropdown-header"><?php echo $lang['navbar']['popular']['subCat1']; ?></h5>
                         <!-- <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" href="?show=popular">Praia da Rocha</a>
                         <a class="dropdown-item" href="?show=popular">Meia-Praia</a>
@@ -30,7 +30,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?show=activities">Activities</a>
+                    <a class="nav-link" href="?show=activities"><?php echo $lang['navbar']['activities']; ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="?show=faq">FAQ</a>
@@ -41,6 +41,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="?show=contact-us">Contact Us</a>
                 </li>
+<!--                 <li class="nav-item">
+                    <select class="custom-select" style="background: none !important; margin: 0rem 0rem 0rem 0.5rem; padding: 0 0rem 0 0.5rem">
+                        <option value="en" style="background-image: url('assets/img/lang/en.png'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                            <a href="http://">
+                                English
+                                                </a>
+                        </option>
+                        <option value="pt"style="background-image: url('assets/img/lang/pt.png')">
+                            <a href="http://">
+                                Português
+                            </a>
+                        </option>
+                    </select>
+                </li> -->
             </ul>
         </div>
     </div>

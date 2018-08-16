@@ -24,6 +24,11 @@
     .select2-selection__arrow{
         margin-top: 5px;
     }
+    .select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default .select2-selection--multiple {
+        outline: none !important;
+        border: none!important;
+        background-color: var(--light)!important;
+    }
 </style>
 <div class="search-container custom-container my-1 px-4 px-md-2">
     <div class="input-group my-0 w-100" >
@@ -33,7 +38,7 @@
                 <span class="border-0 align-top text-white d-none d-md-inline">Search</span>
             </button>
         </div>
-        <select class="custom-select form-control custom-focus border-bottom rounded-0" name="state" multiple="multiple">
+        <select class="state-select form-control custom-focus border-bottom rounded-0" name="state" multiple="multiple">
             <option value="AL">Alabama</option>
             <option value="WY">Wyoming</option>
         </select>
@@ -149,7 +154,7 @@
 <script src="assets/js/range-slider.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.custom-select').select2();
+        $('.state-select').select2();
         
         var slider = document.querySelectorAll('input[type="range"]');
         rangeSlider.create(slider, {

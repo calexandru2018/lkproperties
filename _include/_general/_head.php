@@ -39,45 +39,5 @@
             /* modern browsers
             opacity: 0;
         } */
-        #custom-ul>li{
-            z-index: 0;
-        }
-        footer{
-            background-color: #3e4551; 
-            /* color: #ffffff; */
-            color:#3e4551;
-        }
-        footer .footer-copyright{
-            background-color: rgba(0,0,0,.2); 
-            color: rgba(255,255,255,.6); 
-            overflow: hidden;
-        }
-        footer a{
-            color: #3e4551;
-            /* color: #ffffff; */
-            text-decoration: none;
-            -webkit-transition: width 2s; /* Safari */
-            transition: width 2s;
-        }
-        footer a:active{
-            color: #3e4551;
-            /* color: #ffffff; */
-            text-decoration: none;
-        }
-        footer a:hover{
-            color: #3e4551;
-            /* color: #ffffff67; */
-            text-decoration: none;
-        }
-        footer a:click{
-            color: #3e4551;
-            /* color: #ffffff; */
-            text-decoration: none;
-        }
-        footer a:visited{
-            /* color: #ffffff; */
-            color: #3e4551;
-            text-decoration: none;
-        }
     </style>
 </head>
