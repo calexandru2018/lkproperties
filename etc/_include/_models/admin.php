@@ -112,10 +112,10 @@
                         thumbnailURL = "'.$url.'"
                     where admin_ID = '.$adminID;
                 $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
-                if($this->db->affected_rows == 1)
-                    return true;
+                if($this->db->error)
+                    return $this->db->error;
                 else
-                    return false;
+                    return true;
             }
             public function deleteAdminPhoto(int $adminID){
                 $sqlUpdateAdmin = 'update admin set 

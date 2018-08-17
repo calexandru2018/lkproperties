@@ -133,7 +133,7 @@
 					select 
 						common_service_translation.common_service_link_ID,
 						common_service_translation.serviceTranslated,
-						property_common_service.property_service_ID
+						property_common_service.property_ID
 					FROM
 						common_service_translation
 					RIGHT JOIN
@@ -543,10 +543,10 @@
 						)
 				';
 			$queryInsert = $this->db->query($sqlInsert);
-				if($this->db->error)
-					return false;
-				else
-					return true;
+			if($this->db->error)
+				return $this->db->error;
+			else
+				return true;
             }
             public function deletePhoto(string $photoID){
 				$propertyPhotoID = explode('-', $photoID);

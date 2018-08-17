@@ -308,10 +308,10 @@
                     )
             ';
            $queryInsert = $this->db->query($sqlInsert);
-            if($this->db->affected_rows == 1)
-                return true;
+            if($this->db->error)
+                return $this->db->error;
             else
-                return false;
+                return true;
         }
         public function deleteActivityPhoto(string $photoID){
             $activityPhotoID = explode('-', $photoID);

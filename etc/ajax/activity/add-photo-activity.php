@@ -47,17 +47,19 @@
             $thumbnailHandle->file_safe_name = true;
             $thumbnailHandle->file_auto_rename = true;
             $thumbnailHandle->image_resize = true;
-            $thumbnailHandle->image_ratio_y = true;
+            // $thumbnailHandle->image_ratio_y = true;
             $thumbnailHandle->image_x = 365;
+            $thumbnailHandle->image_y = 274;
             $thumbnailHandle->dir_auto_create = true;
             $thumbnailHandle->Process($commonURL.$activityID.'/thumbnail/');
         /* Thumbnail handler */
 
             if ($fullsizeHandle->processed && $thumbnailHandle->processed) {
-                if($photo->addActivityPhoto($activityID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name))
-                    echo true;
-                else 
-                    echo 'issues updating';
+                $response = $photo->addActivityPhoto($activityID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name);
+                if($response == true)
+                    echo (int)1;
+                else
+                    echo false;
             } else {
                 echo 'Error: ' . $fullsizeHandle->error;
             }

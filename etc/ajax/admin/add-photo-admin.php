@@ -44,10 +44,11 @@
             $handle->image_x               = 300;
             $handle->Process("../../../ourstaff");
             if ($handle->processed) {
-                if($addNewPhotoAdmin->addAdminPhoto($adminID, $handle->file_dst_name))
-                    echo true;
-                else 
-                    echo 'issues updating';
+                $response = $photo->addAdminPhoto($adminID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name);
+                if($response == true)
+                    echo (int)1;
+                else
+                    echo false;
             } else {
                 echo 'Error: ' . $handle->error;
             }

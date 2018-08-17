@@ -2,7 +2,7 @@
     include_once('_include/_models/activity.php');
     $activity = new Activity($MAIN->db);
     $activityData = $activity->fetchActivity($_GET['id']);
-    var_dump($activityData);
+    // var_dump($activityData);
     $canEdit = $activity->showEditPage($_GET["edit"], $_GET["id"], empty($activityData));
     if($canEdit === 1)
     {

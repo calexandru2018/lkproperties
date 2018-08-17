@@ -129,11 +129,11 @@
             newUpload.upload();
         /* Upload script */
 
-            /* Create new entry */
-                document.getElementById('add-city').onclick = function(){
-                    addContent(this.id, false, true);
-                };
-            /* Create new entry */
+        /* Create new entry */
+            document.getElementById('add-city').onclick = function(){
+                addContent(this.id, false, true);
+            };
+        /* Create new entry */
 
         /* Delete City */
             $(document).on('click', '#delete-city', function(){

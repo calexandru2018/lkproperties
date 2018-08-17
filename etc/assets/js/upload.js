@@ -6,28 +6,31 @@ function uploadPhotos(url, queryCollection){
         queryCollection.forEach(function(el){
             el.addEventListener('submit', e => {
                 e.preventDefault();
-                console.clear();
                 const files = el.querySelector('[type=file]').files;
                 const contentID = el.closest('tr').getAttribute('data-content-id');
-                console.log(contentID);
                 let formData = new FormData();
-
+                
                 for (let i = 0; i < files.length; i++) {
                     let file = files[i];
                     formData.append('image_field[]', file, contentID + '___' + file.name);
                 }
-                console.log(files);
                 /* Original working */
                 fetch(url, {
                     method: 'POST',
                     body: formData
                 })
-                .then(function(response){
-                    console.log(response);
-                    alert('Upload feito');
+                .then(response => response.text())
+                .then(data => {
+                    if(Number.isInteger(parseInt(data)) == true)
+                        alert('Upload feito');
+                    else
+                        alert('Erro ao inserir na base de dados');
+
+                    console.log(data);
                 })
                 .catch(function(error){
                     console.log(error);
+                    alert('Erro em fazer upload');
                 });
             });
         });

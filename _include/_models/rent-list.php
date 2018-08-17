@@ -31,7 +31,7 @@
                 where 
                     isForSale = 0
                 and
-                    isVisible = 0
+                    isVisible = 1
             ');
             while($fetchCount = $queryCount->fetch_object()){
                 $propertyIDCollection[] = $fetchCount->property_ID;
@@ -60,7 +60,7 @@
                 and
                     isForSale = 0
                 and
-                    isVisible = 0
+                    isVisible = 1
             ');
             return $result->fetch_array();
         }

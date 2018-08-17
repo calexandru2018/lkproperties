@@ -28,6 +28,7 @@
         if ($fullsizeHandle->uploaded && $thumbnailHandle->uploaded) {
             
         /* Fullsize handler */
+            // $thumbnailHandle->file_new_name_body = ;
             $fullsizeHandle->image_convert = 'jpeg';
             $fullsizeHandle->jpeg_quality = 60;
             $fullsizeHandle->file_safe_name = true;
@@ -42,22 +43,25 @@
         /* Fullsize handler */
 
         /* Thumbnail handler */
+            // $thumbnailHandle->file_new_name_body = ;
             $thumbnailHandle->image_convert = 'jpeg';
             $thumbnailHandle->jpeg_quality = 40;
             $thumbnailHandle->file_safe_name = true;
             $thumbnailHandle->file_auto_rename = true;
             $thumbnailHandle->image_resize = true;
-            $thumbnailHandle->image_ratio_y = true;
+            // $thumbnailHandle->image_ratio_y = true;
             $thumbnailHandle->image_x = 365;
+            $thumbnailHandle->image_y = 274;
             $thumbnailHandle->dir_auto_create = true;
             $thumbnailHandle->Process($commonURL.$cityID.'/thumbnail/');
         /* Thumbnail handler */
 
             if ($fullsizeHandle->processed && $thumbnailHandle->processed) {
-                if($photo->addCityPhoto($cityID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name))
-                    echo true;
-                else 
-                    echo 'issues updating';
+                $response = $photo->addCityPhoto($cityID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name);
+                if($response == true)
+                    echo (int)1;
+                else
+                    echo false;
             } else {
                 echo 'Error: ' . $fullsizeHandle->error;
             }

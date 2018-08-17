@@ -247,10 +247,10 @@
                     )
             ';
            $queryInsertPhoto = $this->db->query($sqlInsertPhoto);
-            if($this->db->affected_rows == 1)
-                return true;
+            if($this->db->error)
+                return $this->db->error;
             else
-                return false;
+                return true;
         }
         public function deleteCityPhoto(string $photoID){
             $cityPhotoID = explode('-', $photoID);

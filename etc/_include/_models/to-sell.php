@@ -531,10 +531,10 @@
 						)
 				';
 				$queryInsert = $this->db->query($sqlInsert);
-					if($this->db->error)
-						return false;
-					else
-						return true;
+                if($this->db->error)
+                    return $this->db->error;
+                else
+                    return true;
             }
             public function deletePhoto(string $photoID){
 				$propertyPhotoID = explode('-', $photoID);

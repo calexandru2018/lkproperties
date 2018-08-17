@@ -365,11 +365,11 @@
                         "'.mysqli_real_escape_string($this->db, $fullsizeURL).'"
                     )
             ';
-           $queryInsert = $this->db->query($sqlInsert);
-            if($this->db->affected_rows == 1)
-                return true;
+            $queryInsert = $this->db->query($sqlInsert);
+            if($this->db->error)
+                return $this->db->error;
             else
-                return false;
+                return true;
         }
         public function deletePoiPhoto(string $photoID){
             $poiPhotoID = explode('-', $photoID);

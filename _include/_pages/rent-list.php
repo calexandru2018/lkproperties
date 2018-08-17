@@ -18,7 +18,7 @@
                     <div class="col-12 col-sm-6 col-lg-4 my-3 px-4 px-md-2">
                         <div class="card w-100 mx-auto mx-0-md bg-light border-0">
                             <a href="?show=for-rent-details&object='.$collector[$c1]['publicID'].'">
-                                <img class="card-img-top" src="assets/img/gallery/rental/'.$collector[$c1]['id'].'/thumbnail/'.$collector[$c1]['thumbnail'].'" alt="Card image cap">
+                                <img class="card-img-top" src="gallery/rental/'.$collector[$c1]['id'].'/thumbnail/'.$collector[$c1]['thumbnail'].'" alt="Card image cap">
                             </a>
                             <div class="card-body px-0 bg-white text-justify">
                                 <h4 class="card-title">'.$collector[$c1]['title'].'</h4>
