@@ -38,6 +38,5 @@
     </div>
 </div>
 <?php
-    echo password_hash(mysqli_real_escape_string($MAIN->db, 'test'), PASSWORD_BCRYPT);
-    mysqli_close($MAIN->db);
+    // echo password_hash(mysqli_real_escape_string($MAIN->db, 'test'), PASSWORD_BCRYPT);
 ?>
