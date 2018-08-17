@@ -7,7 +7,7 @@
 
     $files = array();
     $cityID = 0;
-    $commonURL = '../../../assets/img/gallery/city/';
+    $commonURL = '../../../gallery/city/';
     foreach ($_FILES['image_field'] as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files))

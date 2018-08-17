@@ -7,7 +7,7 @@
 
     $files = array();
     $toSellID = 0;
-    $commonURL = '../../../assets/img/gallery/sale/';
+    $commonURL = '../../../gallery/sale/';
     foreach ($_FILES['image_field'] as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files))

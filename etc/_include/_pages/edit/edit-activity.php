@@ -107,8 +107,8 @@
                         for($photoCounter = 0; $photoCounter < count($resp); $photoCounter++){
                             echo '
                                 <div class="col-xs-4 item" style="margin: 5px 0">
-                                    <a class="lightbox" href="../assets/img/gallery/activity/'.$_GET['id'].'/fullsize/'.$resp[$photoCounter]->fullsizeURL.'">
-                                        <img class="img-responsive image scale-on-hover" src="../assets/img/gallery/activity/'.$_GET['id'].'/thumbnail/'.$resp[$photoCounter]->fullsizeURL.'"g">
+                                    <a class="lightbox" href="../gallery/activity/'.$_GET['id'].'/fullsize/'.$resp[$photoCounter]->fullsizeURL.'">
+                                        <img class="img-responsive image scale-on-hover" src="../gallery/activity/'.$_GET['id'].'/thumbnail/'.$resp[$photoCounter]->fullsizeURL.'"g">
                                     </a>
                                     <button class="btn btn-danger delete-photo" data-content-type="activity" data-content-id="'.$_GET['id'].'-'.$resp[$photoCounter]->activity_gallery_ID.'"  style="position: absolute;z-index: 1;top: 0;">
                                         <i class="lnr lnr-trash"></i>

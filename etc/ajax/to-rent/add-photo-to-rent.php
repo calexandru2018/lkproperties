@@ -7,7 +7,7 @@
 
     $files = array();
     $toRentID = 0;
-    $commonURL = '../../../assets/img/gallery/rental/';
+    $commonURL = '../../../gallery/rental/';
     foreach ($_FILES['image_field'] as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files))

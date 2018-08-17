@@ -8,7 +8,7 @@
     $response = $toSell->deletePhoto($_POST['contentID']);
     $id = explode('-', $_POST['contentID']);
     if($response != false){
-        $base_directory = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/assets/img/gallery/sale/'.$id[0].'/';
+        $base_directory = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/gallery/sale/'.$id[0].'/';
         if(unlink($base_directory.'fullsize/'.$response->fullsizeURL) && unlink($base_directory.'thumbnail/'.$response->thumbnailURL))
             $response = true;
         else 

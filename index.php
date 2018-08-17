@@ -46,6 +46,7 @@
                         break;
                 }
             }else{
+                include('_include/_models/rent-list.php');
                 include('_include/_pages/rent-list.php');
             }
         include_once('_include/_general/_footer.php'); ?>

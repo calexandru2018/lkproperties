@@ -8,7 +8,7 @@
     $response = $deltePhotoAdmin->deleteAdminPhoto($_POST['contentID']);
 
    if($response != false){
-        $base_directory = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/assets/img/ourstaff/';
+        $base_directory = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/ourstaff/';
         if(unlink($base_directory.$response))
             $response = true;
         else 

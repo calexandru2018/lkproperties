@@ -96,8 +96,8 @@
                     <div class="row" id="rowGallery">
                     <?php if($adminData->thumbnailURL !== null){?>
                         <div class="col-xs-6 item" style="margin: 5px 0">
-                            <a class="lightbox" href="../assets/img/ourstaff/<?php echo $adminData->thumbnailURL; ?>">
-                                <img class="img-responsive image scale-on-hover" src="../assets/img/ourstaff/<?php echo $adminData->thumbnailURL; ?>">
+                            <a class="lightbox" href="../ourstaff/<?php echo $adminData->thumbnailURL; ?>">
+                                <img class="img-responsive image scale-on-hover" src="../ourstaff/<?php echo $adminData->thumbnailURL; ?>">
                             </a>
                             <button class="btn btn-danger delete-photo" data-content-type="admin" data-content-id="<?php echo $adminData->admin_ID ;?>" style="position: absolute;z-index: 1;top: 0;">
                                 <i class="lnr lnr-trash"></i>

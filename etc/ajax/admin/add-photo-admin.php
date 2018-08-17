@@ -42,7 +42,7 @@
             $handle->image_ratio_crop      = true;
             $handle->image_y               = 300;
             $handle->image_x               = 300;
-            $handle->Process("../../../assets/img/ourstaff");
+            $handle->Process("../../../ourstaff");
             if ($handle->processed) {
                 if($addNewPhotoAdmin->addAdminPhoto($adminID, $handle->file_dst_name))
                     echo true;

@@ -7,7 +7,7 @@
 
     $files = array();
     $activityID = 0;
-    $commonURL = '../../../assets/img/gallery/activity/';
+    $commonURL = '../../../gallery/activity/';
     foreach ($_FILES['image_field'] as $k => $l) {
         foreach ($l as $i => $v) {
             if (!array_key_exists($i, $files))
