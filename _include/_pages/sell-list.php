@@ -1,9 +1,9 @@
 <div class="p-0 mx-0 pb-5 mx-sm-auto">
     <div class="row mx-0">
         <div class="col-12 my-3 px-4 px-md-2">
-            <h1>Interested in buying or selling real estate ?</h1>
+            <h1><?php echo $lang['reaEstate']['title'];?></h1>
             <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis, veniam? Excepturi eaque autem, eos soluta ducimus praesentium quisquam perferendis, rem dolorum rerum corporis commodi nobis harum minus consequatur repellat? Asperiores.
+                <?php echo $lang['reaEstate']['info'];?>
             </p>
         </div>
     </div>
@@ -11,8 +11,8 @@
         <div class="col-12 my-3 px-4 px-md-2">
             <div class="form-group float-right w-25 mb-0">
                 <select class="form-control" id="sel1">
-                    <option>Sort by Price: Ascending</option>
-                    <option>Sort by Price: Descending</option>
+                    <option><?php echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['asc'];?></option>
+                    <option><?php echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['desc'];?></option>
                 </select>
             </div>
         </div>

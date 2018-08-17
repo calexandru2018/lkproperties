@@ -1,7 +1,7 @@
 <div class="container mx-sm-auto mb-5 pb-5  px-4 px-md-2 shadow-sm rounded text-muted">
-    <h1>Frequently Asked Questions</h1>
+    <h1><?php echo $lang['faq']['title'];?></h1>
     <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut dolores nisi vel! Quis deleniti blanditiis deserunt, ea reprehenderit totam exercitationem iste mollitia. Veniam in voluptate cum provident saepe laudantium quo.
+        <?php echo $lang['faq']['info'];?>
     </p>
     <ul class="list-group">
         <li class="list-group-item list-group-item-light"><h5 class="mb-0">Question 1 ?</h5></li>

@@ -21,7 +21,7 @@
                 'filter' => 'Refinar',
                 'filterParams' => 
                     [
-                        'beachDistamce' => 
+                        'beachDistance' => 
                             [
                                 'name' => 'Distância da Praia',
                                 'pre' => 'Até',
@@ -60,7 +60,7 @@
             [
              'name' => 'Ordernar por Preço',
              'asc' => 'Ascendente',   
-             'asc' => 'Descendente'   
+             'desc' => 'Descendente'   
             ],
         'rentPriceHolder' => 
             [
@@ -73,6 +73,7 @@
             ],
         'faq' => 
             [
+                'title' => 'Perguntes Frequentes',
                 'info' => 'Longa descrição de faq'  
             ],
         'reaEstate' => 
@@ -86,21 +87,38 @@
                 'answer' => 'Isto aqui e reposta',
                 'feedbackQuestion' => 'Tem algumas sugestões ? Agradecemos qualquer feedback!',
                 'feedbackAnswer' => 'Explicação de feedback',
+                'describe' => 'Descreva',
+                'subject' => 'Tópico',
+                'name' => 'Nome',
+                'email' => 'E-mail',
+                'infoSharing' => 'Nunca iremos partilhar o seu endereço com terceiros',
+                'obligatory' => 'Todos os campos marcados com * têm que ser preenchidos'
+            ],
+        'staff' =>
+            [
+                'title' => 'Nosso Staff'
             ],
         'generalFiller' =>
             [
-                'info' => 'Curta descrição',
+                'title' => 'Curta descrição',
                 'video' => 'Vídeo',
                 'gallery' => 'Galeria'
             ],
-        'palceHolder' => 
+        'placeHolder' => 
             [
                 'subjectQuestion' => 'Breve descrição da pergunta',
                 'subjectFeedback' => 'Breve descrição do tipo de feedback',
-                'name' => 'Ex: John or John Doe',
+                'name' => 'Ex: John ou John Doe',
                 'email' => 'seu@email.com',
                 'sendQuestion' => 'Enviar',
-                'sendFeedback' => 'Enviar Feedback'
+                'sendFeedback' => 'Enviar Feedback',
+                'optional' => 'Opcional'
+            ],
+        'footer' => 
+            [
+                'copyright' => 'Direitos Reservados',
+                'developerInfo' => 'Desenvolvido por',
+                'languages' => 'Idiomas'
             ]
     ];
 ?>

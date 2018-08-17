@@ -30,19 +30,19 @@
         <div class="dropdown-divider"></div>
         <div class="d-flex flex-column flex-md-row">
             <div class="pr-md-2">
-                <h4>Some info about the beach</h4>
+                <h4><?php echo $lang['generalFiller']['title'];?></h4>
                 <p class="text-justify">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, harum consequuntur odio, eos repellat, vel est autem veniam culpa cum nisi? Officiis ut iusto quas ullam eos suscipit nostrum ab?
                 </p>
             </div>
             <div class="w-100 pl-md-2">
-                <h4>Video</h4>
+                <h4><?php echo $lang['generalFiller']['video'];?></h4>
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5EwJEfXcY04"></iframe>
                 </div>
-                <p class="text-justify">
+<!--                 <p class="text-justify">
                     Some text describing the video
-                </p>
+                </p> -->
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="heading mb-2  text-left">
-                    <h4>Gallery</h4>
+                    <h4><?php echo $lang['generalFiller']['gallery'];?></h4>
                 </div>
             </div>
         </div>

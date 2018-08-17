@@ -35,7 +35,7 @@
         <div class="input-group-prepend">
             <button class="btn btn-primary" type="submit">
                 <i class="fas fa-search"></i>
-                <span class="border-0 align-top text-white d-none d-md-inline">Search</span>
+                <span class="border-0 align-top text-white d-none d-md-inline"><?php echo $lang['searchbar']['search'];?></span>
             </button>
         </div>
         <select class="state-select form-control custom-focus border-bottom rounded-0" name="state" multiple="multiple">
@@ -45,7 +45,7 @@
         <div class="input-group-append">
             <button class="btn btn-success" role="button" data-toggle="collapse" data-target="#filterDropdown" aria-haspopup="true" aria-expanded="false" aria-controls="filterDropdown">
                 <i class="fas fa-filter"></i>
-                <span class="border-0 align-top text-white d-none d-md-inline" id="">Filter</span>
+                <span class="border-0 align-top text-white d-none d-md-inline" id=""><?php echo $lang['searchbar']['filter'];?></span>
             </button>
         </div>
     </div>
@@ -57,41 +57,41 @@
                 <div class="row mx-0 mb-3"> 
                     <div class="col-12 col-md-6 list-group-item border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                                <span class="text-info">Beach Distance</span>
+                                <span class="text-info"><?php echo $lang['searchbar']['filterParams']['beachDistance']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-distance">
                             <input type="range" min="50" max="2000" step="50" value="100" name="beachDistance" data-rangeSlider>
-                            Up to <output class="pt-2"></output>m
+                            <?php echo $lang['searchbar']['filterParams']['beachDistance']['pre'];?> <output class="pt-2"></output>m
                         </div>
                     </div>
                     <div class="col-12 col-md-6 list-group-item border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                            <span class="text-info">Room Quantity</span>
+                            <span class="text-info"><?php echo $lang['searchbar']['filterParams']['roomQuantity']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-room">
                             <input type="range" min="1" max="8" step="1" value="2" name="room" data-rangeSlider>
-                            Up to <output class="pt-2"></output> rooms
+                            <?php echo $lang['searchbar']['filterParams']['roomQuantity']['pre'];?> <output class="pt-2"></output> <?php echo $lang['searchbar']['filterParams']['roomQuantity']['post'];?>
                             </div>
                     </div>
                     <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                            <span class="text-info">Pool Access</span>
+                            <span class="text-info"><?php echo $lang['searchbar']['filterParams']['poolAccess']['name'];?></span>
                         </div>
                         <div class="container" data-filtBy="filtBy-pool">
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto ">
-                                        <input type="radio" class="form-check-input" name="filtBy-pool" data-filtBy-pool="1" value="1">Yes
+                                        <input type="radio" class="form-check-input" name="filtBy-pool" data-filtBy-pool="1" value="1"><?php echo $lang['searchbar']['filterParams']['poolAccess']['yes'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-pool" value="0">No
+                                        <input type="radio" class="form-check-input" name="filtBy-pool" value="0"><?php echo $lang['searchbar']['filterParams']['poolAccess']['no'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-pool" value="2">Indifferent
+                                        <input type="radio" class="form-check-input" name="filtBy-pool" value="2"><?php echo $lang['searchbar']['filterParams']['poolAccess']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -99,23 +99,23 @@
                     </div>
                     <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                            <span class="text-info">View Type</span>
+                            <span class="text-info"><?php echo $lang['searchbar']['filterParams']['viewType']['name'];?></span>
                         </div>
                         <div class="container" data-filtBy="filtBy-view">
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-view" value="1">Sea
+                                        <input type="radio" class="form-check-input" name="filtBy-view" value="1"><?php echo $lang['searchbar']['filterParams']['viewType']['sea'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-view" value="2">Pool
+                                        <input type="radio" class="form-check-input" name="filtBy-view" value="2"><?php echo $lang['searchbar']['filterParams']['viewType']['pool'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-view" value="0">Indifferent
+                                        <input type="radio" class="form-check-input" name="filtBy-view" value="0"><?php echo $lang['searchbar']['filterParams']['viewType']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -123,23 +123,23 @@
                     </div>
                     <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                            <span class="text-info">Wifi</span>
+                            <span class="text-info"><?php echo $lang['searchbar']['filterParams']['wifi']['name'];?></span>
                         </div>
                         <div class="container text-center" data-filtBy="filtBy-wifi">
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto ">
-                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="1">Yes
+                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="1"><?php echo $lang['searchbar']['filterParams']['wifi']['yes'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="0">No
+                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="0"><?php echo $lang['searchbar']['filterParams']['wifi']['no'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="2">Indifferent
+                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="2"><?php echo $lang['searchbar']['filterParams']['wifi']['neutral'];?>
                                     </label>
                                 </div>
                             </div>

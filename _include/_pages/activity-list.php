@@ -5,7 +5,9 @@
         <div class="col-12 mb-1">
             <div class="p-0">
                 <h1>Algarve</h1>
-                <p class="text-justify mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum maiores suscipit fugiat perspiciatis, consectetur eveniet expedita provident corrupti nostrum veniam voluptates velit temporibus unde ullam, dolorem reprehenderit saepe officia aliquid?</p>
+                <p class="text-justify mb-0">
+                    <?php echo $lang['activities']['info'];?>
+                </p>
             </div>
         </div>
     </div>

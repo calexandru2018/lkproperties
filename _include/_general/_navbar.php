@@ -22,7 +22,7 @@
                         <a class="dropdown-item" href="?show=popular">Meia-Praia</a>
                         <a class="dropdown-item" href="?show=popular">Praia do Vau</a>
                         <div class="dropdown-divider"></div>
-                        <h5 class="dropdown-header">Cities</h5>
+                        <h5 class="dropdown-header"><?php echo $lang['navbar']['popular']['subCat2']; ?></h5>
                         <!-- <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" href="?show=popular">Lisboa</a>
                         <a class="dropdown-item" href="?show=popular">Porto</a>
@@ -33,28 +33,14 @@
                     <a class="nav-link" href="?show=activities"><?php echo $lang['navbar']['activities']; ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?show=faq">FAQ</a>
+                    <a class="nav-link" href="?show=faq"><?php echo $lang['navbar']['faq']; ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?show=for-sale">Real Estate</a>
+                    <a class="nav-link" href="?show=for-sale"><?php echo $lang['navbar']['realEstate']; ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?show=contact-us">Contact Us</a>
+                    <a class="nav-link" href="?show=contact-us"><?php echo $lang['navbar']['contactUs']; ?></a>
                 </li>
-<!--                 <li class="nav-item">
-                    <select class="custom-select" style="background: none !important; margin: 0rem 0rem 0rem 0.5rem; padding: 0 0rem 0 0.5rem">
-                        <option value="en" style="background-image: url('assets/img/lang/en.png'); background-position: center; background-repeat: no-repeat; background-size: cover;">
-                            <a href="http://">
-                                English
-                                                </a>
-                        </option>
-                        <option value="pt"style="background-image: url('assets/img/lang/pt.png')">
-                            <a href="http://">
-                                Português
-                            </a>
-                        </option>
-                    </select>
-                </li> -->
             </ul>
         </div>
     </div>

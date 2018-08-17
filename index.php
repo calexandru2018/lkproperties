@@ -41,6 +41,8 @@
                         break;
                     case 'contact-us': include('_include/_pages/contact-us.php');
                         break;
+                    case 'for-rent-details': include('_include/_pages/rent-details.php');
+                        break;
                 }
             }else{
                 include('_include/_pages/rent-list.php');
@@ -51,17 +53,22 @@
     <script>
         $(document).on("click", "[name='language']", function(){
             var langPref = $(this).data();
-            console.log(langPref['language']);
+            let formData = new FormData();
+            formData.append('lang', langPref['language']);
             fetch('process/set-lang.php', {
-                    method: 'POST',
-                    body: langPref
-                })
-                .then(function(response){
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data == true)
                     document.location.reload(true);
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
+                else
+                    console.log(data)
+            })
+            .catch(function(error){
+                console.log(error);
+            });
         });
     </script>
 </body>

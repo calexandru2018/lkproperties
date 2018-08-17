@@ -5,33 +5,35 @@
 <div class="custom-container mb-5 pb-5 px-4 px-md-2 rounded text-muted">
     <div class="row">
         <div class="col-12">
-            <h2>Is there something else on your mind ?</h2>
-            <p class="text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur magni repellat, itaque maxime quidem quaerat eius mollitia beatae necessitatibus quibusdam veritatis iste sit, illum molestiae odio. Porro sequi dicta tenetur?</p>
+            <h2><?php echo $lang['contactUs']['question'];?></h2>
+            <p class="text-justify">
+                <?php echo $lang['contactUs']['answer'];?>
+            </p>
         </div>
         <div class="col-12">
             <form>
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
-                        <label for="exampleFormControlTextarea1">*Describe</label>
+                        <label for="exampleFormControlTextarea1">*<?php echo $lang['contactUs']['describe'];?></label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <div class="col-12 py-2">
-                            <label for="subject">*Subject</label>
-                            <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="What does your question handle about ?">
+                            <label for="subject">*<?php echo $lang['contactUs']['subject'];?></label>
+                            <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['subjectQuestion'];?>">
                             <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
                     </div>
                     <div class="col-12 col-sm-6 pb-2 py-sm-0">
-                        <label for="name">*Name</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Ex: John or John Doe">
+                        <label for="name">*<?php echo $lang['contactUs']['name'];?></label>
+                        <input type="text" class="form-control" id="name" placeholder="<?php echo $lang['placeHolder']['name'];?>">
                     </div>
                     <div class="col-12 col-sm-6 py-2 py-sm-0">
-                        <label for="exampleInputEmail1">*Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="your@email.com">
-                        <small id="emailHelp" class="form-text text-white">*We'll never share your email with anyone else.</small>
+                        <label for="exampleInputEmail1">*<?php echo $lang['contactUs']['email'];?></label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email'];?>">
+                        <small id="emailHelp" class="form-text text-white">*<?php echo $lang['contactUs']['infoSharing'];?></small>
                     </div>
                     <div class="col-12 py-2">
-                        <p class="p-0 small float-left">All fields marked with * must be filled.</p>
-                        <button type="submit" class="btn btn-info float-right">Send</button>
+                        <p class="p-0 small float-left"><?php echo $lang['contactUs']['obligatory'];?>.</p>
+                        <button type="submit" class="btn btn-info float-right"><?php echo $lang['placeHolder']['sendQuestion'];?></button>
                     </div>
                 </div>
             </form>
@@ -39,33 +41,35 @@
     </div>
     <div class="row my-md-5 py-4 py-md-2">        
         <div class="col-12">
-            <h2>Do you have any suggestions ? We love feedback!</h2>
-            <p class="text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur magni repellat, itaque maxime quidem quaerat eius mollitia beatae necessitatibus quibusdam veritatis iste sit, illum molestiae odio. Porro sequi dicta tenetur?</p>
+            <h2><?php echo $lang['contactUs']['feedbackQuestion'];?></h2>
+            <p class="text-justify">
+                <?php echo $lang['contactUs']['feedbackAnswer'];?>
+            </p>
         </div>
         <div class="col-12 col-md-6">
             <form>
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
-                        <label for="exampleFormControlTextarea1">*Your suggestion</label>
+                        <label for="exampleFormControlTextarea1">*<?php echo $lang['contactUs']['describe'];?></label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <div class="col-12 py-2">
-                            <label for="subject">Subject(Optional)</label>
-                            <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="What does your question handle about ?">
+                            <label for="subject"><?php echo $lang['contactUs']['subject'];?>(<?php echo $lang['placeHolder']['optional'];?>)</label>
+                            <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['subjectFeedback'];?>">
                             <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
                     </div>
                     <div class="col-12 col-sm-6 pb-2 py-sm-0">
-                        <label for="name">Name(Optional)</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Ex: John or John Doe">
+                        <label for="name"><?php echo $lang['contactUs']['name'];?>(<?php echo $lang['placeHolder']['optional'];?>)</label>
+                        <input type="text" class="form-control" id="name" placeholder="<?php echo $lang['placeHolder']['name'];?>">
                     </div>
                     <div class="col-12 col-sm-6 py-2 py-sm-0">
-                        <label for="exampleInputEmail1">*Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="your@email.com">
-                        <small id="emailHelp" class="form-text text-white">*We'll never share your email with anyone else.</small>
+                        <label for="exampleInputEmail1">*<?php echo $lang['contactUs']['email'];?></label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email'];?>">
+                        <small id="emailHelp" class="form-text text-white">*<?php echo $lang['contactUs']['infoSharing'];?>.</small>
                     </div>
                     <div class="col-12 py-2">
-                        <p class="p-0 small float-left">All fields marked with * must be filled.</p>
-                        <button type="submit" class="btn btn-info float-right">Send Feedback</button>
+                        <p class="p-0 small float-left"><?php echo $lang['contactUs']['obligatory'];?>.</p>
+                        <button type="submit" class="btn btn-info float-right"><?php echo $lang['placeHolder']['sendFeedback'];?></button>
                     </div>
                 </div>
             </form>
@@ -105,7 +109,7 @@
             <div class="row">
                 <div class="col-12 col-md-12 text-center mb-2">
                     <div class="row"></div>
-                    <h3>Our Staff</h3>
+                    <h3><?php echo $lang['staff']['title'];?></h3>
                 </div>
                 <div class="col-12 col-md-12 my-3">
                     <div class="row text-center">
