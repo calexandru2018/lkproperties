@@ -54,7 +54,7 @@
             while($r=$queryResult->fetch_object()){
                 $output[] = $r;
             }
-            return $output;
+            return ((empty($output)) ? '': $output);
         }
         /* fetchpoi had to be fetched as an assoc array, so it could be arranged based on language */
         public function fetchPoi(int $poiID){
@@ -113,7 +113,7 @@
                         break;
                 }
             }
-            return $output;
+            return ((empty($output)) ? '': $output);
         }
         public function fetchAllPoiPhotos(int $poiID){
             $sqlFetch = '

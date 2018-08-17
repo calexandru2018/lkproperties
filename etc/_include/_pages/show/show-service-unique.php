@@ -60,15 +60,17 @@
                 <tbody>
                 <?php
                     $resp = $su->fetchAll();
-                    for($suCounter = 0; $suCounter < count($resp); $suCounter++){
-                        echo '<tr data-content-type="service_unique" data-content-id="'.$resp[$suCounter]->unique_service_link_ID.'">';
-                        echo '<td>'.$resp[$suCounter]->unique_service_link_ID.'</td>';
-                        echo '<td>'.$resp[$suCounter]->uniqueServiceTranslated.'</td>';
-                        echo '<td>'.$resp[$suCounter]->dateCreated.'</td>';
-                        echo '<td>
-                            <a href="?edit=service-unique&id='.$resp[$suCounter]->unique_service_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-service_unique"><span class="lnr lnr-trash"></span></button>
-                        </td></tr>';
+                    if(!empty($resp)){
+                        for($suCounter = 0; $suCounter < count($resp); $suCounter++){
+                            echo '<tr data-content-type="service_unique" data-content-id="'.$resp[$suCounter]->unique_service_link_ID.'">';
+                            echo '<td>'.$resp[$suCounter]->unique_service_link_ID.'</td>';
+                            echo '<td>'.$resp[$suCounter]->uniqueServiceTranslated.'</td>';
+                            echo '<td>'.$resp[$suCounter]->dateCreated.'</td>';
+                            echo '<td>
+                                <a href="?edit=service-unique&id='.$resp[$suCounter]->unique_service_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                <button class="btn btn-danger btn-xs pull-right" id="delete-service_unique"><span class="lnr lnr-trash"></span></button>
+                            </td></tr>';
+                        }
                     }
                 ?>
                 </tbody>

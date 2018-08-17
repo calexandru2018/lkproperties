@@ -49,7 +49,7 @@
             while($r=$queryResult->fetch_object()){
                 $output[] = $r;
             }
-            return $output;
+            return ((empty($output)) ? '': $output);
         }
         /* fetchactivity had to be fetched as an assoc array, so it could be arranged based on language */
         public function fetchActivity(int $activityID){
@@ -103,7 +103,7 @@
                         break;
                 }
             }
-            return $output;
+            return ((empty($output)) ? '': $output);
         }
         public function fetchAllActivityPhotos(int $activityID){
             $sqlFetch = '

@@ -97,39 +97,41 @@
                 <tbody>
                 <?php
                     $resp = $poi->fetchAll();
-                    for($poiCounter = 0; $poiCounter < count($resp); $poiCounter++){
-                        switch($resp[$poiCounter]->isPopular){
-                            case 0: $isPopular = 'Nao';
-                                break;
-                            case 1: $isPopular = 'Sim';
-                                break;
-                        };
-                        echo '<tr data-content-type="poi" data-content-id="'.$resp[$poiCounter]->poi_link_ID.'">';
-                        echo '<td>'.$resp[$poiCounter]->poi_link_ID.'</td>';
-                        echo '<td>'.$resp[$poiCounter]->cityNameTranslated.'</td>';
-                        echo '<td>'.$resp[$poiCounter]->nameTranslated.'</td>';
-                        echo '<td>'.$resp[$poiCounter]->descriptionTranslated.'</td>';
-                        echo '<td>'.$isPopular.'</td>';
-                        echo '<td>'.$resp[$poiCounter]->dateCreated.'</td>';
-                        echo '<td>
-                                <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$poiCounter]->poi_link_ID.'" data-toggle="collapse">
-                                    <i class="lnr lnr-plus-circle"></i>
-                                </a>
-                        </td>';
-                        echo '<td>
-                            <a href="?edit=poi&id='.$resp[$poiCounter]->poi_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-poi"><span class="lnr lnr-trash"></span></button>
-                        </td></tr>';
-                        echo'
-                        <tr data-content-type="poi" data-content-id="'.$resp[$poiCounter]->poi_link_ID.'" id="collapseGallery-'.$resp[$poiCounter]->poi_link_ID.'" class="collapse">
-                            <td colspan="14" class="bg-info">
-                                <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$poiCounter]->poi_link_ID.'">
-                                    <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
-                                    <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
-                                </form>
-                            </td>
-                        </tr>
-                        ';
+                    if(!empty($resp)){
+                        for($poiCounter = 0; $poiCounter < count($resp); $poiCounter++){
+                            switch($resp[$poiCounter]->isPopular){
+                                case 0: $isPopular = 'Nao';
+                                    break;
+                                case 1: $isPopular = 'Sim';
+                                    break;
+                            };
+                            echo '<tr data-content-type="poi" data-content-id="'.$resp[$poiCounter]->poi_link_ID.'">';
+                            echo '<td>'.$resp[$poiCounter]->poi_link_ID.'</td>';
+                            echo '<td>'.$resp[$poiCounter]->cityNameTranslated.'</td>';
+                            echo '<td>'.$resp[$poiCounter]->nameTranslated.'</td>';
+                            echo '<td>'.$resp[$poiCounter]->descriptionTranslated.'</td>';
+                            echo '<td>'.$isPopular.'</td>';
+                            echo '<td>'.$resp[$poiCounter]->dateCreated.'</td>';
+                            echo '<td>
+                                    <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$poiCounter]->poi_link_ID.'" data-toggle="collapse">
+                                        <i class="lnr lnr-plus-circle"></i>
+                                    </a>
+                            </td>';
+                            echo '<td>
+                                <a href="?edit=poi&id='.$resp[$poiCounter]->poi_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                <button class="btn btn-danger btn-xs pull-right" id="delete-poi"><span class="lnr lnr-trash"></span></button>
+                            </td></tr>';
+                            echo'
+                            <tr data-content-type="poi" data-content-id="'.$resp[$poiCounter]->poi_link_ID.'" id="collapseGallery-'.$resp[$poiCounter]->poi_link_ID.'" class="collapse">
+                                <td colspan="14" class="bg-info">
+                                    <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$poiCounter]->poi_link_ID.'">
+                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
+                                        <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                    </form>
+                                </td>
+                            </tr>
+                            ';
+                        }
                     }
                 ?>
                 </tbody>

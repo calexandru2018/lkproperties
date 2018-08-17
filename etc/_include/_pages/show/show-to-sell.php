@@ -18,7 +18,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
     include_once('_include/_models/to-sell.php');
     $ToSell = new ToSell($MAIN->db);
 ?>
-<h3 class="page-title">Objectos para Aluger</h3>
+<h3 class="page-title">Objectos para Venda</h3>
 <div class="panel">
     <div class="panel-heading">
         <ul class="nav">

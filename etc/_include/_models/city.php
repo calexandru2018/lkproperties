@@ -35,7 +35,7 @@
             while($r=$queryResult->fetch_object()){
                 $output[] = $r;
             }
-            return $output;
+            return ((empty($output)) ? '': $output);
         }
         /* fetchCity had to be fetched as an assoc array, so it could be arranged based on language */
         public function fetchCity(int $cityID){

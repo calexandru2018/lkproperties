@@ -76,38 +76,40 @@
                 <tbody>
                     <?php
                         $resp = $city->fetchAll();
-                        for($cityCounter = 0; $cityCounter < count($resp); $cityCounter++){
-                            switch($resp[$cityCounter]->isPopular){
-                                case 0: $isPopular = 'Nao';
-                                    break;
-                                case 1: $isPopular = 'Sim';
-                                    break;
-                            };
-                            echo '<tr data-content-type="city" data-content-id="'.$resp[$cityCounter]->city_link_ID.'">';
-                            echo '<td>'.$resp[$cityCounter]->city_link_ID.'</td>';
-                            echo '<td>'.$resp[$cityCounter]->nameTranslated.'</td>';
-                            echo '<td>'.$resp[$cityCounter]->descriptionTranslated.'</td>';
-                            echo '<td>'.$isPopular.'</td>';
-                            echo '<td>'.$resp[$cityCounter]->dateCreated.'</td>';
-                            echo '<td>
-                                    <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$cityCounter]->city_link_ID.'" data-toggle="collapse">
-                                        <i class="lnr lnr-plus-circle"></i>
-                                    </a>
-                            </td>';
-                            echo '<td>
-                                <a href="?edit=city&id='.$resp[$cityCounter]->city_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                                <button class="btn btn-danger btn-xs pull-right" id="delete-city"><span class="lnr lnr-trash"></span></button>
-                            </td></tr>';
-                            echo'
-                            <tr data-content-type="city" data-content-id="'.$resp[$cityCounter]->city_link_ID.'" id="collapseGallery-'.$resp[$cityCounter]->city_link_ID.'" class="collapse">
-                                <td colspan="14" class="bg-info">
-                                    <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$cityCounter]->city_link_ID.'">
-                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
-                                        <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
-                                    </form>
-                                </td>
-                            </tr>
-                            ';
+                        if(!empty($resp)){
+                            for($cityCounter = 0; $cityCounter < count($resp); $cityCounter++){
+                                switch($resp[$cityCounter]->isPopular){
+                                    case 0: $isPopular = 'Nao';
+                                        break;
+                                    case 1: $isPopular = 'Sim';
+                                        break;
+                                };
+                                echo '<tr data-content-type="city" data-content-id="'.$resp[$cityCounter]->city_link_ID.'">';
+                                echo '<td>'.$resp[$cityCounter]->city_link_ID.'</td>';
+                                echo '<td>'.$resp[$cityCounter]->nameTranslated.'</td>';
+                                echo '<td>'.$resp[$cityCounter]->descriptionTranslated.'</td>';
+                                echo '<td>'.$isPopular.'</td>';
+                                echo '<td>'.$resp[$cityCounter]->dateCreated.'</td>';
+                                echo '<td>
+                                        <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$cityCounter]->city_link_ID.'" data-toggle="collapse">
+                                            <i class="lnr lnr-plus-circle"></i>
+                                        </a>
+                                </td>';
+                                echo '<td>
+                                    <a href="?edit=city&id='.$resp[$cityCounter]->city_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                    <button class="btn btn-danger btn-xs pull-right" id="delete-city"><span class="lnr lnr-trash"></span></button>
+                                </td></tr>';
+                                echo'
+                                <tr data-content-type="city" data-content-id="'.$resp[$cityCounter]->city_link_ID.'" id="collapseGallery-'.$resp[$cityCounter]->city_link_ID.'" class="collapse">
+                                    <td colspan="14" class="bg-info">
+                                        <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$cityCounter]->city_link_ID.'">
+                                            <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
+                                            <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                        </form>
+                                    </td>
+                                </tr>
+                                ';
+                            }
                         }
                     ?>
                 </tbody>

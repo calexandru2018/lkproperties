@@ -85,32 +85,34 @@
                 <tbody>
                 <?php
                     $resp = $activity->fetchAll();
-                    for($activityCounter = 0; $activityCounter < count($resp); $activityCounter++){
-                        echo '<tr data-content-type="activity" data-content-id="'.$resp[$activityCounter]->activity_link_ID.'">';
-                        echo '<td>'.$resp[$activityCounter]->activity_link_ID.'</td>';
-                        echo '<td>'.$resp[$activityCounter]->cityNameTranslated.'</td>';
-                        echo '<td>'.$resp[$activityCounter]->nameTranslated.'</td>';
-                        echo '<td>'.$resp[$activityCounter]->descriptionTranslated.'</td>';
-                        echo '<td>'.$resp[$activityCounter]->dateCreated.'</td>';
-                        echo '<td>
-                                <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$activityCounter]->activity_link_ID.'" data-toggle="collapse">
-                                    <i class="lnr lnr-plus-circle"></i>
-                                </a>
-                        </td>';
-                        echo '<td>
-                            <a href="?edit=activity&id='.$resp[$activityCounter]->activity_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                            <button class="btn btn-danger btn-xs pull-right" id="delete-activity"><span class="lnr lnr-trash"></span></button>
-                        </td></tr>';
-                        echo'
-                        <tr data-content-type="activity" data-content-id="'.$resp[$activityCounter]->activity_link_ID.'" id="collapseGallery-'.$resp[$activityCounter]->activity_link_ID.'" class="collapse">
-                            <td colspan="14" class="bg-info">
-                                <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$activityCounter]->activity_link_ID.'">
-                                    <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
-                                    <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
-                                </form>
-                            </td>
-                        </tr>
-                        ';
+                    if(!empty($resp)){
+                        for($activityCounter = 0; $activityCounter < count($resp); $activityCounter++){
+                            echo '<tr data-content-type="activity" data-content-id="'.$resp[$activityCounter]->activity_link_ID.'">';
+                            echo '<td>'.$resp[$activityCounter]->activity_link_ID.'</td>';
+                            echo '<td>'.$resp[$activityCounter]->cityNameTranslated.'</td>';
+                            echo '<td>'.$resp[$activityCounter]->nameTranslated.'</td>';
+                            echo '<td>'.$resp[$activityCounter]->descriptionTranslated.'</td>';
+                            echo '<td>'.$resp[$activityCounter]->dateCreated.'</td>';
+                            echo '<td>
+                                    <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$activityCounter]->activity_link_ID.'" data-toggle="collapse">
+                                        <i class="lnr lnr-plus-circle"></i>
+                                    </a>
+                            </td>';
+                            echo '<td>
+                                <a href="?edit=activity&id='.$resp[$activityCounter]->activity_link_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                <button class="btn btn-danger btn-xs pull-right" id="delete-activity"><span class="lnr lnr-trash"></span></button>
+                            </td></tr>';
+                            echo'
+                            <tr data-content-type="activity" data-content-id="'.$resp[$activityCounter]->activity_link_ID.'" id="collapseGallery-'.$resp[$activityCounter]->activity_link_ID.'" class="collapse">
+                                <td colspan="14" class="bg-info">
+                                    <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$activityCounter]->activity_link_ID.'">
+                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
+                                        <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                    </form>
+                                </td>
+                            </tr>
+                            ';
+                        }
                     }
                 ?>
                 </tbody>

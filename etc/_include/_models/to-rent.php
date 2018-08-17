@@ -125,7 +125,7 @@
 					}
 					$c++;
 				}
-				return $output;
+				return ((empty($output)) ? '': $output);
             }
 
 			public function fetchServiceCommon(int $propertyID){
@@ -205,7 +205,7 @@
 				while($r=$sqlFetch->fetch_row()){
 					$output[]= $r;
 				}
-				return $output;
+				return ((empty($output)) ? '': $output);
 			}
 
             public function insert(array $inputArray){

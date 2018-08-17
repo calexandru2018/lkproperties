@@ -1,7 +1,6 @@
 <?php
     include_once('_include/_models/admin.php');
     $administrator = new Administrator($MAIN->db);
-    // var_dump($administrator->showAll());
 ?>
 <h3 class="page-title">Gestão de Administradores</h3>
 <div class="panel">
@@ -82,6 +81,7 @@
                 <tbody>
                     <?php
                         $resp = $administrator->fetchAll();
+                        if(!empty($resp)){
                             for($adminCounter = 0; $adminCounter < count($resp); $adminCounter++){
                                 switch($resp[$adminCounter]->adminPrivilege){
                                     case 1: $adminPriv = 'Super Admin';
@@ -120,7 +120,8 @@
                                 </tr>
                                 ';
                             }
-                        ?>
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>

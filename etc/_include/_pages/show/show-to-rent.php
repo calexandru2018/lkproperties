@@ -312,58 +312,60 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                 <tbody>
                     <?php
                         $resp = $toRent->fetchAll();
-                        for($toRentCounter = 0; $toRentCounter < count($resp); $toRentCounter++){
-                            switch($resp[$toRentCounter]->propertyType){
-                                case 0: $propertyType = 'Apartamento';
-                                    break;
-                                case 1: $propertyType = 'Casa';
-                                    break;
-                                case 2: $propertyType = 'Vila';
-                                    break;
-                                case 3: $propertyType = 'Bungalow';
-                                    break;
-                            };
-                            switch($resp[$toRentCounter]->viewType){
-                                case 0: $viewType = 'Nenhuma';
-                                    break;
-                                case 1: $viewType = 'Praia';
-                                    break;
-                                case 2: $viewType = 'Piscina';
-                            };
-                            // $propertyType = ['Apartamento', 'Casa', 'Vila', 'Bungalow'];
-                            // $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
-                            echo '<tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'">';
-                            echo '<td>'.$resp[$toRentCounter]->publicID.'</td>';
-                            echo '<td>'.$resp[$toRentCounter]->title.'</td>';
-                            echo '<td>'.$resp[$toRentCounter]->nameTranslated.'</td>';
-                            echo '<td>'.$propertyType.'</td>';
-                            echo '<td>'.$viewType.'</td>';
-                            echo '<td>'.(($resp[$toRentCounter]->hasPoolAccess == 1) ? 'Sim':'Não').'</td>';
-                            echo '<td>'.$resp[$toRentCounter]->maxAllowedGuests.'</td>';
-                            echo '<td>'.$resp[$toRentCounter]->roomAmmount.'</td>';
-                            echo '<td>'.$resp[$toRentCounter]->beachDistance.'</td>';
-                            echo '<td>'.(($resp[$toRentCounter]->isVisible == 1)? 'Sim':'Não').'</td>';
-                            echo '<td>'.$resp[$toRentCounter]->dateCreated.'</td>';
-                            echo '<td>'.$resp[$toRentCounter]->dateModified.'</td>';
-                            echo '<td>
-                                    <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$toRentCounter]->property_ID.'" data-toggle="collapse">
-                                        <i class="lnr lnr-plus-circle"></i>
-                                    </a>
-                            </td>';
-                            echo '<td>
-                                <a href="?edit=to-rent&id='.$resp[$toRentCounter]->property_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                                <button class="btn btn-danger btn-xs pull-right" id="delete-to_rent"><span class="lnr lnr-trash"></span></button>
-                            </td></tr>';
-                            echo'
-                            <tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'" id="collapseGallery-'.$resp[$toRentCounter]->property_ID.'" class="collapse">
-                                <td colspan="14" class="bg-info">
-                                    <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$toRentCounter]->property_ID.'">
-                                        <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
-                                        <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
-                                    </form>
-                                </td>
-                            </tr>
-                            ';
+                        if(!empty($resp)){
+                            for($toRentCounter = 0; $toRentCounter < count($resp); $toRentCounter++){
+                                switch($resp[$toRentCounter]->propertyType){
+                                    case 0: $propertyType = 'Apartamento';
+                                        break;
+                                    case 1: $propertyType = 'Casa';
+                                        break;
+                                    case 2: $propertyType = 'Vila';
+                                        break;
+                                    case 3: $propertyType = 'Bungalow';
+                                        break;
+                                };
+                                switch($resp[$toRentCounter]->viewType){
+                                    case 0: $viewType = 'Nenhuma';
+                                        break;
+                                    case 1: $viewType = 'Praia';
+                                        break;
+                                    case 2: $viewType = 'Piscina';
+                                };
+                                // $propertyType = ['Apartamento', 'Casa', 'Vila', 'Bungalow'];
+                                // $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
+                                echo '<tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'">';
+                                echo '<td>'.$resp[$toRentCounter]->publicID.'</td>';
+                                echo '<td>'.$resp[$toRentCounter]->title.'</td>';
+                                echo '<td>'.$resp[$toRentCounter]->nameTranslated.'</td>';
+                                echo '<td>'.$propertyType.'</td>';
+                                echo '<td>'.$viewType.'</td>';
+                                echo '<td>'.(($resp[$toRentCounter]->hasPoolAccess == 1) ? 'Sim':'Não').'</td>';
+                                echo '<td>'.$resp[$toRentCounter]->maxAllowedGuests.'</td>';
+                                echo '<td>'.$resp[$toRentCounter]->roomAmmount.'</td>';
+                                echo '<td>'.$resp[$toRentCounter]->beachDistance.'</td>';
+                                echo '<td>'.(($resp[$toRentCounter]->isVisible == 1)? 'Sim':'Não').'</td>';
+                                echo '<td>'.$resp[$toRentCounter]->dateCreated.'</td>';
+                                echo '<td>'.$resp[$toRentCounter]->dateModified.'</td>';
+                                echo '<td>
+                                        <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$toRentCounter]->property_ID.'" data-toggle="collapse">
+                                            <i class="lnr lnr-plus-circle"></i>
+                                        </a>
+                                </td>';
+                                echo '<td>
+                                    <a href="?edit=to-rent&id='.$resp[$toRentCounter]->property_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                    <button class="btn btn-danger btn-xs pull-right" id="delete-to_rent"><span class="lnr lnr-trash"></span></button>
+                                </td></tr>';
+                                echo'
+                                <tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'" id="collapseGallery-'.$resp[$toRentCounter]->property_ID.'" class="collapse">
+                                    <td colspan="14" class="bg-info">
+                                        <form enctype="multipart/form-data" method="post" class="file-upload" id="'.$resp[$toRentCounter]->property_ID.'">
+                                            <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
+                                            <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
+                                        </form>
+                                    </td>
+                                </tr>
+                                ';
+                            }
                         }
                     ?>
                 </tbody>

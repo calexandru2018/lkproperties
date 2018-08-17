@@ -17,7 +17,7 @@
                 while($r=$queryResult->fetch_object()){
                     $output[] = $r;
                 }
-                return $output;
+                return ((empty($output)) ? '': $output);
             }
             public function fetchAdmin(string $actionType, string $email, int $adminID){
                 if($actionType == 'login')
