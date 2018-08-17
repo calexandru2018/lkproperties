@@ -1,5 +1,4 @@
 <?php
-    // var_dump($lang);
     session_start();
     if(!isset($_COOKIE["lang"]) && empty($_COOKIE["lang"])){
         setcookie("lang", "en",  time()+60*60*24*30, "/lkproperties");
@@ -42,6 +41,8 @@
                     case 'contact-us': include('_include/_pages/contact-us.php');
                         break;
                     case 'for-rent-details': include('_include/_pages/rent-details.php');
+                        break;
+                    case 'for-sell-details': include('_include/_pages/sell-details.php');
                         break;
                 }
             }else{

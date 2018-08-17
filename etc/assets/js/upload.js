@@ -33,25 +33,3 @@ function uploadPhotos(url, queryCollection){
         });
     }
 }
-
-
- /* Original working */
-
-        /* axios.post(
-            url, 
-            {
-                body: formData
-            }
-            ,
-            {
-                headers: { 
-                    'Content-Type': 'multipart/form-data; charset=utf-8; boundary="???"'
-                }
-            }
-        )
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
-        }); */

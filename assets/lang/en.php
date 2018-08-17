@@ -91,12 +91,47 @@
                 'subject' => 'Subject',
                 'name' => 'Name',
                 'email' => 'Email address',
+                'date' => 'Date',
                 'infoSharing' => 'We\'ll never share your email with anyone else',
                 'obligatory' => 'All fields marked with * must be filled'
             ],
         'staff' =>
             [
                 'title' => 'Our Staff'
+            ],
+        'rentDetails' => 
+            [
+                'services' => 'Services',
+                'galleryApt' => 'Galeria',
+                'galleryNearby' => 'Nearby:',
+                'pricingTable' => 
+                    [
+                        'name' => 'Price p/night',
+                        'period' => 'Period',
+                        'price' => 'Price',
+                        'months' => 
+                            [
+                                '0' => 'November-April',
+                                '1' => 'May',
+                                '2' => '1st half June',
+                                '3' => '2nd half June',
+                                '4' => '1st half July',
+                                '5' => '2nd half July',
+                                '6' => 'August',
+                                '7' => '1st half Sept',
+                                '8' => '2nd half Sept',
+                                '9' => 'October'
+                            ] 
+                    ],
+                'checkAvailability' => 'Check Availability'
+            ],
+        'sellDetails' => 
+            [
+                'title' => 'This real-estate is for sale!',
+                'services' => 'Services',
+                'galleryApt' => 'Galeria',
+                'galleryNearby' => 'Nearby:',
+                'checkAvailability' => 'Interested ? Get in touch with us!'
             ],
         'generalFiller' =>
             [

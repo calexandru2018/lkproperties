@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 my-2">
-            <h2 class="py-2">Conditions</h2>
+            <h2 class="py-2"><?php echo $lang['rentDetails']['services']; ?></h2>
             <ul id="custom-ul" class="list-group list-group-flush d-flex flex-row flex-wrap bg-white">
                 <li class="list-group-item px-0 text-center w-50 border-bottom-0">Barbeque</li>
                 <li class="list-group-item px-0 text-center w-50 border-bottom-0">Quick beach access</li>
@@ -42,7 +42,7 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <h4 class="py-2">Apartment Gallery</h4>
+            <h4 class="py-2"><?php echo $lang['rentDetails']['galleryApt']; ?></h4>
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
                     <div class="col-4 item">
@@ -99,7 +99,7 @@
             </section>
         </div>
         <div class="col-12 col-md-6">
-            <h4 class="py-2">Nearby is Praia da Rocha</h4>
+            <h4 class="py-2"><?php echo $lang['rentDetails']['galleryNearby']; ?> Praia da Rocha</h4>
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
                     <div class="col-4 item">
@@ -138,86 +138,86 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <h4 class="py-2">Pricing (p/night)</h4>
+            <h4 class="py-2"><?php echo $lang['rentDetails']['pricingTable']['name']; ?></h4>
             <table class="table table-hover">
                 <thead>
-                    <th>Period</th>
-                    <th>Price</th>
+                    <th><?php echo $lang['rentDetails']['pricingTable']['period']; ?></th>
+                    <th><?php echo $lang['rentDetails']['pricingTable']['price']; ?></th>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>November-April</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['0']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>May</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['1']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>1st half June</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['2']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>2nd half June</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['3']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>1st half July</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['4']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>2nd half July</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['5']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>August</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['6']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>1st half Sept</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['7']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>2nd half Sept</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['8']; ?></td>
                         <td>100€</td>
                     </tr>
                     <tr>
-                        <td>October</td>
+                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['9']; ?></td>
                         <td>100€</td>
                     </tr>   
                 </tbody>
             </table>
         </div>
         <div class="col-12 col-md-6">
-            <h4 class="py-2">Check Availability</h4>
+            <h4 class="py-2"><?php echo $lang['rentDetails']['checkAvailability']; ?></h4>
             <form>
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
-                        <label for="textArea">*Describe</label>
+                        <label for="textArea">*<?php echo $lang['contactUs']['describe']; ?></label>
                         <textarea class="form-control" id="textArea" rows="3"></textarea>
                     </div>
                     <div class="col-12 py-2">
-                            <label for="subject">*Subject</label>
-                            <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="What does your question handle about ?">
+                            <label for="subject">*<?php echo $lang['contactUs']['subject']; ?></label>
+                            <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="">
                             <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
                     </div>
                     <div class="col-12 py-2">
-                            <label for="subject">Date(Optional)</label>
+                            <label for="subject"><?php echo $lang['contactUs']['date']; ?>(<?php echo $lang['placeHolder']['optional']; ?>)</label>
                             <input type="date" class="form-control bg-white" id="date" aria-describedby="emailHelp">
                             <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
                     </div>
                     <div class="col-12 col-sm-6 pb-2 py-sm-0">
-                        <label for="name">*Name</label>
-                        <input type="text" class="form-control" id="customerName" aria-describedby="emailHelp" placeholder="Ex: John or John Doe">
+                        <label for="name">*<?php echo $lang['contactUs']['name']; ?></label>
+                        <input type="text" class="form-control" id="customerName" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['name']; ?>">
                     </div>
                     <div class="col-12 col-sm-6 py-2 py-sm-0">
-                        <label for="exampleInputEmail1">*Email address</label>
-                        <input type="email" class="form-control" id="customerEmail" aria-describedby="emailHelp" placeholder="your@email.com">
-                        <small id="emailHelp" class="form-text text-white">*We'll never share your email with anyone else.</small>
+                        <label for="exampleInputEmail1">*<?php echo $lang['contactUs']['email']; ?></label>
+                        <input type="email" class="form-control" id="customerEmail" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email']; ?>">
+                        <small id="emailHelp" class="form-text text-white">*<?php echo $lang['contactUs']['infoSharing']; ?></small>
                     </div>
                     <div class="col-12 py-2">
-                        <p class="p-0 small float-left">All fields marked with * must be filled.</p>
-                        <button type="submit" class="btn btn-info float-right">Check Availability</button>
+                        <p class="p-0 small float-left"><?php echo $lang['contactUs']['obligatory']; ?></p>
+                        <button type="submit" class="btn btn-info float-right"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
                     </div>
                 </div>
             </form>

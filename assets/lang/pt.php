@@ -91,12 +91,48 @@
                 'subject' => 'Tópico',
                 'name' => 'Nome',
                 'email' => 'E-mail',
+                'date' => 'Data',
                 'infoSharing' => 'Nunca iremos partilhar o seu endereço com terceiros',
                 'obligatory' => 'Todos os campos marcados com * têm que ser preenchidos'
             ],
         'staff' =>
             [
                 'title' => 'Nosso Staff'
+            ],
+        'rentDetails' => 
+            [
+                'services' => 'Serviços',
+                'galleryApt' => 'Galeria',
+                'galleryNearby' => 'Próximo:',
+                'pricingTable' => 
+                    [
+                        'name' => 'Preço por noite',
+                        'period' => 'Periodo',
+                        'price' => 'Preço',
+                        'months' => 
+                            [
+                                '0' => 'Novembro-Abril',
+                                '1' => 'Maio',
+                                '2' => '1ª quinzena de Junho',
+                                '3' => '2ª quinzena de Junho',
+                                '4' => '1ª quinzena de Julho',
+                                '5' => '2ª quinzena de Julho',
+                                '6' => 'Agosto',
+                                '7' => '1ª quinzena de Setembro',
+                                '8' => '2ª quinzena de Setembro',
+                                '9' => 'Outubro'
+                            ] 
+                    ],
+                'checkAvailability' => 'Verificar disponibilidade'
+
+            ],
+        'sellDetails' => 
+            [
+                'title' => 'Este imóvel está à venda!',
+                'services' => 'Serviços',
+                'galleryApt' => 'Galeria do Apartamento',
+                'galleryNearby' => 'Por perto',
+                'checkAvailability' => 'Interessado ? Entre em contacto!'
             ],
         'generalFiller' =>
             [
