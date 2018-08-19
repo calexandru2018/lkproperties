@@ -3,12 +3,12 @@
     $sc = new SC($MAIN->db);
     // var_dump($administrator->showAll());
 ?>
-<h3 class="page-title">Serviços Comuns</h3>
+<h3 class="page-title">Comodidades Comuns</h3>
 <div class="panel">
     <div class="panel-heading">
         <ul class="nav">
             <li>
-                <button href="#addCommonService" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo Serviço Comum</button>
+                <button href="#addCommonService" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Nova(s) Comodidade(s) Comum(s)</button>
                 <button type="button" class="btn btn-warning pull-right" id="puplate-input">Populate input</button>
 
                 <div id="addCommonService" class="row collapse">
@@ -46,7 +46,7 @@
 </div>
 <div class="panel panel-info">
     <div class="panel-heading">
-        Serviços Comuns
+        Comodidades Comuns Existentes
     </div>
     <div class="panel-body">
         <div class="table-responsive">

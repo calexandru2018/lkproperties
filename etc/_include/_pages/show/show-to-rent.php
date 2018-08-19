@@ -18,20 +18,20 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
     include_once('_include/_models/to-rent.php');
     $toRent = new ToRent($MAIN->db);
 ?>
-<h3 class="page-title">Objectos para Aluger</h3>
+<h3 class="page-title">Imóvel para Aluger</h3>
 <div class="panel">
     <div class="panel-heading">
         <ul class="nav">
             <li>
-                <button href="#addToRent" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo Objecto</button>
+                <button href="#addToRent" type="button" data-toggle="collapse" class="btn btn-primary collapsed mb-xs-3">Adicionar Novo Imóvel</button>
                 <button type="button" class="btn btn-warning pull-right" id="puplate-input">Populate input</button>
 
                 <div id="addToRent" class="row collapse">
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon">Tipo de Properiedade</span>
+                            <span class="input-group-addon">Tipo de Imóvel</span>
                             <select class="select bg-white" name="to_rentPropertyType" id="to_rentPropertyType" style="width: 100%;">
-                                <option value="" selected disabled>Escolha tipo de apartamento...</option>
+                                <option value="" selected disabled>Escolha tipo de imóvel...</option>
                                 <?php
                                     for($c = 0; $c < count($propertyType); $c++){
                                         echo '<option value="'.$c.'">'.$propertyType[$c].'</option>';
@@ -104,7 +104,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon">Qtd de Residentes</span>
+                            <span class="input-group-addon">Nr de Residentes</span>
                             <input type="number" name="to_rentMaxAllowedGuests" class="form-control">
                         </div>
                     </div>
@@ -116,7 +116,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon">POI</span>
+                            <span class="input-group-addon">POI(Ponto de Interesse)</span>
                             <select class="select bg-white" name="to_rentCityPoi" id="city-poi" style="width: 100%;">
                                 <option value="null" disabled selected>Escolha um POI...</option>
                                 <?php
@@ -161,7 +161,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="clearfix"></div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon">Serviços</span>
+                            <span class="input-group-addon">Comodidades Comuns</span>
                             <select class="select bg-white" name="to_rentCommonService" multiple="multiple" id="common-services" style="width: 100%;">
                                 <?php
                                     $queryCSResult = $MAIN->db->query('
@@ -187,7 +187,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
-                            <span class="input-group-addon">Serviços Especificos</span>
+                            <span class="input-group-addon">Comodidades Especiais</span>
                             <select class="select bg-white" name="to_rentUniqueService" multiple="multiple" id="unique-services" style="width: 100%;">
                                 <?php
                                     $queryUSResult = $MAIN->db->query('
@@ -288,7 +288,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
 </div>
 <div class="panel panel-info">
     <div class="panel-heading">
-        Objectos Existentes
+        Imóveis Existentes
     </div>
     <div class="panel-body">
         <div class="table-responsive">
@@ -297,12 +297,12 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <th>ID Publico</th>
                     <th>Titulo(PT)</th>
                     <th>Cidade(PT)</th>
-                    <th>Tipo de Propriedade</th>
+                    <th>Tipo de Imóvel</th>
                     <th>Vista</th>
                     <th>Acesso a Piscina</th>
-                    <th>Qtd de Residentes</th>
-                    <th>Qtd de Quartos</th>
-                    <th>Distância da Praia</th>
+                    <th>Nr de Residentes</th>
+                    <th>Nr de Quartos</th>
+                    <th>Dist. de Praia</th>
                     <th>Visivel</th>
                     <th>Criado</th>
                     <th>Modificado</th>
