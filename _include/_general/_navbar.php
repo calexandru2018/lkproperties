@@ -1,5 +1,5 @@
 <nav class="navbar custom-container navbar-expand-md px-md-2 navbar-light ">
-    <div class="container border-bottom pb-2 mx-2 mx-md-0 px-md-2">
+    <div class="container-fluid border-bottom pb-2 mx-2 mx-md-0 px-md-2">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
