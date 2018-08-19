@@ -7,7 +7,12 @@ function uploadPhotos(url, queryCollection){
             el.addEventListener('submit', e => {
                 e.preventDefault();
                 const files = el.querySelector('[type=file]').files;
-                const contentID = el.closest('tr').getAttribute('data-content-id');
+                // const contentID = el.closest('tr').getAttribute('data-content-id');
+                if(el.closest('tr') == null){
+                    var contentID = 0;
+                }else{
+                    var contentID = el.closest('tr').getAttribute('data-content-id');
+                }
                 let formData = new FormData();
                 
                 for (let i = 0; i < files.length; i++) {
