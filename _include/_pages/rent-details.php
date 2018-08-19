@@ -4,7 +4,7 @@
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row">
         <div class="col-12">
-            <img src="assets/img/org.jpg" class="img-fluid" alt="">
+            <img src="gallery/main/fullsize/14-c-4.jpeg" class="img-fluid" alt="">
         </div>
     </div>
     <div class="row">

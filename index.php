@@ -24,7 +24,7 @@
 <body>
     <?php require_once('_include/_general/_navbar.php'); ?>
     <?php 
-        if(empty($_GET)){
+        if(!empty($_GET['lang']) && (count($_GET) == 1)){
             include_once('_include/_general/_home.php');            
             include_once('_include/_general/_search.php'); 
         }elseif((!empty($_GET['show']) && $_GET['show'] == 'for-sale') || (!empty($_GET['show']) && $_GET['show'] == 'popular')){
@@ -59,27 +59,6 @@
         include_once('_include/_general/_footer.php'); ?>
     </main>
     <script src="assets/js/bootstrap.min.js"></script> 
-    <script>
-/*         $(document).on("click", "[name='language']", function(){
-            var langPref = $(this).data();
-            let formData = new FormData();
-            formData.append('lang', langPref['language']);
-            fetch('process/set-lang.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data == true)
-                    document.location.reload(true);
-                else
-                    console.log(data)
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        }); */
-    </script>
 </body>
 </html>
 <?php
