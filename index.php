@@ -37,7 +37,8 @@
         <?php 
             if((isset($_GET['show']) || !empty($_GET['show'])) && (isset($_GET['lang']))){
                 switch ($_GET['show']){
-                    case 'popular': include('_include/_pages/popular.php');
+                    case 'popular-poi':
+                    case 'popular-city': include('_include/_pages/popular.php');
                         break;
                     case 'activities': include('_include/_pages/activity-list.php');
                         break;

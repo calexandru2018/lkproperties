@@ -18,15 +18,22 @@
                         <!-- <div class="dropdown-divider"></div> -->
                         <h5 class="dropdown-header"><?php echo $lang['navbar']['popular']['subCat1']; ?></h5>
                         <!-- Point of Interest -->
-                        <a class="dropdown-item" href="?lang=<?php echo $selectedLang; ?>&show=popular">Praia da Rocha</a>
-                        <a class="dropdown-item" href="?lang=<?php echo $selectedLang; ?>&show=popular">Meia-Praia</a>
-                        <a class="dropdown-item" href="?lang=<?php echo $selectedLang; ?>&show=popular">Praia do Vau</a>
+                        <?php 
+                            $allPoi = fetchAllPoi($CONN->db, $selectedLang);
+                            foreach((array)$allPoi as $key => $value){
+                                echo '<a class="dropdown-item" href="?lang='.$selectedLang.'&show=popular-poi&id='.$key.'">'.$value.'</a>';
+                            }
+                        ?>
                         <div class="dropdown-divider"></div>
                         <h5 class="dropdown-header"><?php echo $lang['navbar']['popular']['subCat2']; ?></h5>
                         <!-- Cities -->
-                        <a class="dropdown-item" href="?lang=<?php echo $selectedLang; ?>&show=popular">Lisboa</a>
-                        <a class="dropdown-item" href="?lang=<?php echo $selectedLang; ?>&show=popular">Porto</a>
-                        <a class="dropdown-item" href="?lang=<?php echo $selectedLang; ?>&show=popular">Vilamoura</a>
+                        <?php 
+                            $allCities = fetchAllCity($CONN->db, $selectedLang);
+                            // var_dump($allCities);
+                            foreach((array)$allCities as $key => $value){
+                                echo '<a class="dropdown-item" href="?lang='.$selectedLang.'&show=popular-city&id='.$key.'">'.$value.'</a>';
+                            }
+                        ?>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -47,8 +54,47 @@
 </nav>
 
 <?php
-    $sqlPoi = '
-        select 
-            poi_link_id from 
-    ';
+    function fetchAllPoi($dbConn, $langSelector){
+        $queryPoi = $dbConn->query('
+            select 
+                poi_translation.poi_link_ID,
+                poi_translation.nameTranslated
+            from
+                poi_link
+            left join
+                poi_translation
+            on
+                poi_link.poi_link_ID = poi_translation.poi_link_ID
+            where 
+                poi_link.isPopular = 1 
+            and 
+                poi_translation.langCode = "'.$langSelector.'"
+        ');
+        while($r = $queryPoi->fetch_object()){
+            $output[$r->poi_link_ID] = $r->nameTranslated;
+        }
+        return $output;
+    }
+    function fetchAllCity($dbConn, $langSelector){
+        $queryCity = $dbConn->query('
+            select 
+                city_translation.city_link_ID,
+                city_translation.nameTranslated
+            from
+                city_link
+            left join
+                city_translation
+            on
+                city_link.city_link_ID = city_translation.city_link_ID
+            where 
+                city_link.isPopular = 1 
+            and 
+                city_translation.langCode = "'.$langSelector.'"
+        ');
+        while($r = $queryCity->fetch_object()){
+            $output[$r->city_link_ID] = $r->nameTranslated;
+        }
+        return $output;
+    }
+
 ?>
