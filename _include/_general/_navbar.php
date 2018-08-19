@@ -17,13 +17,13 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <!-- <div class="dropdown-divider"></div> -->
                         <h5 class="dropdown-header"><?php echo $lang['navbar']['popular']['subCat1']; ?></h5>
-                        <!-- <div class="dropdown-divider"></div> -->
+                        <!-- Point of Interest -->
                         <a class="dropdown-item" href="?show=popular">Praia da Rocha</a>
                         <a class="dropdown-item" href="?show=popular">Meia-Praia</a>
                         <a class="dropdown-item" href="?show=popular">Praia do Vau</a>
                         <div class="dropdown-divider"></div>
                         <h5 class="dropdown-header"><?php echo $lang['navbar']['popular']['subCat2']; ?></h5>
-                        <!-- <div class="dropdown-divider"></div> -->
+                        <!-- Cities -->
                         <a class="dropdown-item" href="?show=popular">Lisboa</a>
                         <a class="dropdown-item" href="?show=popular">Porto</a>
                         <a class="dropdown-item" href="?show=popular">Vilamoura</a>
@@ -45,3 +45,10 @@
         </div>
     </div>
 </nav>
+
+<?php
+    $sqlPoi = '
+        select 
+            poi_link_id from 
+    ';
+?>

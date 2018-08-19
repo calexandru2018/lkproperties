@@ -15,6 +15,9 @@
     */
 ?>  
 <style>
+    .select2, .select2-container, .select2-container--default, .select2-container--below{
+        max-width: 950px !important;
+    }
     .select2-selection, .select2-selection--single{
         height: 100% !important;
     }

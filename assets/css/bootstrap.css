@@ -692,6 +692,9 @@ pre code {
   .custom-container {
     max-width: 720px;
   }
+  .select2, .select2-container, .select2-container--default, .select2-container--below{
+    max-width: 180px;
+  } 
 }
 
 @media (min-width: 992px) {
