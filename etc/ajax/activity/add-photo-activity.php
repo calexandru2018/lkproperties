@@ -48,8 +48,8 @@
             $thumbnailHandle->file_auto_rename = true;
             $thumbnailHandle->image_resize = true;
             // $thumbnailHandle->image_ratio_y = true;
-            $thumbnailHandle->image_x = 365;
-            $thumbnailHandle->image_y = 274;
+            $thumbnailHandle->image_x = 547;
+            $thumbnailHandle->image_y = 410;
             $thumbnailHandle->dir_auto_create = true;
             $thumbnailHandle->Process($commonURL.$activityID.'/thumbnail/');
         /* Thumbnail handler */

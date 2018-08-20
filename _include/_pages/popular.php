@@ -25,21 +25,18 @@
                 <h1><?php echo $fetched[1]; ?></h1>
             </div>
             <div class="dropdown-divider"></div>
-            <div class="d-flex flex-column flex-md-row">
-                <div class="pr-md-2">
+            <div class="row">
+                <div class="col-12 col-md-8">
                     <h4><?php echo $lang['generalFiller']['title'];?></h4>
                     <p class="text-justify">
                         <?php echo $fetched[2]; ?>
                     </p>
                 </div>
-                <div class="w-100 pl-md-2">
+                <div class="col-12 col-md-4">
                     <h4><?php echo $lang['generalFiller']['video'];?></h4>
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5EwJEfXcY04"></iframe>
                     </div>
-    <!--                 <p class="text-justify">
-                        Some text describing the video
-                    </p> -->
                 </div>
             </div>
         </div>
@@ -57,7 +54,7 @@
                 <?php
                     for($c = 0; $c < count($gallery); $c++){
                         echo '
-                            <div class="col-md-6 col-lg-4  item">
+                            <div class="col-md-6 col-lg-4 item text-center">
                                 <a class="lightbox" href="gallery/'.$cat.'/'.$fetched[4].'/fullsize/'.$gallery[$c].'">
                                     <img class="img-fluid image scale-on-hover" src="gallery/'.$cat.'/'.$fetched[4].'/thumbnail/'.$gallery[$c].'">
                                 </a>
