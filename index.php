@@ -1,6 +1,7 @@
 <?php
     session_start();
-    if(!isset($_GET['lang']) || empty($_GET['lang'])){
+    if(!isset($_GET['lang']) || empty($_GET['lang']) || (!isset($_SESSION['crsf_token']) || empty($_SESSION['crsf_token']))){
+        $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
         header('Location: index.php?lang=en');
     }else{
         switch($_GET['lang']){
@@ -31,7 +32,7 @@
         if((!empty($_GET['show']) && ($_GET['show'] == 'contact-us' || $_GET['show'] == 'for-sale'))){
             include_once('_include/_general/_home.php'); 
         }
-        if(!empty($_GET['show']) && ($_GET['show'] == 'for-sale' || $_GET['show'] == 'popular-poi' || $_GET['show'] == 'popular-city')){
+        if(!empty($_GET['show']) && ($_GET['show'] == 'for-sale')){
             include_once('_include/_general/_search.php'); 
         }
     ?>
@@ -57,6 +58,9 @@
                         break;
                     case 'for-sell-details':    include('_include/_models/sell-details.php'); 
                                                 include('_include/_pages/sell-details.php');
+                        break;
+                    case 'filter':         //include('_include/_models/sell-details.php'); 
+                                                include('_include/_pages/filter-search.php');
                         break;
                 }
             }else{

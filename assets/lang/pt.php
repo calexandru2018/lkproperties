@@ -19,6 +19,11 @@
             [
                 'search' => 'Pesquisar',
                 'filter' => 'Refinar',
+                'optGroup' => 
+                    [
+                        'poi' => 'Point of Interest',
+                        'city' => 'City'
+                    ],
                 'filterParams' => 
                     [
                         'beachDistance' => 

@@ -5,9 +5,9 @@
     */
 ?>  
 <link rel="stylesheet" href="assets/css/range-slider.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
+<link defer href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link defer rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
+<link defer rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
 
 <?php
     /* 
@@ -36,14 +36,67 @@
 <div class="search-container custom-container my-1 px-4 px-md-2">
     <div class="input-group my-0 w-100" >
         <div class="input-group-prepend">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-primary" type="button" id="search">
                 <i class="fas fa-search"></i>
                 <span class="border-0 align-top text-white d-none d-md-inline"><?php echo $lang['searchbar']['search'];?></span>
             </button>
         </div>
-        <select class="state-select form-control custom-focus border-bottom rounded-0" name="state" multiple="multiple">
-            <option value="AL">Alabama</option>
-            <option value="WY">Wyoming</option>
+        <select class="state-select form-control custom-focus border-bottom rounded-0" multiple="multiple" name="search_place" id="search_place">
+            <?php 
+                echo '<optgroup label="'.$lang['searchbar']['optGroup']['poi'].'">';
+                    $query = $CONN->db->query('
+                        select 
+                            city_translation.nameTranslated as cityName,
+                            poi_translation.nameTranslated as poiName,
+                            poi_translation.poi_link_ID
+                        from
+                            poi_translation
+                        left join
+                            poi_link
+                        on
+                            poi_translation.poi_link_ID = poi_link.poi_link_ID
+                        left join
+                            city_poi_link
+                        on
+                            poi_link.poi_link_ID = city_poi_link.poi_link_ID
+                        left join
+                            city_link
+                        on
+                            city_poi_link.city_link_ID = city_link.city_link_ID
+                        left join
+                            city_translation
+                        on
+                            city_link.city_link_ID = city_translation.city_link_ID
+                        where
+                            poi_translation.langCode = "'.$selectedLang.'"
+                        and
+                            city_translation.langCode = "'.$selectedLang.'"
+                    ');
+                    while($fetch = $query->fetch_object()){
+                        echo '<option value="poi-'.$fetch->poi_link_ID.'">'.$fetch->cityName.' - '.$fetch->poiName.'</option>';
+                    }
+                echo '</optgroup>';
+                echo '<optgroup label="'.$lang['searchbar']['optGroup']['city'].'">';
+                $query = $CONN->db->query('
+                    select 
+                        city_translation.nameTranslated,
+                        city_translation.city_link_ID
+                    from
+                        city_link
+                    left join
+                        city_translation
+                    on
+                        city_link.city_link_ID = city_translation.city_link_ID
+                    where
+                        city_translation.langCode = "'.$selectedLang.'"
+                ');
+            while($fetch = $query->fetch_object()){
+                echo '<option value="city-'.$fetch->city_link_ID.'">'.$fetch->nameTranslated.'</option>';
+            }
+                echo '</optgroup>';
+
+            ?>
+            
         </select>
         <div class="input-group-append">
             <button class="btn btn-success" role="button" data-toggle="collapse" data-target="#filterDropdown" aria-haspopup="true" aria-expanded="false" aria-controls="filterDropdown">
@@ -63,7 +116,7 @@
                                 <span class="text-info"><?php echo $lang['searchbar']['filterParams']['beachDistance']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-distance">
-                            <input type="range" min="50" max="2000" step="50" value="100" name="beachDistance" data-rangeSlider>
+                            <input type="range" min="50" max="2000" step="50" value="100" name="search_beachDistance" data-rangeSlider>
                             <?php echo $lang['searchbar']['filterParams']['beachDistance']['pre'];?> <output class="pt-2"></output>m
                         </div>
                     </div>
@@ -72,7 +125,7 @@
                             <span class="text-info"><?php echo $lang['searchbar']['filterParams']['roomQuantity']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-room">
-                            <input type="range" min="1" max="8" step="1" value="2" name="room" data-rangeSlider>
+                            <input type="range" min="1" max="8" step="1" value="2" name="search_roomQty" data-rangeSlider>
                             <?php echo $lang['searchbar']['filterParams']['roomQuantity']['pre'];?> <output class="pt-2"></output> <?php echo $lang['searchbar']['filterParams']['roomQuantity']['post'];?>
                             </div>
                     </div>
@@ -84,17 +137,17 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto ">
-                                        <input type="radio" class="form-check-input" name="filtBy-pool" data-filtBy-pool="1" value="1"><?php echo $lang['searchbar']['filterParams']['poolAccess']['yes'];?>
+                                        <input type="radio" class="form-check-input" name="search_poolAccess" data-filtBy-pool="1" value="1"><?php echo $lang['searchbar']['filterParams']['poolAccess']['yes'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-pool" value="0"><?php echo $lang['searchbar']['filterParams']['poolAccess']['no'];?>
+                                        <input type="radio" class="form-check-input" name="search_poolAccess" value="2"><?php echo $lang['searchbar']['filterParams']['poolAccess']['no'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-pool" value="2"><?php echo $lang['searchbar']['filterParams']['poolAccess']['neutral'];?>
+                                        <input type="radio" class="form-check-input" name="search_poolAccess" value="0"><?php echo $lang['searchbar']['filterParams']['poolAccess']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -108,17 +161,17 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-view" value="1"><?php echo $lang['searchbar']['filterParams']['viewType']['sea'];?>
+                                        <input type="radio" class="form-check-input" name="search_viewType" value="1"><?php echo $lang['searchbar']['filterParams']['viewType']['sea'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-view" value="2"><?php echo $lang['searchbar']['filterParams']['viewType']['pool'];?>
+                                        <input type="radio" class="form-check-input" name="search_viewType" value="2"><?php echo $lang['searchbar']['filterParams']['viewType']['pool'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-view" value="0"><?php echo $lang['searchbar']['filterParams']['viewType']['neutral'];?>
+                                        <input type="radio" class="form-check-input" name="search_viewType" value="0"><?php echo $lang['searchbar']['filterParams']['viewType']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -132,17 +185,17 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto ">
-                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="1"><?php echo $lang['searchbar']['filterParams']['wifi']['yes'];?>
+                                        <input type="radio" class="form-check-input" name="search_wifi" value="1"><?php echo $lang['searchbar']['filterParams']['wifi']['yes'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="0"><?php echo $lang['searchbar']['filterParams']['wifi']['no'];?>
+                                        <input type="radio" class="form-check-input" name="search_wifi" value="2"><?php echo $lang['searchbar']['filterParams']['wifi']['no'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="filtBy-wifi" value="2"><?php echo $lang['searchbar']['filterParams']['wifi']['neutral'];?>
+                                        <input type="radio" class="form-check-input" name="search_wifi" value="0"><?php echo $lang['searchbar']['filterParams']['wifi']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -153,12 +206,11 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="assets/js/range-slider.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.state-select').select2();
-        
         var slider = document.querySelectorAll('input[type="range"]');
         rangeSlider.create(slider, {
             polyfill: true,     // Boolean, if true, custom markup will be created
@@ -201,6 +253,42 @@
             onSlideEnd: function (position, value) {
                 console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
             }
+        });
+        document.querySelector("#search").addEventListener("click", function(e){
+            var inp = document.querySelectorAll("input[name^=search_], select");
+            var userInp = collectInput(inp);
+            var customURL = urlBuilder(userInp);
+            console.log(userInp);
+            console.log(customURL);
+            window.location.href = window.location.href+'&show=filter'+customURL;
         });    
     });
+
+        function urlBuilder(input){
+            var url = '';
+            for (var key in input) {
+                var name = key.split('_');
+                url = url + '&' + name[1] + "=" + input[key];
+            }
+            return url;
+        }
+
+        function collectInput(arrayContent){
+            returnedObject = {};
+            for(let x = 0; x < arrayContent.length; x++){
+                if(arrayContent[x].type == 'radio'){
+                    if(arrayContent[x].checked)
+                        returnedObject[arrayContent[x].name] = arrayContent[x].value;
+                }else if(arrayContent[x].type == 'select-multiple'){
+                    console.log(arrayContent[x].id);
+                    var cityPoi = $('#' + arrayContent[x].id).find(':selected');
+                    for(var c = 0; c < cityPoi.length; c++){
+                        returnedObject['search_' + cityPoi[c].value] = cityPoi[c].value.substr(cityPoi[c].value.length - 1);
+                    }
+                }else{
+                    returnedObject[arrayContent[x].name] = arrayContent[x].value;
+                }
+            }
+            return returnedObject;
+        }
 </script>
