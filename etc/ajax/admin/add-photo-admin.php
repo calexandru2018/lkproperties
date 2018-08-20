@@ -3,7 +3,7 @@
     require_once('../../_include/_models/db.php');
     require_once('../../_include/_models/admin.php');
     $addNewPhotoConn = new Database();
-    $addNewPhotoAdmin = new Administrator($addNewPhotoConn->db);
+    $photo = new Administrator($addNewPhotoConn->db);
 
     $files = array();
     $adminID = 0;
@@ -20,7 +20,7 @@
                 }
         }
     }
-    var_dump($files);
+    // var_dump($files);
     foreach ($files as $file) {
         $handle = new Upload($file);
         if ($handle->uploaded) {
@@ -42,9 +42,9 @@
             $handle->image_ratio_crop      = true;
             $handle->image_y               = 300;
             $handle->image_x               = 300;
-            $handle->Process("../../../ourstaff");
+            $handle->Process("../../../gallery/ourstaff");
             if ($handle->processed) {
-                $response = $photo->addAdminPhoto($adminID, $thumbnailHandle->file_dst_name, $fullsizeHandle->file_dst_name);
+                $response = $photo->addAdminPhoto($adminID, $handle->file_dst_name);
                 if($response == true)
                     echo (int)1;
                 else

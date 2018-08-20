@@ -1,9 +1,7 @@
 <?php 
-    include('_include/_models/activity.php');
     $new = new Activity($CONN->db);
 
-    $fetched = $new->fetchAll($_GET['lang']);
-    // var_dump($fetched[1]);
+    $fetched = $new->fetchAll($selectedLang);
 ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 
@@ -21,18 +19,14 @@
         <div class="dropdown-divider"></div>
         <div class="row">
             <?php
-                for($c = 0; $c < (count($fetched) - 1); $c++){
-                    // print_r($fetched[$c]);
-                    if($c % 2 != 0){
-                        for($c2 = 0; $c2 < count($fetched[$c]); $c++){ 
-                            print_r($fetched[$c][$c2]);
-                        }
-                    }
-                    echo '<br/>';
-                    /* if($c % 2 == 0 || $c == 0){
-                        echo '
-                            <div class="col-12 col-sm-6">
-                                <div class="row">
+                $c = 0;
+                $showImages = '';
+                for($c = 0; $c < count($fetched); $c++){
+                    if($c == 0 || $c % 2 == 0){
+                        // $showImages = $showImages.'open div-';
+                        $showImages = $showImages.'
+                            <br/><div class="col-12 col-sm-6">
+                                <div class="row 2">
                                     <div class="col-12">
                                         <h2>'.$fetched[$c][0].'</h2>
                                         <figure class="figure">
@@ -45,28 +39,29 @@
                                     </div>
                                     <div class="col-12">
                                         <section class="gallery-block grid-gallery py-0 text-center">
-                                            <div class="row">
+                                            <div class="row 1">
                         ';
                     }else{
-                        for($c2 = 0; $c2 < count($fetched[$c]); $c++){
-                            echo '
+                        // $showImages = $showImages.'close div<br/>';
+                        for($c2 = 0; $c2 < count($fetched[$c]); $c2++){ 
+                            $showImages = $showImages.'
                                                 <div class="col-4 item">
                                                     <a class="lightbox" href="gallery/activity/'.$fetched[$c-1][3].'/fullsize/'.$fetched[$c][$c2].'">
                                                         <img class="img-fluid image scale-on-hover" src="gallery/activity/'.$fetched[$c-1][3].'/thumbnail/'.$fetched[$c][$c2].'">
                                                     </a>
-                                                </div>
-                            ';
+                                                </div>';
                         }
-                    }
-                        echo'
-                                            </div>
+                        $showImages = $showImages.'
+                                            </div> 
                                         </section>
                                     </div>
                                 </div>
-                            </div';*/
+                            </div
+                        ';
+                    }
                 } 
+                echo $showImages;
             ?>
-        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>

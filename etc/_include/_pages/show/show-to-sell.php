@@ -338,7 +338,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
 
         /* Create new entry */
             document.getElementById('add-to_sell').onclick = function(){
-                addContent(this.id, false, true);
+                addContent(this.id, true, true);
             };
         /* Create new entry */
 

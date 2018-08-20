@@ -106,7 +106,7 @@
             if($this->db->error)
                 return false;
             else
-                return $output;
+                return ((empty($output)) ? '': $output);
         }
     }
 ?>

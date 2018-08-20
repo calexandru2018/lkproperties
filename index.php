@@ -1,18 +1,18 @@
 <?php
     session_start();
-/*     if(!isset($_COOKIE["lang"]) && empty($_COOKIE["lang"])){
-        setcookie("lang", "en",  time()+60*60*24*30, "/lkproperties");
-        header("Location: index.php");
-    } */
     if(!isset($_GET['lang']) || empty($_GET['lang'])){
         header('Location: index.php?lang=en');
     }else{
-        $selectedLang = $_GET['lang'];
+        switch($_GET['lang']){
+            case 'en': $selectedLang = 'en';
+                break;
+            case 'pt': $selectedLang = 'pt';
+                break;
+            default:   $selectedLang = 'en';
+                break;
+        }
     }
-
-    
     include("assets/lang/".$selectedLang.".php"); 
-
     require_once('_include/_models/db.php');
     $CONN = new Database();
 ?>
@@ -27,10 +27,12 @@
         if(!empty($_GET['lang']) && (count($_GET) == 1)){
             include_once('_include/_general/_home.php');            
             include_once('_include/_general/_search.php'); 
-        }elseif((!empty($_GET['show']) && $_GET['show'] == 'for-sale') || (!empty($_GET['show']) && $_GET['show'] == 'popular')){
-            include_once('_include/_general/_search.php'); 
-        }elseif((!empty($_GET['show']) && $_GET['show'] == 'contact-us')){
+        }
+        if((!empty($_GET['show']) && ($_GET['show'] == 'contact-us' || $_GET['show'] == 'for-sale'))){
             include_once('_include/_general/_home.php'); 
+        }
+        if(!empty($_GET['show']) && ($_GET['show'] == 'for-sale' || $_GET['show'] == 'popular-poi' || $_GET['show'] == 'popular-city')){
+            include_once('_include/_general/_search.php'); 
         }
     ?>
     <main role="main" class="custom-container p-0 mb-md-5 text-muted" style="box-shadow: 0px 27px 70px -35px var(--gray);">
@@ -38,19 +40,23 @@
             if((isset($_GET['show']) || !empty($_GET['show'])) && (isset($_GET['lang']))){
                 switch ($_GET['show']){
                     case 'popular-poi':
-                    case 'popular-city': include('_include/_pages/popular.php');
+                    case 'popular-city':        include('_include/_pages/popular.php');
                         break;
-                    case 'activities': include('_include/_pages/activity-list.php');
+                    case 'activities':          include('_include/_models/activity-list.php');
+                                                include('_include/_pages/activity-list.php');
                         break;
-                    case 'faq': include('_include/_pages/faq.php');
+                    case 'faq':                 include('_include/_pages/faq.php');
                         break;
-                    case 'for-sale': include('_include/_pages/sell-list.php');
+                    case 'for-sale':            include('_include/_models/sell-list.php');
+                                                include('_include/_pages/sell-list.php');
                         break;
-                    case 'contact-us': include('_include/_pages/contact-us.php');
+                    case 'contact-us':          include('_include/_pages/contact-us.php');
                         break;
-                    case 'for-rent-details': include('_include/_pages/rent-details.php');
+                    case 'for-rent-details':    include('_include/_models/rent-details.php');  
+                                                include('_include/_pages/rent-details.php');
                         break;
-                    case 'for-sell-details': include('_include/_pages/sell-details.php');
+                    case 'for-sell-details':    include('_include/_models/sell-details.php'); 
+                                                include('_include/_pages/sell-details.php');
                         break;
                 }
             }else{

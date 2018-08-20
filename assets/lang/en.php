@@ -76,10 +76,11 @@
                 'title' => 'Frequently Asked Questions',  
                 'info' => 'Short Description about Faq'  
             ],
-        'reaEstate' => 
+        'realEstate' => 
             [
-                'title' => 'Short Description about Faq'  ,
-                'info' => 'This is a description about the sales page'
+                'title' => 'Interested in buying/selling real-estate ?'  ,
+                'info' => 'We have a vast experience on real-estate. We can help you sell your real-estate or maybe find you a new one that meets your needs, just get in touch with us!',
+                'price' => 'Price'
             ],
         'contactUs' => 
             [
@@ -101,8 +102,8 @@
             ],
         'rentDetails' => 
             [
-                'services' => 'Services',
-                'galleryApt' => 'Galeria',
+                'services' => 'Comodities',
+                'galleryApt' => 'Gallery',
                 'galleryNearby' => 'Nearby:',
                 'pricingTable' => 
                     [
@@ -137,7 +138,8 @@
             [
                 'title' => 'Short description',
                 'video' => 'Video',
-                'gallery' => 'Gallery'
+                'gallery' => 'Gallery',
+                'referenceID' => 'Reference ID:'
             ],
         'placeHolder' => 
             [

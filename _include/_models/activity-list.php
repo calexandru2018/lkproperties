@@ -63,7 +63,7 @@
             $query = $this->db->query($sql);
             while($fetcher = $query->fetch_row()){
                 $output[] = $fetcher;
-                $output[][] = $this->fetchGallery($fetcher[3]);
+                $output[] = $this->fetchGallery($fetcher[3]);
             }
             if($this->db->error)
                 return false;

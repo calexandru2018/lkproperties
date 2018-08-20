@@ -658,13 +658,13 @@
 				$langSortedNames = array();
 				$errorCather = array();
 				$langCounter = 0;
-				var_dump($inputArray);
+				// var_dump($inputArray);
 				foreach($inputArray as $key => $value){
 					$holder[] = explode('-', $key);                
 					$langSortedNames[strtolower($holder[$langCounter][1])][] = $value;
 					$langCounter++;
 				}
-				var_dump($langSortedNames);
+				// var_dump($langSortedNames);
 				$fetchTitleLinkID = $this->db->query('
 					select 
 						long_desc_link_ID
@@ -765,7 +765,7 @@
 
 			}
 			public function updateOther(int $propertyID, array $inputArray){
-				var_dump($inputArray);
+				// var_dump($inputArray);
 				$errorCatcher = array();
 				$sqlUpdateProperty = '
 					update
@@ -778,6 +778,8 @@
 						roomAmmount ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentRoomAmmount'][0]).'",
 						maxAllowedGuests ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentMaxAllowedGuests'][0]).'",
 						beachDistance ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_rentBeachDistance'][0]).'"
+					where
+						property_ID = "'.$propertyID.'"
 				';
 				$queryUpdateProperty = $this->db->query($sqlUpdateProperty);
 				if($this->db->error)
@@ -816,7 +818,7 @@
 				');
 				$fetchedObject = $fetchPropertyPriceID->fetch_object();
 				foreach($inputArray as $key => $value){
-					var_dump($key, $value[0], $c);
+					// var_dump($key, $value[0], $c);
 					$sqlUpdatepoi = '
 						update 
 							property_price 

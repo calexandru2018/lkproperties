@@ -1,42 +1,41 @@
+<?php
+    $new = new RentDetails($CONN->db);
+    $fetched = $new->fetchRow($_GET['object'], $selectedLang);
+    // var_dump($fetched);
+?>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row">
         <div class="col-12">
-            <img src="gallery/main/fullsize/14-c-4.jpeg" class="img-fluid" alt="">
+            <img src="gallery/rental/<?php echo $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0] ?>" class="img-fluid" alt="">
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="col-12 my-2 px-0">
-                <h2 class="pt-2">Encosta da Marina</h2>
+                <h2 class="pt-2"><?php echo $fetched['title']; ?></h2>
+            </div>
+            <div class="col-12 my-2 px-0">
+                <p><i><?php echo $lang['generalFiller']['referenceID'].' '.$fetched['publicID']; ?></i></p>
             </div>
             <div class="col-12 px-0 text-justify">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae odio ipsam consequatur deleniti ducimus veritatis obcaecati, eos esse cupiditate fugiat, saepe assumenda ipsa neque expedita, atque deserunt architecto nulla. Repellat.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quod soluta temporibus deleniti pariatur distinctio veniam, iste fugit sed facere repellat iusto suscipit impedit, delectus earum. Expedita hic voluptas ratione.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem consequuntur quidem nihil, laudantium delectus quaerat. Suscipit dolore quo culpa ad eos, omnis, maxime ex aliquid hic voluptates atque blanditiis minus.
-                </p>
+                <?php echo $fetched['description']; ?>
             </div>
         </div>
         <div class="col-12 col-md-6 my-2">
             <h2 class="py-2"><?php echo $lang['rentDetails']['services']; ?></h2>
             <ul id="custom-ul" class="list-group list-group-flush d-flex flex-row flex-wrap bg-white">
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Barbeque</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Quick beach access</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Parking</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Something else</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Test 5</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Test 5</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Test 6</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Test 6</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Barbeque</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Barbeque</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Quick beach access</li>
-                <li class="list-group-item px-0 text-center w-50 border-bottom-0">Quick beach access</li>
+                <?php 
+                    for($i=0; $i < count($fetched['servicesUnique']); $i++){ 
+                        echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesUnique'][$i].'</li>';
+                    }
+                    for($i=0; $i < count($fetched['servicesCommon']); $i++){ 
+                        echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesCommon'][$i].'</li>';
+                    }
+                ?>
             </ul>
         </div>
     </div>
@@ -45,93 +44,35 @@
             <h4 class="py-2"><?php echo $lang['rentDetails']['galleryApt']; ?></h4>
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
+                    <?php
+                        for($i=0; $i < count($fetched['objectGallery']); $i++){
+                            echo '
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="gallery/rental/'.$fetched['id'].'/fullsize/'.$fetched['objectGallery'][$i].'">
+                                        <img class="img-fluid image scale-on-hover" src="gallery/rental/'.$fetched['id'].'/thumbnail/'.$fetched['objectGallery'][$i].'">
+                                    </a>
+                                </div>
+                            ';
+                        }
+                    ?>
                 </div>
             </section>
         </div>
         <div class="col-12 col-md-6">
-            <h4 class="py-2"><?php echo $lang['rentDetails']['galleryNearby']; ?> Praia da Rocha</h4>
+            <h4 class="py-2"><?php echo $lang['rentDetails']['galleryNearby'].' '.$fetched['poiInfo']['name']; ?></h4>
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
-                    <div class="col-4 item">
-                        <a class="lightbox" href="assets/img/org.jpg">
-                            <img class="img-fluid image scale-on-hover" src="assets/img/org.jpg">
-                        </a>
-                    </div>
+                    <?php
+                        for($i=0; $i < count($fetched['poiGallery']); $i++){
+                            echo '
+                                <div class="col-4 item">
+                                    <a class="lightbox" href="gallery/poi/'.$fetched['poiInfo']['id'].'/fullsize/'.$fetched['poiGallery'][$i].'">
+                                        <img class="img-fluid image scale-on-hover" src="gallery/poi/'.$fetched['poiInfo']['id'].'/thumbnail/'.$fetched['poiGallery'][$i].'">
+                                    </a>
+                                </div>
+                            ';
+                        }
+                    ?>
                 </div>
             </section>
         </div>
@@ -145,46 +86,16 @@
                     <th><?php echo $lang['rentDetails']['pricingTable']['price']; ?></th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['0']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['1']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['2']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['3']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['4']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['5']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['6']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['7']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['8']; ?></td>
-                        <td>100€</td>
-                    </tr>
-                    <tr>
-                        <td><?php echo $lang['rentDetails']['pricingTable']['months']['9']; ?></td>
-                        <td>100€</td>
-                    </tr>   
+                    <?php 
+                        for($i=0; $i < count($fetched['priceList']); $i++){
+                            echo '
+                                <tr>
+                                    <td>'.$lang['rentDetails']['pricingTable']['months'][$i].'</td>
+                                    <td>'.$fetched['priceList'][$i].'€</td>
+                                </tr>
+                            ';
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>

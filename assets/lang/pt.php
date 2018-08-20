@@ -58,9 +58,9 @@
             ],
         'sortBy' =>
             [
-             'name' => 'Ordernar por Preço',
-             'asc' => 'Ascendente',   
-             'desc' => 'Descendente'   
+                'name' => 'Ordernar por Preço',
+                'asc' => 'Ascendente',   
+                'desc' => 'Descendente'   
             ],
         'rentPriceHolder' => 
             [
@@ -76,10 +76,11 @@
                 'title' => 'Perguntes Frequentes',
                 'info' => 'Longa descrição de faq'  
             ],
-        'reaEstate' => 
+        'realEstate' => 
             [
-                'title' => 'Titulo de venda'  ,
-                'info' => 'Descrição de vendas'
+                'title' => 'Interessade em comprar/vendar imóvel ?'  ,
+                'info' => 'Nós também temos uma experiência em trabalhar com imóveis para compra/venda. Entre em contacto caso queira vender o seu imóvel!',
+                'price' => 'Preço'
             ],
         'contactUs' => 
             [
@@ -101,7 +102,7 @@
             ],
         'rentDetails' => 
             [
-                'services' => 'Serviços',
+                'services' => 'Comodidades',
                 'galleryApt' => 'Galeria',
                 'galleryNearby' => 'Próximo:',
                 'pricingTable' => 
@@ -138,7 +139,8 @@
             [
                 'title' => 'Curta descrição',
                 'video' => 'Vídeo',
-                'gallery' => 'Galeria'
+                'gallery' => 'Galeria',
+                'referenceID' => 'ID de Referência:'
             ],
         'placeHolder' => 
             [

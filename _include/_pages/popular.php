@@ -7,7 +7,7 @@
         else    
             $cat = 'poi';
 
-        $fetched = $new->fetchSingle($cat,(int)$_GET['id'], $_GET['lang']);
+        $fetched = $new->fetchSingle($cat,(int)$_GET['id'], $selectedLang);
         $gallery = $new->fetchGallery($cat,(int)$_GET['id']);
         // print_r($gallery);
 ?>
@@ -52,14 +52,16 @@
             </div>
             <div class="row">
                 <?php
-                    for($c = 0; $c < count($gallery); $c++){
-                        echo '
-                            <div class="col-md-6 col-lg-4 item text-center">
-                                <a class="lightbox" href="gallery/'.$cat.'/'.$fetched[4].'/fullsize/'.$gallery[$c].'">
-                                    <img class="img-fluid image scale-on-hover" src="gallery/'.$cat.'/'.$fetched[4].'/thumbnail/'.$gallery[$c].'">
-                                </a>
-                            </div>
-                        ';
+                    if(!empty($gallery)){
+                        for($c = 0; $c < count($gallery); $c++){
+                            echo '
+                                <div class="col-md-6 col-lg-4 item text-center">
+                                    <a class="lightbox" href="gallery/'.$cat.'/'.$fetched[4].'/fullsize/'.$gallery[$c].'">
+                                        <img class="img-fluid image scale-on-hover" src="gallery/'.$cat.'/'.$fetched[4].'/thumbnail/'.$gallery[$c].'">
+                                    </a>
+                                </div>
+                            ';
+                        }
                     }
                 ?>
                 <!-- <div class="col-md-6 col-lg-4  item">

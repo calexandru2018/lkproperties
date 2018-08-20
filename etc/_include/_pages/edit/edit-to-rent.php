@@ -212,14 +212,14 @@
                 <div class="clearfix"></div>
                 <div class="col-xs-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
-                        <span class="input-group-addon">Qtd de Residentes</span>
-                        <input type="text" name="to_rentMaxAllowedGuests" class="form-control" value="<?php echo $toRentData['pt_0'][0]['maxAllowedGuests']; ?>">
+                        <span class="input-group-addon">Nr de Quartos</span>
+                        <input type="text" name="to_rentRoomAmmount" class="form-control" value="<?php echo $toRentData['pt_0'][0]['roomAmmount']; ?>">
                     </div>
                 </div>
                 <div class="col-xs-6" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="input-group">
-                        <span class="input-group-addon">Nr de Quartos</span>
-                        <input type="text" name="to_rentRoomAmmount" class="form-control" value="<?php echo $toRentData['pt_0'][0]['roomAmmount']; ?>">
+                        <span class="input-group-addon">Qtd de Residentes</span>
+                        <input type="text" name="to_rentMaxAllowedGuests" class="form-control" value="<?php echo $toRentData['pt_0'][0]['maxAllowedGuests']; ?>">
                     </div>
                 </div>
                 <div class="col-xs-6" style="margin-top: 2%; margin-bottom: 2%;">

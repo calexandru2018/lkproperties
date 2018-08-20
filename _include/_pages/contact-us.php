@@ -111,19 +111,53 @@
                     <div class="row"></div>
                     <h3><?php echo $lang['staff']['title'];?></h3>
                 </div>
-                <div class="col-12 col-md-12 my-3">
-                    <div class="row text-center">
-                        <div class="col-12">
-                            <img src="assets/img/prof.jpg" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
-                        </div>
-                    </div>
-                    <div class="row text-center my-2">
-                        <div class="col-12">
-                            <h4>Lilia Ungureanu</h4>
-                            <h5>General Director of LK Properties</h5>
-                        </div>
-                    </div>
-                </div>
+                <?php 
+                    $adminList = [];
+                    $c = 0;
+                    $query = $CONN->db->query('
+                        select
+                            name,
+                            thumbnailURL
+                        from
+                            admin
+                        where
+                            isActive = 1
+                        and
+                            isPublicVisible = 1
+                    ');
+                    while($fetch = $query->fetch_object()){
+                        $adminList[$c]['name'] = $fetch->name;
+                        $adminList[$c]['url'] = $fetch->thumbnailURL;
+                        $c++;
+                    }
+                    $colWidth = 12;
+                    if($c == 2){
+                        $colWidth = 6;
+                    }elseif($c >= 3){
+                        $colWidth = 4;
+                    }
+                ?>
+
+                    <?php 
+                        for($i = 0; $i < $c; $i++){
+                            
+                            echo'
+                                <div class="col-12 col-md-'.$colWidth.' my-3">
+                                    <div class="row text-center">
+                                        <div class="col-12">
+                                            <img src="gallery/ourstaff/'.$adminList[$i]['url'].'" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
+                                        </div>
+                                    </div>
+                                    <div class="row text-center my-2">
+                                        <div class="col-12">
+                                            <h4>'.$adminList[$i]['name'].'</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            ';
+                        }
+                    ?>
+                
             </div>
         </div>
     </div>

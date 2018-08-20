@@ -133,7 +133,7 @@
 					select 
 						common_service_translation.common_service_link_ID,
 						common_service_translation.serviceTranslated,
-						property_common_service.property_service_ID
+						property_common_service.property_ID
 					FROM
 						common_service_translation
 					RIGHT JOIN
@@ -766,6 +766,8 @@
 						roomAmmount ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_sellRoomAmmount'][0]).'",
 						maxAllowedGuests ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_sellMaxAllowedGuests'][0]).'",
 						beachDistance ="'.(int)mysqli_real_escape_string($this->db, $inputArray['to_sellBeachDistance'][0]).'"
+					where
+						property_ID = "'.$propertyID.'"
 				';
 				$queryUpdateProperty = $this->db->query($sqlUpdateProperty);
 				if($this->db->error)
@@ -815,7 +817,6 @@
 						$queryUpdateDes = $this->db->query($sqlUpdatepoi);
 						if($this->db->error)
 							$errorCather[] = $this->db->error;
-						
 					$c++;
 				}
  				if(empty($errorCather))
