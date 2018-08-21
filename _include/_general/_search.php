@@ -77,26 +77,24 @@
                     }
                 echo '</optgroup>';
                 echo '<optgroup label="'.$lang['searchbar']['optGroup']['city'].'">';
-                $query = $CONN->db->query('
-                    select 
-                        city_translation.nameTranslated,
-                        city_translation.city_link_ID
-                    from
-                        city_link
-                    left join
-                        city_translation
-                    on
-                        city_link.city_link_ID = city_translation.city_link_ID
-                    where
-                        city_translation.langCode = "'.$selectedLang.'"
-                ');
-            while($fetch = $query->fetch_object()){
-                echo '<option value="city-'.$fetch->city_link_ID.'">'.$fetch->nameTranslated.'</option>';
-            }
+                    $query = $CONN->db->query('
+                        select 
+                            city_translation.nameTranslated,
+                            city_translation.city_link_ID
+                        from
+                            city_link
+                        left join
+                            city_translation
+                        on
+                            city_link.city_link_ID = city_translation.city_link_ID
+                        where
+                            city_translation.langCode = "'.$selectedLang.'"
+                    ');
+                    while($fetch = $query->fetch_object()){
+                        echo '<option value="city-'.$fetch->city_link_ID.'">'.$fetch->nameTranslated.'</option>';
+                    }
                 echo '</optgroup>';
-
             ?>
-            
         </select>
         <div class="input-group-append">
             <button class="btn btn-success" role="button" data-toggle="collapse" data-target="#filterDropdown" aria-haspopup="true" aria-expanded="false" aria-controls="filterDropdown">
@@ -116,16 +114,23 @@
                                 <span class="text-info"><?php echo $lang['searchbar']['filterParams']['beachDistance']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-distance">
-                            <input type="range" min="50" max="2000" step="50" value="100" name="search_beachDistance" data-rangeSlider>
+                            <input type="range" min="50" max="2000" step="50" value="<?php echo ((isset($_GET['beachDistance'])) ? $_GET['beachDistance']:'500')?>" name="search_beachDistance" data-rangeSlider>
                             <?php echo $lang['searchbar']['filterParams']['beachDistance']['pre'];?> <output class="pt-2"></output>m
                         </div>
                     </div>
                     <div class="col-12 col-md-6 list-group-item border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                            <span class="text-info"><?php echo $lang['searchbar']['filterParams']['roomQuantity']['name'];?></span>
+                            <span class="text-info">
+                                <?php 
+                                    
+                                    // $var = $_SERVER['QUERY_STRING'];
+                                    // // echo substr_count($var,'poi-');
+                                    // echo strpos ($var, 'poi-');
+                                ?>
+                            <?php echo $lang['searchbar']['filterParams']['roomQuantity']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-room">
-                            <input type="range" min="1" max="8" step="1" value="2" name="search_roomQty" data-rangeSlider>
+                            <input type="range" min="1" max="8" step="1" value="<?php echo ((isset($_GET['roomQty'])) ? $_GET['roomQty']:'2')?>" name="search_roomQty" data-rangeSlider>
                             <?php echo $lang['searchbar']['filterParams']['roomQuantity']['pre'];?> <output class="pt-2"></output> <?php echo $lang['searchbar']['filterParams']['roomQuantity']['post'];?>
                             </div>
                     </div>
@@ -137,17 +142,17 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto ">
-                                        <input type="radio" class="form-check-input" name="search_poolAccess" data-filtBy-pool="1" value="1"><?php echo $lang['searchbar']['filterParams']['poolAccess']['yes'];?>
+                                        <input type="radio" class="form-check-input" name="search_poolAccess" value="1" <?php echo ((isset($_GET['poolAccess']) && $_GET['poolAccess'] == 1) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['poolAccess']['yes'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_poolAccess" value="2"><?php echo $lang['searchbar']['filterParams']['poolAccess']['no'];?>
+                                        <input type="radio" class="form-check-input" name="search_poolAccess" value="0" <?php echo ((isset($_GET['poolAccess']) && $_GET['poolAccess'] == 0) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['poolAccess']['no'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_poolAccess" value="0"><?php echo $lang['searchbar']['filterParams']['poolAccess']['neutral'];?>
+                                        <input type="radio" class="form-check-input" name="search_poolAccess" value="2" <?php echo ((isset($_GET['poolAccess']) && $_GET['poolAccess'] == 2) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['poolAccess']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -161,17 +166,17 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_viewType" value="1"><?php echo $lang['searchbar']['filterParams']['viewType']['sea'];?>
+                                        <input type="radio" class="form-check-input" name="search_viewType" value="1" <?php echo ((isset($_GET['viewType']) && $_GET['viewType'] == 1) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['viewType']['sea'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_viewType" value="2"><?php echo $lang['searchbar']['filterParams']['viewType']['pool'];?>
+                                        <input type="radio" class="form-check-input" name="search_viewType" value="2" <?php echo ((isset($_GET['viewType']) && $_GET['viewType'] == 2) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['viewType']['pool'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_viewType" value="0"><?php echo $lang['searchbar']['filterParams']['viewType']['neutral'];?>
+                                        <input type="radio" class="form-check-input" name="search_viewType" value="0" <?php echo ((isset($_GET['viewType']) && $_GET['viewType'] == 0) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['viewType']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -185,17 +190,17 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto ">
-                                        <input type="radio" class="form-check-input" name="search_wifi" value="1"><?php echo $lang['searchbar']['filterParams']['wifi']['yes'];?>
+                                        <input type="radio" class="form-check-input" name="search_wifi" value="1" <?php echo ((isset($_GET['wifi']) && $_GET['wifi'] == 1) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['wifi']['yes'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_wifi" value="2"><?php echo $lang['searchbar']['filterParams']['wifi']['no'];?>
+                                        <input type="radio" class="form-check-input" name="search_wifi" value="0" <?php echo ((isset($_GET['wifi']) && $_GET['wifi'] == 0) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['wifi']['no'];?>
                                     </label>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_wifi" value="0"><?php echo $lang['searchbar']['filterParams']['wifi']['neutral'];?>
+                                        <input type="radio" class="form-check-input" name="search_wifi" value="2" <?php echo ((isset($_GET['wifi']) && $_GET['wifi'] == 2) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['wifi']['neutral'];?>
                                     </label>
                                 </div>
                             </div>
@@ -227,7 +232,7 @@
                 var selector = '[data-rangeSlider]',
                 elements = document.querySelectorAll(selector);
                 function valueOutput(element) {
-                console.log(element.name);
+                // console.log(element.name);
                     var value = element.value,
                         output = element.parentNode.getElementsByTagName('output')[0];
                     output.innerHTML = value;
@@ -245,22 +250,29 @@
                 });
             },
             onSlideStart: function (position, value) {
-                console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
+                // console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
             },
             onSlide: function (position, value) {
-                console.log('onSlide', 'position: ' + position, 'value: ' + value);
+                // console.log('onSlide', 'position: ' + position, 'value: ' + value);
             },
             onSlideEnd: function (position, value) {
-                console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
+                // console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
             }
         });
         document.querySelector("#search").addEventListener("click", function(e){
             var inp = document.querySelectorAll("input[name^=search_], select");
             var userInp = collectInput(inp);
             var customURL = urlBuilder(userInp);
-            console.log(userInp);
-            console.log(customURL);
-            window.location.href = window.location.href+'&show=filter'+customURL;
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var filter = url.searchParams.get("show");
+            if(filter == 'filter'){
+                splittedURL = url_string.split('show=filter');
+                var new_url = splittedURL[0]+'show=filter'+customURL;
+            }else{
+                var new_url = window.location.href+'&show=filter'+customURL;
+            }
+            window.location.href = new_url;
         });    
     });
 
@@ -280,7 +292,7 @@
                     if(arrayContent[x].checked)
                         returnedObject[arrayContent[x].name] = arrayContent[x].value;
                 }else if(arrayContent[x].type == 'select-multiple'){
-                    console.log(arrayContent[x].id);
+                    // console.log(arrayContent[x].id);
                     var cityPoi = $('#' + arrayContent[x].id).find(':selected');
                     for(var c = 0; c < cityPoi.length; c++){
                         returnedObject['search_' + cityPoi[c].value] = cityPoi[c].value.substr(cityPoi[c].value.length - 1);

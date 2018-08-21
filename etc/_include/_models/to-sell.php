@@ -439,12 +439,16 @@
 									cat7,
 									cat8,
 									cat9,
-									cat10
+									cat10,
+									minPrice,
+									maxPrice
 								)
 							values
 								(
 									"'.$propertyID.'",
 									"'.$toRentData['priceList'][0].'",
+									"0",
+									"0",
 									"0",
 									"0",
 									"0",

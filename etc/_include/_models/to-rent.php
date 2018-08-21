@@ -211,7 +211,9 @@
             public function insert(array $inputArray){
                 $toRentData = $this->sanitizeInput($inputArray);
                 
-                $errorCatcher = Array();
+				$errorCatcher = Array();
+				$minPrice = 1000000000;
+				$maxPrice = 0;
 				$poiPostalCode = explode('-', $toRentData['property']['cityPoi']);
 				$publicID = (int)$this->generatePublicID($poiPostalCode[1]);
                 $sqlProperty = '
@@ -437,6 +439,14 @@
 					if($this->db->error)
 						$errorCatcher['Unique service table'][] = $this->db->error;
 
+					for($c = 0; $c < count($toRentData['priceList']); $c++){
+						if($minPrice >= $toRentData['priceList'][$c]){
+							$minPrice = (int)$toRentData['priceList'][$c];
+						}
+						if($maxPrice <= $toRentData['priceList'][$c]){
+							$maxPrice = (int)$toRentData['priceList'][$c];
+						}
+					}
 					$sqlPrice = '
 						insert into
 							property_price
@@ -451,7 +461,9 @@
 									cat7,
 									cat8,
 									cat9,
-									cat10
+									cat10,
+									minPrice,
+									maxPrice
 								)
 							values
 								(
@@ -465,7 +477,9 @@
 									'.$toRentData['priceList'][6].',
 									'.$toRentData['priceList'][7].',
 									'.$toRentData['priceList'][8].',
-									'.$toRentData['priceList'][9].'
+									'.$toRentData['priceList'][9].',
+									'.$minPrice.',
+									'.$maxPrice.'
 								)
 					';
 					$queryPrice = $this->db->query($sqlPrice);
@@ -807,6 +821,9 @@
 			}
 			public function updatePriceList(int $propertyID, array $inputArray){
 
+				$minPrice = 1000000000;
+				$maxPrice = 0;
+
 				$c = 1;
 				$fetchPropertyPriceID = $this->db->query('
 					select 
@@ -817,25 +834,39 @@
 						property_ID = "'.$propertyID.'"
 				');
 				$fetchedObject = $fetchPropertyPriceID->fetch_object();
+				$sqlBase = '
+					update 
+						property_price 
+					set 
+				';
 				foreach($inputArray as $key => $value){
-					// var_dump($key, $value[0], $c);
-					$sqlUpdatepoi = '
-						update 
-							property_price 
-						set 
-							cat'.$c.' = "'.mysqli_real_escape_string($this->db, $value[0]).'"
-						where 
-							property_price_ID = '.$fetchedObject->property_price_ID;
-						$queryUpdateDes = $this->db->query($sqlUpdatepoi);
-						if($this->db->error)
-							$errorCather[] = $this->db->error;
-						
+					if($minPrice >=  $value[0]){
+						$minPrice = (int) $value[0];
+					}
+					if($maxPrice <=  $value[0]){
+						$maxPrice = (int) $value[0];
+					}
+					
+					// if($c == (count($inputArray) - 1)){
+						$sqlBase = $sqlBase.'cat'.$c.' = "'.mysqli_real_escape_string($this->db, $value[0]).'", ';
+					// }else {
+						// $sqlBase = $sqlBase.'cat'.$c.' = "'.mysqli_real_escape_string($this->db, $value[0]).'"';
+					// }
 					$c++;
 				}
+				$sqlBase = $sqlBase.'
+					minPrice = "'.$minPrice.'",
+					maxPrice = "'.$maxPrice.'"
+				where
+					property_price_ID = '.$fetchedObject->property_price_ID
+					;
+				$queryUpdateDes = $this->db->query($sqlBase);
+				if($this->db->error)
+					$errorCather[] = $this->db->error;
  				if(empty($errorCather))
 					return true;
 				else
-					return false;
+					return $errorCather;
 			}
         /* Database Functions */
 

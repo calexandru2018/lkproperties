@@ -29,10 +29,10 @@
             include_once('_include/_general/_home.php');            
             include_once('_include/_general/_search.php'); 
         }
-        if((!empty($_GET['show']) && ($_GET['show'] == 'contact-us' || $_GET['show'] == 'for-sale'))){
+        if((!empty($_GET['show']) && ($_GET['show'] == 'contact-us' || $_GET['show'] == 'for-sale' || $_GET['show'] == 'filter'))){
             include_once('_include/_general/_home.php'); 
         }
-        if(!empty($_GET['show']) && ($_GET['show'] == 'for-sale')){
+        if(!empty($_GET['show']) && ($_GET['show'] == 'for-sale' || $_GET['show'] == 'filter')){
             include_once('_include/_general/_search.php'); 
         }
     ?>
@@ -59,7 +59,7 @@
                     case 'for-sell-details':    include('_include/_models/sell-details.php'); 
                                                 include('_include/_pages/sell-details.php');
                         break;
-                    case 'filter':         //include('_include/_models/sell-details.php'); 
+                    case 'filter':              include('_include/_models/filter-search.php'); 
                                                 include('_include/_pages/filter-search.php');
                         break;
                 }

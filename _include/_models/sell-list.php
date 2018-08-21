@@ -159,8 +159,40 @@
             return $commonServiceCollector;
         }
         private function getServicesUnique(int $propertyID, string $lang){
+            $uniqueServiceIDCollector = [];
+            $uniqueServiceCollector = [];
 
-            return true;
+            $result = $this->db->query('
+                select
+                    unique_service_link_ID
+                from 
+                    property_unique_service
+                where
+                    property_ID = "'.$propertyID.'"
+            ');
+            while($serviceHolder = $result->fetch_object()){
+                $uniqueServiceIDCollector[] = $serviceHolder->unique_service_link_ID; 
+            }
+            $sqlResultTranslatedBase = '
+                select 
+                    uniqueServiceTranslated
+                from
+                    unique_service_translation
+                where (
+            ';
+            for($c = 0; $c < count($uniqueServiceIDCollector); $c++){
+                if($c == (count($uniqueServiceIDCollector)-1))
+                    $sqlResultTranslatedBase = $sqlResultTranslatedBase.'unique_service_link_ID = '.$uniqueServiceIDCollector[$c].') and langCode = "'.$lang.'"';
+                else
+                    $sqlResultTranslatedBase = $sqlResultTranslatedBase.'unique_service_link_ID = '.$uniqueServiceIDCollector[$c].' or ';
+            }
+            $queryResultTranslatedBase = $this->db->query($sqlResultTranslatedBase);
+            
+            while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
+                $uniqueServiceCollector[] = $fetchTranslation['uniqueServiceTranslated'];
+            }
+
+            return $uniqueServiceCollector;
         }
         
         /* Custom controll function */
