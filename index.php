@@ -52,12 +52,18 @@
                                                 include('_include/_pages/sell-list.php');
                         break;
                     case 'contact-us':          include('_include/_pages/contact-us.php');
+                                                include('assets/mail/PHPMailer.php');
+                                                include('assets/mail/SMTP.php');
                         break;
                     case 'for-rent-details':    include('_include/_models/rent-details.php');  
                                                 include('_include/_pages/rent-details.php');
+                                                include('assets/mail/PHPMailer.php');
+                                                include('assets/mail/SMTP.php');
                         break;
                     case 'for-sell-details':    include('_include/_models/sell-details.php'); 
                                                 include('_include/_pages/sell-details.php');
+                                                include('assets/mail/PHPMailer.php');
+                                                include('assets/mail/SMTP.php');
                         break;
                     case 'filter':              include('_include/_models/filter-search.php'); 
                                                 include('_include/_pages/filter-search.php');

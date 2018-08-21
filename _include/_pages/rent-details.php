@@ -105,30 +105,28 @@
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
                         <label for="textArea">*<?php echo $lang['contactUs']['describe']; ?></label>
-                        <textarea class="form-control" id="textArea" rows="3"></textarea>
+                        <textarea class="form-control" id="textArea" name="msg_description" rows="3"></textarea>
                     </div>
                     <div class="col-12 py-2">
                             <label for="subject">*<?php echo $lang['contactUs']['subject']; ?></label>
-                            <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="">
-                            <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
+                            <input type="text" class="form-control" name="msg_subject" id="subject">
                     </div>
                     <div class="col-12 py-2">
                             <label for="subject"><?php echo $lang['contactUs']['date']; ?>(<?php echo $lang['placeHolder']['optional']; ?>)</label>
-                            <input type="date" class="form-control bg-white" id="date" aria-describedby="emailHelp">
-                            <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
+                            <input type="date" class="form-control bg-white" name="msg_date" id="date">
                     </div>
                     <div class="col-12 col-sm-6 pb-2 py-sm-0">
                         <label for="name">*<?php echo $lang['contactUs']['name']; ?></label>
-                        <input type="text" class="form-control" id="customerName" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['name']; ?>">
+                        <input type="text" class="form-control" name="msg_name" placeholder="<?php echo $lang['placeHolder']['name']; ?>">
                     </div>
                     <div class="col-12 col-sm-6 py-2 py-sm-0">
                         <label for="exampleInputEmail1">*<?php echo $lang['contactUs']['email']; ?></label>
-                        <input type="email" class="form-control" id="customerEmail" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email']; ?>">
+                        <input type="email" class="form-control" name="msg_email" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email']; ?>">
                         <small id="emailHelp" class="form-text text-white">*<?php echo $lang['contactUs']['infoSharing']; ?></small>
                     </div>
                     <div class="col-12 py-2">
                         <p class="p-0 small float-left"><?php echo $lang['contactUs']['obligatory']; ?></p>
-                        <button type="submit" class="btn btn-info float-right"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
+                        <button class="btn btn-info float-right" id="send-question"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
                     </div>
                 </div>
             </form>
@@ -143,7 +141,32 @@
     flatpickr("#date", {
             mode: "range",
             onChange: function(selectedDates, dateStr, instance) {
-                console.log(document.querySelector("#myID").value);
+                console.log(document.querySelector("#date").value);
             }
         });
+        document.querySelector("#send-question").addEventListener("click", function(e){
+            e.preventDefault();
+            
+            console.clear();
+            collector = document.querySelectorAll("[name^=msg_]");
+            let formData = new FormData();
+            
+            collector.forEach(function(el){
+                var name = el.name.split('_');
+                formData.append(name[1], el.value);
+            })
+            formData.append('lang', '<?php echo $selectedLang; ?>');
+
+            fetch('ajax/send-mail.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        })
 </script>
