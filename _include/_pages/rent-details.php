@@ -29,11 +29,15 @@
             <h2 class="py-2"><?php echo $lang['rentDetails']['services']; ?></h2>
             <ul id="custom-ul" class="list-group list-group-flush d-flex flex-row flex-wrap bg-white">
                 <?php 
-                    for($i=0; $i < count($fetched['servicesUnique']); $i++){ 
-                        echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesUnique'][$i].'</li>';
+                    if(!empty($fetched['servicesUnique'])){
+                        for($i=0; $i < count($fetched['servicesUnique']); $i++){ 
+                            echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesUnique'][$i].'</li>';
+                        }
                     }
-                    for($i=0; $i < count($fetched['servicesCommon']); $i++){ 
-                        echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesCommon'][$i].'</li>';
+                    if(!empty($fetched['servicesUnique'])){
+                        for($i=0; $i < count($fetched['servicesCommon']); $i++){ 
+                            echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesCommon'][$i].'</li>';
+                        }
                     }
                 ?>
             </ul>
@@ -45,14 +49,16 @@
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
                     <?php
-                        for($i=0; $i < count($fetched['objectGallery']); $i++){
-                            echo '
-                                <div class="col-4 item">
-                                    <a class="lightbox" href="gallery/rental/'.$fetched['id'].'/fullsize/'.$fetched['objectGallery'][$i].'">
-                                        <img class="img-fluid image scale-on-hover" src="gallery/rental/'.$fetched['id'].'/thumbnail/'.$fetched['objectGallery'][$i].'">
-                                    </a>
-                                </div>
-                            ';
+                        if(!empty($fetched['objectGallery'])){
+                            for($i=0; $i < count($fetched['objectGallery']); $i++){
+                                echo '
+                                    <div class="col-4 item">
+                                        <a class="lightbox" href="gallery/rental/'.$fetched['id'].'/fullsize/'.$fetched['objectGallery'][$i].'">
+                                            <img class="img-fluid image scale-on-hover" src="gallery/rental/'.$fetched['id'].'/thumbnail/'.$fetched['objectGallery'][$i].'">
+                                        </a>
+                                    </div>
+                                ';
+                            }
                         }
                     ?>
                 </div>
@@ -63,14 +69,16 @@
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
                     <?php
-                        for($i=0; $i < count($fetched['poiGallery']); $i++){
-                            echo '
-                                <div class="col-4 item">
-                                    <a class="lightbox" href="gallery/poi/'.$fetched['poiInfo']['id'].'/fullsize/'.$fetched['poiGallery'][$i].'">
-                                        <img class="img-fluid image scale-on-hover" src="gallery/poi/'.$fetched['poiInfo']['id'].'/thumbnail/'.$fetched['poiGallery'][$i].'">
-                                    </a>
-                                </div>
-                            ';
+                        if(!empty($fetched['poiGallery'])){
+                            for($i=0; $i < count($fetched['poiGallery']); $i++){
+                                echo '
+                                    <div class="col-4 item">
+                                        <a class="lightbox" href="gallery/poi/'.$fetched['poiInfo']['id'].'/fullsize/'.$fetched['poiGallery'][$i].'">
+                                            <img class="img-fluid image scale-on-hover" src="gallery/poi/'.$fetched['poiInfo']['id'].'/thumbnail/'.$fetched['poiGallery'][$i].'">
+                                        </a>
+                                    </div>
+                                ';
+                            }
                         }
                     ?>
                 </div>
@@ -101,7 +109,7 @@
         </div>
         <div class="col-12 col-md-6">
             <h4 class="py-2"><?php echo $lang['rentDetails']['checkAvailability']; ?></h4>
-            <form>
+            <form data-type="1" data-id="<?php echo $fetched['publicID']; ?>">
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
                         <label for="textArea">*<?php echo $lang['contactUs']['describe']; ?></label>
@@ -126,7 +134,7 @@
                     </div>
                     <div class="col-12 py-2">
                         <p class="p-0 small float-left"><?php echo $lang['contactUs']['obligatory']; ?></p>
-                        <button class="btn btn-info float-right" id="send-question"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
+                        <button class="btn btn-info float-right" id="send-form"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
                     </div>
                 </div>
             </form>
@@ -144,18 +152,19 @@
                 console.log(document.querySelector("#date").value);
             }
         });
-        document.querySelector("#send-question").addEventListener("click", function(e){
+        document.querySelector("#send-form").addEventListener("click", function(e){
             e.preventDefault();
-            
             console.clear();
             collector = document.querySelectorAll("[name^=msg_]");
-            let formData = new FormData();
             
+            let formData = new FormData();
             collector.forEach(function(el){
                 var name = el.name.split('_');
                 formData.append(name[1], el.value);
-            })
+            });
+            formData.append('publicID', document.querySelector("[name^=msg_]").closest('form').getAttribute('data-id'));
             formData.append('lang', '<?php echo $selectedLang; ?>');
+            formData.append('type', document.querySelector("[name^=msg_]").closest('form').getAttribute('data-type'));
 
             fetch('ajax/send-mail.php', {
                 method: 'POST',
@@ -163,10 +172,19 @@
             })
             .then(response => response.text())
             .then(data => {
+                if(!data)
+                    clearInput(collector);
+                
                 console.log(data);
             })
             .catch(function(error){
                 console.log(error);
             });
-        })
+        });
+
+        function clearInput(nodes){
+            nodes.forEach(function(el){
+                el.value = '';
+            })
+        }
 </script>

@@ -28,6 +28,8 @@
         if ($fullsizeHandle->uploaded && $thumbnailHandle->uploaded) {
             
         /* Fullsize handler */
+            $fullsizeHandle->image_watermark = '../../assets/img/watermark1.png';
+            $fullsizeHandle->image_watermark_no_zoom_in = false;
             $fullsizeHandle->image_convert = 'jpeg';
             $fullsizeHandle->jpeg_quality = 60;
             $fullsizeHandle->file_safe_name = true;
@@ -42,6 +44,8 @@
         /* Fullsize handler */
 
         /* Thumbnail handler */
+            $thumbnailHandle->image_watermark = '../../assets/img/watermark1.png';
+            $thumbnailHandle->image_watermark_no_zoom_in = false;
             $thumbnailHandle->image_convert = 'jpeg';
             $thumbnailHandle->jpeg_quality = 70;
             $thumbnailHandle->file_safe_name = true;
