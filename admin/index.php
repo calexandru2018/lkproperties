@@ -6,7 +6,6 @@
         $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
         header('Refresh: 0');
     }
-    // echo phpinfo();
 ?>
 <!DOCTYPE html>
 <html lang="pt" class="fullscreen-bg">
