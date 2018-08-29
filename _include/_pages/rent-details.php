@@ -1,7 +1,7 @@
 <?php
     $new = new RentDetails($CONN->db);
     $fetched = $new->fetchRow($_GET['object'], $selectedLang);
-    // var_dump($fetched);
+    // var_dump($fetched['servicesUnique']);
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
@@ -10,7 +10,7 @@
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row">
         <div class="col-12">
-            <img src="gallery/rental/<?php echo $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0] ?>" class="img-fluid" alt="">
+            <img src="gallery/rental/<?php echo (($fetched['objectGallery']) ? $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0]:'') ?>" class="img-fluid" alt="">
         </div>
     </div>
     <div class="row">
@@ -34,7 +34,7 @@
                             echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesUnique'][$i].'</li>';
                         }
                     }
-                    if(!empty($fetched['servicesUnique'])){
+                    if(!empty($fetched['servicesCommon'])){
                         for($i=0; $i < count($fetched['servicesCommon']); $i++){ 
                             echo '<li class="list-group-item px-0 text-center w-50 border-bottom-0">'.$fetched['servicesCommon'][$i].'</li>';
                         }

@@ -49,7 +49,7 @@
             $returnedObject['priceList'] = $this->getPriceList($propertyID, $lang);
             $returnedObject['description'] = $this->getLongDesc($propertyID, $lang)['longDescription'];
             $returnedObject['servicesCommon'] = $this->getServicesCommon($propertyID, $lang);
-            // $returnedObject['servicesUnique'] = $this->getServicesUnique($propertyID, $lang);
+            $returnedObject['servicesUnique'] = $this->getServicesUnique($propertyID, $lang);
             
             return $returnedObject;
         }
