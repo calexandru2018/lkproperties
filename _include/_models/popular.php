@@ -56,7 +56,8 @@
                 '.$this->tableInformation[$type]['translationTable'].'.nameTranslated,
                 '.$this->tableInformation[$type]['translationTable'].'.descriptionTranslated,
                 '.$this->tableInformation[$type]['galleryTable'].'.fullsizeURL,
-                '.$this->tableInformation[$type]['linkTable'].'.'.$this->tableInformation[$type]['id'].'
+                '.$this->tableInformation[$type]['linkTable'].'.'.$this->tableInformation[$type]['id'].',
+                '.$this->tableInformation[$type]['linkTable'].'.videoURL
             FROM
                 '.$this->tableInformation[$type]['linkTable'].'
             LEFT JOIN

@@ -18,7 +18,7 @@
     $CONN = new Database();
 ?>
 <!DOCTYPE html>
-<html lang="<?php $selectedLang; ?>" class="fullscreen-bg">
+<html lang="<?php echo $selectedLang; ?>" class="fullscreen-bg">
 <head>
 	<?php require_once('_include/_general/_head.php'); ?>
 </head>

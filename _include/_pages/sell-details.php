@@ -9,7 +9,7 @@
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row">
         <div class="col-12">
-            <img src="gallery/sale/<?php echo $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0] ?>" class="img-fluid" alt="">
+            <img src="gallery/sale/<?php echo (($fetched['objectGallery']) ? $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0]:'') ?>" class="img-fluid" alt="">
         </div>
     </div>
     <div class="row pt-4">
@@ -24,7 +24,7 @@
                 <h4><?php echo $lang['realEstate']['price'].' '.$fetched['price'][0].'€'?></h2>
             </div>
             <div class="col-12 my-2 px-0">
-            <p><i><?php echo $lang['generalFiller']['referenceID'].' '.$fetched['publicID']; ?></i></p>
+            <p class="font-italic"><?php echo $lang['generalFiller']['referenceID'].' '.$fetched['publicID']; ?></p>
             </div>
             <div class="col-12 px-0 text-justify">
                 <?php echo $fetched['description'];?>

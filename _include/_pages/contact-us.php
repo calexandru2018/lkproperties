@@ -136,28 +136,23 @@
                     }elseif($c >= 3){
                         $colWidth = 4;
                     }
-                ?>
-
-                    <?php 
-                        for($i = 0; $i < $c; $i++){
-                            
-                            echo'
-                                <div class="col-12 col-md-'.$colWidth.' my-3">
-                                    <div class="row text-center">
-                                        <div class="col-12">
-                                            <img src="gallery/ourstaff/'.$adminList[$i]['url'].'" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
-                                        </div>
-                                    </div>
-                                    <div class="row text-center my-2">
-                                        <div class="col-12">
-                                            <h4>'.$adminList[$i]['name'].'</h4>
-                                        </div>
+                    for($i = 0; $i < $c; $i++){
+                        echo'
+                            <div class="col-12 col-sm-6 col-lg-'.$colWidth.' my-3">
+                                <div class="row text-center">
+                                    <div class="col-12">
+                                        <img src="gallery/ourstaff/'.$adminList[$i]['url'].'" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
                                     </div>
                                 </div>
-                            ';
-                        }
-                    ?>
-                
+                                <div class="row text-center my-2">
+                                    <div class="col-12">
+                                        <h4>'.$adminList[$i]['name'].'</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+                    }
+                ?>
             </div>
         </div>
     </div>

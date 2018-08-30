@@ -17,15 +17,15 @@ if(isset($_POST) && !empty($_POST)){
     switch ($_POST['type']) {
         case '1':
             $email = 'info@lk-properties.pt';
-            $subject = 'Aluguer '.$_POST['publicID'].': ' .$_POST['subject'].((empty($_POST['date'])) ? '': ' Data: '.$_POST['date']);
+            $subject = 'Aluguer '.$_POST['publicID'].((!empty($_POST['name'])) ? '; '.$_POST['name']: '').': ' .$_POST['subject'].((empty($_POST['date'])) ? '': ' - Data: '.$_POST['date']);
             break;
         case '2':
             $email = 'info@lk-properties.pt';
-            $subject = 'Venda '.$_POST['publicID'].': ' .$_POST['subject'].((empty($_POST['date'])) ? '': ' Data: '.$_POST['date']);
+            $subject = 'Venda '.$_POST['publicID'].((!empty($_POST['name'])) ? '; '.$_POST['name']: '').': ' .$_POST['subject'].((empty($_POST['date'])) ? '': ' - Data: '.$_POST['date']);
             break;
         case '3':
             $email = 'feedback@lk-properties.pt';
-            $subject = 'Feedback '.$_POST['subject'];
+            $subject = 'Feedback'.((!empty($_POST['name'])) ? ' ; '.$_POST['name'].': ': ': ').$_POST['subject'];
             break;
         case '4':
             $email = 'info@lk-properties.pt';

@@ -32,6 +32,7 @@
                             <div class="card-body px-0 bg-white text-justify">
                                 <h4 class="card-title">'.$collector[$c1]['title'].'</h4>
                                 <h5 class="display-5">'.$lang['realEstate']['price'].' '.$collector[$c1]['price'][0].'€</h5>
+                                <p class="card-text font-italic">'.$lang['generalFiller']['referenceID'].' '.$collector[$c1]['publicID'].'</p>
                                 <p class="card-text">'.$collector[$c1]['description'].'</p>
                             </div>
                             <ul id="custom-ul" class="list-group list-group-flush d-flex flex-row flex-wrap bg-white border-top">';

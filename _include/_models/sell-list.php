@@ -44,7 +44,7 @@
                 $returnedObjects[$c]['title'] = $this->getTitle($propertyIDCollection[$c], $lang)['title'];
                 $returnedObjects[$c]['price'] = $this->getPrice($propertyIDCollection[$c], $lang);
                 $returnedObjects[$c]['description'] = $this->getShortDesc($propertyIDCollection[$c], $lang)['shortDescription'];
-                $returnedObjects[$c]['services'] = $this->getServicesCommon($propertyIDCollection[$c], $lang);
+                $returnedObjects[$c]['services'] = $this->getServicesUnique($propertyIDCollection[$c], $lang);
             }
             return $returnedObjects;
         }

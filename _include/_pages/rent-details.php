@@ -1,11 +1,12 @@
 <?php
     $new = new RentDetails($CONN->db);
     $fetched = $new->fetchRow($_GET['object'], $selectedLang);
-    // var_dump($fetched['servicesUnique']);
+    // var_dump($fetched);
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row">
@@ -19,7 +20,7 @@
                 <h2 class="pt-2"><?php echo $fetched['title']; ?></h2>
             </div>
             <div class="col-12 my-2 px-0">
-                <p><i><?php echo $lang['generalFiller']['referenceID'].' '.$fetched['publicID']; ?></i></p>
+                <p class="font-italic"><?php echo $lang['generalFiller']['referenceID'].' '.$fetched['publicID']; ?></p>
             </div>
             <div class="col-12 px-0 text-justify">
                 <?php echo $fetched['description']; ?>
@@ -108,9 +109,9 @@
             </table>
         </div>
         <div class="col-12 col-md-6">
-            <h4 class="py-2"><?php echo $lang['rentDetails']['checkAvailability']; ?></h4>
+            <h4 class="pt-2 pb-3 border-bottom"><?php echo $lang['rentDetails']['checkAvailability']; ?></h4>
             <form data-type="1" data-id="<?php echo $fetched['publicID']; ?>">
-                <div class="form-row py-2 rounded">
+                <div class="form-row rounded">
                     <div class="col-12 py-2">
                         <label for="textArea">*<?php echo $lang['contactUs']['describe']; ?></label>
                         <textarea class="form-control" id="textArea" name="msg_description" rows="3"></textarea>

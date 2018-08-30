@@ -9,7 +9,9 @@
 
         $fetched = $new->fetchSingle($cat,(int)$_GET['id'], $selectedLang);
         $gallery = $new->fetchGallery($cat,(int)$_GET['id']);
-        // print_r($gallery);
+        $descriptionWidth = 12;
+        $videoBox = '';
+        // print_r($fetched);
 ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 
@@ -17,7 +19,7 @@
         <div class="d-flex flex-column">
             <div class="py-2">
                 <figure class="figure">
-                    <img src="gallery/<?php echo $cat.'/'.$fetched[4].'/fullsize/'.$fetched[3];?>" class="figure-img img-fluid rounded" style="box-shadow: 0px 33px 10px -30px black" alt="A generic square placeholder image with rounded corners in a figure.">
+                    <img src="gallery/<?php echo $cat.'/'.$fetched[4].'/fullsize/'.$fetched[3];?>" class="figure-img img-fluid rounded" style="box-shadow: 0px 33px 10px -30px black" alt="A placeholder.">
                     <!-- <figcaption class="figure-caption px-1"></figcaption> -->
                 </figure>
             </div>
@@ -26,22 +28,30 @@
             </div>
             <div class="dropdown-divider"></div>
             <div class="row">
-                <div class="col-12 col-md-8">
+                <?php 
+                    if(!empty($fetched[0])){
+                        $descriptionWidth = 8;
+                        $videoBox = '
+                        <div class="col-12 col-md-4">
+                            <h4>'.$lang['generalFiller']['video'].'</h4>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="'.$fetched[0].'"></iframe>
+                            </div>
+                        </div>
+                        ';
+                    }
+                ?>
+                <div class="col-12 col-md-<?php echo $descriptionWidth; ?>">
                     <h4><?php echo $lang['generalFiller']['title'];?></h4>
                     <p class="text-justify">
                         <?php echo $fetched[2]; ?>
                     </p>
                 </div>
-                <div class="col-12 col-md-4">
-                    <h4><?php echo $lang['generalFiller']['video'];?></h4>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5EwJEfXcY04"></iframe>
-                    </div>
-                </div>
+                <?php echo $videoBox; ?>
             </div>
         </div>
     </div>
-    <section class="gallery-block grid-gallery mb-5 pb-5 px-2 px-md-0 text-muted">
+    <section class="gallery-block grid-gallery mb-5 pb-5 pt-2 px-2 px-md-0 text-muted">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">
@@ -55,7 +65,7 @@
                     if(!empty($gallery)){
                         for($c = 0; $c < count($gallery); $c++){
                             echo '
-                                <div class="col-md-6 col-lg-4 item text-center">
+                                <div class="col-sm-6 col-lg-4 item text-center">
                                     <a class="lightbox" href="gallery/'.$cat.'/'.$fetched[4].'/fullsize/'.$gallery[$c].'">
                                         <img class="img-fluid image scale-on-hover" src="gallery/'.$cat.'/'.$fetched[4].'/thumbnail/'.$gallery[$c].'">
                                     </a>
@@ -64,11 +74,6 @@
                         }
                     }
                 ?>
-                <!-- <div class="col-md-6 col-lg-4  item">
-                    <a class="lightbox" href="assets/img/image1.jpg">
-                        <img class="img-fluid image scale-on-hover" src="assets/img/image1.jpg">
-                    </a>
-                </div> -->
             </div>
         </div>
     </section>  
