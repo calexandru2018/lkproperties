@@ -11,7 +11,7 @@
                 <li><a href="?show=to-rent"><i class="lnr lnr-map-marker"></i> <span>Aluguer de Imóveis</span></a></li>
                 <li><a href="?show=to-sell"><i class="lnr lnr-apartment"></i> <span>Venda de Imóveis</span></a></li>
                 <li><a href="?show=faq"><i class="lnr lnr-question-circle"></i> <span>FAQ</span></a></li>
-                <li><a href="?show=administrator"><i class="lnr lnr-users"></i> <span>Administradores</span></a></li>
+                <?php if($_SESSION['admin_privilege'] == 1) echo '<li><a href="?show=administrator"><i class="lnr lnr-users"></i> <span>Administradores</span></a></li>';?>
             </ul>
         </nav>
     </div>

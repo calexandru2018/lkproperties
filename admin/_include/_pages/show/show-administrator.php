@@ -1,6 +1,7 @@
 <?php
     include_once('_include/_models/admin.php');
     $administrator = new Administrator($MAIN->db);
+    if($_SESSION['admin_privilege'] == 1){
 ?>
 <h3 class="page-title">Gestão de Administradores</h3>
 <div class="panel">
@@ -12,20 +13,20 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome</span>
-                            <input type="text" name="adminName" class="form-control">
+                            <input type="text" name="adminName" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Email</span>
-                            <input type="email" name="adminEmail" class="form-control">
+                            <input type="email" name="adminEmail" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Password</span>
                             <input type="text" name="adminPassword" class="form-control">
-                            <span class="input-group-addon" style="padding:0">
+                            <span class="input-group-addon" style="padding:0" data-optional="false">
                                 <button class="btn btn-xs btn-info" id="generate-password">Gerar password</button>
                             </span>
                         </div>
@@ -45,9 +46,9 @@
                         <div class="input-group">
                             <span class="input-group-addon">Previlégio</span>
                             <select class="js-example-basic-multiple bg-white" name="adminPriveliege" style="width: 100%;">
-                                <option value="2">Gestor de Conteudo</option>
-                                    ...
-                                <option value="3">Editor de Aluguer</option>
+                                <option value="" selected disable>Escolha um previlegio...</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Editor de Conteudo</option>
                             </select>
                         </div>
                     </div>
@@ -84,7 +85,7 @@
                         if(!empty($resp)){
                             for($adminCounter = 0; $adminCounter < count($resp); $adminCounter++){
                                 switch($resp[$adminCounter]->adminPrivilege){
-                                    case 1: $adminPriv = 'Super Admin';
+                                    case 1: $adminPriv = 'Administrador';
                                         break;
                                     case 2: $adminPriv = 'Gestor de Conteudo';
                                         break;
@@ -159,3 +160,4 @@
         /* Password generator */
     });
 </script>
+<?php } ?>

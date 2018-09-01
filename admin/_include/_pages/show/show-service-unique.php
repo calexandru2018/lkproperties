@@ -15,13 +15,13 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(PT)</span>
-                            <input type="text" name="service_uniqueName-PT" class="form-control">
+                            <input type="text" name="service_uniqueName-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(EN)</span>
-                            <input type="text" name="service_uniqueName-EN" class="form-control">
+                            <input type="text" name="service_uniqueName-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <input type="hidden" id="rowCounter" name="rowCounter" />
-                        <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right"  id="add-service_unique">Inserir</button>
+                        <button  type="button" data-toggle="collapse" class="btn btn-success mb-xs-3 pull-right" id="add-service_unique">Inserir</button>
                     </div>
                 </div>
             </li>
@@ -118,13 +118,13 @@
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(PT)</span>
-                                <input type="text" name="service_uniqueName-PT" class="form-control">
+                                <input type="text" name="service_uniqueName-PT" class="form-control" data-optional="false">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome(EN)</span>
-                                <input type="text" name="service_uniqueName-EN" class="form-control">
+                                <input type="text" name="service_uniqueName-EN" class="form-control" data-optional="false">
                             </div>
                         </div>
                         <hr>

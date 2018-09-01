@@ -343,7 +343,14 @@ function addContent(type, debugMode, postAsync){
             }else{
                 if(contentType == 'service-common' || contentType == 'service-unique'){
                     var name = arrayContent[x].name + counter;
-                    returnMap.set(name, arrayContent[x].value);
+                    if(dataOptional == 'false'){
+                        if(arrayContent[x].value)
+                            returnMap.set(name, arrayContent[x].value);
+                        else 
+                            return false;
+                    }else{
+                        returnMap.set(name, arrayContent[x].value);
+                    }
                 }else{
                     if(dataOptional == 'false'){
                         if(arrayContent[x].value)
