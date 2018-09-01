@@ -14,27 +14,27 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(PT)</span>
-                            <input type="text" name="activityName-PT" class="form-control">
+                            <input type="text" name="activityName-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(EN)</span>
-                            <input type="text" name="activityName-EN" class="form-control">
+                            <input type="text" name="activityName-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" >Descrição(PT)</span>
-                        <textarea name="activityDesc-PT" id="activityDescPT" class="form-control" rows="4"></textarea>
+                        <textarea name="activityDesc-PT" id="activityDescPT" class="form-control" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" >Descrição(EN)</span>
-                        <textarea name="activityDesc-EN" id="activityDescEN" class="form-control" rows="4"></textarea>
+                        <textarea name="activityDesc-EN" id="activityDescEN" class="form-control" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Cidade</span>
-                            <select class="js-example-basic-multiple bg-white" name="activityCityName" style="width: 100%;">
+                            <select class="js-example-basic-multiple bg-white" name="activityCityName" style="width: 100%;" data-optional="false">
                                 <option value="null" disabled selected>Escolha um cidade...</option>
                                 <?php
                                     $queryResult = $MAIN->db->query('

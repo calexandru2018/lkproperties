@@ -14,39 +14,39 @@
                 <div id="addCity" class="row collapse">
                     <div class="col-xs-12" style="margin-top: 2%">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="cityIsPopular" value="1"><span>Destacar como "Popular"</span>
+                            <input type="checkbox" name="cityIsPopular" value="1" data-optional="true"><span>Destacar como "Popular"</span>
                         </label>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                            <input type="text" name="cityName-PT" class="form-control">
+                            <input type="text" name="cityName-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                            <input type="text" name="cityName-EN" class="form-control">
+                            <input type="text" name="cityName-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" id="basic-addon1">Descrição(PT)</span>
-                        <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4"></textarea>
+                        <textarea name="cityDesc-PT" class="form-control" id="cityDescPT" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" id="basic-addon1">Descrição(EN)</span>
-                        <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4"></textarea>
+                        <textarea name="cityDesc-EN" class="form-control" id="cityDescEN" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Código Postal</span>
-                            <input type="text" name="cityPostalCode" class="form-control" placeholder="8500 ou 8200">
+                            <input type="text" name="cityPostalCode" class="form-control" placeholder="8500 ou 8200" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Video(URL opcional)</span>
-                            <input type="text" name="cityVideoURL" class="form-control" placeholder="https://...">
+                            <input type="text" name="cityVideoURL" class="form-control" placeholder="https://..." data-optional="true">
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
@@ -79,7 +79,7 @@
                         if(!empty($resp)){
                             for($cityCounter = 0; $cityCounter < count($resp); $cityCounter++){
                                 switch($resp[$cityCounter]->isPopular){
-                                    case 0: $isPopular = 'Nao';
+                                    case 0: $isPopular = 'Não';
                                         break;
                                     case 1: $isPopular = 'Sim';
                                         break;
@@ -106,6 +106,9 @@
                                             <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
                                             <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                         </form>
+                                        <div class="loading-gif-'.$resp[$cityCounter]->city_link_ID.' hidden">
+                                            <img style="margin-left: 25%" src="assets/img/processing.gif" alt="A carregar"/>
+                                        </div>
                                     </td>
                                 </tr>
                                 ';

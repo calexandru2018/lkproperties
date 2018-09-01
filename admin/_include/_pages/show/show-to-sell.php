@@ -30,7 +30,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Tipo de Imóvel</span>
-                            <select class="select bg-white" name="to_sellPropertyType" id="to_sellPropertyType" style="width: 100%;">
+                            <select class="select bg-white" name="to_sellPropertyType" id="to_sellPropertyType" style="width: 100%;" data-optional="false">
                                 <option value="" selected disabled>Escolha tipo de imóvel...</option>
                                 <?php
                                     for($c = 0; $c < count($propertyType); $c++){
@@ -43,39 +43,39 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                            <input type="text" name="to_sellName-PT" class="form-control">
+                            <input type="text" name="to_sellName-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                            <input type="text" name="to_sellName-EN" class="form-control">
+                            <input type="text" name="to_sellName-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Descrição Curta(PT)</span>
-                            <input type="text" name="to_sellDescShort-PT" class="form-control">
+                            <input type="text" name="to_sellDescShort-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Descrição Curta(EN)</span>
-                            <input type="text" name="to_sellDescShort-EN" class="form-control">
+                            <input type="text" name="to_sellDescShort-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" id="basic-addon1">Descrição Completa(PT)</span>
-                        <textarea name="to_sellDescLong-PT" class="form-control" id="to_sellDescPT" rows="4"></textarea>
+                        <textarea name="to_sellDescLong-PT" class="form-control" id="to_sellDescPT" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" id="basic-addon1">Descrição Completa(EN)</span>
-                        <textarea name="to_sellDescLong-EN" class="form-control" id="to_sellDescEN" rows="4"></textarea>
+                        <textarea name="to_sellDescLong-EN" class="form-control" id="to_sellDescEN" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Vista</span>
-                            <select class="select bg-white" name="to_sellViewType" id="to_sellViewType" style="width: 100%;">
+                            <select class="select bg-white" name="to_sellViewType" id="to_sellViewType" style="width: 100%;" data-optional="false">
                                 <option value="" selected disabled>Escolha tipo de vista...</option>
                                 <?php
                                     for($c = 0; $c < count($propertyView); $c++){
@@ -99,25 +99,25 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nr de Quartos</span>
-                            <input type="number" name="to_sellRoomAmmount" class="form-control">
+                            <input type="number" name="to_sellRoomAmmount" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nr de Residentes</span>
-                            <input type="number" name="to_sellMaxAllowedGuests" class="form-control">
+                            <input type="number" name="to_sellMaxAllowedGuests" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Distancia da praia</span>
-                            <input type="number" name="to_sellBeachDistance" class="form-control">
+                            <input type="number" name="to_sellBeachDistance" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">POI(Ponto de Interesse)</span>
-                            <select class="select bg-white" name="to_sellCityPoi" id="city-poi" style="width: 100%;">
+                            <select class="select bg-white" name="to_sellCityPoi" id="city-poi" style="width: 100%;" data-optional="false">
                                 <option value="null" disabled selected>Escolha um POI...</option>
                                 <?php
                                     $queryResult = $MAIN->db->query('
@@ -162,7 +162,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Comodidades Comuns</span>
-                            <select class="select bg-white" name="to_sellCommonService" multiple="multiple" id="common-services" style="width: 100%;">
+                            <select class="select bg-white" name="to_sellCommonService" multiple="multiple" id="common-services" style="width: 100%;" data-optional="false">
                                 <?php
                                     $queryCSResult = $MAIN->db->query('
                                         select 
@@ -188,7 +188,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Comodidades Especiais</span>
-                            <select class="select bg-white" name="to_sellUniqueService" multiple="multiple" id="unique-services" style="width: 100%;">
+                            <select class="select bg-white" name="to_sellUniqueService" multiple="multiple" id="unique-services" style="width: 100%;" data-optional="false">
                                 <?php
                                     $queryUSResult = $MAIN->db->query('
                                         select 
@@ -219,7 +219,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">
                                 <div class="input-group">
                                     <span class="input-group-addon">Preço</span>
-                                    <input type="number" name="to_sellPrice" class="form-control">
+                                    <input type="number" name="to_sellPrice" class="form-control" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>

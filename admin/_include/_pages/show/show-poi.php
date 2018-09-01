@@ -13,33 +13,33 @@
                 <div id="addPoi" class="row collapse">
                     <div class="col-xs-12" style="margin-top: 2%">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="poiIsPopular" value="1"><span>Destacar como "Popular"</span>
+                            <input type="checkbox" name="poiIsPopular" value="1" data-optional="true"><span>Destacar como "Popular"</span>
                         </label>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(PT)</span>
-                            <input type="text" name="poiName-PT" class="form-control">
+                            <input type="text" name="poiName-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nome(EN)</span>
-                            <input type="text" name="poiName-EN" class="form-control">
+                            <input type="text" name="poiName-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" >Descrição(PT)</span>
-                        <textarea name="poiDesc-PT" id="poiDescPT" class="form-control" rows="4"></textarea>
+                        <textarea name="poiDesc-PT" id="poiDescPT" class="form-control" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" >Descrição(EN)</span>
-                        <textarea name="poiDesc-EN" id="poiDescEN" class="form-control" rows="4"></textarea>
+                        <textarea name="poiDesc-EN" id="poiDescEN" class="form-control" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Cidade</span>
-                            <select class="poiSelector bg-white" name="poiCityName" style="width: 100%;">  
+                            <select class="poiSelector bg-white" name="poiCityName" style="width: 100%;" data-optional="false">  
                                 <option value="null" disabled selected>Escolha um cidade...</option>
                                 <?php
                                     $queryResult = $MAIN->db->query('
@@ -66,7 +66,7 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Video(URL opcional)</span>
-                            <input type="text" name="poiVideoURL" class="form-control" placeholder="https://...">
+                            <input type="text" name="poiVideoURL" class="form-control" placeholder="https://..." data-optional="true">
                         </div>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">

@@ -5,8 +5,13 @@ function uploadPhotos(url, queryCollection){
     this.upload = function(){
         queryCollection.forEach(function(el){
             el.addEventListener('submit', e => {
+                loadingGifEl = el.nextElementSibling;
                 e.preventDefault();
-                const files = el.querySelector('[type=file]').files;
+                if (loadingGifEl.classList.contains('hidden')) {
+                    loadingGifEl.classList.remove('hidden');
+                    loadingGifEl.classList.add('show');
+                }
+                 const files = el.querySelector('[type=file]').files;
                 // const contentID = el.closest('tr').getAttribute('data-content-id');
                 if(el.closest('tr') == null){
                     var contentID = 0;
@@ -26,6 +31,10 @@ function uploadPhotos(url, queryCollection){
                 })
                 .then(response => response.text())
                 .then(data => {
+                    if (this.loadingGifEl.classList.contains('show')) {
+                        this.loadingGifEl.classList.remove('show');
+                        this.loadingGifEl.classList.add('hidden');
+                    }
                     if(Number.isInteger(parseInt(data)) == true)
                         alert('Upload feito');
                     else
@@ -34,8 +43,12 @@ function uploadPhotos(url, queryCollection){
                     console.log(data);
                 })
                 .catch(function(error){
-                    console.log(error);
+                    if (this.loadingGifEl.classList.contains('show')) {
+                        this.loadingGifEl.classList.remove('show');
+                        this.loadingGifEl.classList.add('hidden');
+                    }
                     alert('Erro em fazer upload');
+                    console.log(error);
                 });
             });
         });

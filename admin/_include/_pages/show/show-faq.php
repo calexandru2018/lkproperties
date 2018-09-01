@@ -15,22 +15,22 @@
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Pergunta(PT)</span>
-                            <input type="text" name="faqQuestion-PT" class="form-control">
+                            <input type="text" name="faqQuestion-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Pergunta(EN)</span>
-                            <input type="text" name="faqQuestion-EN" class="form-control">
+                            <input type="text" name="faqQuestion-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" >Resposta(PT)</span>
-                        <textarea name="faqAnswer-PT" id="faqAnswerPT" class="form-control" rows="4"></textarea>
+                        <textarea name="faqAnswer-PT" id="faqAnswerPT" class="form-control" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" >Resposta(EN)</span>
-                        <textarea name="faqAnswer-EN" id="faqAnswerEN" class="form-control" rows="4"></textarea>
+                        <textarea name="faqAnswer-EN" id="faqAnswerEN" class="form-control" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <button  type="button" data-toggle="collapse" class="btn btn-success pull-right" id="add-faq">Inserir</button>

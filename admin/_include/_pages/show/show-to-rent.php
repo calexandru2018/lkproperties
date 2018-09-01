@@ -30,7 +30,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Tipo de Imóvel</span>
-                            <select class="select bg-white" name="to_rentPropertyType" id="to_rentPropertyType" style="width: 100%;">
+                            <select class="select bg-white" name="to_rentPropertyType" id="to_rentPropertyType" style="width: 100%;" data-optional="false">
                                 <option value="" selected disabled>Escolha tipo de imóvel...</option>
                                 <?php
                                     for($c = 0; $c < count($propertyType); $c++){
@@ -43,39 +43,39 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(PT)</span>
-                            <input type="text" name="to_rentName-PT" class="form-control">
+                            <input type="text" name="to_rentName-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nome(EN)</span>
-                            <input type="text" name="to_rentName-EN" class="form-control">
+                            <input type="text" name="to_rentName-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Descrição Curta(PT)</span>
-                            <input type="text" name="to_rentDescShort-PT" class="form-control">
+                            <input type="text" name="to_rentDescShort-PT" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Descrição Curta(EN)</span>
-                            <input type="text" name="to_rentDescShort-EN" class="form-control">
+                            <input type="text" name="to_rentDescShort-EN" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" id="basic-addon1">Descrição Completa(PT)</span>
-                        <textarea name="to_rentDescLong-PT" class="form-control" id="to_rentDescPT" rows="4"></textarea>
+                        <textarea name="to_rentDescLong-PT" class="form-control" id="to_rentDescPT" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <span class="input-group-addon" id="basic-addon1">Descrição Completa(EN)</span>
-                        <textarea name="to_rentDescLong-EN" class="form-control" id="to_rentDescEN" rows="4"></textarea>
+                        <textarea name="to_rentDescLong-EN" class="form-control" id="to_rentDescEN" rows="4" data-optional="false"></textarea>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Vista</span>
-                            <select class="select bg-white" name="to_rentViewType" id="to_rentViewType" style="width: 100%;">
+                            <select class="select bg-white" name="to_rentViewType" id="to_rentViewType" style="width: 100%;" data-optional="false">
                                 <option value="" selected disabled>Escolha tipo de vista...</option>
                                 <?php
                                     for($c = 0; $c < count($propertyView); $c++){
@@ -99,25 +99,25 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nr de Quartos</span>
-                            <input type="number" name="to_rentRoomAmmount" class="form-control">
+                            <input type="number" name="to_rentRoomAmmount" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Nr de Residentes</span>
-                            <input type="number" name="to_rentMaxAllowedGuests" class="form-control">
+                            <input type="number" name="to_rentMaxAllowedGuests" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Distancia da praia</span>
-                            <input type="number" name="to_rentBeachDistance" class="form-control">
+                            <input type="number" name="to_rentBeachDistance" class="form-control" data-optional="false">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">POI(Ponto de Interesse)</span>
-                            <select class="select bg-white" name="to_rentCityPoi" id="city-poi" style="width: 100%;">
+                            <select class="select bg-white" name="to_rentCityPoi" id="city-poi" style="width: 100%;" data-optional="false">
                                 <option value="null" disabled selected>Escolha um POI...</option>
                                 <?php
                                     $queryResult = $MAIN->db->query('
@@ -162,7 +162,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Comodidades Comuns</span>
-                            <select class="select bg-white" name="to_rentCommonService" multiple="multiple" id="common-services" style="width: 100%;">
+                            <select class="select bg-white" name="to_rentCommonService" multiple="multiple" id="common-services" style="width: 100%;" data-optional="false">
                                 <?php
                                     $queryCSResult = $MAIN->db->query('
                                         select 
@@ -188,7 +188,7 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                     <div class="col-xs-12 col-md-6" style="margin-top: 2%; margin-bottom: 2%;">
                         <div class="input-group">
                             <span class="input-group-addon">Comodidades Especiais</span>
-                            <select class="select bg-white" name="to_rentUniqueService" multiple="multiple" id="unique-services" style="width: 100%;">
+                            <select class="select bg-white" name="to_rentUniqueService" multiple="multiple" id="unique-services" style="width: 100%;" data-optional="false">
                                 <?php
                                     $queryUSResult = $MAIN->db->query('
                                         select 
@@ -218,61 +218,61 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat1" class="form-control" placeholder="Nov-Abr">
+                                    <input type="number" name="to_rentCat1" class="form-control" placeholder="Nov-Abr" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat2" class="form-control" placeholder="Maio">
+                                    <input type="number" name="to_rentCat2" class="form-control" placeholder="Maio" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat3" class="form-control" placeholder="1 1/2 Junho">
+                                    <input type="number" name="to_rentCat3" class="form-control" placeholder="1 1/2 Junho" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat4" class="form-control" placeholder="2 1/2 Junho">
+                                    <input type="number" name="to_rentCat4" class="form-control" placeholder="2 1/2 Junho" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat5" class="form-control" placeholder="1 1/2 Julho">
+                                    <input type="number" name="to_rentCat5" class="form-control" placeholder="1 1/2 Julho" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat6" class="form-control" placeholder="2 1/2 Julho">
+                                    <input type="number" name="to_rentCat6" class="form-control" placeholder="2 1/2 Julho" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat7" class="form-control" placeholder="Agosto">
+                                    <input type="number" name="to_rentCat7" class="form-control" placeholder="Agosto" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat8" class="form-control" placeholder="1 1/2 Setembro">
+                                    <input type="number" name="to_rentCat8" class="form-control" placeholder="1 1/2 Setembro" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;"> 
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat9" class="form-control" placeholder="2 1/2 Setembro">
+                                    <input type="number" name="to_rentCat9" class="form-control" placeholder="2 1/2 Setembro" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-md-3" style="margin-top: 2%; margin-bottom: 2%;">  
                                 <div class="input-group">
-                                    <input type="number" name="to_rentCat10" class="form-control" placeholder="Out">
+                                    <input type="number" name="to_rentCat10" class="form-control" placeholder="Out" data-optional="false">
                                     <span class="input-group-addon">€</span>
                                 </div>
                             </div>

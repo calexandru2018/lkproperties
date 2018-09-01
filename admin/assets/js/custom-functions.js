@@ -16,34 +16,37 @@ function addContent(type, debugMode, postAsync){
     if(debugMode == true)
         console.log(curatedObject);
     
-        
-    if(postAsync == true){
-        axios.post(
-            'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
-            {
-                curatedObject,
-            }, 
-            {
-                headers: { 
-                    'Content-Type': 'application/x-www-form-urlencoded',
+    if(curatedObject != false){
+         if(postAsync == true){
+            axios.post(
+                'ajax/' + splittedID[1] + '/add-' + splittedID[1] + '.php', 
+                {
+                    curatedObject,
+                }, 
+                {
+                    headers: { 
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                } 
+            )
+            .then(function (response) {
+                if(splittedID[1].indexOf('-') > 0){
+                    var idHolder = splittedID[1].split('-');
+                    splittedID[1] = idHolder[0] + '_' + idHolder[1];
                 }
-            } 
-        )
-        .then(function (response) {
-            if(splittedID[1].indexOf('-') > 0){
-                var idHolder = splittedID[1].split('-');
-                splittedID[1] = idHolder[0] + '_' + idHolder[1];
-            }
-            if(response.data != false){
-                if(debugMode == false)
-                    populateTable(response.data, splittedID[1] + '-table', splittedID[1]);
-            }
-                
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+                if(response.data != false){
+                    if(debugMode == false)
+                        populateTable(response.data, splittedID[1] + '-table', splittedID[1]);
+                }
+                    
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+    }else{
+        alert('Existem campos por preencher!');
     }
 }
 /* Add function */
@@ -305,28 +308,51 @@ function addContent(type, debugMode, postAsync){
         returnObject = {};
         var counter = 0;
         var returnMap = new Map();
+        console.log(arrayContent);
         for(let x = 0; x < arrayContent.length; x++){
+            dataOptional = arrayContent[x].getAttribute('data-optional');
             if(arrayContent[x].type == 'checkbox'){
                 if(arrayContent[x].checked){
-                    arrayContent[x].value = 1;
+                    returnObject[arrayContent[x].name] = 1;
                 }else{
-                    arrayContent[x].value = 0;
+                    returnObject[arrayContent[x].name] = 0;
                 }
-            }
-            if(arrayContent[x].type == 'select-multiple'){
+            }else if(arrayContent[x].type == 'select-multiple'){
                 var cityPoi = $('#' + arrayContent[x].id).find(':selected');
-                for(var c = 0; c < cityPoi.length; c++){
-                    returnObject[arrayContent[x].name + '_' + c] = cityPoi[c].value;
+                if(dataOptional == 'false'){
+                    if(cityPoi.length > 0)
+                        for(var c = 0; c < cityPoi.length; c++){
+                            returnObject[arrayContent[x].name + '_' + c] = cityPoi[c].value;
+                        }
+                    else
+                        return false;
+                }else{
+                    for(var c = 0; c < cityPoi.length; c++){
+                        returnObject[arrayContent[x].name + '_' + c] = cityPoi[c].value;
+                    }
                 }
-            }
-            if(arrayContent[x].type == 'textarea'){
-                returnObject[arrayContent[x].name] = CKEDITOR.instances[arrayContent[x].id].getData();
+            }else if(arrayContent[x].type == 'textarea'){
+                if(dataOptional == 'false'){
+                    if(CKEDITOR.instances[arrayContent[x].id].getData())
+                        returnObject[arrayContent[x].name] = CKEDITOR.instances[arrayContent[x].id].getData();
+                    else
+                        return false;
+                }else{
+                    returnObject[arrayContent[x].name] = CKEDITOR.instances[arrayContent[x].id].getData();
+                }
             }else{
                 if(contentType == 'service-common' || contentType == 'service-unique'){
                     var name = arrayContent[x].name + counter;
                     returnMap.set(name, arrayContent[x].value);
                 }else{
-                    returnObject[arrayContent[x].name] = arrayContent[x].value;
+                    if(dataOptional == 'false'){
+                        if(arrayContent[x].value)
+                            returnObject[arrayContent[x].name] = arrayContent[x].value;
+                        else
+                            return false;
+                    }else{
+                        returnObject[arrayContent[x].name] = arrayContent[x].value;
+                    }
                 }
             }
             counter++;
