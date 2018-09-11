@@ -25,6 +25,7 @@
                 echo header('Location: ../?login-error=true');
             }
         } else {
+            header('Location: ../');
             // Log this as a warning and keep an eye on these attempts
         }
     }
