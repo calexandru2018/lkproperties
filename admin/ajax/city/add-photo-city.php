@@ -29,7 +29,7 @@
             
         /* Fullsize handler */
             // $thumbnailHandle->file_new_name_body = ;
-            $fullsizeHandle->image_watermark = '../../assets/img/watermark2.png';
+            $fullsizeHandle->image_watermark = '../../assets/img/watermark.png';
             $fullsizeHandle->image_watermark_no_zoom_in = false;
             $fullsizeHandle->image_convert = 'jpeg';
             $fullsizeHandle->jpeg_quality = 60;
@@ -46,7 +46,7 @@
 
         /* Thumbnail handler */
             // $thumbnailHandle->file_new_name_body = ;
-            $thumbnailHandle->image_watermark = '../../assets/img/watermark2.png';
+            $thumbnailHandle->image_watermark = '../../assets/img/watermark.png';
             $thumbnailHandle->image_watermark_no_zoom_in = false;
             $thumbnailHandle->image_convert = 'jpeg';
             $thumbnailHandle->jpeg_quality = 40;
