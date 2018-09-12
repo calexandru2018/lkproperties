@@ -21,9 +21,10 @@
                 'filter' => 'Refinar',
                 'optGroup' => 
                     [
-                        'poi' => 'Point of Interest',
-                        'city' => 'City'
+                        'poi' => 'Ponto de Interesse',
+                        'city' => 'Cidade'
                     ],
+                'noResults' => 'Não encontramos nada, tente outros critérios.', 
                 'filterParams' => 
                     [
                         'beachDistance' => 

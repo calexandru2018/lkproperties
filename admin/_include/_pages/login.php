@@ -1,6 +1,6 @@
 <div class="vertical-align-wrap">
     <div class="vertical-align-middle">
-        <div class="auth-box ">
+        <div class="auth-box">
             <div class="left">
                 <div class="content">
                     <div class="header">
@@ -26,14 +26,6 @@
                     </form>
                 </div>
             </div>
-            <div class="right">
-                <div class="overlay"></div>
-                <div class="content text">
-                    <h1 class="heading">Free Bootstrap dashboard template</h1>
-                    <p>by The Develovers</p>
-                </div>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>

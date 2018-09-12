@@ -39,7 +39,7 @@
                             </div>';
                     }
                 }else{
-                    echo '<div class="container-fluid mt-5 mb-3 text-center"><h2>No results</h2></div>';
+                    echo '<div class="container-fluid mt-5 mb-3 text-center"><h2>'.$lang['searchbar']['noResults'].'</h2></div>';
                 }
             }
         ?>

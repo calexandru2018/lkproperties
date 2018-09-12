@@ -32,6 +32,9 @@
         border: none!important;
         background-color: var(--light)!important;
     }
+    .noScroll { /* ...or body.dialogShowing */
+        overflow-y: hidden !important;
+    }
 </style>
 <div class="search-container custom-container my-1 px-4 px-md-2">
     <div class="input-group my-0 w-100" >
@@ -114,7 +117,7 @@
                                 <span class="text-info"><?php echo $lang['searchbar']['filterParams']['beachDistance']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-distance">
-                            <input type="range" min="50" max="2000" step="50" value="<?php echo ((isset($_GET['beachDistance'])) ? $_GET['beachDistance']:'500')?>" name="search_beachDistance" data-rangeSlider>
+                            <input type="range" min="0" max="20000" step="50" value="<?php echo ((isset($_GET['beachDistance'])) ? $_GET['beachDistance']:'500')?>" name="search_beachDistance" data-rangeSlider>
                             <?php echo $lang['searchbar']['filterParams']['beachDistance']['pre'];?> <output class="pt-2"></output>m
                         </div>
                     </div>
@@ -182,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
+<!--                     <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
                             <span class="text-info"><?php echo $lang['searchbar']['filterParams']['wifi']['name'];?></span>
                         </div>
@@ -205,7 +208,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>        
+                    </div>         -->
                 </div>
             </div>
         </div>
@@ -232,17 +235,14 @@
                 var selector = '[data-rangeSlider]',
                 elements = document.querySelectorAll(selector);
                 function valueOutput(element) {
-                // console.log(element.name);
                     var value = element.value,
                         output = element.parentNode.getElementsByTagName('output')[0];
                     output.innerHTML = value;
 
                 }
-
                 for (var i = elements.length - 1; i >= 0; i--) {
                     valueOutput(elements[i]);
                 }
-
                 Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
                     el.addEventListener('input', function (e) {
                         valueOutput(e.target);
@@ -250,13 +250,19 @@
                 });
             },
             onSlideStart: function (position, value) {
-                // console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
+                var htmlElement = document.getElementsByTagName('html')[0];
+                var bodyTag = document.getElementsByTagName('body')[0];
+                htmlElement.classList.add('noScroll');
+                bodyTag.classList.add('noScroll');
             },
             onSlide: function (position, value) {
-                // console.log('onSlide', 'position: ' + position, 'value: ' + value);
+                
             },
             onSlideEnd: function (position, value) {
-                // console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
+                var htmlElement = document.getElementsByTagName('html')[0];
+                var bodyTag = document.getElementsByTagName('body')[0];
+                htmlElement.classList.remove('noScroll');
+                bodyTag.classList.remove('noScroll');
             }
         });
         document.querySelector("#search").addEventListener("click", function(e){

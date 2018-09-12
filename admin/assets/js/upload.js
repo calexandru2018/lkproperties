@@ -5,8 +5,9 @@ function uploadPhotos(url, queryCollection){
     this.upload = function(){
         queryCollection.forEach(function(el){
             el.addEventListener('submit', e => {
-                loadingGifEl = el.nextElementSibling;
                 e.preventDefault();
+                loadingGifEl = el.nextElementSibling;
+                console.log(loadingGifEl);
                 if (loadingGifEl.classList.contains('hidden')) {
                     loadingGifEl.classList.remove('hidden');
                     loadingGifEl.classList.add('show');

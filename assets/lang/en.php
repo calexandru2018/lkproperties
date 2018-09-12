@@ -24,6 +24,7 @@
                         'poi' => 'Point of Interest',
                         'city' => 'City'
                     ],
+                'noResults' => 'We could not find anything, try some other criteria.',
                 'filterParams' => 
                     [
                         'beachDistance' => 

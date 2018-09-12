@@ -49,7 +49,7 @@
             $thumbnailHandle->image_watermark = '../../assets/img/watermark.png';
             $thumbnailHandle->image_watermark_no_zoom_in = false;
             $thumbnailHandle->image_convert = 'jpeg';
-            $thumbnailHandle->jpeg_quality = 40;
+            $thumbnailHandle->jpeg_quality = 30;
             $thumbnailHandle->file_safe_name = true;
             $thumbnailHandle->file_auto_rename = true;
             $thumbnailHandle->image_resize = true;

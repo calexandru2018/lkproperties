@@ -106,7 +106,7 @@
                                             <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]" multiple="multiple">
                                             <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                         </form>
-                                        <div class="loading-gif-'.$resp[$cityCounter]->city_link_ID.' hidden">
+                                        <div class="loading-gif hidden">
                                             <img style="margin-left: 25%" src="assets/img/processing.gif" alt="A carregar"/>
                                         </div>
                                     </td>
