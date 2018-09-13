@@ -22,10 +22,14 @@
             $lang = $this->langaugeValidator($lang); 
 
             $propertyIDCollection = [];
+            $propertyRoomCollection = [];
+            $propertyGuestsAmmountCollection = [];
             $returnedObjects = [];
             $queryCount = $this->db->query('
                 select 
-                    property_ID
+                    property_ID,
+                    roomAmmount,
+                    maxAllowedGuests
                 from
                     property
                 where 
@@ -35,10 +39,14 @@
             ');
             while($fetchCount = $queryCount->fetch_object()){
                 $propertyIDCollection[] = $fetchCount->property_ID;
+                $propertyRoomCollection[] = $fetchCount->roomAmmount;
+                $propertyGuestsAmmountCollection[] = $fetchCount->maxAllowedGuests;
             }
 
             for($c = 0; $c < count($propertyIDCollection); $c++){
                 $returnedObjects[$c]['id'] = $propertyIDCollection[$c];
+                $returnedObjects[$c]['roomAmmount'] = $propertyRoomCollection[$c];
+                $returnedObjects[$c]['maxAllowedGuest'] = $propertyGuestsAmmountCollection[$c];
                 $returnedObjects[$c]['publicID'] = $this->getPublicID($propertyIDCollection[$c])['publicID'];
                 $returnedObjects[$c]['thumbnail'] = $this->getMainImg($propertyIDCollection[$c])['thumbnailURL'];
                 $returnedObjects[$c]['title'] = $this->getTitle($propertyIDCollection[$c], $lang)['title'];

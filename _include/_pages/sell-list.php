@@ -34,6 +34,10 @@
                                 <h5 class="display-5">'.$lang['realEstate']['price'].' '.$collector[$c1]['price'][0].'€</h5>
                                 <p class="card-text font-italic">'.$lang['generalFiller']['referenceID'].' '.$collector[$c1]['publicID'].'</p>
                                 <p class="card-text">'.$collector[$c1]['description'].'</p>
+                                <div class="row">
+                                    <div class="col-6"><p class="card-text">Beds: '.$collector[$c1]['roomAmmount'].' <i class="fas fa-bed"></i></p></div>
+                                    <div class="col-6"><p class="card-text">Guests: '.$collector[$c1]['maxAllowedGuest'].' <i class="fas fa-users"></i></p></div>
+                                </div>
                             </div>
                             <ul id="custom-ul" class="list-group list-group-flush d-flex flex-row flex-wrap bg-white border-top">';
                             for($c2 = 0; $c2 < count($collector[$c1]['services']); $c2++){
