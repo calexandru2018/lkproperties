@@ -159,42 +159,49 @@
         collector = document.querySelectorAll('[name^=msg_]');
         
         let formData = new FormData();
-        var BreakException = {};
+        var errorCatcher = new Array();
         
-        try {
-            collector.forEach(function(el){
-                var name = el.name.split('_');
-                if(!el.value && el.getAttribute('data-optional') == true){
-                    formData.append(name[1], el.value);
-                }else{
-                    var error = document.getElementById('errorMessage');
-                    console.log(error);
-                    error.classList.remove('invisible');
-                    throw BreakException;;
-                }
-            });
-        }catch(e){
-            if (e !== BreakException) throw e;
-        }
+        collector.forEach(function(el){
+            var name = el.name.split('_');
+            if(el.value != '' && (el.getAttribute('data-optional') == 'false' || el.getAttribute('data-optional') == false)){
+                formData.append(name[1], el.value);
+                console.log('Here: ', name[1], el.value, el.length);
+            }else{
+                console.log('There', name[1], el.value, el.length);
+                errorCatcher = [name[1]]; 
+            }
+        });
         formData.append('publicID', document.querySelector('[name^=msg_]').closest('form').getAttribute('data-id'));
         formData.append('lang', '<?php echo $selectedLang; ?>');
         formData.append('type', document.querySelector('[name^=msg_]').closest('form').getAttribute('data-type'));
+        
+        console.log('Error Catcher: ', errorCatcher[0]);
 
-        fetch('ajax/send-mail.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            if(!data){
-                clearInput(collector);
-                showSnackbar('Mensagem enviada!')
-            }
-            console.log(data);
-        })
-        .catch(function(error){
-            console.log(error);
-        });
+        var error = document.getElementById('errorMessage');
+
+        if((typeof errorCatcher === 'undefined' && errorCatcher.length == 0) || (errorCatcher[0] == 'date' && errorCatcher.length == 1)){
+            fetch('ajax/send-mail.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                if(!data){
+                    clearInput(collector);
+                    showSnackbar('Mensagem enviada!')
+                    error.classList.remove('visible');
+                    error.classList.add('invisible');
+                }else{
+                    showSnackbar('Houve um error')
+                }
+                console.log(data);
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        }else{
+            error.classList.remove('invisible');
+        }
     });
 
     function clearInput(nodes){
