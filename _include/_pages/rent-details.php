@@ -153,65 +153,9 @@
             console.log(document.querySelector('#date').value);
         }
     });
-    document.querySelector('#send-form').addEventListener('click', function(e){
+    /* Send email */
+    document.getElementById('send-form').onclick = function(e){
         e.preventDefault();
-        console.clear();
-        collector = document.querySelectorAll('[name^=msg_]');
-        
-        let formData = new FormData();
-        var errorCatcher = new Array();
-        
-        collector.forEach(function(el){
-            var name = el.name.split('_');
-            if(el.value != '' && (el.getAttribute('data-optional') == 'false' || el.getAttribute('data-optional') == false)){
-                if(name[1] == 'email' && validateEmail(el.value) == false)
-                    errorCatcher.push(name[1]);
-                
-                formData.append(name[1], el.value);
-                console.log('Here: ', name[1], el.value, el.length);
-            }else{
-                console.log('There', name[1], el.value, el.length);
-                errorCatcher.push(name[1]); 
-            }
-        });
-        formData.append('publicID', document.querySelector('[name^=msg_]').closest('form').getAttribute('data-id'));
-        formData.append('lang', '<?php echo $selectedLang; ?>');
-        formData.append('type', document.querySelector('[name^=msg_]').closest('form').getAttribute('data-type'));
-        
-        // console.log('Error Catcher: ', errorCatcher);
-
-        var error = document.getElementById('errorMessage');
-
-        if((typeof errorCatcher === 'undefined' && errorCatcher.length == 0) || (errorCatcher[0] == 'date' && errorCatcher.length == 1)){
-            fetch('ajax/send-mail.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                if(!data){
-                    clearInput(collector);
-                    showSnackbar('Mensagem enviada!')
-                    error.classList.remove('visible');
-                    error.classList.add('invisible');
-                }
-                console.log(data);
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        }else{
-            error.classList.remove('invisible');
-        }
-    });
-
-    function clearInput(nodes){
-        nodes.forEach(function(el){
-            el.value = '';
-        })
-    }
-    function validateEmail(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-    }
+        sendEmail();
+    };
 </script>

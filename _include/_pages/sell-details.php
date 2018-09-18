@@ -119,7 +119,7 @@
                         <small id="emailHelp" class="form-text text-white">*<?php echo $lang['contactUs']['infoSharing']; ?></small>
                     </div>
                     <div class="col-12 py-2">
-                        <p class="p-0 small float-left"><?php echo $lang['contactUs']['obligatory']; ?></p>
+                        <p class="p-0 small float-left invisible text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
                         <button type="submit" class="btn btn-info float-right" id="send-form"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
                     </div>
                 </div>
@@ -138,39 +138,9 @@
             console.log(document.querySelector("#myID").value);
         }
     });
-    document.querySelector("#send-form").addEventListener("click", function(e){
+    /* Send email */
+    document.getElementById('send-form').onclick = function(e){
         e.preventDefault();
-        console.clear();
-        collector = document.querySelectorAll("[name^=msg_]");
-        
-        let formData = new FormData();
-        collector.forEach(function(el){
-            var name = el.name.split('_');
-            formData.append(name[1], el.value);
-        });
-        formData.append('publicID', document.querySelector("[name^=msg_]").closest('form').getAttribute('data-id'));
-        formData.append('lang', '<?php echo $selectedLang; ?>');
-        formData.append('type', document.querySelector("[name^=msg_]").closest('form').getAttribute('data-type'));
-
-        fetch('ajax/send-mail.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            if(!data)
-                clearInput(collector);
-            
-            console.log(data);
-        })
-        .catch(function(error){
-            console.log(error);
-        });
-    });
-
-    function clearInput(nodes){
-        nodes.forEach(function(el){
-            el.value = '';
-        })
-    }
+        sendEmail();
+    };
 </script>

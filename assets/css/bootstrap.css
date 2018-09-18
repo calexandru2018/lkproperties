@@ -9051,7 +9051,8 @@ a.text-dark:hover, a.text-dark:focus {
   position: fixed; /* Sit on top of the screen */
   z-index: 1; /* Add a z-index if needed */
   left: 50%; /* Center the snackbar */
-  bottom: 30px; /* 30px from the bottom */
+  /* bottom: 30px; */ /* 30px from the bottom */
+  top: 50%;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
