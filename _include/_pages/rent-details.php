@@ -3,11 +3,8 @@
     $fetched = $new->fetchRow($_GET['object'], $selectedLang);
     // var_dump($fetched);
 ?>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row">
         <div class="col-12">
@@ -156,6 +153,6 @@
     /* Send email */
     document.getElementById('send-form').onclick = function(e){
         e.preventDefault();
-        sendEmail();
+        sendEmail(this);
     };
 </script>

@@ -99,7 +99,7 @@
                 'name' => 'Nome',
                 'email' => 'E-mail',
                 'date' => 'Data',
-                'infoSharing' => 'Nunca iremos partilhar o seu endereço com terceiros',
+                'infoSharing' => 'Não iremos partilhar o seu endereço com terceiros',
                 'obligatory' => 'Todos os campos marcados com * têm que ser preenchidos'
             ],
         'staff' =>

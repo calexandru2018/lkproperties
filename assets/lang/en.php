@@ -99,7 +99,7 @@
                 'name' => 'Name',
                 'email' => 'Email address',
                 'date' => 'Date',
-                'infoSharing' => 'We\'ll never share your email with anyone else',
+                'infoSharing' => 'We\'ll not share your email with third parties',
                 'obligatory' => 'All fields marked with * must be filled'
             ],
         'staff' =>

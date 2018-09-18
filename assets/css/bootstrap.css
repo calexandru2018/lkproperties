@@ -9066,23 +9066,23 @@ a.text-dark:hover, a.text-dark:focus {
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  from {top: 0; opacity: 0;} 
+  to {top: 50%; opacity: 1;}
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {top: 0; opacity: 0;}
+  to {top: 50%; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
+  from {top: 50%; opacity: 1;} 
+  to {top: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {top: 50%; opacity: 1;}
+  to {top: 0; opacity: 0;}
 }
 /* Animations to fade the snackbar in and out */
 

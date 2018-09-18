@@ -97,25 +97,25 @@
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
                         <label for="textArea">*<?php echo $lang['contactUs']['describe']; ?></label>
-                        <textarea class="form-control" id="textArea"  name="msg_description" rows="3"></textarea>
+                        <textarea class="form-control" id="textArea"  name="msg_description" rows="3" data-optional="false"></textarea>
                     </div>
                     <div class="col-12 py-2">
                             <label for="subject">*<?php echo $lang['contactUs']['subject']; ?></label>
-                            <input type="email" class="form-control" id="subject" name="msg_subject" placeholder="">
+                            <input type="email" class="form-control" id="subject" name="msg_subject" placeholder="" data-optional="false">
                             <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
                     </div>
                     <div class="col-12 py-2">
                             <label for="subject"><?php echo $lang['contactUs']['date']; ?>(<?php echo $lang['placeHolder']['optional']; ?>)</label>
-                            <input type="date" class="form-control bg-white" name="msg_date" id="date">
+                            <input type="date" class="form-control bg-white" name="msg_date" id="date" data-optional="true">
                             <!-- <small id="emailHelp" class="form-text text-muted">Give us a heads up about your question.</small> -->
                     </div>
                     <div class="col-12 col-sm-6 pb-2 py-sm-0">
                         <label for="name">*<?php echo $lang['contactUs']['name']; ?></label>
-                        <input type="text" class="form-control" name="msg_name" id="customerName" placeholder="<?php echo $lang['placeHolder']['name']; ?>">
+                        <input type="text" class="form-control" name="msg_name" id="customerName" placeholder="<?php echo $lang['placeHolder']['name']; ?>" data-optional="false">
                     </div>
                     <div class="col-12 col-sm-6 py-2 py-sm-0">
                         <label for="exampleInputEmail1">*<?php echo $lang['contactUs']['email']; ?></label>
-                        <input type="email" class="form-control" name="msg_email" id="customerEmail" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email']; ?>">
+                        <input type="email" class="form-control" name="msg_email" id="customerEmail" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email']; ?>" data-optional="false">
                         <small id="emailHelp" class="form-text text-white">*<?php echo $lang['contactUs']['infoSharing']; ?></small>
                     </div>
                     <div class="col-12 py-2">
@@ -141,6 +141,6 @@
     /* Send email */
     document.getElementById('send-form').onclick = function(e){
         e.preventDefault();
-        sendEmail();
+        sendEmail(this, '<?php echo $selectedLang; ?>');
     };
 </script>
