@@ -164,18 +164,21 @@
         collector.forEach(function(el){
             var name = el.name.split('_');
             if(el.value != '' && (el.getAttribute('data-optional') == 'false' || el.getAttribute('data-optional') == false)){
+                if(name[1] == 'email' && validateEmail(el.value) == false)
+                    errorCatcher.push(name[1]);
+                
                 formData.append(name[1], el.value);
                 console.log('Here: ', name[1], el.value, el.length);
             }else{
                 console.log('There', name[1], el.value, el.length);
-                errorCatcher = [name[1]]; 
+                errorCatcher.push(name[1]); 
             }
         });
         formData.append('publicID', document.querySelector('[name^=msg_]').closest('form').getAttribute('data-id'));
         formData.append('lang', '<?php echo $selectedLang; ?>');
         formData.append('type', document.querySelector('[name^=msg_]').closest('form').getAttribute('data-type'));
         
-        console.log('Error Catcher: ', errorCatcher[0]);
+        // console.log('Error Catcher: ', errorCatcher);
 
         var error = document.getElementById('errorMessage');
 
@@ -191,8 +194,6 @@
                     showSnackbar('Mensagem enviada!')
                     error.classList.remove('visible');
                     error.classList.add('invisible');
-                }else{
-                    showSnackbar('Houve um error')
                 }
                 console.log(data);
             })
@@ -208,5 +209,9 @@
         nodes.forEach(function(el){
             el.value = '';
         })
+    }
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     }
 </script>
