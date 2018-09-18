@@ -76,7 +76,6 @@
         include_once('_include/_general/_footer.php'); ?>
     </main>
     <div class=".bg-success" id="snackbar"></div>
-    //Input Cleaner
     <script src="assets/js/custom-functions.js"></script> 
     <script src="assets/js/bootstrap.min.js"></script> 
 </body>
