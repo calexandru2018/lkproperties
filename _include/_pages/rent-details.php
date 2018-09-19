@@ -133,6 +133,9 @@
                     <div class="col-12 py-2">
                         <p class="p-0 small float-left invisible text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
                         <button class="btn btn-info float-right" id="send-form"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
+                        <div class="cssload-container float-right mt-3 invisible">
+                            <div class="cssload-whirlpool"></div>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -153,6 +156,6 @@
     /* Send email */
     document.getElementById('send-form').onclick = function(e){
         e.preventDefault();
-        sendEmail(this);
+        sendEmail(this, '<?php echo $selectedLang; ?>');
     };
 </script>

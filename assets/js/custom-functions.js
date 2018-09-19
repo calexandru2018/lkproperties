@@ -19,7 +19,7 @@ function sendEmail(thisButton, lang){
         }
     });
     if(dataType < 3)
-        formData.append('publicID', collector.getAttribute('data-id'));
+        formData.append('publicID', form.getAttribute('data-id'));
     formData.append('lang', lang);
     formData.append('type', dataType);
     console.log('Error Catcher: ', errorCatcher);
@@ -44,7 +44,7 @@ function sendEmail(thisButton, lang){
             console.log(error);
         });
     }else{
-        alert('failed the if');
+        // alert('failed the if');
         error.classList.remove('invisible');
     }
 }
