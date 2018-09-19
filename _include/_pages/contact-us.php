@@ -169,10 +169,10 @@
     });
     document.querySelector('#send-info').onclick = function(e){
         e.preventDefault();
-        sendEmail(this);
+        sendEmail(this, '<?php echo $selectedLang; ?>');
     };
     document.querySelector('#send-feedback').onclick = function(e){
         e.preventDefault();
-        sendEmail(this);
+        sendEmail(this, '<?php echo $selectedLang; ?>');
     };
 </script>
