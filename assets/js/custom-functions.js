@@ -1,10 +1,13 @@
 function sendEmail(thisButton, lang){
     console.clear();
+    var error = thisButton.previousElementSibling;
+    var loader = thisButton.nextElementSibling;
     var form = thisButton.closest('form');
     var collector = form.querySelectorAll('[name^=msg_]');
     var formData = new FormData();
     var errorCatcher = new Array();    
     var dataType = form.getAttribute('data-type');
+
     collector.forEach(function(el){
         var name = el.name.split('_');
         if(el.value != '' && (el.getAttribute('data-optional') == 'false' || el.getAttribute('data-optional') == false)){
@@ -24,27 +27,24 @@ function sendEmail(thisButton, lang){
     formData.append('type', dataType);
     console.log('Error Catcher: ', errorCatcher);
     console.log('DataType: ', dataType);
-    var error = thisButton.previousElementSibling;
+    console.log(loader);
     if((dataType === 4 && (errorCatcher.length >= 0 && errorCatcher.length <= 2)) || ((typeof errorCatcher === 'undefined' && errorCatcher.length == 0) || (errorCatcher[0] == 'date' && errorCatcher.length == 1))){
+        thisButton.classList.add('invisible');
+        loader.classList.remove('invisible');
+        error.classList.add('invisible');
+        clearInput(collector);
         fetch('ajax/send-mail.php', {
             method: 'POST',
             body: formData
         })
         .then(response => response.text())
         .then(data => {
-            if(!data){
-                clearInput(collector);
+            if(!data)
                 showSnackbar('Mensagem enviada!')
-                error.classList.remove('visible');
-                error.classList.add('invisible');
-            }
-            console.log(data);
-        })
-        .catch(function(error){
-            console.log(error);
+            loader.classList.add('invisible');
+            thisButton.classList.remove('invisible');
         });
     }else{
-        // alert('failed the if');
         error.classList.remove('invisible');
     }
 }

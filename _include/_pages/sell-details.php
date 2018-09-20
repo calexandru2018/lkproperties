@@ -121,6 +121,9 @@
                     <div class="col-12 py-2">
                         <p class="p-0 small float-left invisible text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
                         <button type="submit" class="btn btn-info float-right" id="send-form"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
+                        <div class="cssload-container float-right mt-3 invisible">
+                            <div class="cssload-whirlpool ml-3"></div>
+                        </div>
                     </div>
                 </div>
             </form>
