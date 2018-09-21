@@ -162,7 +162,16 @@
             [
                 'copyright' => 'Direitos Reservados',
                 'developerInfo' => 'Desenvolvido por',
-                'languages' => 'Idiomas'
+                'languages' => 'Idiomas',
+                'privacyPolicy' => 
+                    [
+                        'name' => 'Política de Privacidade'
+                    ],
+                'filler' => 'e',
+                'cookiePolicy' => 
+                    [
+                        'name' => 'Política de Cookies'
+                    ]
             ]
     ];
 ?>

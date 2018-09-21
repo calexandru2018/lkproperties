@@ -161,7 +161,16 @@
             [
                 'copyright' => 'Copyright',
                 'developerInfo' => 'Developed by',
-                'languages' => 'Language'
+                'languages' => 'Language',
+                'privacyPolicy' => 
+                    [
+                        'name' => 'Privacy Policy'
+                    ],
+                'filler' => 'and',
+                'cookiePolicy' => 
+                    [
+                        'name' => 'Cookie Policy'
+                    ]
             ]
     ];
 ?>
