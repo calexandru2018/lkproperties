@@ -29,7 +29,11 @@
                 select 
                     property_ID,
                     roomAmmount,
-                    maxAllowedGuests
+                    maxAllowedGuests, 
+                    beachDistance,
+                    hasPoolAccess,
+                    viewType,
+                    propertyType
                 from
                     property
                 where 
@@ -41,12 +45,20 @@
                 $propertyIDCollection[] = $fetchCount->property_ID;
                 $propertyRoomCollection[] = $fetchCount->roomAmmount;
                 $propertyGuestsAmmountCollection[] = $fetchCount->maxAllowedGuests;
+                $propertybeachDistanceCollection[] = $fetchCount->beachDistance;
+                $propertyhasPoolAccessCollection[] = $fetchCount->hasPoolAccess;
+                $propertyviewTypeCollection[] = $fetchCount->viewType;
+                $propertyTypeCollection[] = $fetchCount->propertyType;
             }
 
             for($c = 0; $c < count($propertyIDCollection); $c++){
                 $returnedObjects[$c]['id'] = $propertyIDCollection[$c];
                 $returnedObjects[$c]['roomAmmount'] = $propertyRoomCollection[$c];
                 $returnedObjects[$c]['maxAllowedGuest'] = $propertyGuestsAmmountCollection[$c];
+                $returnedObjects[$c]['beachDistance'] = $propertybeachDistanceCollection[$c];
+                $returnedObjects[$c]['hasPoolAccess'] = $propertyhasPoolAccessCollection[$c];
+                $returnedObjects[$c]['viewType'] = $propertyviewTypeCollection[$c];
+                $returnedObjects[$c]['propertyType'] = $propertyTypeCollection[$c];
                 $returnedObjects[$c]['publicID'] = $this->getPublicID($propertyIDCollection[$c])['publicID'];
                 $returnedObjects[$c]['thumbnail'] = $this->getMainImg($propertyIDCollection[$c])['thumbnailURL'];
                 $returnedObjects[$c]['title'] = $this->getTitle($propertyIDCollection[$c], $lang)['title'];

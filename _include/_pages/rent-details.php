@@ -1,14 +1,13 @@
 <?php
     $new = new RentDetails($CONN->db);
     $fetched = $new->fetchRow($_GET['object'], $selectedLang);
-    // var_dump($fetched);
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
-    <div class="row">
+    <div class="row mt-1">
         <div class="col-12">
-            <img src="gallery/rental/<?php echo (($fetched['objectGallery']) ? $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0]:'') ?>" class="img-fluid" alt="">
+            <img src="gallery/rental/<?php echo (($fetched['objectGallery']) ? $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0]:'') ?>" class="img-fluid rounded" alt="">
         </div>
     </div>
     <div class="row">
@@ -47,12 +46,12 @@
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
                     <?php
-                        if(!empty($fetched['objectGallery'])){
+                        if($fetched['objectGallery'][0] != 'null'){
                             for($i=0; $i < count($fetched['objectGallery']); $i++){
                                 echo '
                                     <div class="col-4 item">
                                         <a class="lightbox" href="gallery/rental/'.$fetched['id'].'/fullsize/'.$fetched['objectGallery'][$i].'">
-                                            <img class="img-fluid image scale-on-hover" src="gallery/rental/'.$fetched['id'].'/thumbnail/'.$fetched['objectGallery'][$i].'">
+                                            <img class="img-fluid image rounded scale-on-hover" src="gallery/rental/'.$fetched['id'].'/thumbnail/'.$fetched['objectGallery'][$i].'">
                                         </a>
                                     </div>
                                 ';
@@ -67,16 +66,18 @@
             <section class="gallery-block grid-gallery py-0">
                 <div class="row">
                     <?php
-                        if(!empty($fetched['poiGallery'])){
+                        if(!$fetched['poiGallery'][0] != 'null'){
                             for($i=0; $i < count($fetched['poiGallery']); $i++){
                                 echo '
                                     <div class="col-4 item">
                                         <a class="lightbox" href="gallery/poi/'.$fetched['poiInfo']['id'].'/fullsize/'.$fetched['poiGallery'][$i].'">
-                                            <img class="img-fluid image scale-on-hover" src="gallery/poi/'.$fetched['poiInfo']['id'].'/thumbnail/'.$fetched['poiGallery'][$i].'">
+                                            <img class="img-fluid image rounded scale-on-hover" src="gallery/poi/'.$fetched['poiInfo']['id'].'/thumbnail/'.$fetched['poiGallery'][$i].'">
                                         </a>
                                     </div>
                                 ';
                             }
+                        }else{
+                            echo '<div class="col">'.$lang['generalFiller']['noPhoto'].'</div>';
                         }
                     ?>
                 </div>

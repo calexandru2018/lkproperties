@@ -145,7 +145,19 @@
                 'title' => 'Short description',
                 'video' => 'Video',
                 'gallery' => 'Gallery',
-                'referenceID' => 'Reference ID:'
+                'referenceID' => 'Reference ID:',
+                'noPhoto' => 'Without pictures at the moment',
+                'yes' => 'Yes',
+                'no' => 'No',
+                'ns' => 'Not Specified',
+                'beach' => 'Beach',
+                'pool' => 'Pool',
+                'propertyType' => [
+                    'apt' => 'Apartment',
+                    'house' => 'House',
+                    'villa' => 'Villa',
+                    'bungalow' => 'Bungalow',
+                ],
             ],
         'placeHolder' => 
             [
@@ -171,6 +183,6 @@
                     [
                         'name' => 'Cookie Policy'
                     ]
-            ]
+            ],  
     ];
 ?>

@@ -9,10 +9,10 @@
         </a>
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item <?php if(isset($_GET) && count($_GET) == 1) echo 'active'; ?>">
                     <a class="nav-link nav-hover" href="index.php?lang=<?php echo $selectedLang; ?>"><?php echo $lang['navbar']['home']; ?> <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown <?php if(isset($_GET['show']) && ($_GET['show'] == 'popular-city' || $_GET['show'] == 'popular-poi')) echo 'active';?>">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Popular</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <!-- <div class="dropdown-divider"></div> -->
@@ -36,16 +36,16 @@
                         ?>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if(isset($_GET['show']) && $_GET['show'] == 'activities' ) echo 'active';?>">
                     <a class="nav-link" href="?lang=<?php echo $selectedLang; ?>&show=activities"><?php echo $lang['navbar']['activities']; ?></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if(isset($_GET['show']) && $_GET['show'] == 'faq' ) echo 'active';?>">
                     <a class="nav-link" href="?lang=<?php echo $selectedLang; ?>&show=faq"><?php echo $lang['navbar']['faq']; ?></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if(isset($_GET['show']) && $_GET['show'] == 'for-sale' ) echo 'active';?>">
                     <a class="nav-link" href="?lang=<?php echo $selectedLang; ?>&show=for-sale"><?php echo $lang['navbar']['realEstate']; ?></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if(isset($_GET['show']) && $_GET['show'] == 'contact-us' ) echo 'active';?>">
                     <a class="nav-link" href="?lang=<?php echo $selectedLang; ?>&show=contact-us"><?php echo $lang['navbar']['contactUs']; ?></a>
                 </li>
             </ul>

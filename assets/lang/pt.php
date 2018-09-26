@@ -146,7 +146,19 @@
                 'title' => 'Curta descrição',
                 'video' => 'Vídeo',
                 'gallery' => 'Galeria',
-                'referenceID' => 'ID de Referência:'
+                'referenceID' => 'ID de Referência:',
+                'noPhoto' => 'De momento sem imagens',
+                'yes' => 'Sim',
+                'no' => 'Não',
+                'ns' => 'Não Especificado',
+                'beach' => 'Praia',
+                'pool' => 'Piscina',
+                'propertyType' => [
+                    'apart' => 'Apartmento',
+                    'house' => 'Casa',
+                    'villa' => 'Vila',
+                    'bungalow' => 'Bungalow',
+                ],
             ],
         'placeHolder' => 
             [

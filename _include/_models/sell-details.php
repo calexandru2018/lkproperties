@@ -157,8 +157,10 @@
             }
             $queryResultTranslatedBase = $this->db->query($sqlResultTranslatedBase);
             
-            while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
-                $commonServiceCollector[] = $fetchTranslation['serviceTranslated'];
+            if(!$this->db->error){
+                while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
+                    $commonServiceCollector[] = $fetchTranslation['serviceTranslated'];
+                }
             }
 
             return $commonServiceCollector;
@@ -193,8 +195,10 @@
             }
             $queryResultTranslatedBase = $this->db->query($sqlResultTranslatedBase);
             
-            while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
-                $uniqueServiceCollector[] = $fetchTranslation['uniqueServiceTranslated'];
+            if(!$this->db->error){
+                while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
+                    $uniqueServiceCollector[] = $fetchTranslation['uniqueServiceTranslated'];
+                }
             }
 
             return $uniqueServiceCollector;

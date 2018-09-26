@@ -185,30 +185,14 @@
                             </div>
                         </div>
                     </div>
-<!--                     <div class="col-12 col-md-6 list-group-item text-center border-0 px-0 px-md-1">
-                        <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                            <span class="text-info"><?php echo $lang['searchbar']['filterParams']['wifi']['name'];?></span>
-                        </div>
-                        <div class="container text-center" data-filtBy="filtBy-wifi">
-                            <div class="row">
-                                <div class="col-4">
-                                    <label class="form-check-label mx-auto ">
-                                        <input type="radio" class="form-check-input" name="search_wifi" value="1" <?php echo ((isset($_GET['wifi']) && $_GET['wifi'] == 1) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['wifi']['yes'];?>
-                                    </label>
-                                </div>
-                                <div class="col-4">
-                                    <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_wifi" value="0" <?php echo ((isset($_GET['wifi']) && $_GET['wifi'] == 0) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['wifi']['no'];?>
-                                    </label>
-                                </div>
-                                <div class="col-4">
-                                    <label class="form-check-label mx-auto">
-                                        <input type="radio" class="form-check-input" name="search_wifi" value="2" <?php echo ((isset($_GET['wifi']) && $_GET['wifi'] == 2) ? 'checked="checked"':'')?>><?php echo $lang['searchbar']['filterParams']['wifi']['neutral'];?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>         -->
+                </div>
+            </div>
+            <div class="col-12 my-3 px-0">
+                <div class="form-group float-right w-auto mb-0">
+                    <select name="search_sortRent" class="form-control" id="sel1">
+                        <option value="asc"><?php echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['asc'];?></option>
+                        <option value="desc"><?php echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['desc'];?></option>
+                    </select>
                 </div>
             </div>
         </div>

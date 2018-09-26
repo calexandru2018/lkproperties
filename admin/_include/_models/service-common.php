@@ -51,7 +51,7 @@
             while($r=$queryResult->fetch_assoc()){
                 $output[$r['langCode']] = $r;
             }
-            eturn ((empty($output)) ? '': $output);
+            return ((empty($output)) ? '': $output);
         }
         public function insertSC(array $inputArray){
             $scData = $this->sanitizeInput($inputArray);

@@ -50,7 +50,6 @@
             $returnedObject['description'] = $this->getLongDesc($propertyID, $lang)['longDescription'];
             $returnedObject['servicesCommon'] = $this->getServicesCommon($propertyID, $lang);
             $returnedObject['servicesUnique'] = $this->getServicesUnique($propertyID, $lang);
-            
             return $returnedObject;
         }
 
@@ -99,7 +98,6 @@
             return $result->fetch_array();
         }
         private function getPriceList(int $propertyID){
-
             $result = $this->db->query('
                 select
                     cat1,
@@ -166,11 +164,12 @@
                     $sqlResultTranslatedBase = $sqlResultTranslatedBase.'common_service_link_ID = '.$commonServiceIDCollector[$c].' or ';
             }
             $queryResultTranslatedBase = $this->db->query($sqlResultTranslatedBase);
-            
-            while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
-                $commonServiceCollector[] = $fetchTranslation['serviceTranslated'];
-            }
 
+            if(!$this->db->error){
+                while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
+                    $commonServiceCollector[] = $fetchTranslation['serviceTranslated'];
+                }
+            }
             return $commonServiceCollector;
         }
         private function getServicesUnique(int $propertyID, string $lang){
@@ -202,13 +201,14 @@
                     $sqlResultTranslatedBase = $sqlResultTranslatedBase.'unique_service_link_ID = '.$uniqueServiceIDCollector[$c].' or ';
             }
             $queryResultTranslatedBase = $this->db->query($sqlResultTranslatedBase);
-            
-            while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
-                $uniqueServiceCollector[] = $fetchTranslation['uniqueServiceTranslated'];
+            if(!$this->db->error){
+                while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
+                    $uniqueServiceCollector[] = $fetchTranslation['uniqueServiceTranslated'];
+                }
             }
-
             return $uniqueServiceCollector;
         }
+        
         private function getObjectGallery(int $propertyID){
             $output = [];
             $query = $this->db->query('
