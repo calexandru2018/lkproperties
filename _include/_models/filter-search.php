@@ -184,9 +184,9 @@
                 // echo $baseSQL.'<br/><br/><br/>';
                 for($c = 0; $c < count($poiIDCollector); $c++){
                     if($c == (count($poiIDCollector)-1) )
-                        $dynamicSQLPoi = $dynamicSQLPoi.'city_poi_link.city_link_ID = '.$poiIDCollector[$c].'';
+                        $dynamicSQLPoi = $dynamicSQLPoi.'city_poi_link.poi_link_ID = '.$poiIDCollector[$c].'';
                     else
-                        $dynamicSQLPoi = $dynamicSQLPoi.'city_poi_link.city_link_ID = '.$poiIDCollector[$c].' or ';
+                        $dynamicSQLPoi = $dynamicSQLPoi.'city_poi_link.poi_link_ID = '.$poiIDCollector[$c].' or ';
                 }
                 // echo $baseSQL.'<br/><br/><br/>';
                 if(strlen($dynamicSQLCity) > 2 && strlen($dynamicSQLPoi) < 2)
@@ -199,6 +199,7 @@
 
             $query = $this->db->query($baseSQL);
             if(!$this->db->error){
+                $c = 0;
                 while($fetch = $query->fetch_object()){
                     $returnedObjects[$c]['id'] = $fetch->property_ID;
                     $returnedObjects[$c]['forSale'] = $fetch->isForSale;
@@ -217,7 +218,8 @@
                     $c++;
                 }                
             }
-            return $returnedObjects; 
+            return $returnedObjects;
+            //return $baseSQL; 
         }
 
         private function getMainImg(int $propertyID){
