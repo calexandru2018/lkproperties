@@ -1,21 +1,21 @@
-<footer class="custom-container bg-white border-top text-center py-2 py-md-4">
+<footer class="custom-container bg-white border-top text-center py-2 py-md-3">
     <div class="row">
-        <div class="col-12 col-sm-4 text-md-left order-2 order-md-1">
+        <div class="col-12 col-sm-4 text-md-left order-2 order-md-2">
             <small class="text-muted"> 
                 © 2018 <?php echo $lang['footer']['copyright'];?>: <a href="/">LK-Properties</a>
             </small>
         </div>
-        <div class="col-12 col-sm-4 text-md-center order-3 order-md-2 text-secondary">
+        <div class="col-12 col-sm-4 text-md-center order-3 order-md-3 text-secondary">
             <small class="text-muted">
                 <a href=""><?php echo $lang['footer']['privacyPolicy']['name'];?></a> <?php echo $lang['footer']['filler'];?> <a href=""><?php echo $lang['footer']['cookiePolicy']['name'];?></a>
             </small>
         </div>
-        <div class="col-12 col-sm-4 text-md-right order-4 order-md-3 text-secondary">
+        <div class="col-12 col-sm-4 text-md-right order-4 order-md-4 text-secondary">
             <small class="text-muted">
                 <?php echo $lang['footer']['developerInfo'];?>: <a href="https://se.linkedin.com/in/calexandru2018/en">Alexandru Cheltuitor</a>
             </small>
         </div>
-        <div class="col-12 text-center mt-md-4 mb-4 mb-md-0 order-1 order-md-4">
+        <div class="col-12 text-center mb-5 order-1 order-md-1">
             <div class="row">
                 <div class="col-12">
                     <?php echo $lang['footer']['languages'];?>
