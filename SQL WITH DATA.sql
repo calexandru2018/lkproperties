@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 29-Ago-2018 às 19:39
--- Versão do servidor: 5.7.19
--- PHP Version: 7.1.9
+-- Generation Time: 27-Set-2018 às 17:45
+-- Versão do servidor: 5.7.21
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,13 +47,7 @@ CREATE TABLE IF NOT EXISTS `activity_gallery` (
 INSERT INTO `activity_gallery` (`activity_gallery_ID`, `activity_link_ID`, `thumbnailURL`, `fullsizeURL`, `photoOrder`, `isPrimary`) VALUES
 (18, 1, 'DSC_1954.jpeg', 'DSC_1954.jpeg', NULL, NULL),
 (19, 1, 'DSC_1955.jpeg', 'DSC_1955.jpeg', NULL, NULL),
-(20, 2, 'DSC_2015.jpeg', 'DSC_2015.jpeg', NULL, NULL),
 (21, 1, 'DSC_1956.jpeg', 'DSC_1956.jpeg', NULL, NULL),
-(22, 2, 'DSC_2122.jpeg', 'DSC_2122.jpeg', NULL, NULL),
-(23, 3, 'DSC_1954.jpeg', 'DSC_1954.jpeg', NULL, NULL),
-(24, 2, 'DSC_2180.jpeg', 'DSC_2180.jpeg', NULL, NULL),
-(25, 3, 'DSC_1955.jpeg', 'DSC_1955.jpeg', NULL, NULL),
-(26, 3, 'DSC_1956.jpeg', 'DSC_1956.jpeg', NULL, NULL),
 (27, 4, 'DSC_1641.jpeg', 'DSC_1641.jpeg', NULL, NULL),
 (28, 4, 'DSC_1697.jpeg', 'DSC_1697.jpeg', NULL, NULL),
 (29, 4, 'DSC_1728.jpeg', 'DSC_1728.jpeg', NULL, NULL);
@@ -79,8 +73,6 @@ CREATE TABLE IF NOT EXISTS `activity_link` (
 
 INSERT INTO `activity_link` (`activity_link_ID`, `city_link_ID`, `dateCreated`) VALUES
 (1, 1, '2018-08-17 20:00:53'),
-(2, 2, '2018-08-19 22:28:11'),
-(3, 2, '2018-08-19 22:29:39'),
 (4, 5, '2018-08-19 22:34:04');
 
 -- --------------------------------------------------------
@@ -107,10 +99,6 @@ CREATE TABLE IF NOT EXISTS `activity_translation` (
 INSERT INTO `activity_translation` (`activity_translation_ID`, `activity_link_ID`, `langCode`, `nameTranslated`, `descriptionTranslated`) VALUES
 (1, 1, 'pt', 'Slide&Splash', '<p>Breve descri&ccedil;&atilde;o do&nbsp;Slide&amp;Splash.</p>\n'),
 (2, 1, 'en', 'Slide&Splash', '<p>Short description about&nbsp;Slide&amp;Splash.</p>\n'),
-(3, 2, 'pt', 'Aquashow', '<p>Aquashow descri&ouml;ao em portugues.</p>\n'),
-(4, 2, 'en', 'Aquashow', '<p>Aquashow description in english</p>\n'),
-(5, 3, 'pt', 'Zoomarine', '<p>Zoomarine em portugues</p>\n'),
-(6, 3, 'en', 'Zoomarine', '<p>Zoomarine em ingles</p>\n'),
 (7, 4, 'pt', 'Forte de Sagres', '<p>0xgJyViBs</p>\n'),
 (8, 4, 'en', 'Fortress of Sagres', '<p>Z8uybCSS1</p>\n');
 
@@ -140,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`admin_ID`, `name`, `email`, `password`, `dateCreated`, `dateModified`, `isActive`, `isPublicVisible`, `adminPrivilege`, `thumbnailURL`) VALUES
-(1, 'Alexandru Cheltuitor', 'ac@test.com', '$2y$10$8SeubF4IZaX401DRqxUHVu8Ew8300RlK7Y8i7Vswflfxse3wLgWjO', '2018-08-17 18:34:10', '2018-08-20 19:03:10', 1, 1, 1, 'Insparksbilder-40-kopia.jpeg'),
-(2, 'Lilia Ungureanu', 'test@testl.com', '$2y$10$E5rG3C2qvZ28ruVoCas8DeeR2GwX5EjC5iK5fJ40CQUZS9N/KcUqO', '2018-08-20 18:48:26', '2018-08-20 18:55:35', 1, 1, 2, 'IMG_6791_1.jpeg'),
+(1, 'Alexandru Cheltuitor', 'ac@test.com', '$2y$10$8SeubF4IZaX401DRqxUHVu8Ew8300RlK7Y8i7Vswflfxse3wLgWjO', '2018-08-17 18:34:10', '2018-09-01 23:46:51', 1, 1, 2, 'Insparksbilder-40-kopia.jpeg'),
+(2, 'Lilia Ungureanu', 'test@testl.com', '$2y$10$E5rG3C2qvZ28ruVoCas8DeeR2GwX5EjC5iK5fJ40CQUZS9N/KcUqO', '2018-08-20 18:48:26', '2018-09-01 23:24:21', 1, 1, 2, 'IMG_6791_1.jpeg'),
 (3, 'Joao Lopes', 'jl@gmail.com', '$2y$10$6q6l8te3BoaDcCQNp/41cutyHsKPjdhv2hj.oe9BWXDAZR5niYJ1G', '2018-08-20 18:48:56', '2018-08-20 18:58:58', 1, 1, 2, 'IMG_6782.jpeg');
 
 -- --------------------------------------------------------
@@ -176,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `city_gallery` (
   `isPrimary` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`city_gallery_ID`),
   KEY `cg_city_link_FK` (`city_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `city_gallery`
@@ -187,9 +175,23 @@ INSERT INTO `city_gallery` (`city_gallery_ID`, `city_link_ID`, `thumbnailURL`, `
 (69, 1, 'SDC10907.jpeg', 'SDC10907.jpeg', NULL, NULL),
 (70, 1, 'SDC10986.jpeg', 'SDC10986.jpeg', NULL, NULL),
 (71, 1, 'SDC13089.jpeg', 'SDC13089.jpeg', NULL, NULL),
-(72, 1, 'SDC13140.jpeg', 'SDC13140.jpeg', NULL, NULL),
-(73, 1, 'SDC13183.jpeg', 'SDC13183.jpeg', NULL, NULL),
-(74, 1, 'SDC13214.jpeg', 'SDC13214.jpeg', NULL, NULL);
+(110, 3, 'SDC17199.jpeg', 'SDC17199.jpeg', NULL, NULL),
+(113, 1, 'SDC17200.jpeg', 'SDC17200.jpeg', NULL, NULL),
+(115, 3, 'SDC13561.jpeg', 'SDC13561.jpeg', NULL, NULL),
+(116, 1, 'SDC17202.jpeg', 'SDC17202.jpeg', NULL, NULL),
+(117, 3, 'SDC17170.jpeg', 'SDC17170.jpeg', NULL, NULL),
+(119, 3, 'SDC13561_1.jpeg', 'SDC13561_1.jpeg', NULL, NULL),
+(121, 3, 'SDC17202.jpeg', 'SDC17202.jpeg', NULL, NULL),
+(125, 3, 'SDC17200.jpeg', 'SDC17200.jpeg', NULL, NULL),
+(127, 3, 'SDC17200_1.jpeg', 'SDC17200.jpeg', NULL, NULL),
+(128, 3, 'SDC17182.jpeg', 'SDC17182.jpeg', NULL, NULL),
+(133, 3, 'SDC17182_1.jpeg', 'SDC17182_1.jpeg', NULL, NULL),
+(134, 6, 'IMG_0078.jpeg', 'IMG_0078.jpeg', NULL, NULL),
+(135, 6, 'IMG_0081.jpeg', 'IMG_0081.jpeg', NULL, NULL),
+(136, 6, 'IMG_0082.jpeg', 'IMG_0082.jpeg', NULL, NULL),
+(137, 6, 'IMG_0083.jpeg', 'IMG_0083.jpeg', NULL, NULL),
+(138, 6, 'WC-servico.jpeg', 'WC-servico.jpeg', NULL, NULL),
+(139, 1, 'P6170667.jpeg', 'P6170667.jpeg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -205,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `city_link` (
   `isPopular` tinyint(1) NOT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`city_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `city_link`
@@ -213,10 +215,10 @@ CREATE TABLE IF NOT EXISTS `city_link` (
 
 INSERT INTO `city_link` (`city_link_ID`, `videoURL`, `postalCode`, `isPopular`, `dateCreated`) VALUES
 (1, '', 8500, 1, '2018-08-17 18:35:09'),
-(2, '', 8200, 1, '2018-08-19 18:33:36'),
 (3, '', 8100, 1, '2018-08-19 18:37:38'),
 (4, '2GlaokDKJ', 8501, 0, '2018-08-19 22:14:23'),
-(5, '', 8650, 1, '2018-08-19 22:32:58');
+(5, '', 8650, 1, '2018-08-19 22:32:58'),
+(6, '', 7000, 1, '2018-09-01 22:53:23');
 
 -- --------------------------------------------------------
 
@@ -233,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `city_poi_link` (
   PRIMARY KEY (`city_poi_link_ID`),
   KEY `city_link_FK` (`city_link_ID`),
   KEY `poi_link_FK` (`poi_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `city_poi_link`
@@ -241,7 +243,9 @@ CREATE TABLE IF NOT EXISTS `city_poi_link` (
 
 INSERT INTO `city_poi_link` (`city_poi_link_ID`, `city_link_ID`, `poi_link_ID`, `isAlgarve`) VALUES
 (1, 1, 1, 1),
-(3, 4, 3, 1);
+(3, 4, 3, 1),
+(4, 4, 5, 1),
+(5, 6, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -258,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `city_translation` (
   `descriptionTranslated` text NOT NULL,
   PRIMARY KEY (`city_translation_ID`),
   KEY `city_translation_FK` (`city_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `city_translation`
@@ -267,14 +271,14 @@ CREATE TABLE IF NOT EXISTS `city_translation` (
 INSERT INTO `city_translation` (`city_translation_ID`, `city_link_ID`, `langCode`, `nameTranslated`, `descriptionTranslated`) VALUES
 (1, 1, 'pt', 'PortimÃ£o', '<p>Isto &eacute; descri&ccedil;&atilde;o da cidade Portim&atilde;o.</p>\n'),
 (2, 1, 'en', 'PortimÃ£o', '<p>This is a description in English.</p>\n'),
-(3, 2, 'pt', 'Lagoa', '<p>Descri&ouml;&#39;ao de Lagoa</p>\n'),
-(4, 2, 'en', 'Lagoa', '<p>Description about lagoa</p>\n'),
 (5, 3, 'pt', 'Faro', '<p>Breve descricao de Faro</p>\n'),
 (6, 3, 'en', 'Faro', '<p>Short Description about Faro</p>\n'),
 (7, 4, 'pt', 'Alvor', '<p>jAwVEPtf0</p>\n'),
 (8, 4, 'en', 'Alvor', '<p>kUQSitw7V</p>\n'),
 (9, 5, 'pt', 'Sagres', '<p>fIAFSuoqS</p>\n'),
-(10, 5, 'en', 'Sagres', '<p>8hZEAemeH</p>\n');
+(10, 5, 'en', 'Sagres', '<p>8hZEAemeH</p>\n'),
+(11, 6, 'pt', 'Vilamoura', '<p>Vilamoura PT</p>\n'),
+(12, 6, 'en', 'Vilamoura', '<p>Vilamoura EN</p>\n');
 
 -- --------------------------------------------------------
 
@@ -323,11 +327,11 @@ CREATE TABLE IF NOT EXISTS `common_service_translation` (
 
 INSERT INTO `common_service_translation` (`common_service_translation_ID`, `common_service_link_ID`, `langCode`, `serviceTranslated`) VALUES
 (1, 1, 'pt', 'MÃ¡quina de Lavar LoiÃ§a'),
-(2, 1, 'en', 'Washing machine'),
+(2, 1, 'en', 'Dishwashing machine'),
 (3, 2, 'pt', 'MÃ¡quina de Lavar Roupa'),
 (4, 2, 'en', 'Washing Machine'),
 (5, 3, 'pt', 'Talheres'),
-(6, 3, 'en', 'Kitchenware'),
+(6, 3, 'en', 'Cutlery'),
 (7, 4, 'pt', 'Cofre'),
 (8, 4, 'en', 'Safe'),
 (9, 5, 'pt', 'Toalhas'),
@@ -420,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `long_desc_link` (
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`long_desc_link_ID`),
   KEY `ld_property_ID_FK` (`property_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `long_desc_link`
@@ -431,7 +435,10 @@ INSERT INTO `long_desc_link` (`long_desc_link_ID`, `property_ID`, `dateCreated`)
 (2, 2, '2018-08-17 20:09:49'),
 (3, 3, '2018-08-20 15:43:44'),
 (4, 4, '2018-08-20 15:54:46'),
-(11, 11, '2018-08-21 10:54:08');
+(5, 5, '2018-09-12 21:41:50'),
+(6, 6, '2018-09-24 15:00:23'),
+(7, 7, '2018-09-24 15:01:18'),
+(8, 8, '2018-09-25 21:02:08');
 
 -- --------------------------------------------------------
 
@@ -447,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `long_desc_translation` (
   `longDescription` text NOT NULL,
   PRIMARY KEY (`long_desc_translation_ID`),
   KEY `long_desc_link_FK` (`long_desc_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `long_desc_translation`
@@ -462,8 +469,14 @@ INSERT INTO `long_desc_translation` (`long_desc_translation_ID`, `long_desc_link
 (6, 3, 'en', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eleifend vitae ligula eget ultricies. Vestibulum efficitur interdum purus, eu elementum lorem accumsan non. Nulla et semper massa. Vivamus dignissim lectus id magna rhoncus maximus ut vel dui. Ut a elementum leo. In urna urna, tempor non dui non, laoreet tempus elit. Vestibulum lacinia, purus quis elementum viverra, orci quam auctor nisl, vitae pretium nisl felis cursus est. Nullam consectetur quis diam ultricies pretium. Sed congue dictum efficitur.</p>\n\n<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed sem dui. Vestibulum tempor facilisis libero, ac maximus odio gravida vitae. Vivamus auctor risus quis aliquam sagittis. Vivamus sed bibendum libero. Quisque tristique nulla vitae elementum ullamcorper. In rutrum sed sem a molestie. Vivamus auctor, arcu a molestie iaculis, urna felis bibendum augue, sit amet aliquam eros enim a metus. Pellentesque venenatis felis erat, non vulputate elit fringilla at. Quisque eu malesuada est.</p>\n\n<p>Pellentesque vel tortor ut quam fringilla tempus in pretium nunc. Ut quis tempus dolor. Vivamus dui dui, feugiat quis magna vel, tincidunt bibendum nibh. Morbi sodales tempus eros, in rutrum dolor interdum quis. Cras sed metus ut dui congue hendrerit at dapibus tellus. Maecenas nec laoreet dolor, id euismod lorem. Praesent eu mi sed augue lobortis luctus ac ac ex. Aliquam vel mollis ex, at aliquam dolor. Cras eget sapien placerat, faucibus purus in, ullamcorper ligula. Nam dictum, dolor non molestie tincidunt, purus neque aliquet metus, quis condimentum tellus augue vel neque. Curabitur rutrum, nibh sit amet lobortis malesuada, metus risus commodo nisl, at ornare ipsum eros faucibus lorem. Nam congue odio a aliquam maximus.</p>\n'),
 (7, 4, 'pt', '<p><strong>PORTUGUES</strong></p>\n\n<p>&nbsp;</p>\n\n<hr />\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris posuere lorem vitae quam tempor, sit amet rhoncus magna tristique. Duis pellentesque hendrerit velit sit amet cursus. Donec pulvinar orci sed augue dictum tempus. Sed non erat non eros iaculis iaculis a et augue. Nullam vitae ligula ut massa rutrum ultricies. Pellentesque arcu massa, sodales porta placerat id, commodo ut velit. Sed eget dui mauris. Nam pulvinar eleifend magna, id tempor ipsum mollis ac. In velit tellus, tempus maximus tellus vel, tempus ullamcorper ligula. Mauris tincidunt, dui sit amet porta placerat, leo tellus fringilla sapien, nec fringilla felis ipsum hendrerit nisl. Pellentesque lacinia sapien nec risus varius varius.</p>\n\n<p>In vel orci sit amet massa mollis rutrum ut in lorem. Aliquam erat volutpat. Cras eleifend nunc pharetra, fringilla neque ac, mattis augue. Sed facilisis augue sapien, vel feugiat dolor fringilla ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ultricies commodo justo. In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>\n\n<p>Duis interdum sodales purus non pellentesque. Sed laoreet est eu tellus imperdiet, in pulvinar diam volutpat. Nulla id justo id eros ultricies condimentum. Vivamus dignissim aliquet purus a varius. Aenean porttitor nisl id est aliquam volutpat. Vivamus pellentesque neque sem. Nam ut ante vehicula, ultrices dolor eu, vestibulum ex. Nunc pretium nisi eu magna finibus, non elementum eros eleifend.</p>\n\n<p>Nunc tempus luctus imperdiet. Fusce posuere at metus sed feugiat. Quisque tempor augue a velit feugiat, quis maximus arcu pulvinar. Donec nibh nulla, tincidunt id lacus nec, convallis finibus mauris. Nunc ac lacus ante. Proin viverra viverra tellus sit amet vestibulum. Aenean at ultrices augue, eget vehicula dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras malesuada nulla ullamcorper, consectetur mauris a, posuere enim. Mauris neque lectus, cursus ut dolor vitae, vulputate accumsan sapien. Nunc ut sem quis magna molestie pretium.</p>\n\n<p>Donec accumsan nec urna pelle</p>\n'),
 (8, 4, 'en', '<p><strong>ENGLISH</strong></p>\n\n<hr />\n<p>&nbsp;</p>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris posuere lorem vitae quam tempor, sit amet rhoncus magna tristique. Duis pellentesque hendrerit velit sit amet cursus. Donec pulvinar orci sed augue dictum tempus. Sed non erat non eros iaculis iaculis a et augue. Nullam vitae ligula ut massa rutrum ultricies. Pellentesque arcu massa, sodales porta placerat id, commodo ut velit. Sed eget dui mauris. Nam pulvinar eleifend magna, id tempor ipsum mollis ac. In velit tellus, tempus maximus tellus vel, tempus ullamcorper ligula. Mauris tincidunt, dui sit amet porta placerat, leo tellus fringilla sapien, nec fringilla felis ipsum hendrerit nisl. Pellentesque lacinia sapien nec risus varius varius.</p>\n\n<p>In vel orci sit amet massa mollis rutrum ut in lorem. Aliquam erat volutpat. Cras eleifend nunc pharetra, fringilla neque ac, mattis augue. Sed facilisis augue sapien, vel feugiat dolor fringilla ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ultricies commodo justo. In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>\n\n<p>Duis interdum sodales purus non pellentesque. Sed laoreet est eu tellus imperdiet, in pulvinar diam volutpat. Nulla id justo id eros ultricies condimentum. Vivamus dignissim aliquet purus a varius. Aenean porttitor nisl id est aliquam volutpat. Vivamus pellentesque neque sem. Nam ut ante vehicula, ultrices dolor eu, vestibulum ex. Nunc pretium nisi eu magna finibus, non elementum eros eleifend.</p>\n\n<p>Nunc tempus luctus imperdiet. Fusce posuere at metus sed feugiat. Quisque tempor augue a velit feugiat, quis maximus arcu pulvinar. Donec nibh nulla, tincidunt id lacus nec, convallis finibus mauris. Nunc ac lacus ante. Proin viverra viverra tellus sit amet vestibulum. Aenean at ultrices augue, eget vehicula dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras malesuada nulla ullamcorper, consectetur mauris a, posuere enim. Mauris neque lectus, cursus ut dolor vitae, vulputate accumsan sapien. Nunc ut sem quis magna molestie pretium.</p>\n\n<p>Donec accumsan nec urna pelle</p>\n'),
-(21, 11, 'pt', '<p>LXdwgXYD3</p>\n'),
-(22, 11, 'en', '<p>S4hEeVU1D</p>\n');
+(9, 5, 'pt', '<p>8WAWP6WPf</p>\n'),
+(10, 5, 'en', '<p>RnTK7FGSQ</p>\n'),
+(11, 6, 'pt', '<p>WxAyUvn2Y</p>\n'),
+(12, 6, 'en', '<p>ATapCUH9K</p>\n'),
+(13, 7, 'pt', '<p>aRTkolV89</p>\n'),
+(14, 7, 'en', '<p>nsuXfH5Jc</p>\n'),
+(15, 8, 'pt', '<p>7BxJe50TA</p>\n'),
+(16, 8, 'en', '<p>DFOKESNnB</p>\n');
 
 -- --------------------------------------------------------
 
@@ -481,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `poi_gallery` (
   `isPrimary` int(11) DEFAULT NULL,
   PRIMARY KEY (`poi_gallery_ID`),
   KEY `pg_poi_link_FK` (`poi_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `poi_gallery`
@@ -518,7 +531,12 @@ INSERT INTO `poi_gallery` (`poi_gallery_ID`, `poi_link_ID`, `thumbnailURL`, `ful
 (55, 3, 'Prainha11-12-2014-Mica-Andreia-039.jpeg', 'Prainha11-12-2014-Mica-Andreia-039.jpeg', NULL, NULL),
 (56, 3, 'Prainha11-12-2014-Mica-Andreia-041.jpeg', 'Prainha11-12-2014-Mica-Andreia-041.jpeg', NULL, NULL),
 (57, 3, 'SDC17227.jpeg', 'SDC17227.jpeg', NULL, NULL),
-(58, 3, 'SDC17239.jpeg', 'SDC17239.jpeg', NULL, NULL);
+(58, 3, 'SDC17239.jpeg', 'SDC17239.jpeg', NULL, NULL),
+(59, 6, 'P6170664.jpeg', 'P6170664.jpeg', NULL, NULL),
+(60, 6, 'P6170665.jpeg', 'P6170665.jpeg', NULL, NULL),
+(61, 6, 'P6170675.jpeg', 'P6170675.jpeg', NULL, NULL),
+(62, 6, 'P6180727.jpeg', 'P6180727.jpeg', NULL, NULL),
+(63, 6, 'P6180734.jpeg', 'P6180734.jpeg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -533,7 +551,7 @@ CREATE TABLE IF NOT EXISTS `poi_link` (
   `isPopular` tinyint(1) NOT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`poi_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `poi_link`
@@ -541,7 +559,10 @@ CREATE TABLE IF NOT EXISTS `poi_link` (
 
 INSERT INTO `poi_link` (`poi_link_ID`, `videoURL`, `isPopular`, `dateCreated`) VALUES
 (1, '', 1, '2018-08-17 19:56:55'),
-(3, 'FXEJGIjws', 1, '2018-08-19 22:15:09');
+(3, 'https://www.youtube.com/embed/8gi-chAjHPU', 1, '2018-08-19 22:15:09'),
+(4, '', 0, '2018-09-01 22:54:18'),
+(5, '', 1, '2018-09-01 23:00:04'),
+(6, '', 1, '2018-09-12 21:25:25');
 
 -- --------------------------------------------------------
 
@@ -558,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `poi_translation` (
   `descriptionTranslated` text NOT NULL,
   PRIMARY KEY (`poi_translation_ID`),
   KEY `poi_translation_FK` (`poi_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `poi_translation`
@@ -568,7 +589,13 @@ INSERT INTO `poi_translation` (`poi_translation_ID`, `poi_link_ID`, `langCode`, 
 (1, 1, 'pt', 'Praia da Rocha', '<p>Descri&ccedil;&atilde;o sobre a Praia da Rocha</p>\n'),
 (2, 1, 'en', 'Rocha Beach', '<p>Rocha beach description</p>\n'),
 (5, 3, 'pt', 'Praia de Alvor', '<p>YvEY9PrXk</p>\n'),
-(6, 3, 'en', 'Alvor Beach', '<p>NjThTi2rE</p>\n');
+(6, 3, 'en', 'Alvor Beach', '<p>NjThTi2rE</p>\n'),
+(7, 4, 'pt', '', ''),
+(8, 4, 'en', '', ''),
+(9, 5, 'pt', 'Casa Inglesa', '<p>Casa Inglesa PT&nbsp;</p>\n'),
+(10, 5, 'en', 'English house', '<p>English house EN</p>\n'),
+(11, 6, 'pt', 'Marina de Vilamoura', '<p>Isto e a marina de vilamour</p>\n'),
+(12, 6, 'en', 'Vilamoura Dock', '<p>this is vilamoura dock area</p>\n');
 
 -- --------------------------------------------------------
 
@@ -593,7 +620,7 @@ CREATE TABLE IF NOT EXISTS `property` (
   PRIMARY KEY (`property_ID`),
   UNIQUE KEY `publicID` (`publicID`),
   KEY `publicID_2` (`publicID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `property`
@@ -604,7 +631,10 @@ INSERT INTO `property` (`property_ID`, `isForSale`, `propertyType`, `viewType`, 
 (2, 0, 2, 1, 1, 1, 3, 14, 500, 8500112, '2018-08-17 20:09:49', '2018-08-21 12:41:29'),
 (3, 1, 2, 1, 1, 1, 5, 14, 800, 8501989, '2018-08-20 15:43:44', '2018-08-21 12:41:32'),
 (4, 1, 2, 2, 1, 1, 8, 14, 1500, 8501404, '2018-08-20 15:54:46', '2018-08-21 12:39:20'),
-(11, 0, 2, 1, 0, 1, 8590, 8461, 2515, 8500268, '2018-08-21 10:54:08', '2018-08-25 17:41:40');
+(5, 0, 1, 1, 0, 1, 2, 4, 15054, 7000343, '2018-09-12 21:41:50', '2018-09-27 15:46:19'),
+(6, 0, 1, 1, 1, 1, 1, 2, 2808, 8501501, '2018-09-24 15:00:23', '2018-09-27 15:46:34'),
+(7, 0, 2, 2, 1, 1, 3, 5, 2614, 8500658, '2018-09-24 15:01:18', '2018-09-27 15:46:46'),
+(8, 0, 1, 1, 0, 1, 2, 4, 624, 8501836, '2018-09-25 21:02:08', '2018-09-27 15:46:56');
 
 -- --------------------------------------------------------
 
@@ -620,7 +650,7 @@ CREATE TABLE IF NOT EXISTS `property_city_poi` (
   PRIMARY KEY (`property_city_poi_ID`),
   KEY `pcp_city_poi_link_FK` (`city_poi_link_ID`),
   KEY `pcp_property_FK` (`property_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `property_city_poi`
@@ -631,7 +661,10 @@ INSERT INTO `property_city_poi` (`property_city_poi_ID`, `property_ID`, `city_po
 (2, 2, 1),
 (3, 3, 3),
 (4, 4, 3),
-(11, 11, 1);
+(5, 5, 5),
+(6, 6, 3),
+(7, 7, 5),
+(8, 8, 4);
 
 -- --------------------------------------------------------
 
@@ -649,7 +682,7 @@ CREATE TABLE IF NOT EXISTS `property_common_service` (
   PRIMARY KEY (`property_common_service_ID`),
   KEY `ps_property_FK` (`property_ID`),
   KEY `ps_service_link_FK` (`common_service_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `property_common_service`
@@ -671,7 +704,15 @@ INSERT INTO `property_common_service` (`property_common_service_ID`, `property_I
 (20, 3, 1, '2018-08-20 18:23:12', NULL),
 (21, 3, 2, '2018-08-20 18:23:12', NULL),
 (22, 3, 3, '2018-08-20 18:23:12', NULL),
-(29, 11, 2, '2018-08-21 10:54:08', NULL);
+(23, 5, 2, '2018-09-12 21:41:50', NULL),
+(24, 6, 1, '2018-09-24 15:00:23', NULL),
+(25, 6, 2, '2018-09-24 15:00:23', NULL),
+(26, 6, 3, '2018-09-24 15:00:23', NULL),
+(27, 6, 4, '2018-09-24 15:00:23', NULL),
+(28, 6, 6, '2018-09-24 15:00:23', NULL),
+(29, 7, 1, '2018-09-24 15:01:18', NULL),
+(30, 7, 2, '2018-09-24 15:01:18', NULL),
+(31, 7, 4, '2018-09-24 15:01:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -689,7 +730,7 @@ CREATE TABLE IF NOT EXISTS `property_gallery` (
   `isPrimary` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`property_gallery_ID`),
   KEY `pg_property_FK` (`property_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `property_gallery`
@@ -724,7 +765,18 @@ INSERT INTO `property_gallery` (`property_gallery_ID`, `property_ID`, `thumbnail
 (90, 4, 'P2020667.jpeg', 'P2020667.jpeg', NULL, NULL),
 (91, 4, 'P2020711.jpeg', 'P2020711.jpeg', NULL, NULL),
 (92, 4, 'P2020713.jpeg', 'P2020713.jpeg', NULL, NULL),
-(93, 4, 'P2020742.jpeg', 'P2020742.jpeg', NULL, NULL);
+(93, 4, 'P2020742.jpeg', 'P2020742.jpeg', NULL, NULL),
+(94, 5, 'RT14a1.jpeg', 'RT14a1.jpeg', NULL, NULL),
+(95, 5, 'RT14a2.jpeg', 'RT14a2.jpeg', NULL, NULL),
+(96, 5, 'RT14a3.jpeg', 'RT14a3.jpeg', NULL, NULL),
+(97, 5, 'RT14a4.jpeg', 'RT14a4.jpeg', NULL, NULL),
+(98, 5, 'RT14a5.jpeg', 'RT14a5.jpeg', NULL, NULL),
+(99, 5, 'RT14a6.jpeg', 'RT14a6.jpeg', NULL, NULL),
+(100, 5, 'RT14a7.jpeg', 'RT14a7.jpeg', NULL, NULL),
+(101, 5, 'RT14a8.jpeg', 'RT14a8.jpeg', NULL, NULL),
+(102, 6, 'RT14a7.jpeg', 'RT14a7.jpeg', NULL, NULL),
+(103, 7, 'RT14a1.jpeg', 'RT14a1.jpeg', NULL, NULL),
+(104, 8, 'RT27.jpeg', 'RT27.jpeg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -752,7 +804,7 @@ CREATE TABLE IF NOT EXISTS `property_price` (
   `dateModified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`property_price_ID`),
   KEY `pp_property_FK` (`property_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `property_price`
@@ -763,7 +815,10 @@ INSERT INTO `property_price` (`property_price_ID`, `property_ID`, `cat1`, `cat2`
 (2, 2, 9605, 6089, 1612, 5504, 5269, 3942, 7266, 3674, 2865, 3888, 1612, 9605, '2018-08-17 20:09:49', '2018-08-21 10:32:58'),
 (3, 4, 130000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-08-20 15:54:46', '2018-08-21 11:24:44'),
 (4, 3, 124000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-08-20 15:56:50', '2018-08-20 15:57:10'),
-(7, 11, 9162, 532, 2142, 3498, 8418, 9999, 9097, 3476, 5780, 1989, 532, 9999, '2018-08-21 10:54:08', '2018-08-21 11:21:52');
+(5, 5, 751, 2334, 3907, 638, 8002, 8540, 7588, 8718, 7134, 7400, 638, 8718, '2018-09-12 21:41:50', NULL),
+(6, 6, 7981, 4586, 7140, 3352, 5304, 9133, 2650, 8212, 190, 9259, 190, 9259, '2018-09-24 15:00:23', NULL),
+(7, 7, 3493, 9305, 5836, 4710, 2392, 6345, 9243, 1442, 3156, 176, 176, 9305, '2018-09-24 15:01:18', NULL),
+(8, 8, 2683, 5503, 1822, 2117, 774, 7714, 3997, 4145, 6089, 4589, 774, 7714, '2018-09-25 21:02:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -781,7 +836,7 @@ CREATE TABLE IF NOT EXISTS `property_unique_service` (
   PRIMARY KEY (`property_unique_service_ID`),
   KEY `pus_property_FK` (`property_ID`),
   KEY `pus_unique_service_link_FK` (`unique_service_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `property_unique_service`
@@ -794,7 +849,13 @@ INSERT INTO `property_unique_service` (`property_unique_service_ID`, `property_I
 (9, 2, 2, '2018-08-20 16:47:36', NULL),
 (10, 3, 1, '2018-08-20 18:23:12', NULL),
 (11, 3, 2, '2018-08-20 18:23:12', NULL),
-(18, 11, 2, '2018-08-21 10:54:08', NULL);
+(12, 5, 2, '2018-09-12 21:41:50', NULL),
+(13, 6, 1, '2018-09-24 15:00:23', NULL),
+(14, 6, 2, '2018-09-24 15:00:23', NULL),
+(15, 7, 2, '2018-09-24 15:01:18', NULL),
+(19, 8, 3, '2018-09-25 21:13:03', NULL),
+(20, 8, 4, '2018-09-25 21:13:03', NULL),
+(21, 8, 5, '2018-09-25 21:13:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -809,7 +870,7 @@ CREATE TABLE IF NOT EXISTS `short_desc_link` (
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`short_desc_link_ID`),
   KEY `sd_property_ID_FK` (`property_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `short_desc_link`
@@ -820,7 +881,10 @@ INSERT INTO `short_desc_link` (`short_desc_link_ID`, `property_ID`, `dateCreated
 (2, 2, '2018-08-17 20:09:49'),
 (3, 3, '2018-08-20 15:43:44'),
 (4, 4, '2018-08-20 15:54:46'),
-(11, 11, '2018-08-21 10:54:08');
+(5, 5, '2018-09-12 21:41:50'),
+(6, 6, '2018-09-24 15:00:23'),
+(7, 7, '2018-09-24 15:01:18'),
+(8, 8, '2018-09-25 21:02:08');
 
 -- --------------------------------------------------------
 
@@ -836,7 +900,7 @@ CREATE TABLE IF NOT EXISTS `short_desc_translation` (
   `shortDescription` varchar(200) NOT NULL,
   PRIMARY KEY (`short_desc_translation_ID`),
   KEY `short_desc_link_FK` (`short_desc_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `short_desc_translation`
@@ -851,8 +915,14 @@ INSERT INTO `short_desc_translation` (`short_desc_translation_ID`, `short_desc_l
 (6, 3, 'en', 'Very pretty villa, small and compact'),
 (7, 4, 'pt', 'Muito moderno e robusto'),
 (8, 4, 'en', 'Very modern and robust'),
-(21, 11, 'pt', 'i175E9Orb'),
-(22, 11, 'en', 'lzVMghrH6');
+(9, 5, 'pt', 'uehDwIZ5M'),
+(10, 5, 'en', 'smQ8MIZFy'),
+(11, 6, 'pt', 'plZcRJNf4'),
+(12, 6, 'en', 'DEn7OyNa4'),
+(13, 7, 'pt', 'A2RX2GDxF'),
+(14, 7, 'en', '4zVkmxHc7'),
+(15, 8, 'pt', 'w7gzCo6Pn'),
+(16, 8, 'en', 'OCYZTmbqM');
 
 -- --------------------------------------------------------
 
@@ -867,7 +937,7 @@ CREATE TABLE IF NOT EXISTS `title_link` (
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`title_link_ID`),
   KEY `tl_property_ID_FK` (`property_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `title_link`
@@ -878,7 +948,10 @@ INSERT INTO `title_link` (`title_link_ID`, `property_ID`, `dateCreated`) VALUES
 (2, 2, '2018-08-17 20:09:49'),
 (3, 3, '2018-08-20 15:43:44'),
 (4, 4, '2018-08-20 15:54:46'),
-(11, 11, '2018-08-21 10:54:08');
+(5, 5, '2018-09-12 21:41:50'),
+(6, 6, '2018-09-24 15:00:23'),
+(7, 7, '2018-09-24 15:01:18'),
+(8, 8, '2018-09-25 21:02:08');
 
 -- --------------------------------------------------------
 
@@ -894,7 +967,7 @@ CREATE TABLE IF NOT EXISTS `title_translation` (
   `title` varchar(50) NOT NULL,
   PRIMARY KEY (`title_translation_ID`),
   KEY `title_link_FK` (`title_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `title_translation`
@@ -909,8 +982,14 @@ INSERT INTO `title_translation` (`title_translation_ID`, `title_link_ID`, `langC
 (6, 3, 'en', 'Jac Villa'),
 (7, 4, 'pt', 'Vila do Patamar'),
 (8, 4, 'en', 'Patamar Villa'),
-(21, 11, 'pt', '6jjQFQfyY'),
-(22, 11, 'en', 'PIjGPDzVh');
+(9, 5, 'pt', 'UhIceL7nB'),
+(10, 5, 'en', 'attDT0Xxs'),
+(11, 6, 'pt', 'q74RlhLe8'),
+(12, 6, 'en', '06jT6vVB5'),
+(13, 7, 'pt', '61MziGqhV'),
+(14, 7, 'en', 'isf6Ng5v5'),
+(15, 8, 'pt', 'ubpVBVYLj'),
+(16, 8, 'en', 'W8wgXzp8Q');
 
 -- --------------------------------------------------------
 
@@ -923,7 +1002,7 @@ CREATE TABLE IF NOT EXISTS `unique_service_link` (
   `unique_service_link_ID` int(11) NOT NULL AUTO_INCREMENT,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`unique_service_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `unique_service_link`
@@ -931,7 +1010,10 @@ CREATE TABLE IF NOT EXISTS `unique_service_link` (
 
 INSERT INTO `unique_service_link` (`unique_service_link_ID`, `dateCreated`) VALUES
 (1, '2018-08-17 20:00:04'),
-(2, '2018-08-17 20:00:04');
+(2, '2018-08-17 20:00:04'),
+(3, '2018-09-25 21:01:05'),
+(4, '2018-09-25 21:01:30'),
+(5, '2018-09-25 21:01:41');
 
 -- --------------------------------------------------------
 
@@ -947,7 +1029,7 @@ CREATE TABLE IF NOT EXISTS `unique_service_translation` (
   `uniqueServiceTranslated` varchar(200) NOT NULL,
   PRIMARY KEY (`unique_service_translation_ID`),
   KEY `unique_service_link_FK` (`unique_service_link_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `unique_service_translation`
@@ -957,7 +1039,13 @@ INSERT INTO `unique_service_translation` (`unique_service_translation_ID`, `uniq
 (1, 1, 'pt', 'Piscina Privada'),
 (2, 1, 'en', 'Private Pool'),
 (3, 2, 'pt', 'Garagem Privada'),
-(4, 2, 'en', 'Private Parking');
+(4, 2, 'en', 'Private Parking'),
+(5, 3, 'pt', 'Grelhador'),
+(6, 3, 'en', 'Grill'),
+(7, 4, 'pt', 'Jardim'),
+(8, 4, 'en', 'Garden'),
+(9, 5, 'pt', 'TerraÃ§o Privado'),
+(10, 5, 'en', 'Private Terrace');
 
 -- --------------------------------------------------------
 
