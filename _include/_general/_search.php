@@ -46,6 +46,14 @@
         </div>
         <select class="state-select form-control custom-focus border-bottom rounded-0" multiple="multiple" name="search_place" id="search_place">
             <?php 
+                $poiArray = Array();
+                $cityArray = Array();
+                foreach($_GET as $key => $value){
+                    if(strpos($key, 'poi-') !== false)
+                        $poiArray[] = $value;
+                    if(strpos($key, 'city-') !== false)
+                        $cityArray[] = $value;
+                }
                 echo '<optgroup label="'.$lang['searchbar']['optGroup']['poi'].'">';
                     $query = $CONN->db->query('
                         select 
@@ -76,7 +84,12 @@
                             city_translation.langCode = "'.$selectedLang.'"
                     ');
                     while($fetch = $query->fetch_object()){
-                        echo '<option value="poi-'.$fetch->poi_link_ID.'">'.$fetch->cityName.' - '.$fetch->poiName.'</option>';
+                        for($c = 0; $c < count($poiArray); $c++){
+                            if($poiArray[$c] == $fetch->poi_link_ID)
+                                $poiSelected = 'selected';
+                        }
+                        echo '<option value="poi-'.$fetch->poi_link_ID.'"'.$poiSelected.'>'.$fetch->cityName.' - '.$fetch->poiName.'</option>';
+                        $poiSelected = '';
                     }
                 echo '</optgroup>';
                 echo '<optgroup label="'.$lang['searchbar']['optGroup']['city'].'">';
@@ -94,7 +107,12 @@
                             city_translation.langCode = "'.$selectedLang.'"
                     ');
                     while($fetch = $query->fetch_object()){
-                        echo '<option value="city-'.$fetch->city_link_ID.'">'.$fetch->nameTranslated.'</option>';
+                        for($c = 0; $c < count($cityArray); $c++){
+                            if($cityArray[$c] == $fetch->city_link_ID)
+                                $citySelected = 'selected';
+                        }
+                        echo '<option value="city-'.$fetch->city_link_ID.'"'.$citySelected.'>'.$fetch->nameTranslated.'</option>';
+                        $citySelected = '';
                     }
                 echo '</optgroup>';
             ?>
@@ -123,14 +141,7 @@
                     </div>
                     <div class="col-12 col-md-6 list-group-item border-0 px-0 px-md-1">
                         <div class="input-group-text mb-2 bg-white border-top-0 border-left-0 border-right-0 rounded-0">
-                            <span class="text-info">
-                                <?php 
-                                    
-                                    // $var = $_SERVER['QUERY_STRING'];
-                                    // // echo substr_count($var,'poi-');
-                                    // echo strpos ($var, 'poi-');
-                                ?>
-                            <?php echo $lang['searchbar']['filterParams']['roomQuantity']['name'];?></span>
+                            <span class="text-info"><?php echo $lang['searchbar']['filterParams']['roomQuantity']['name'];?></span>
                         </div>
                         <div class="container pt-2" data-filtBy="filtBy-room">
                             <input type="range" min="1" max="8" step="1" value="<?php echo ((isset($_GET['roomQty'])) ? $_GET['roomQty']:'2')?>" name="search_roomQty" data-rangeSlider>
@@ -260,6 +271,8 @@
                 var new_url = url_string+'&show=filter'+customURL;
             }
             window.location.href = new_url;
+            // console.log(customURL);
+            
         });    
     });
 
@@ -267,7 +280,12 @@
             var url = '';
             for (var key in input) {
                 var name = key.split('_');
-                url = url + '&' + name[1] + "=" + input[key];
+               /*  if(name[1].includes('-')){
+                    var value = name[1].split('-');
+                    url = url + '&' + value[0] + "=" + value[1];
+                }else{ */
+                    url = url + '&' + name[1] + "=" + input[key];
+                // }
             }
             return url;
         }
@@ -282,6 +300,7 @@
                     // console.log(arrayContent[x].id);
                     var cityPoi = $('#' + arrayContent[x].id).find(':selected');
                     for(var c = 0; c < cityPoi.length; c++){
+                        // console.log(cityPoi[c].value);
                         returnedObject['search_' + cityPoi[c].value] = cityPoi[c].value.substr(cityPoi[c].value.length - 1);
                     }
                 }else{
