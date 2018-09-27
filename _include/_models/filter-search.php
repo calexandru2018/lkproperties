@@ -142,7 +142,13 @@
                 select
                     property.publicID,
                     property.property_ID, 
-                    property.isForSale
+                    property.isForSale,
+                    property.roomAmmount,
+                    property.maxAllowedGuests, 
+                    property.beachDistance,
+                    property.hasPoolAccess,
+                    property.viewType,
+                    property.propertyType
                 from
                     property
                 left join
@@ -192,23 +198,26 @@
             /* Dynamic sql builder */
 
             $query = $this->db->query($baseSQL);
-            if($this->db->error)
-                return $this->db->error;
-            else {
-                 while($fetch = $query->fetch_object()){
+            if(!$this->db->error){
+                while($fetch = $query->fetch_object()){
                     $returnedObjects[$c]['id'] = $fetch->property_ID;
                     $returnedObjects[$c]['forSale'] = $fetch->isForSale;
                     $returnedObjects[$c]['publicID'] = $fetch->publicID;
+                    $returnedObjects[$c]['roomAmmount'] = $fetch->roomAmmount;
+                    $returnedObjects[$c]['maxAllowedGuests'] = $fetch->maxAllowedGuests;
+                    $returnedObjects[$c]['beachDistance'] = $fetch->beachDistance;
+                    $returnedObjects[$c]['hasPoolAccess'] = $fetch->hasPoolAccess;
+                    $returnedObjects[$c]['viewType'] = $fetch->viewType;
+                    $returnedObjects[$c]['propertyType'] = $fetch->propertyType;
                     $returnedObjects[$c]['thumbnail'] = $this->getMainImg($fetch->property_ID);
                     $returnedObjects[$c]['title'] = $this->getTitle($fetch->property_ID, $lang);
-                    $returnedObjects[$c]['price'] = $this->getMinPrice($fetch->property_ID);
+                    $returnedObjects[$c]['price'] = $this->getPrice($fetch->property_ID, $fetch->isForSale);
                     $returnedObjects[$c]['description'] = $this->getShortDesc($fetch->property_ID, $lang);
-                    $returnedObjects[$c]['servicesCommon'] = $this->getServicesCommon($fetch->property_ID, $lang);
-                    // $returnedObjects[$c]['servicesUnique] = $this->getServicesUnique($fetch->property_ID, $lang);
+                    $returnedObjects[$c]['services'] = $this->getServicesUnique($fetch->property_ID, $lang);
                     $c++;
                 }                
-                return $returnedObjects; 
             }
+            return $returnedObjects; 
         }
 
         private function getMainImg(int $propertyID){
@@ -242,18 +251,18 @@
             $fetch = $result->fetch_object();
             return $fetch->title;
         }
-        private function getMinPrice(int $propertyID){
+        private function getPrice(int $propertyID, int $isForSale){
 
             $result = $this->db->query('
                 select
-                    minPrice
+                    '.(($isForSale == 1) ? 'cat1':'minPrice').'
                 from
                     property_price
                 where
                     property_ID = "'.$propertyID.'"
             ');
             $fetch = $result->fetch_object();
-            return $fetch->minPrice;
+            return (($isForSale == 1) ? $fetch->cat1 : $fetch->minPrice);
         }
         private function getShortDesc(int $propertyID, string $lang){
             $result = $this->db->query('
@@ -272,42 +281,6 @@
             ');
             $fetch = $result->fetch_object();
             return $fetch->shortDescription;
-        }  
-        private function getServicesCommon(int $propertyID, string $lang){
-            $commonServiceIDCollector = [];
-            $commonServiceCollector = [];
-
-            $result = $this->db->query('
-                select
-                    common_service_link_ID
-                from 
-                    property_common_service
-                where
-                    property_ID = "'.$propertyID.'"
-            ');
-            while($serviceHolder = $result->fetch_object()){
-                $commonServiceIDCollector[] = $serviceHolder->common_service_link_ID; 
-            }
-            $sqlResultTranslatedBase = '
-                select 
-                    serviceTranslated
-                from
-                    common_service_translation
-                where (
-            ';
-            for($c = 0; $c < count($commonServiceIDCollector); $c++){
-                if($c == (count($commonServiceIDCollector)-1))
-                    $sqlResultTranslatedBase = $sqlResultTranslatedBase.'common_service_link_ID = '.$commonServiceIDCollector[$c].') and langCode = "'.$lang.'"';
-                else
-                    $sqlResultTranslatedBase = $sqlResultTranslatedBase.'common_service_link_ID = '.$commonServiceIDCollector[$c].' or ';
-            }
-            $queryResultTranslatedBase = $this->db->query($sqlResultTranslatedBase);
-            
-            while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
-                $commonServiceCollector[] = $fetchTranslation['serviceTranslated'];
-            }
-
-            return $commonServiceCollector;
         }
         private function getServicesUnique(int $propertyID, string $lang){
             $uniqueServiceIDCollector = [];
@@ -339,12 +312,13 @@
             }
             $queryResultTranslatedBase = $this->db->query($sqlResultTranslatedBase);
             
-            while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
-                $uniqueServiceCollector[] = $fetchTranslation['uniqueServiceTranslated'];
+            if(!$this->db->error){
+                while($fetchTranslation = $queryResultTranslatedBase->fetch_assoc()){
+                    $uniqueServiceCollector[] = $fetchTranslation['uniqueServiceTranslated'];
+                }
             }
-
             return $uniqueServiceCollector;
-        }      
+        } 
         /* Custom controll function */
             private function langaugeValidator(string $lang){
                 $langChecker = false;

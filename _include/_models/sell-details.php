@@ -203,6 +203,7 @@
 
             return $uniqueServiceCollector;
         }
+        
         private function getObjectGallery(int $propertyID){
             $output = [];
             $query = $this->db->query('

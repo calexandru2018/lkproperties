@@ -3,14 +3,14 @@
 ?>
 <div class="p-0 mx-0 pb-5 mx-sm-auto">
     <div class="row mx-0 mb-5">
-        <!-- <div class="col-12 my-3 px-4 px-md-2">
+        <div class="col-12 my-3 px-4 px-md-2">
             <div class="form-group float-right w-auto mb-0">
-                <select name="search_sortRent" class="form-control" id="sel1">
-                    <option value="asc"><?php //echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['asc'];?></option>
-                    <option value="desc"><?php //echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['desc'];?></option>
+                <select name="search_sortRent" class="form-control">
+                    <option value="asc"><?php echo $lang['sortBy']['name'].': '.$lang['sortBy']['asc'];?></option>
+                    <option value="desc"><?php echo $lang['sortBy']['name'].': '.$lang['sortBy']['desc'];?></option>
                 </select>
             </div>
-        </div> -->
+        </div>
         <?php
             $collector = $object->fetchAll($selectedLang);
             for($c1 = 0; $c1 < count($collector); $c1++){

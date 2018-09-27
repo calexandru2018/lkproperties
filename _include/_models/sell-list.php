@@ -62,7 +62,7 @@
                 $returnedObjects[$c]['publicID'] = $this->getPublicID($propertyIDCollection[$c])['publicID'];
                 $returnedObjects[$c]['thumbnail'] = $this->getMainImg($propertyIDCollection[$c])['thumbnailURL'];
                 $returnedObjects[$c]['title'] = $this->getTitle($propertyIDCollection[$c], $lang)['title'];
-                $returnedObjects[$c]['price'] = $this->getPrice($propertyIDCollection[$c], $lang);
+                $returnedObjects[$c]['price'] = $this->getPrice($propertyIDCollection[$c]);
                 $returnedObjects[$c]['description'] = $this->getShortDesc($propertyIDCollection[$c], $lang)['shortDescription'];
                 $returnedObjects[$c]['services'] = $this->getServicesUnique($propertyIDCollection[$c], $lang);
             }

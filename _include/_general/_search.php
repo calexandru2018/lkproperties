@@ -187,14 +187,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 my-3 px-0">
-                <div class="form-group float-right w-auto mb-0">
-                    <select name="search_sortRent" class="form-control" id="sel1">
-                        <option value="asc"><?php echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['asc'];?></option>
-                        <option value="desc"><?php echo $lang['sortBy']['name'];?>: <?php echo $lang['sortBy']['desc'];?></option>
-                    </select>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -254,13 +246,18 @@
             var userInp = collectInput(inp);
             var customURL = urlBuilder(userInp);
             var url_string = window.location.href;
+            if(url_string.includes('&show=for-sale&')){
+                url_string = url_string.replace('&show=for-sale&', '&');
+            }else if(url_string.includes('&show=for-sale')){
+                url_string = url_string.replace('&show=for-sale', '');
+            }
             var url = new URL(url_string);
             var filter = url.searchParams.get("show");
             if(filter == 'filter'){
                 splittedURL = url_string.split('show=filter');
                 var new_url = splittedURL[0]+'show=filter'+customURL;
             }else{
-                var new_url = window.location.href+'&show=filter'+customURL;
+                var new_url = url_string+'&show=filter'+customURL;
             }
             window.location.href = new_url;
         });    
