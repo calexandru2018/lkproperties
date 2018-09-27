@@ -76,8 +76,11 @@
         include_once('_include/_general/_footer.php'); ?>
     </main>
     <div class=".bg-success" id="snackbar"></div>
-    <script src="assets/js/custom-functions.js"></script> 
     <script src="assets/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="assets/js/range-slider.min.js"></script> 
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="assets/js/custom-functions.js"></script>
 </body>
 </html>
 <?php

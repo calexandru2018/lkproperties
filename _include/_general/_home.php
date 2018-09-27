@@ -18,7 +18,7 @@ let w=window,
     x=w.innerWidth||e.clientWidth||g.clientWidth,
     y=w.innerHeight||e.clientHeight||g.clientHeight;
 
-    $( document ).ready(function() {
+    $(document).ready(function() {
         var imgURL = '<?php echo $fetch->mainImageURL; ?>';
         var img = document.querySelector('#home-page-image');
         var orgSrc = img.src;

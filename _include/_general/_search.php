@@ -1,41 +1,3 @@
-<?php
-    /* 
-        CSS is loaded on this specific page so that other pages dont load unnecessary files,
-        to help speed up loading time
-    */
-?>  
-<link rel="stylesheet" href="assets/css/range-slider.css">
-<link defer href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<link defer rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
-<link defer rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
-
-<?php
-    /* 
-        Custom styling for this select.
-    */
-?>  
-<style>
-    .select2, .select2-container, .select2-container--default, .select2-container--below{
-        max-width: 950px !important;
-    }
-    .select2-selection, .select2-selection--single{
-        height: 100% !important;
-    }
-    .select2-selection__rendered{
-        padding-top: 5px;
-    }
-    .select2-selection__arrow{
-        margin-top: 5px;
-    }
-    .select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default .select2-selection--multiple {
-        outline: none !important;
-        border: none!important;
-        background-color: var(--light)!important;
-    }
-    .noScroll { /* ...or body.dialogShowing */
-        overflow-y: hidden !important;
-    }
-</style>
 <div class="search-container custom-container my-1 px-4 px-md-2">
     <div class="input-group my-0 w-100" >
         <div class="input-group-prepend">
@@ -201,8 +163,6 @@
         </div>
     </div>
 </div>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="assets/js/range-slider.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.state-select').select2();
@@ -225,7 +185,6 @@
                     var value = element.value,
                         output = element.parentNode.getElementsByTagName('output')[0];
                     output.innerHTML = value;
-
                 }
                 for (var i = elements.length - 1; i >= 0; i--) {
                     valueOutput(elements[i]);
@@ -243,7 +202,6 @@
                 bodyTag.classList.add('noScroll');
             },
             onSlide: function (position, value) {
-                
             },
             onSlideEnd: function (position, value) {
                 var htmlElement = document.getElementsByTagName('html')[0];
@@ -252,61 +210,25 @@
                 bodyTag.classList.remove('noScroll');
             }
         });
-        document.querySelector("#search").addEventListener("click", function(e){
-            var inp = document.querySelectorAll("input[name^=search_], select");
-            var userInp = collectInput(inp);
-            var customURL = urlBuilder(userInp);
-            var url_string = window.location.href;
-            if(url_string.includes('&show=for-sale&')){
-                url_string = url_string.replace('&show=for-sale&', '&');
-            }else if(url_string.includes('&show=for-sale')){
-                url_string = url_string.replace('&show=for-sale', '');
-            }
-            var url = new URL(url_string);
-            var filter = url.searchParams.get("show");
-            if(filter == 'filter'){
-                splittedURL = url_string.split('show=filter');
-                var new_url = splittedURL[0]+'show=filter'+customURL;
-            }else{
-                var new_url = url_string+'&show=filter'+customURL;
-            }
-            window.location.href = new_url;
-            // console.log(customURL);
-            
-        });    
     });
-
-        function urlBuilder(input){
-            var url = '';
-            for (var key in input) {
-                var name = key.split('_');
-               /*  if(name[1].includes('-')){
-                    var value = name[1].split('-');
-                    url = url + '&' + value[0] + "=" + value[1];
-                }else{ */
-                    url = url + '&' + name[1] + "=" + input[key];
-                // }
-            }
-            return url;
+    document.querySelector("#search").addEventListener("click", function(e){
+        var inp = document.querySelectorAll("input[name^=search_], select");
+        var userInp = collectInput(inp);
+        var customURL = urlBuilder(userInp);
+        var url_string = window.location.href;
+        if(url_string.includes('&show=for-sale&')){
+            url_string = url_string.replace('&show=for-sale&', '&');
+        }else if(url_string.includes('&show=for-sale')){
+            url_string = url_string.replace('&show=for-sale', '');
         }
-
-        function collectInput(arrayContent){
-            returnedObject = {};
-            for(let x = 0; x < arrayContent.length; x++){
-                if(arrayContent[x].type == 'radio'){
-                    if(arrayContent[x].checked)
-                        returnedObject[arrayContent[x].name] = arrayContent[x].value;
-                }else if(arrayContent[x].type == 'select-multiple'){
-                    // console.log(arrayContent[x].id);
-                    var cityPoi = $('#' + arrayContent[x].id).find(':selected');
-                    for(var c = 0; c < cityPoi.length; c++){
-                        // console.log(cityPoi[c].value);
-                        returnedObject['search_' + cityPoi[c].value] = cityPoi[c].value.substr(cityPoi[c].value.length - 1);
-                    }
-                }else{
-                    returnedObject[arrayContent[x].name] = arrayContent[x].value;
-                }
-            }
-            return returnedObject;
+        var url = new URL(url_string);
+        var filter = url.searchParams.get("show");
+        if(filter == 'filter'){
+            splittedURL = url_string.split('show=filter');
+            var new_url = splittedURL[0]+'show=filter'+customURL;
+        }else{
+            var new_url = url_string+'&show=filter'+customURL;
         }
+        window.location.href = new_url;
+    });
 </script>

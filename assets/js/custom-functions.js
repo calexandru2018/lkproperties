@@ -69,3 +69,30 @@ function showSnackbar(message) {
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+function urlBuilder(input){
+    var url = '';
+    for (var key in input) {
+        var name = key.split('_');
+        url = url + '&' + name[1] + "=" + input[key];
+    }
+    return url;
+}
+function collectInput(arrayContent){
+    returnedObject = {};
+    for(let x = 0; x < arrayContent.length; x++){
+        if(arrayContent[x].type == 'radio'){
+            if(arrayContent[x].checked)
+                returnedObject[arrayContent[x].name] = arrayContent[x].value;
+        }else if(arrayContent[x].type == 'select-multiple'){
+            // console.log(arrayContent[x].id);
+            var cityPoi = $('#' + arrayContent[x].id).find(':selected');
+            for(var c = 0; c < cityPoi.length; c++){
+                // console.log(cityPoi[c].value);
+                returnedObject['search_' + cityPoi[c].value] = cityPoi[c].value.substr(cityPoi[c].value.length - 1);
+            }
+        }else{
+            returnedObject[arrayContent[x].name] = arrayContent[x].value;
+        }
+    }
+    return returnedObject;
+}

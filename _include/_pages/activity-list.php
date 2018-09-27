@@ -3,8 +3,6 @@
 
     $fetched = $new->fetchAll($selectedLang);
 ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
-
     <div class="custom-container mb-5 pb-5 px-4 px-md-2 rounded text-muted">
         <div class="row">
             <div class="col-12 mb-1">
@@ -62,8 +60,6 @@
                 echo $showImages;
             ?>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script>
         baguetteBox.run('.gallery-block');
     </script>
