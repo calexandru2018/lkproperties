@@ -135,12 +135,12 @@
     flatpickr("#date", {
         mode: "range",
         onChange: function(selectedDates, dateStr, instance) {
-            console.log(document.querySelector("#myID").value);
+            console.log(document.querySelector("#date").value);
         }
     });
     /* Send email */
     document.getElementById('send-form').onclick = function(e){
         e.preventDefault();
-        sendEmail(this, '<?php echo $selectedLang; ?>');
+        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>');
     };
 </script>

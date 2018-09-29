@@ -6,7 +6,6 @@
     3 - Feedback
     4 - General Question
 */
-
 if(isset($_POST) && !empty($_POST)){
     foreach($_POST as $key => $value){
         if($key != 'date' && empty($value))
@@ -17,19 +16,19 @@ if(isset($_POST) && !empty($_POST)){
     switch ($_POST['type']) {
         case '1':
             $email = 'info@lk-properties.pt';
-            $subject = 'Aluguer '.$_POST['publicID'].((!empty($_POST['name'])) ? '; '.$_POST['name']: '').': ' .$_POST['subject'].((empty($_POST['date'])) ? '': ' - Data: '.$_POST['date']);
+            $subject = 'A'.$_POST['publicID'].((empty($_POST['date'])) ? '':'['.$_POST['date'].']').': '.$_POST['subject'];
             break;
         case '2':
             $email = 'info@lk-properties.pt';
-            $subject = 'Venda '.$_POST['publicID'].((!empty($_POST['name'])) ? '; '.$_POST['name']: '').': ' .$_POST['subject'].((empty($_POST['date'])) ? '': ' - Data: '.$_POST['date']);
+            $subject = 'V'.$_POST['publicID'].((empty($_POST['date'])) ? '':'['.$_POST['date'].']').': '.$_POST['subject'];
             break;
         case '3':
             $email = 'feedback@lk-properties.pt';
-            $subject = 'Feedback'.((!empty($_POST['name'])) ? ' ; '.$_POST['name'].': ': ': ').$_POST['subject'];
+            $subject = 'Feedback: '.$_POST['subject'];
             break;
         case '4':
             $email = 'info@lk-properties.pt';
-            $subject = 'Info '.$_POST['subject'];
+            $subject = 'Info: '.$_POST['subject'];
             break;
         default:
             return false;
@@ -57,9 +56,8 @@ if(isset($_POST) && !empty($_POST)){
         $mail->AddReplyTo($_POST['email'], $_POST['name']);
         $mail->SetFrom($email);
         $mail->Subject = $subject;
-        $mail->Body = $_POST['description'];
+        $mail->Body = ((empty($_POST['name'])) ? '':''.$_POST['name'].'<br/><br/>').$_POST['description'];
         $mail->AddAddress($email);
-        // $mail->AddAddress('calexandru2018@gmail.com');
 
         if(!$mail->Send()) {
             return false;

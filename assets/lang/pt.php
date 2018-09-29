@@ -24,7 +24,7 @@
                         'poi' => 'Ponto de Interesse',
                         'city' => 'Cidade'
                     ],
-                'noResults' => 'Não encontramos nada, tente outros critérios.', 
+                'noResults' => 'Pedimos desculpa mas de momento não encontramos nada com os critiérios especificados.', 
                 'filterParams' => 
                     [
                         'beachDistance' => 
@@ -159,6 +159,7 @@
                     'villa' => 'Vila',
                     'bungalow' => 'Bungalow',
                 ],
+                'messageSent' => 'Mensagem enviada!'
             ],
         'placeHolder' => 
             [

@@ -7,7 +7,7 @@
             </p>
         </div>
         <div class="col-12">
-            <form data-type="3">
+            <form data-type="4">
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
                         <label for="textArea">*<?php echo $lang['contactUs']['describe']; ?></label>
@@ -49,23 +49,23 @@
             </p>
         </div>
         <div class="col-12 col-md-6">
-            <form data-type="4">
+            <form data-type="3">
                 <div class="form-row py-2 rounded">
                     <div class="col-12 py-2">
                         <label for="msg_description">*<?php echo $lang['contactUs']['describe']; ?></label>
                         <textarea class="form-control" id="textArea" name="msg_description" rows="3" data-optional="false"></textarea>
                     </div>
                     <div class="col-12 py-2">
-                        <label for="msg_subject"><?php echo $lang['contactUs']['subject'];?>(<?php echo $lang['placeHolder']['optional'];?>)</label>
-                        <input type="text" class="form-control" name="msg_subject" id="subject" data-optional="true">
+                        <label for="msg_subject">*<?php echo $lang['contactUs']['subject'];?></label>
+                        <input type="text" class="form-control" name="msg_subject" id="subject" data-optional="false">
                     </div>
                     <div class="col-12 col-sm-6 pb-2 py-sm-0">
-                        <label for="msg_name"><?php echo $lang['contactUs']['name'];?>(<?php echo $lang['placeHolder']['optional'];?>)</label>
+                        <label for="msg_name">*<?php echo $lang['contactUs']['name'];?></label>
                         <input type="text" class="form-control" name="msg_name" placeholder="<?php echo $lang['placeHolder']['name']; ?>" data-optional="true">
                     </div>
                     <div class="col-12 col-sm-6 py-2 py-sm-0">
                         <label for="msg_email">*<?php echo $lang['contactUs']['email'];?></label>
-                        <input type="email" class="form-control" name="msg_email" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email']; ?>" data-optional="false">
+                        <input type="email" class="form-control" name="msg_email" aria-describedby="emailHelp" placeholder="<?php echo $lang['placeHolder']['email']; ?>" data-optional="true">
                         <small id="emailHelp" class="form-text"><?php echo $lang['contactUs']['infoSharing'];?>.</small>
                     </div>
                     <div class="col-12 py-2">
@@ -166,15 +166,15 @@
     flatpickr("#date", {
         mode: "range",
         onChange: function(selectedDates, dateStr, instance) {
-            console.log(document.querySelector("#myID").value);
+            console.log(document.querySelector("#date").value);
         }
     });
     document.querySelector('#send-info').onclick = function(e){
         e.preventDefault();
-        sendEmail(this, '<?php echo $selectedLang; ?>');
+        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>');
     };
     document.querySelector('#send-feedback').onclick = function(e){
         e.preventDefault();
-        sendEmail(this, '<?php echo $selectedLang; ?>');
+        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>');
     };
 </script>

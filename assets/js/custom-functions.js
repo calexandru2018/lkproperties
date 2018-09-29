@@ -1,4 +1,4 @@
-function sendEmail(thisButton, lang){
+function sendEmail(thisButton, successMessage){
     console.clear();
     var error = thisButton.previousElementSibling;
     var loader = thisButton.nextElementSibling;
@@ -10,29 +10,28 @@ function sendEmail(thisButton, lang){
 
     collector.forEach(function(el){
         var name = el.name.split('_');
-        if(el.value != '' && (el.getAttribute('data-optional') == 'false' || el.getAttribute('data-optional') == false)){
-            if(name[1] == 'email' && validateEmail(el.value) == false)
-                errorCatcher.push(name[1]);
-            
-            formData.append(name[1], el.value);
-            console.log('Here: ', name[1], el.value);
+        if(el.value != '' || name[1] == 'date'){
+                if(name[1] == 'email' && validateEmail(el.value) == false)
+                    errorCatcher.push(name[1]);
+                else
+                    formData.append(name[1], el.value);
+                // console.log('Here: ', name[1], el.value);
         }else{
-            console.log('There', name[1], el.value);
+            // console.log('There2:', name[1], el.value);
             errorCatcher.push(name[1]); 
         }
     });
     if(dataType < 3)
         formData.append('publicID', form.getAttribute('data-id'));
-    formData.append('lang', lang);
+
     formData.append('type', dataType);
     console.log('Error Catcher: ', errorCatcher);
-    console.log('DataType: ', dataType);
     console.log(loader);
-    if((dataType === 4 && (errorCatcher.length >= 0 && errorCatcher.length <= 2)) || ((typeof errorCatcher === 'undefined' && errorCatcher.length == 0) || (errorCatcher[0] == 'date' && errorCatcher.length == 1))){
+    if((typeof errorCatcher === 'undefined' || errorCatcher.length == 0) || (errorCatcher[0] == 'date' && errorCatcher.length == 1)){
+        error.classList.add('invisible');
         thisButton.classList.add('invisible');
         loader.classList.remove('invisible');
-        error.classList.add('invisible');
-        clearInput(collector);
+        // clearInput(collector);
         fetch('ajax/send-mail.php', {
             method: 'POST',
             body: formData
@@ -40,9 +39,11 @@ function sendEmail(thisButton, lang){
         .then(response => response.text())
         .then(data => {
             if(!data)
-                showSnackbar('Mensagem enviada!')
+                showSnackbar(successMessage)
             loader.classList.add('invisible');
             thisButton.classList.remove('invisible');
+            console.log(data);
+            
         });
     }else{
         error.classList.remove('invisible');
