@@ -1,6 +1,24 @@
 <?php
     $new = new RentDetails($CONN->db);
     $fetched = $new->fetchRow($_GET['object'], $selectedLang);
+
+    if($fetched['viewType'] == 1){
+        $viewType = $lang['generalFiller']['beach'];
+    }elseif($fetched['viewType'] == 2){
+        $viewType = $lang['generalFiller']['pool'];
+    }else{
+        $viewType = $lang['generalFiller']['ns'];
+    }
+    switch($fetched['propertyType']){
+        case '0': $propertyType = $lang['generalFiller']['propertyType']['apt'];
+            break;
+        case '1': $propertyType = $lang['generalFiller']['propertyType']['house'];
+            break;
+        case '2': $propertyType = $lang['generalFiller']['propertyType']['villa'];
+            break;
+        case '3': $propertyType = $lang['generalFiller']['propertyType']['bungalow'];
+            break;
+    }
 ?>
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row mt-1">
@@ -18,6 +36,16 @@
             </div>
             <div class="col-12 px-0 text-justify">
                 <?php echo $fetched['description']; ?>
+            </div>
+            <div class="col-12 px-0 text-justify">
+                <div class="row text-center">
+                    <div class="col-4 col-sm-6 col-lg-4"><p class="card-text"><?php echo $fetched['beachDistance']; ?>(m) <i class="fas fa-umbrella-beach"></i></p></div>
+                    <div class="col-4 col-sm-6 col-lg-4"><p class="card-text"><?php echo $viewType; ?> <i class="fas fa-eye"></i></p></div>
+                    <div class="col-4 col-sm-6 col-lg-4 pt-sm-2 pt-lg-0"><p class="card-text"><?php echo (($fetched['hasPoolAccess'] == 1) ? $lang['generalFiller']['yes'] : $lang['generalFiller']['no']); ?> <i class="fas fa-swimming-pool"></i></p></div>
+                    <div class="col-4 col-sm-6 col-lg-4 pt-2"><p class="card-text"><?php echo $fetched['roomAmmount']; ?> <i class="fas fa-bed"></i></p></div>
+                    <div class="col-4 col-sm-6 col-lg-4 pt-2"><p class="card-text"><?php echo $fetched['maxAllowedGuests']; ?> <i class="fas fa-users"></i></p></div>
+                    <div class="col-4 col-sm-6 col-lg-4 pt-2"><p class="card-text"><?php echo $propertyType; ?> <i class="fas fa-building"></i></p></div>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 my-2">

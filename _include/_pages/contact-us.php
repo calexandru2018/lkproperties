@@ -78,26 +78,26 @@
                 </div>
             </form>
         </div>  
-        <div class="col-12 col-md-6 pb-5 pb-md-0">
+        <div class="col-12 col-md-6 px-0 pb-5 pb-md-0">
             <div class="row h-100">
                 <div class="col-12">
-                    <div class="row mx-2 pb-md-3 h-100 text-center">
-                        <div class="col-12 col-md-6 pt-1 pb-2">
+                    <div class="row pb-md-3 h-100 text-center">
+                        <div class="col-6 pt-1 pb-2">
                             <a href="https://www.facebook.com/gerencialiliaungureanu/" target="_new">
                             <i class="fab fa-facebook fa-10x"></i>
                             </a>
                         </div>
-                        <div class="col-12 col-md-6 pt-1 pb-2">
+                        <div class="col-6 pt-1 pb-2">
                             <a href="https://www.instagram.com/" target="_new">
                                 <i class="fab fa-instagram fa-10x"></i>
                             </a>
                         </div>
-                        <div class="col-12 col-md-6 pt-1 pb-2 pt-md-5">
+                        <div class="col-6 pt-1 pb-2 pt-md-5">
                             <a href="https://www.twitter.com/" target="_new">
                                 <i class="fab fa-twitter-square fa-10x"></i>
                             </a>
                         </div>
-                        <div class="col-12 col-md-6 pt-1 pb-2 pt-md-5">
+                        <div class="col-6 pt-1 pb-2 pt-md-5">
                             <a href="https://www.linkedin.com/" target="_new">
                                 <i class="fab fa-linkedin fa-10x"></i>
                             </a>

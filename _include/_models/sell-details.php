@@ -24,7 +24,13 @@
             $returnedObject = [];
             $queryCount = $this->db->query('
                 select 
-                    property_ID
+                    property_ID,
+                    roomAmmount,
+                    maxAllowedGuests, 
+                    beachDistance,
+                    hasPoolAccess,
+                    viewType,
+                    propertyType
                 from
                     property
                 where 
@@ -41,16 +47,21 @@
             $propertyID = $fetchCount->property_ID;
 
             $returnedObject['id'] = $propertyID;
+            $returnedObject['roomAmmount'] = $fetchCount->roomAmmount;
+            $returnedObject['maxAllowedGuests'] = $fetchCount->maxAllowedGuests;
+            $returnedObject['beachDistance'] = $fetchCount->beachDistance;
+            $returnedObject['hasPoolAccess'] = $fetchCount->hasPoolAccess;
+            $returnedObject['viewType'] = $fetchCount->viewType;
+            $returnedObject['propertyType'] = $fetchCount->propertyType;
             $returnedObject['publicID'] = $propertyPublicID;
             $returnedObject['objectGallery'] = $this->getObjectGallery($propertyID);
             $returnedObject['poiInfo'] = $this->getPoiID($propertyID, $lang);
             $returnedObject['poiGallery'] = $this->getPoiGallery($propertyID);
             $returnedObject['title'] = $this->getTitle($propertyID, $lang)['title'];
-            $returnedObject['price'] = $this->getPrice($propertyID);
+            $returnedObject['price'] = $this->getPrice($propertyID, $lang);
             $returnedObject['description'] = $this->getLongDesc($propertyID, $lang)['longDescription'];
             $returnedObject['servicesCommon'] = $this->getServicesCommon($propertyID, $lang);
             $returnedObject['servicesUnique'] = $this->getServicesUnique($propertyID, $lang);
-            
             return $returnedObject;
         }
 

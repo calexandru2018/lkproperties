@@ -24,7 +24,13 @@
             $returnedObject = [];
             $queryCount = $this->db->query('
                 select 
-                    property_ID
+                    property_ID,
+                    roomAmmount,
+                    maxAllowedGuests, 
+                    beachDistance,
+                    hasPoolAccess,
+                    viewType,
+                    propertyType
                 from
                     property
                 where 
@@ -41,6 +47,12 @@
             $propertyID = $fetchCount->property_ID;
 
             $returnedObject['id'] = $propertyID;
+            $returnedObject['roomAmmount'] = $fetchCount->roomAmmount;
+            $returnedObject['maxAllowedGuests'] = $fetchCount->maxAllowedGuests;
+            $returnedObject['beachDistance'] = $fetchCount->beachDistance;
+            $returnedObject['hasPoolAccess'] = $fetchCount->hasPoolAccess;
+            $returnedObject['viewType'] = $fetchCount->viewType;
+            $returnedObject['propertyType'] = $fetchCount->propertyType;
             $returnedObject['publicID'] = $propertyPublicID;
             $returnedObject['objectGallery'] = $this->getObjectGallery($propertyID);
             $returnedObject['poiInfo'] = $this->getPoiID($propertyID, $lang);
@@ -56,7 +68,7 @@
         private function getPublicID(int $propertyID){
             $result = $this->db->query('
                 select
-                    publicID 
+                    publicID
                 from 
                     property
                 where

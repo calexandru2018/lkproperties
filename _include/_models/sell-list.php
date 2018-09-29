@@ -54,7 +54,7 @@
             for($c = 0; $c < count($propertyIDCollection); $c++){
                 $returnedObjects[$c]['id'] = $propertyIDCollection[$c];
                 $returnedObjects[$c]['roomAmmount'] = $propertyRoomCollection[$c];
-                $returnedObjects[$c]['maxAllowedGuest'] = $propertyGuestsAmmountCollection[$c];
+                $returnedObjects[$c]['maxAllowedGuests'] = $propertyGuestsAmmountCollection[$c];
                 $returnedObjects[$c]['beachDistance'] = $propertybeachDistanceCollection[$c];
                 $returnedObjects[$c]['hasPoolAccess'] = $propertyhasPoolAccessCollection[$c];
                 $returnedObjects[$c]['viewType'] = $propertyviewTypeCollection[$c];

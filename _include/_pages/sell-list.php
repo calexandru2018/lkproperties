@@ -55,7 +55,7 @@
                                     <div class="col-4 col-sm-6 col-lg-4"><p class="card-text">'.$viewType.' <i class="fas fa-eye"></i></p></div>
                                     <div class="col-4 col-sm-6 col-lg-4 pt-sm-2 pt-lg-0"><p class="card-text">'.(($collector[$c1]['hasPoolAccess'] == 1) ? $lang['generalFiller']['yes'] : $lang['generalFiller']['no']).' <i class="fas fa-swimming-pool"></i></p></div>
                                     <div class="col-4 col-sm-6 col-lg-4 pt-2"><p class="card-text">'.$collector[$c1]['roomAmmount'].' <i class="fas fa-bed"></i></p></div>
-                                    <div class="col-4 col-sm-6 col-lg-4 pt-2"><p class="card-text">'.$collector[$c1]['maxAllowedGuest'].' <i class="fas fa-users"></i></p></div>
+                                    <div class="col-4 col-sm-6 col-lg-4 pt-2"><p class="card-text">'.$collector[$c1]['maxAllowedGuests'].' <i class="fas fa-users"></i></p></div>
                                     <div class="col-4 col-sm-6 col-lg-4 pt-2"><p class="card-text">'.$propertyType.' <i class="fas fa-building"></i></p></div>
                                 </div>
                             </div>
