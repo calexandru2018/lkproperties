@@ -23,7 +23,7 @@
             /* DEFAULT VALUES */
             if(isset($_GET) && count($_GET) > 1 && $_GET['show'] === 'filter'){
                 $collector = $new->fetchAll($_GET, $selectedLang);
-                // var_dump($collector);
+                // print_r($collector);
                 if($collector != false || !empty($collector)){
                     for($c1 = 0; $c1 < count($collector); $c1++){
                         if($collector[$c1]['viewType'] == 1){

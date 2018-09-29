@@ -97,9 +97,9 @@
             }
     
             if($sort == 'asc'){
-                $sort = 'order by property_price.minPrice asc';
+                $sort = 'order by property_price.'.(($isRent == 1) ? 'cat1': 'minPrice').' asc';
             }else{
-                $sort = 'order by property_price.maxPrice desc';
+                $sort = 'order by property_price.'.(($isRent == 1) ? 'cat1': 'minPrice').' desc';
             }
             $cityLeftJoinSQL = '';
             $poiLeftJoinSQL = '';
@@ -196,6 +196,8 @@
                 else if(strlen($dynamicSQLCity) > 2 && strlen($dynamicSQLPoi) > 2)
                     $baseSQL = $baseSQL.' and (('.$dynamicSQLPoi.')'.' or ('.$dynamicSQLPoi.'))';
             /* Dynamic sql builder */
+            
+            $baseSQL = $baseSQL.$sort;
 
             $query = $this->db->query($baseSQL);
             if(!$this->db->error){
