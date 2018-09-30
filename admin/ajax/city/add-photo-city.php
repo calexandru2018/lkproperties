@@ -35,10 +35,10 @@
             $fullsizeHandle->jpeg_quality = 60;
             $fullsizeHandle->file_safe_name = true;
             $fullsizeHandle->file_auto_rename = true;
-            if($fullsizeHandle->image_src_x > 2650){
+            if($fullsizeHandle->image_src_x > 1920){
                 $fullsizeHandle->image_resize = true;
                 $fullsizeHandle->image_ratio_y = true;
-                $fullsizeHandle->image_x = 2560;
+                $fullsizeHandle->image_x = 1920;
             }
             $fullsizeHandle->dir_auto_create = true;
             $fullsizeHandle->Process($commonURL.$cityID.'/fullsize/');
@@ -46,10 +46,10 @@
 
         /* Thumbnail handler */
             // $thumbnailHandle->file_new_name_body = ;
-            $thumbnailHandle->image_watermark = '../../assets/img/watermark.png';
-            $thumbnailHandle->image_watermark_no_zoom_in = false;
+            //$thumbnailHandle->image_watermark = '../../assets/img/watermark.png';
+            // $thumbnailHandle->image_watermark_no_zoom_in = false;
             $thumbnailHandle->image_convert = 'jpeg';
-            $thumbnailHandle->jpeg_quality = 30;
+            $thumbnailHandle->jpeg_quality = 45;
             $thumbnailHandle->file_safe_name = true;
             $thumbnailHandle->file_auto_rename = true;
             $thumbnailHandle->image_resize = true;

@@ -5,7 +5,8 @@
     require_once('../../_include/_models/to-rent.php');
     $conn = new Database();
     $toRent = new ToRent($conn->db);
-    $response = $toRent->delete($_POST['contentID']);
+    $basePath = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/gallery/rental/';
+    $response = $toRent->delete($_POST['contentID'], $basePath);
 
     $toRent->closeConnection($conn->db);
 

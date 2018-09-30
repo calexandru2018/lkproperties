@@ -513,7 +513,42 @@
 				}
             }
 
-            public function delete($propertyID){
+            public function delete(int $propertyID, string $basePath){
+				$sqlGetURL = '
+					select 
+						property_gallery_ID
+					from
+						property_gallery
+					where
+						property_ID = '.$propertyID.'
+				';
+
+				$queryGetURL = $this->db->query($sqlGetURL);
+
+				if($this->db->error)
+					return $this->db->error;
+				
+				while($r=$queryGetURL->fetch_object()){
+					$this->deletePhoto($propertyID.'-'.$r->property_gallery_ID, $basePath);
+				}
+				
+				if(file_exists($basePath.$propertyID)){
+					if(file_exists($basePath.$propertyID.'/fullsize'))
+						rmdir($basePath.$propertyID.'/fullsize');
+					
+					if(file_exists($basePath.$propertyID.'/thumbnail'))
+						rmdir($basePath.$propertyID.'/thumbnail');
+
+					if(!rmdir($basePath.$propertyID))
+						return false;
+					/* if((! || rmdir($basePath.$propertyID.'/fullsize')) && (!file_exists($basePath.$propertyID.'/thumbnail') || rmdir($basePath.$propertyID.'/thumbnail'))){
+						if(!rmdir($basePath.$propertyID))
+							return 'two';
+					}else{
+						return 'one';
+					} */
+				}
+
 				$sqlDelete = '
                 delete from 
                     property 
@@ -562,7 +597,7 @@
 			else
 				return true;
             }
-            public function deletePhoto(string $photoID){
+            public function deletePhoto(string $photoID, string $basePath){
 				$propertyPhotoID = explode('-', $photoID);
 				$sqlSearchURL = '
 					select 
@@ -586,10 +621,14 @@
 							property_gallery_ID = "'.$propertyPhotoID[1].'"';
 					
 					$queryDelete = $this->db->query($sqlDeletePhoto);
+					$basePath = $basePath.'/'.$propertyPhotoID[0].'/';
 					if($queryDelete){
-						return $urlHolder;
-					}else {
-						return 555;
+						if(unlink($basePath.'fullsize/'.$urlHolder->fullsizeURL) && unlink($basePath.'thumbnail/'.$urlHolder->thumbnailURL))
+							return true;
+						else 
+							return false;
+					}else{
+						return false;
 					}
 				}
 			}
@@ -672,13 +711,11 @@
 				$langSortedNames = array();
 				$errorCather = array();
 				$langCounter = 0;
-				// var_dump($inputArray);
 				foreach($inputArray as $key => $value){
 					$holder[] = explode('-', $key);                
 					$langSortedNames[strtolower($holder[$langCounter][1])][] = $value;
 					$langCounter++;
 				}
-				// var_dump($langSortedNames);
 				$fetchTitleLinkID = $this->db->query('
 					select 
 						long_desc_link_ID
@@ -774,12 +811,8 @@
 					return true;
 				else
 					return $errorCatcher; 
-					// print_r($sqlInsertCommonService);
-					// print_r($sqlInsertUniqueService);
-
 			}
 			public function updateOther(int $propertyID, array $inputArray){
-				// var_dump($inputArray);
 				$errorCatcher = array();
 				$sqlUpdateProperty = '
 					update
@@ -821,7 +854,7 @@
 			}
 			public function updatePriceList(int $propertyID, array $inputArray){
 
-				$minPrice = 1000000000;
+				$minPrice = 1000000000000;
 				$maxPrice = 0;
 
 				$c = 1;
@@ -846,12 +879,7 @@
 					if($maxPrice <=  $value[0]){
 						$maxPrice = (int) $value[0];
 					}
-					
-					// if($c == (count($inputArray) - 1)){
-						$sqlBase = $sqlBase.'cat'.$c.' = "'.mysqli_real_escape_string($this->db, $value[0]).'", ';
-					// }else {
-						// $sqlBase = $sqlBase.'cat'.$c.' = "'.mysqli_real_escape_string($this->db, $value[0]).'"';
-					// }
+					$sqlBase = $sqlBase.'cat'.$c.' = "'.mysqli_real_escape_string($this->db, $value[0]).'", ';
 					$c++;
 				}
 				$sqlBase = $sqlBase.'
