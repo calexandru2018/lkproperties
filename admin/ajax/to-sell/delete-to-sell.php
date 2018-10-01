@@ -5,7 +5,8 @@
     require_once('../../_include/_models/to-sell.php');
     $conn = new Database();
     $toSell = new ToSell($conn->db);
-    $response = $toSell->delete($_POST['contentID']);
+    $basePath = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/gallery/sale/';
+    $response = $toSell->delete($_POST['contentID'], $basePath);
 
     $toSell->closeConnection($conn->db);
 

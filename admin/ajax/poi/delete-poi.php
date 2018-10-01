@@ -5,7 +5,8 @@
     require_once('../../_include/_models/poi.php');
     $conn = new Database();
     $poi = new Poi($conn->db);
-    $response = $poi->deletePoi($_POST['contentID']);
+    $basePath = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/gallery/poi/';
+    $response = $poi->deletePoi($_POST['contentID'], $basePath);
 
     $poi->closeConnection($conn->db);
 

@@ -5,7 +5,8 @@
     require_once('../../_include/_models/admin.php');
     $deleteConn = new Database();
     $deleteAdmin = new Administrator($deleteConn->db);
-    $response = $deleteAdmin->deleteAdmin($_POST['contentID']);
+    $basePath = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/gallery/ourstaff/';
+    $response = $deleteAdmin->deleteAdmin($_POST['contentID'], $basePath);
 
     $deleteAdmin->closeConnection($deleteConn->db);
 

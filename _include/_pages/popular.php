@@ -20,7 +20,6 @@
             <div class="py-2">
                 <figure class="figure">
                     <img src="gallery/<?php echo $cat.'/'.$fetched[4].'/fullsize/'.$fetched[3];?>" class="figure-img img-fluid rounded" style="box-shadow: 0px 33px 10px -30px black" alt="A placeholder.">
-                    <!-- <figcaption class="figure-caption px-1"></figcaption> -->
                 </figure>
             </div>
             <div class="px-0 py-2">

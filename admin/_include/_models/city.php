@@ -145,7 +145,38 @@
                 return false;
             }
         }
-        public function deleteCity(int $cityID){
+        public function deleteCity(int $cityID, string $basePath){
+            $sqlGetURL = '
+            select 
+                city_gallery_ID
+            from
+                city_gallery
+            where
+                city_link_ID = '.$cityID.'
+            ';
+
+            $queryGetURL = $this->db->query($sqlGetURL);
+
+            if($this->db->error)
+                return $this->db->error;
+            
+            while($r=$queryGetURL->fetch_object()){
+                $t = $this->deletePhoto($cityID.'-'.$r->city_gallery_ID, $basePath, true);
+                if($t !== true)
+                    return $t;
+            }
+            
+            if(file_exists($basePath.$cityID)){
+                if(file_exists($basePath.$cityID.'/fullsize'))
+                    rmdir($basePath.$cityID.'/fullsize');
+                
+                if(file_exists($basePath.$cityID.'/thumbnail'))
+                    rmdir($basePath.$cityID.'/thumbnail');
+
+                if(!rmdir($basePath.$cityID))
+                    return false;
+            }
+
             $sqlDelete = 'delete from city_link where city_link_ID = '.$cityID;
             $queryDelete = $this->db->query($sqlDelete);
             if($this->db->affected_rows == 1)
@@ -252,8 +283,8 @@
             else
                 return true;
         }
-        public function deleteCityPhoto(string $photoID){
-            $cityPhotoID = explode('-', $photoID);
+        public function deletePhoto(string $photoID, string $basePath, int $deleteAll = null){
+            $photoID = explode('-', $photoID);
             $sqlSearchURL = '
                 select 
                     fullsizeURL,
@@ -261,24 +292,29 @@
                 from
                     city_gallery
                 where 
-                    city_link_ID = "'.$cityPhotoID[0].'"
+                    city_link_ID = "'.$photoID[0].'"
                     and
-                    city_gallery_ID = "'.$cityPhotoID[1].'"
+                    city_gallery_ID = "'.$photoID[1].'"
             ';
-            if($queryDeletePhoto = $this->db->query($sqlSearchURL)){
-                $urlHolder = $queryDeletePhoto->fetch_object();
+            if($queryDelete = $this->db->query($sqlSearchURL)){
+                $urlHolder = $queryDelete->fetch_object();
                 $sqlDeletePhoto = '
                     delete from
                         city_gallery
                     where   
-                        city_link_ID = "'.$cityPhotoID[0].'"
+                        city_link_ID = "'.$photoID[0].'"
                         and
-                        city_gallery_ID = "'.$cityPhotoID[1].'"';
+                        city_gallery_ID = "'.$photoID[1].'"';
                 
-                $queryDeletePhoto = $this->db->query($sqlDeletePhoto);
-                if($queryDeletePhoto){
-                    return $urlHolder;
-                }else {
+                $queryDelete = $this->db->query($sqlDeletePhoto);
+                if($deleteAll)
+                    $basePath = $basePath.'/'.$photoID[0].'/';
+                if($queryDelete){
+                    if(unlink($basePath.'fullsize/'.$urlHolder->fullsizeURL) && unlink($basePath.'thumbnail/'.$urlHolder->thumbnailURL))
+                        return true;
+                    else 
+                        return false;
+                }else{
                     return false;
                 }
             }

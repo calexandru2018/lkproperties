@@ -82,13 +82,13 @@
             $sql = '
                 insert into 
                     webpage
-                        (
+                    (
                         mainImageURL 
-                        )
+                    )
                     values
-                        (
-                            "'.mysqli_real_escape_string($dbConn, $url).'"
-                        )
+                    (
+                        "'.mysqli_real_escape_string($dbConn, $url).'"
+                    )
             ';
         }else{
             $sql = '

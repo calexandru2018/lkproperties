@@ -529,7 +529,7 @@
 					return $this->db->error;
 				
 				while($r=$queryGetURL->fetch_object()){
-					$this->deletePhoto($propertyID.'-'.$r->property_gallery_ID, $basePath);
+					$this->deletePhoto($propertyID.'-'.$r->property_gallery_ID, $basePath, true);
 				}
 				
 				if(file_exists($basePath.$propertyID)){
@@ -541,12 +541,6 @@
 
 					if(!rmdir($basePath.$propertyID))
 						return false;
-					/* if((! || rmdir($basePath.$propertyID.'/fullsize')) && (!file_exists($basePath.$propertyID.'/thumbnail') || rmdir($basePath.$propertyID.'/thumbnail'))){
-						if(!rmdir($basePath.$propertyID))
-							return 'two';
-					}else{
-						return 'one';
-					} */
 				}
 
 				$sqlDelete = '
@@ -597,7 +591,7 @@
 			else
 				return true;
             }
-            public function deletePhoto(string $photoID, string $basePath){
+            public function deletePhoto(string $photoID, string $basePath, int $deleteAll = null){
 				$propertyPhotoID = explode('-', $photoID);
 				$sqlSearchURL = '
 					select 
@@ -621,7 +615,8 @@
 							property_gallery_ID = "'.$propertyPhotoID[1].'"';
 					
 					$queryDelete = $this->db->query($sqlDeletePhoto);
-					$basePath = $basePath.'/'.$propertyPhotoID[0].'/';
+					if($deleteAll)
+						$basePath = $basePath.'/'.$propertyPhotoID[0].'/';
 					if($queryDelete){
 						if(unlink($basePath.'fullsize/'.$urlHolder->fullsizeURL) && unlink($basePath.'thumbnail/'.$urlHolder->thumbnailURL))
 							return true;

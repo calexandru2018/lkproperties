@@ -71,8 +71,16 @@
                     return false;
                 }
             }
-            public function deleteAdmin(int $adminID){
-                $sqlDelete = 'delete from admin where admin_ID = '.(int)$adminID;
+            public function deleteAdmin(int $adminID, string $basePath){
+
+                if($this->deletePhoto($adminID, $basePath) !== true)
+                    return false;
+
+                $sqlDelete = '
+                    delete from 
+                        admin 
+                    where 
+                        admin_ID = '.(int)$adminID;
                 $queryDelete = $this->db->query($sqlDelete);
                 if($this->db->affected_rows == 1)
                     return true;
@@ -96,11 +104,15 @@
                     return false;
             }
             public function updateAdminOtherSettings(int $adminID, int $privilege, string $isActive, string $isPublic){
-                $sqlUpdateAdmin = 'update admin set 
+                $sqlUpdateAdmin = '
+                    update 
+                        admin 
+                    set 
                         isActive = "'.(($isActive == 'checked') ? 1:0).'", 
                         isPublicVisible = "'.(($isPublic == 'checked') ? 1:0).'", 
                         adminPrivilege = "'.$privilege.'" 
-                    where admin_ID = '.$adminID;
+                    where 
+                        admin_ID = '.$adminID;
                 $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
                 if($this->db->affected_rows == 1)
                     return true;
@@ -108,29 +120,52 @@
                     return false;
             }
             public function addAdminPhoto(int $adminID, string  $url){
-                $sqlUpdateAdmin = 'update admin set 
+                $sqlUpdateAdmin = '
+                    update 
+                        admin 
+                    set 
                         thumbnailURL = "'.$url.'"
-                    where admin_ID = '.$adminID;
+                    where 
+                        admin_ID = '.$adminID;
                 $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
                 if($this->db->error)
                     return $this->db->error;
                 else
                     return true;
             }
-            public function deleteAdminPhoto(int $adminID){
-                $sqlUpdateAdmin = 'update admin set 
+            public function deletePhoto(int $adminID, string $basePath, int $deleteAll = null){
+                $sqlSearchURL = '
+                    select
+                        thumbnailURL
+                    from
+                        admin
+                    where 
+                        admin_ID = "'.$adminID.'"
+                ';
+
+                if($queryFetchURL = $this->db->query($sqlSearchURL)){
+                    $queryFetchResult = $queryFetchURL->fetch_object();
+
+                    if(!$deleteAll){
+                        $sqlDeletePhoto = '
+                        update 
+                            admin 
+                        set 
                             thumbnailURL = NULL
-                        where admin_ID = '.$adminID;
-                $sqlFetchURL = 'select thumbnailURL from admin where admin_ID = '.$adminID;
-                $queryFetchURL = $this->db->query($sqlFetchURL);
-                    if($queryFetchURL){
-                        $queryFetchResult = $queryFetchURL->fetch_object();
-                        $queryUpdateAdmin = $this->db->query($sqlUpdateAdmin);
-                        if($this->db->affected_rows == 1)
-                            return $queryFetchResult->thumbnailURL;
-                        else
-                            return false;
+                        where 
+                            admin_ID = '.$adminID;    
+                        $queryDelete = $this->db->query($sqlDeletePhoto);
                     }
+
+                    if($queryDelete || $deleteAll){
+                        if(unlink($basePath.$queryFetchResult->thumbnailURL))
+                            return true;
+                        else 
+                            return false;
+                    }else{
+                        return false;
+                    }
+                }
             }
         /* DATABASE FUNCTIONS */
 

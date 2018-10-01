@@ -5,7 +5,8 @@
     require_once('../../_include/_models/city.php');
     $conn = new Database();
     $city = new City($conn->db);
-    $response = $city->deleteCity($_POST['contentID']);
+    $basePath = $_SERVER['DOCUMENT_ROOT'].'/lkproperties/gallery/city/';
+    $response = $city->deleteCity($_POST['contentID'], $basePath);
 
     $city->closeConnection($conn->db);
 

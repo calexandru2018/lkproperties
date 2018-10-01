@@ -235,7 +235,38 @@
                 return false;
             }
         }
-        public function deletePoi(int $poiID){
+        public function deletePoi(int $poiID, string $basePath){
+            $sqlGetURL = '
+            select 
+                poi_gallery_ID
+            from
+                poi_gallery
+            where
+                poi_link_ID = '.$poiID.'
+            ';
+
+            $queryGetURL = $this->db->query($sqlGetURL);
+
+            if($this->db->error)
+                return $this->db->error;
+            
+            while($r=$queryGetURL->fetch_object()){
+                $t = $this->deletePhoto($poiID.'-'.$r->poi_gallery_ID, $basePath, true);
+                if($t !== true)
+                    return $t;
+            }
+
+            if(file_exists($basePath.$poiID)){
+                if(file_exists($basePath.$poiID.'/fullsize'))
+                    rmdir($basePath.$poiID.'/fullsize');
+                
+                if(file_exists($basePath.$poiID.'/thumbnail'))
+                    rmdir($basePath.$poiID.'/thumbnail');
+
+                if(!rmdir($basePath.$poiID))
+                    return false;
+            }
+
             $sqlDelete = '
                 delete from 
                     poi_link 
@@ -371,8 +402,8 @@
             else
                 return true;
         }
-        public function deletePoiPhoto(string $photoID){
-            $poiPhotoID = explode('-', $photoID);
+        public function deletePhoto(string $photoID, string $basePath, int $deleteAll = null){
+            $photoID = explode('-', $photoID);
             $sqlSearchURL = '
                 select 
                     fullsizeURL,
@@ -380,9 +411,9 @@
                 from
                     poi_gallery
                 where 
-                    poi_link_ID = "'.$poiPhotoID[0].'"
-                    and
-                    poi_gallery_ID = "'.$poiPhotoID[1].'"
+                    poi_link_ID = "'.$photoID[0].'"
+                and
+                    poi_gallery_ID = "'.$photoID[1].'"
             ';
             if($queryDelete = $this->db->query($sqlSearchURL)){
                 $urlHolder = $queryDelete->fetch_object();
@@ -390,14 +421,19 @@
                     delete from
                         poi_gallery
                     where   
-                        poi_link_ID = "'.$poiPhotoID[0].'"
-                        and
-                        poi_gallery_ID = "'.$poiPhotoID[1].'"';
+                        poi_link_ID = "'.$photoID[0].'"
+                    and
+                        poi_gallery_ID = "'.$photoID[1].'"';
                 
                 $queryDelete = $this->db->query($sqlDeletePhoto);
+                if($deleteAll)
+                    $basePath = $basePath.'/'.$photoID[0].'/';
                 if($queryDelete){
-                    return $urlHolder;
-                }else {
+                    if(unlink($basePath.'fullsize/'.$urlHolder->fullsizeURL) && unlink($basePath.'thumbnail/'.$urlHolder->thumbnailURL))
+                        return true;
+                    else 
+                        return false;
+                }else{
                     return false;
                 }
             }

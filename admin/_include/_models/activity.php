@@ -203,7 +203,38 @@
                 return false;
             }
         }
-        public function deleteActivity(int $activityID){
+        public function deleteActivity(int $activityID, string $basePath){
+            $sqlGetURL = '
+            select 
+                activity_gallery_ID
+            from
+                activity_gallery
+            where
+                activity_link_ID = '.$activityID.'
+            ';
+
+            $queryGetURL = $this->db->query($sqlGetURL);
+
+            if($this->db->error)
+                return $this->db->error;
+            
+            while($r=$queryGetURL->fetch_object()){
+                $t = $this->deletePhoto($activityID.'-'.$r->activity_gallery_ID, $basePath, true);
+                if($t !== true)
+                    return $t;
+            }
+            
+            if(file_exists($basePath.$activityID)){
+                if(file_exists($basePath.$activityID.'/fullsize'))
+                    rmdir($basePath.$activityID.'/fullsize');
+                
+                if(file_exists($basePath.$activityID.'/thumbnail'))
+                    rmdir($basePath.$activityID.'/thumbnail');
+
+                if(!rmdir($basePath.$activityID))
+                    return false;
+            }
+
             $sqlDelete = '
                 delete from 
                     activity_link 
@@ -313,8 +344,8 @@
             else
                 return true;
         }
-        public function deleteActivityPhoto(string $photoID){
-            $activityPhotoID = explode('-', $photoID);
+        public function deletePhoto(string $photoID, string $basePath, int $deleteAll = null){
+            $photoID = explode('-', $photoID);
             $sqlSearchURL = '
                 select 
                     fullsizeURL,
@@ -322,9 +353,9 @@
                 from
                     activity_gallery
                 where 
-                    activity_link_ID = "'.$activityPhotoID[0].'"
-                    and
-                    activity_gallery_ID = "'.$activityPhotoID[1].'"
+                    activity_link_ID = "'.$photoID[0].'"
+                and
+                    activity_gallery_ID = "'.$photoID[1].'"
             ';
             if($queryDelete = $this->db->query($sqlSearchURL)){
                 $urlHolder = $queryDelete->fetch_object();
@@ -332,14 +363,19 @@
                     delete from
                         activity_gallery
                     where   
-                        activity_link_ID = "'.$activityPhotoID[0].'"
-                        and
-                        activity_gallery_ID = "'.$activityPhotoID[1].'"';
+                        activity_link_ID = "'.$photoID[0].'"
+                    and
+                        activity_gallery_ID = "'.$photoID[1].'"';
                 
                 $queryDelete = $this->db->query($sqlDeletePhoto);
+                if($deleteAll)
+                    $basePath = $basePath.'/'.$photoID[0].'/';
                 if($queryDelete){
-                    return $urlHolder;
-                }else {
+                    if(unlink($basePath.'fullsize/'.$urlHolder->fullsizeURL) && unlink($basePath.'thumbnail/'.$urlHolder->thumbnailURL))
+                        return true;
+                    else 
+                        return false;
+                }else{
                     return false;
                 }
             }
