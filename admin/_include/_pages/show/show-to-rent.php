@@ -333,7 +333,8 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                                 };
                                 // $propertyType = ['Apartamento', 'Casa', 'Vila', 'Bungalow'];
                                 // $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
-                                echo '<tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'">';
+                                echo '
+                                <tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'">';
                                 echo '<td>'.$resp[$toRentCounter]->publicID.'</td>';
                                 echo '<td>'.$resp[$toRentCounter]->title.'</td>';
                                 echo '<td>'.$resp[$toRentCounter]->nameTranslated.'</td>';
@@ -350,11 +351,14 @@ $propertyView = ['Nenhuma', 'Praia', 'Piscina'];
                                         <a class="btn btn-info btn-xs" id="show-gallery" href="#collapseGallery-'.$resp[$toRentCounter]->property_ID.'" data-toggle="collapse">
                                             <i class="lnr lnr-plus-circle"></i>
                                         </a>
-                                </td>';
-                                echo '<td>
-                                    <a href="?edit=to-rent&id='.$resp[$toRentCounter]->property_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
-                                    <button class="btn btn-danger btn-xs pull-right" id="delete-to_rent"><span class="lnr lnr-trash"></span></button>
-                                </td></tr>';
+                                     </td>
+                                ';
+                                echo '
+                                    <td>
+                                        <a href="?edit=to-rent&id='.$resp[$toRentCounter]->property_ID.'" class="btn btn-info btn-xs pull-left"  style="margin-bottom: 15px"><span class="lnr lnr-pencil"></span></a>
+                                        <button class="btn btn-danger btn-xs pull-right" id="delete-to_rent"><span class="lnr lnr-trash"></span></button>
+                                    </td>
+                                </tr>';
                                 echo'
                                 <tr data-content-type="to_rent" data-content-id="'.$resp[$toRentCounter]->property_ID.'" id="collapseGallery-'.$resp[$toRentCounter]->property_ID.'" class="collapse">
                                     <td colspan="14" class="bg-info">

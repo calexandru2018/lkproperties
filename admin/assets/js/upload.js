@@ -7,10 +7,13 @@ function uploadPhotos(url, queryCollection){
             el.addEventListener('submit', e => {
                 e.preventDefault();
                 loadingGifEl = el.nextElementSibling;
+                button = el.closest('form').querySelector('input[type=submit]');
                 console.log(loadingGifEl);
+                console.log(button);
+                
                 if (loadingGifEl.classList.contains('hidden')) {
                     loadingGifEl.classList.remove('hidden');
-                    loadingGifEl.classList.add('show');
+                    button.classList.add('hidden');
                 }
                  const files = el.querySelector('[type=file]').files;
                 // const contentID = el.closest('tr').getAttribute('data-content-id');
@@ -32,21 +35,19 @@ function uploadPhotos(url, queryCollection){
                 })
                 .then(response => response.text())
                 .then(data => {
-                    if (this.loadingGifEl.classList.contains('show')) {
-                        this.loadingGifEl.classList.remove('show');
-                        this.loadingGifEl.classList.add('hidden');
+                    if (button.classList.contains('hidden')) {
+                        button.classList.remove('hidden');
+                        loadingGifEl.classList.add('hidden');
                     }
-                    if(Number.isInteger(parseInt(data)) == true)
-                        alert('Upload feito');
-                    else
+                    if(Number.isInteger(parseInt(data)) != true)
                         alert('Erro ao inserir na base de dados');
 
                     console.log(data);
                 })
                 .catch(function(error){
-                    if (this.loadingGifEl.classList.contains('show')) {
-                        this.loadingGifEl.classList.remove('show');
-                        this.loadingGifEl.classList.add('hidden');
+                    if (button.classList.contains('hidden')) {
+                        button.classList.remove('hidden');
+                        loadingGifEl.classList.add('hidden');
                     }
                     alert('Erro em fazer upload');
                     console.log(error);
