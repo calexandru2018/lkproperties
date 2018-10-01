@@ -117,8 +117,8 @@
                                             <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]">
                                             <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
                                         </form>
-                                        <div class="loading-gif hidden">
-                                            <img style="margin-left: 25%" src="assets/img/processing.gif" alt="A carregar"/>
+                                        <div class="cssload-container hidden">
+                                            <div class="cssload-whirlpool"></div>
                                         </div>
                                     </td>
                                 </tr>

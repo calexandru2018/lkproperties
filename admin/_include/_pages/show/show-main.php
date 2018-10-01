@@ -8,6 +8,9 @@
             <input type="file" class="btn btn-info pull-left" size="100" name="image_field[]">
             <input type="submit" class="btn btn-primary pull-right" name="Submit" value="Upload">
         </form>
+        <div class="cssload-container hidden">
+            <div class="cssload-whirlpool"></div>
+        </div>
     </div>
 </div>
 <script>
