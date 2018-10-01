@@ -13,13 +13,11 @@
         $videoBox = '';
         // print_r($fetched);
 ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
-
     <div class="custom-container mx-sm-auto px-4 px-md-2 rounded text-muted">
         <div class="d-flex flex-column">
             <div class="py-2">
                 <figure class="figure">
-                    <img src="gallery/<?php echo $cat.'/'.$fetched[4].'/fullsize/'.$fetched[3];?>" class="figure-img img-fluid rounded" style="box-shadow: 0px 33px 10px -30px black" alt="A placeholder.">
+                    <img src="<?php echo $GLOBALS['absPath'];?>gallery/<?php echo $cat.'/'.$fetched[4].'/fullsize/'.$fetched[3];?>" class="figure-img img-fluid rounded" style="box-shadow: 0px 33px 10px -30px black" alt="A placeholder.">
                 </figure>
             </div>
             <div class="px-0 py-2">
@@ -65,8 +63,8 @@
                         for($c = 0; $c < count($gallery); $c++){
                             echo '
                                 <div class="col-sm-6 col-lg-4 item text-center">
-                                    <a class="lightbox" href="gallery/'.$cat.'/'.$fetched[4].'/fullsize/'.$gallery[$c].'">
-                                        <img class="img-fluid image scale-on-hover" src="gallery/'.$cat.'/'.$fetched[4].'/thumbnail/'.$gallery[$c].'">
+                                    <a class="lightbox" href="'.$GLOBALS['absPath'].'gallery/'.$cat.'/'.$fetched[4].'/fullsize/'.$gallery[$c].'">
+                                        <img class="img-fluid image scale-on-hover" src="'.$GLOBALS['absPath'].'gallery/'.$cat.'/'.$fetched[4].'/thumbnail/'.$gallery[$c].'">
                                     </a>
                                 </div>
                             ';

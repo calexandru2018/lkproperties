@@ -1,6 +1,7 @@
 <?php
     $new = new RentDetails($CONN->db);
-    $fetched = $new->fetchRow($_GET['object'], $selectedLang);
+    // var_dump($_GET);
+    $fetched = $new->fetchRow($_GET['id'], $selectedLang);
 
     if($fetched['viewType'] == 1){
         $viewType = $lang['generalFiller']['beach'];
@@ -23,7 +24,7 @@
 <div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
     <div class="row mt-1">
         <div class="col-12">
-            <img src="gallery/rental/<?php echo (($fetched['objectGallery']) ? $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0]:'') ?>" class="img-fluid rounded" alt="">
+            <img src="<?php echo $GLOBALS['absPath']; ?>gallery/rental/<?php echo (($fetched['objectGallery']) ? $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0]:'') ?>" class="img-fluid rounded" alt="">
         </div>
     </div>
     <div class="row">
@@ -76,8 +77,8 @@
                             for($i=0; $i < count($fetched['objectGallery']); $i++){
                                 echo '
                                     <div class="col-4 item">
-                                        <a class="lightbox" href="gallery/rental/'.$fetched['id'].'/fullsize/'.$fetched['objectGallery'][$i].'">
-                                            <img class="img-fluid image rounded scale-on-hover" src="gallery/rental/'.$fetched['id'].'/thumbnail/'.$fetched['objectGallery'][$i].'">
+                                        <a class="lightbox" href="'.$GLOBALS['absPath'].'gallery/rental/'.$fetched['id'].'/fullsize/'.$fetched['objectGallery'][$i].'">
+                                            <img class="img-fluid image rounded scale-on-hover" src="'.$GLOBALS['absPath'].'gallery/rental/'.$fetched['id'].'/thumbnail/'.$fetched['objectGallery'][$i].'">
                                         </a>
                                     </div>
                                 ';
@@ -96,8 +97,8 @@
                             for($i=0; $i < count($fetched['poiGallery']); $i++){
                                 echo '
                                     <div class="col-4 item">
-                                        <a class="lightbox" href="gallery/poi/'.$fetched['poiInfo']['id'].'/fullsize/'.$fetched['poiGallery'][$i].'">
-                                            <img class="img-fluid image rounded scale-on-hover" src="gallery/poi/'.$fetched['poiInfo']['id'].'/thumbnail/'.$fetched['poiGallery'][$i].'">
+                                        <a class="lightbox" href="'.$GLOBALS['absPath'].'gallery/poi/'.$fetched['poiInfo']['id'].'/fullsize/'.$fetched['poiGallery'][$i].'">
+                                            <img class="img-fluid image rounded scale-on-hover" src="'.$GLOBALS['absPath'].'gallery/poi/'.$fetched['poiInfo']['id'].'/thumbnail/'.$fetched['poiGallery'][$i].'">
                                         </a>
                                     </div>
                                 ';

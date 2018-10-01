@@ -216,19 +216,24 @@
         var userInp = collectInput(inp);
         var customURL = urlBuilder(userInp);
         var url_string = window.location.href;
-        if(url_string.includes('&show=for-sale&')){
-            url_string = url_string.replace('&show=for-sale&', '&');
+        // console.log(url_string);
+        
+/*         if(url_string.includes('for-sale')){
+            var new_url_string = url_string.split('=')
+            url_string = new_url_string[1].replace('for-sale', '/');
         }else if(url_string.includes('&show=for-sale')){
             url_string = url_string.replace('&show=for-sale', '');
-        }
+        } */
         var url = new URL(url_string);
         var filter = url.searchParams.get("show");
         if(filter == 'filter'){
             splittedURL = url_string.split('show=filter');
-            var new_url = splittedURL[0]+'show=filter'+customURL;
+            var new_url = splittedURL[0]+'/filter'+customURL;
         }else{
-            var new_url = url_string+'&show=filter'+customURL;
+            var new_url = url_string+'/filter'+customURL;
         }
-        window.location.href = new_url;
+        window.location.replace(new_url);
+        // console.log(new_url);
+        
     });
 </script>

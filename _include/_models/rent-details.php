@@ -268,7 +268,7 @@
             and
                 poi_translation.langCode = "'.$lang.'" 
             ');
-            if($this->db->error)
+            if($this->db->error || $query->num_rows <= 0)
                 return false;
 
             $fetch = $query->fetch_object();

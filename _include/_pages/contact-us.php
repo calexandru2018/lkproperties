@@ -145,7 +145,7 @@
                             <div class="col-12 col-sm-'.(($colWidth == 4) ? 6 : $colWidth).' col-lg-'.$colWidth.' my-3">
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <img src="gallery/ourstaff/'.$adminList[$i]['url'].'" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
+                                        <img src="'.$GLOBALS['absPath'].'gallery/ourstaff/'.$adminList[$i]['url'].'" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
                                     </div>
                                 </div>
                                 <div class="row text-center my-2">

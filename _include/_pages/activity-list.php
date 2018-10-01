@@ -28,7 +28,7 @@
                                     <div class="col-12">
                                         <h2>'.$fetched[$c][0].'</h2>
                                         <figure class="figure mb-2">
-                                            <img src="gallery/activity/'.$fetched[$c][3].'/fullsize/'.$fetched[$c+1][0].'" class="figure-img img-fluid rounded shadow-sm" alt="A generic square placeholder image with rounded corners in a figure.">
+                                            <img src="'.$GLOBALS['absPath'].'gallery/activity/'.$fetched[$c][3].'/fullsize/'.$fetched[$c+1][0].'" class="figure-img img-fluid rounded shadow-sm" alt="A generic square placeholder image with rounded corners in a figure.">
                                             <!--<figcaption class="figure-caption">A caption for the above image.</figcaption>-->
                                         </figure>
                                         <div class="text-justify">
@@ -43,8 +43,8 @@
                         for($c2 = 0; $c2 < count($fetched[$c]); $c2++){ 
                             $showImages = $showImages.'
                                                 <div class="col-4 item">
-                                                    <a class="lightbox" href="gallery/activity/'.$fetched[$c-1][3].'/fullsize/'.$fetched[$c][$c2].'">
-                                                        <img class="img-fluid image scale-on-hover" src="gallery/activity/'.$fetched[$c-1][3].'/thumbnail/'.$fetched[$c][$c2].'">
+                                                    <a class="lightbox" href="'.$GLOBALS['absPath'].'gallery/activity/'.$fetched[$c-1][3].'/fullsize/'.$fetched[$c][$c2].'">
+                                                        <img class="img-fluid image scale-on-hover" src="'.$GLOBALS['absPath'].'gallery/activity/'.$fetched[$c-1][3].'/thumbnail/'.$fetched[$c][$c2].'">
                                                     </a>
                                                 </div>';
                         }
@@ -60,7 +60,8 @@
                 echo $showImages;
             ?>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script>
         baguetteBox.run('.gallery-block');
     </script>
-<?php  ?>

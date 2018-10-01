@@ -1,16 +1,17 @@
-# BEGIN Expires
-<ifModule mod_expires.c>
-	ExpiresActive On
-	ExpiresDefault "access plus 3 seconds"
-	ExpiresByType text/html "access plus 3 seconds"
-	ExpiresByType image/gif "access plus 2419200 seconds"
-	ExpiresByType image/jpeg "access plus 2419200 seconds"
-	ExpiresByType image/png "access plus 2419200 seconds"
-	ExpiresByType text/css "access plus 2419200 seconds"
-	ExpiresByType text/javascript "access plus 2419200 seconds"
-	ExpiresByType application/x-javascript "access plus 2419200 seconds"
-</ifModule>
-# END Expires
+RewriteEngine ON
+#RewriteCond %{SERVER_PORT} 80
+#RewriteCond %{HTTP_HOST} ^(www\.)?lk-properties\.pt
+#RewriteCond %{HTTP_HOST} ^(admin\.)?lk-properties\.pt
+
+#RewriteRule ^(.*)$ https://lk-properties.pt/$1 [R,L]
+#Show language
+RewriteRule ^([a-z]+)$ index.php?lang=$1 [NC]
+#Show Activities/Contact Us/FAQ
+RewriteRule ^([a-z]+)/([a-z-]+)$ index.php?lang=$1&show=$2 [NC,L]
+#Show popular POI/CITY
+RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)$ index.php?lang=$1&show=$2&id=$3 [NC]
+#Show filtered
+RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC,L]
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html
@@ -45,4 +46,34 @@
     BrowserMatch ^Mozilla/4\.0[678] no-gzip
     BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </IfModule>
+
+#Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Video
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType video/mpeg "access plus 1 month"
+
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+
+  # Others
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+</IfModule>
+
+# One month for most static assets
+<filesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
+  Header set Cache-Control "max-age=2628000, public"
+</filesMatch>
 

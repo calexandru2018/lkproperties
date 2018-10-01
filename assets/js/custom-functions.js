@@ -74,7 +74,7 @@ function urlBuilder(input){
     var url = '';
     for (var key in input) {
         var name = key.split('_');
-        url = url + '&' + name[1] + "=" + input[key];
+        url = url + '/' + input[key];
     }
     return url;
 }
