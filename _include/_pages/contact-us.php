@@ -142,7 +142,7 @@
                     }
                     for($i = 0; $i < $c; $i++){
                         echo'
-                            <div class="col-12 col-sm-6 col-lg-'.$colWidth.' my-3">
+                            <div class="col-12 col-sm-'.(($colWidth == 4) ? 6 : $colWidth).' col-lg-'.$colWidth.' my-3">
                                 <div class="row text-center">
                                     <div class="col-12">
                                         <img src="gallery/ourstaff/'.$adminList[$i]['url'].'" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
