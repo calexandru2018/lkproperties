@@ -21,7 +21,7 @@
                         <?php 
                             $allPoi = fetchAllPoi($CONN->db, $selectedLang);
                             foreach((array)$allPoi as $key => $value){
-                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular/point-of-interest/'.$key.'/'.urlencode(str_replace(' ', '-', $value)).'">'.$value.'</a>';
+                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular/point-of-interest/'.$key.'/'.specialCharCleaner($value).'">'.$value.'</a>';
                             }
                         ?>
                         <div class="dropdown-divider"></div>
@@ -31,7 +31,7 @@
                             $allCities = fetchAllCity($CONN->db, $selectedLang);
                             // var_dump($allCities);
                             foreach((array)$allCities as $key => $value){
-                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular/city/'.$key.'/'.specialCharCleaner($value).'-'.$value.'">'.$value.'</a>';
+                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular/city/'.$key.'/'.specialCharCleaner($value).'">'.$value.'</a>';
                             }
                         ?>
                     </div>
@@ -98,34 +98,13 @@
         return $output;
     }
     function specialCharCleaner($string){
-        $cheatSheet = [
-            'ç' => 'c',
-            'ã' => 'a',
-            'â' => 'a',
-            'á' => 'a',
-            'à' => 'a',
-            'õ' => 'o',
-            'ó' => 'o',
-            'ò' => 'o',
-            'ô' => 'o',
-            'é' => 'e',
-            'è' => 'e',
-            'ê' => 'e',
-            ' ' => '-'
-        ];
-        for($c = 0; $c < strlen($string); $c++){
-            // echo $string[$c].'-';
-            foreach($cheatSheet as $key => $value){
-                echo $key.'-'.$string[$c];
-                if(strcmp($key, $string[$c]) == 0){
-                    echo '1';
-                    $string[$c] = $value;
-                    break;
-                }else{
-                    echo '2';
-                }
-            }
-        }
-        return $string;
+        $unwanted_array = array(    
+            'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+            'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+            'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+            'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', ' '=>'-'
+        );
+        return strtr(str_replace(' ', '-', $string), $unwanted_array);
     }
 ?>
