@@ -11,8 +11,8 @@
         $gallery = $new->fetchGallery($cat,(int)$_GET['id']);
         $descriptionWidth = 12;
         $videoBox = '';
-        print_r($_GET);
-        print_r($fetched[0]);
+        // print_r($_GET);
+        // print_r($fetched[0]);
 ?>
     <div class="custom-container mx-sm-auto px-4 px-md-2 rounded text-muted">
         <div class="d-flex flex-column">

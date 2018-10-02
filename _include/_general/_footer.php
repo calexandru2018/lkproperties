@@ -57,7 +57,7 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
 
     function queryBuilder($string, $lang){
         $base = explode('&', $_SERVER['QUERY_STRING']);
-        $urlExtensionension = '';
+        $urlExtension = '';
         $urlValueHolder = [];
         for($c = 2; $c < count($base); $c++){
             $tempHolder = explode('=', $base[$c]);
@@ -68,7 +68,7 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
             switch($showType[1]){
                 case 'for-rent-details': $urlExtension = '/for-rent/';
                     break;
-                case 'for-sell-details': $urlExtension = '/for-rent/';
+                case 'for-sell-details': $urlExtension = '/for-sale/';
                     break;
                 case 'contact-us': $urlExtension = '/contact-us';
                     break;
@@ -79,6 +79,10 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
                 case 'popular-city': $urlExtension = '/popular/city/';
                     break;
                 case 'faq': $urlExtension = '/faq';
+                    break;
+                case 'filter': $urlExtension = '/filter/';
+                    break;
+                default: $urlExtension = '';
                     break;
             }
         }
