@@ -19,6 +19,7 @@
             </div>
         </div>
         <?php 
+        var_dump($_GET);
             $new = new FilterSearch($CONN->db);
             /* DEFAULT VALUES */
             if(isset($_GET) && count($_GET) > 1 && $_GET['show'] === 'filter'){

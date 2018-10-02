@@ -234,6 +234,5 @@
         }
         window.location.href = new_url;
         console.log(new_url);
-        
     });
 </script>

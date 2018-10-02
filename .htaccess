@@ -11,7 +11,7 @@ RewriteRule ^([a-z]+)/([a-z-]+)$ index.php?lang=$1&show=$2 [NC,L]
 #Show popular POI/CITY
 RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)$ index.php?lang=$1&show=$2&id=$3 [NC]
 #Show filtered
-RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC,L]
+#RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC]
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html
