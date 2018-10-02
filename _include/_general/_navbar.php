@@ -21,7 +21,7 @@
                         <?php 
                             $allPoi = fetchAllPoi($CONN->db, $selectedLang);
                             foreach((array)$allPoi as $key => $value){
-                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular-poi/'.$key.'">'.$value.'</a>';
+                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular/point-of-interest/'.$key.'/'.urlencode(str_replace(' ', '-', $value)).'">'.$value.'</a>';
                             }
                         ?>
                         <div class="dropdown-divider"></div>
@@ -31,7 +31,7 @@
                             $allCities = fetchAllCity($CONN->db, $selectedLang);
                             // var_dump($allCities);
                             foreach((array)$allCities as $key => $value){
-                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular-city/'.$key.'">'.$value.'</a>';
+                                echo '<a class="dropdown-item" href="'.$GLOBALS['absPath'].$selectedLang.'/popular/city/'.$key.'/'.specialCharCleaner($value).'-'.$value.'">'.$value.'</a>';
                             }
                         ?>
                     </div>
@@ -97,5 +97,35 @@
         }
         return $output;
     }
-
+    function specialCharCleaner($string){
+        $cheatSheet = [
+            'ç' => 'c',
+            'ã' => 'a',
+            'â' => 'a',
+            'á' => 'a',
+            'à' => 'a',
+            'õ' => 'o',
+            'ó' => 'o',
+            'ò' => 'o',
+            'ô' => 'o',
+            'é' => 'e',
+            'è' => 'e',
+            'ê' => 'e',
+            ' ' => '-'
+        ];
+        for($c = 0; $c < strlen($string); $c++){
+            // echo $string[$c].'-';
+            foreach($cheatSheet as $key => $value){
+                echo $key.'-'.$string[$c];
+                if(strcmp($key, $string[$c]) == 0){
+                    echo '1';
+                    $string[$c] = $value;
+                    break;
+                }else{
+                    echo '2';
+                }
+            }
+        }
+        return $string;
+    }
 ?>

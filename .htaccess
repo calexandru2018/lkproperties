@@ -9,9 +9,10 @@ RewriteRule ^([a-z]+)$ index.php?lang=$1 [NC]
 #Show Activities/Contact Us/FAQ
 RewriteRule ^([a-z]+)/([a-z-]+)$ index.php?lang=$1&show=$2 [NC,L]
 #Show popular POI/CITY
-RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)$ index.php?lang=$1&show=$2&id=$3 [NC]
+RewriteRule ^([a-z]+)/popular/point-of-interest/([0-9]+)/([a-z-]+)$ index.php?lang=$1&show=popular-poi&id=$2&name=$3 [NC]
+RewriteRule ^([a-z]+)/popular/city/([0-9]+)/([a-z-]+)$ index.php?lang=$1&show=popular-city&id=$2&name=$3 [NC]
 #Show filtered
-#RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC]
+RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC]
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html

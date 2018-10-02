@@ -230,7 +230,7 @@
             splittedURL = url_string.split('filter');
             var new_url = splittedURL[0]+'filter'+customURL;
         }else{
-            var new_url = url_string+'filter'+customURL;
+            var new_url = url_string+'/filter'+customURL;
         }
         window.location.href = new_url;
         console.log(new_url);
