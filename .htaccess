@@ -11,6 +11,9 @@ RewriteRule ^([a-z]+)/([a-z-]+)$ index.php?lang=$1&show=$2 [NC,L]
 #Show popular POI/CITY
 RewriteRule ^([a-z]+)/popular/point-of-interest/([0-9]+)/([a-z-]+)$ index.php?lang=$1&show=popular-poi&id=$2&name=$3 [NC]
 RewriteRule ^([a-z]+)/popular/city/([0-9]+)/([a-z-]+)$ index.php?lang=$1&show=popular-city&id=$2&name=$3 [NC]
+#Show For-rent and For-sale
+RewriteRule ^([a-z]+)/for-rent/([0-9]+)/([0-9a-z-]+)$ index.php?lang=$1&show=for-rent-details&id=$2&name=$3 [NC]
+RewriteRule ^([a-z]+)/for-sale/([0-9]+)/([0-9a-z-]+)$ index.php?lang=$1&show=for-sell-details&id=$2&name=$3 [NC]
 #Show filtered
 RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC]
 
