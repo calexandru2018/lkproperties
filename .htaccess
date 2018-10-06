@@ -15,7 +15,7 @@ RewriteRule ^([a-z]+)/popular/city/([0-9]+)/([a-z-]+)$ index.php?lang=$1&show=po
 RewriteRule ^([a-z]+)/for-rent/([0-9]+)/([0-9a-z-]+)$ index.php?lang=$1&show=for-rent-details&id=$2&name=$3 [NC]
 RewriteRule ^([a-z]+)/for-sale/([0-9]+)/([0-9a-z-]+)$ index.php?lang=$1&show=for-sell-details&id=$2&name=$3 [NC]
 #Show filtered
-RewriteRule ^([a-z]+)/for-rent/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC]
+RewriteRule ^([a-z]+)/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortRent=$5 [NC]
 #RewriteRule ^([a-z]+)/for-sale/([a-z-]+)/([0-9]+)/([0-9]+)/([a-z]+)$ index.php?lang=$1&show=$2&beachDistance=$3&roomQty=$4&sortSell=$5 [NC]
 
 <ifModule mod_gzip.c>
