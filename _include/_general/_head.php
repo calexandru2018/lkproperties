@@ -2,6 +2,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="alternate" hreflang="en" href="https://lk-properties.pt/en" />
+    <link rel="alternate" hreflang="pt" href="https://lk-properties.pt/pt" />
+    <link rel="alternate" href="http://example.com/en" hreflang="x-default" />
+
     <link rel="stylesheet" href="<?php echo $GLOBALS['absPath']; ?>assets/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="<?php echo $GLOBALS['absPath']; ?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />

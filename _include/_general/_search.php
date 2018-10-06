@@ -10,6 +10,8 @@
             <?php 
                 $poiArray = Array();
                 $cityArray = Array();
+                $poiSelected = '';
+                $citySelected = '';
                 foreach($_GET as $key => $value){
                     if(strpos($key, 'poi-') !== false)
                         $poiArray[] = $value;
