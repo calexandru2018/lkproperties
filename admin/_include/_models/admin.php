@@ -142,11 +142,11 @@
                     where 
                         admin_ID = "'.$adminID.'"
                 ';
-
+                
                 if($queryFetchURL = $this->db->query($sqlSearchURL)){
                     $queryFetchResult = $queryFetchURL->fetch_object();
-
-                    if(!$deleteAll){
+                    if($queryFetchResult->thumbnailURL == 'null' || $queryFetchResult->thumbnailURL == 'NULL'){
+                        if(!$deleteAll){
                         $sqlDeletePhoto = '
                         update 
                             admin 
@@ -155,15 +155,18 @@
                         where 
                             admin_ID = '.$adminID;    
                         $queryDelete = $this->db->query($sqlDeletePhoto);
-                    }
+                        }
 
-                    if($queryDelete || $deleteAll){
-                        if(unlink($basePath.$queryFetchResult->thumbnailURL))
-                            return true;
-                        else 
+                        if($queryDelete || $deleteAll){
+                            if(unlink($basePath.$queryFetchResult->thumbnailURL))
+                                return true;
+                            else 
+                                return false;
+                        }else{
                             return false;
+                        }
                     }else{
-                        return false;
+                        return true;
                     }
                 }
             }

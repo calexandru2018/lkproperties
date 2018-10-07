@@ -35,11 +35,10 @@ function addContent(type, debugMode, postAsync){
                     splittedID[1] = idHolder[0] + '_' + idHolder[1];
                 }
                 if(response.data != false){
-                    if(debugMode == false)
+                    if(debugMode == false){
                         populateTable(response.data, splittedID[1] + '-table', splittedID[1]);
+                    }
                 }
-                    
-                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -55,13 +54,15 @@ function addContent(type, debugMode, postAsync){
     function populateTable(rowContent, tableName, dataName){
         var tableRef = document.getElementById(tableName).getElementsByTagName('tbody')[0];
         switch(dataName) {
+            case 'admin':
+                createFirstRow(rowContent, tableRef, dataName, false);
+                break;
             case 'activity':
-            case 'administrator':
             case 'city':
             case 'poi':
             case 'to_rent':
             case 'to_sell':
-                createFirstRow(rowContent, tableRef, dataName);
+                createFirstRow(rowContent, tableRef, dataName, true);
                 break;
             case 'service_common':
             case 'service_unique':
@@ -70,7 +71,7 @@ function addContent(type, debugMode, postAsync){
         }
     }
 
-    function createFirstRow(data, table, dataName){
+    function createFirstRow(data, table, dataName, secondRow){
         data[1] = data[1].replace(/\\+/g, ' ');
         
         var firstRow   = table.insertRow(table.rows.length);
@@ -80,7 +81,9 @@ function addContent(type, debugMode, postAsync){
             cellArray[counter] = firstRow.insertCell(counter);
             cellArray[counter].innerHTML = data[counter];
         }
-        createGalleryRow(table, data[0], dataName);
+        if(secondRow)
+            createGalleryRow(table, data[0], dataName);
+
     }
 
     function createGalleryRow(table, id, dataName){
@@ -169,12 +172,12 @@ function addContent(type, debugMode, postAsync){
                 $('.table tr[data-content-id="' + data['contentId'] + '"]').remove();
                 $('#modal-window').html('');
                 $('#modal-window').css("display", "none");
-                console.log(response);
+                // console.log(response);
             }else{
                 $('#modal-window').html('');
                 $('#modal-window').css("display", "none");
                 alert('Unable to delete');
-                console.log(response);
+                // console.log(response);
             }
         })
         .catch(function (error) {
@@ -193,7 +196,7 @@ function addContent(type, debugMode, postAsync){
         const thisBtn = this;
         const contentType = this.getAttribute('data-content-type');
         const contentID = this.getAttribute('data-content-id');
-        console.log(contentType, contentID);
+        // console.log(contentType, contentID);
         axios.post(
             'ajax/' + contentType + '/delete-photo-' + contentType + '.php',
             {
@@ -209,10 +212,10 @@ function addContent(type, debugMode, postAsync){
             if(response.data == true){
                 thisBtn.closest('div').remove();
             }
-            console.log(response);
+            // console.log(response);
         })
         .catch(function(error){
-            console.log(response);
+            console.log(error);
         });
     };
 /* Delete photos in edit mode */
@@ -241,13 +244,13 @@ function addContent(type, debugMode, postAsync){
             }else if(inp.type == 'select-multiple' && button_id[1] == 'serviceType'){
                 var services = $('#' + inp.id).find(':selected');
                 for(var c = 0; c < services.length; c++){
-                    console.log(services[c].label,services[c].value);
+                    // console.log(services[c].label,services[c].value);
                     userInput[inp.name + '_' + c] = services[c].value;
                 }
             }else if(inp.type == 'text' || inp.type == 'number' || inp.type == 'email' || inp.type == 'select-one'){
                 userInput[inp.name] = [inp.value];
             }
-            console.log(inp.type, inp.value);
+            // console.log(inp.type, inp.value);
         });
         var url = new URL(window.location.href);
         axios.post(
@@ -265,7 +268,7 @@ function addContent(type, debugMode, postAsync){
             }
         )
         .then(function(response){
-            console.log(response.data);
+            // console.log(response.data);
             var parentNode = buttonLocation.closest('div');
             createAlert(response, parentNode);
             
@@ -293,7 +296,7 @@ function addContent(type, debugMode, postAsync){
         newNode.innerHTML = `
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <i class="fa ` + iconName +`"></i> ` + text;
-        var insertedNode = insertAfter(newNode, parentNode);
+        insertAfter(newNode, parentNode);
     }
 /* Creates the alert area to indicate success or issue at update */
 
@@ -308,7 +311,7 @@ function addContent(type, debugMode, postAsync){
         returnObject = {};
         var counter = 0;
         var returnMap = new Map();
-        console.log(arrayContent);
+        // console.log(arrayContent);
         for(let x = 0; x < arrayContent.length; x++){
             dataOptional = arrayContent[x].getAttribute('data-optional');
             if(arrayContent[x].type == 'checkbox'){

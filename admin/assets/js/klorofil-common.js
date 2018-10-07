@@ -3,7 +3,6 @@ $(document).ready(function() {
 	/*-----------------------------------/
 	/*	TOP NAVIGATION AND LAYOUT
 	/*----------------------------------*/
-
 	$('.btn-toggle-fullwidth').on('click', function() {
 		if(!$('body').hasClass('layout-fullwidth')) {
 			$('body').addClass('layout-fullwidth');
@@ -23,7 +22,6 @@ $(document).ready(function() {
 			}
 		}
 	});
-
 	$(window).on('load', function() {
 		if($(window).innerWidth() < 1025) {
 			$('.btn-toggle-fullwidth').find('.icon-arrows')
@@ -44,12 +42,9 @@ $(document).ready(function() {
 			$('.main').css('min-height', $('#sidebar-nav').height());
 		}
 	});
-
-
 	/*-----------------------------------/
 	/*	SIDEBAR NAVIGATION
 	/*----------------------------------*/
-
 	$('.sidebar a[data-toggle="collapse"]').on('click', function() {
 		if($(this).hasClass('collapsed')) {
 			$(this).addClass('active');
@@ -64,12 +59,9 @@ $(document).ready(function() {
 			wheelStep: 2,
 		});
 	}
-
-
 	/*-----------------------------------/
 	/*	PANEL FUNCTIONS
 	/*----------------------------------*/
-
 	// panel remove
 	$('.panel .btn-remove').click(function(e){
 
@@ -78,10 +70,8 @@ $(document).ready(function() {
 			$(this).remove();
 		});
 	});
-
 	// panel collapse/expand
 	var affectedElement = $('.panel-body');
-
 	$('.panel .btn-toggle-collapse').clickToggle(
 		function(e) {
 			e.preventDefault();
@@ -106,30 +96,24 @@ $(document).ready(function() {
 			$(this).find('i.lnr-chevron-up').toggleClass('lnr-chevron-down');
 		}
 	);
-
-
 	/*-----------------------------------/
 	/*	PANEL SCROLLING
 	/*----------------------------------*/
-
 	if( $('.panel-scrolling').length > 0) {
 		$('.panel-scrolling .panel-body').slimScroll({
 			height: '430px',
 			wheelStep: 2,
 		});
 	}
-
 	if( $('#panel-scrolling-demo').length > 0) {
 		$('#panel-scrolling-demo .panel-body').slimScroll({
 			height: '175px',
 			wheelStep: 2,
 		});
 	}
-
 	/*-----------------------------------/
 	/*	TODO LIST
 	/*----------------------------------*/
-
 	$('.todo-list input').change( function() {
 		if( $(this).prop('checked') ) {
 			$(this).parents('li').addClass('completed');
@@ -137,12 +121,9 @@ $(document).ready(function() {
 			$(this).parents('li').removeClass('completed');
 		}
 	});
-
-
 	/*-----------------------------------/
 	/* TOASTR NOTIFICATION
 	/*----------------------------------*/
-
 	if($('#toastr-demo').length > 0) {
 		toastr.options.timeOut = "false";
 		toastr.options.closeButton = true;
@@ -166,7 +147,6 @@ $(document).ready(function() {
 			toastr.remove();
 			toastr[$context]($message, '' , { positionClass: $positionClass });
 		});
-
 		$('#toastr-callback1').on('click', function() {
 			$message = $(this).data('message');
 
@@ -178,7 +158,6 @@ $(document).ready(function() {
 
 			toastr['info']($message);
 		});
-
 		$('#toastr-callback2').on('click', function() {
 			$message = $(this).data('message');
 
@@ -190,7 +169,6 @@ $(document).ready(function() {
 			toastr['info']($message);
 
 		});
-
 		$('#toastr-callback3').on('click', function() {
 			$message = $(this).data('message');
 
@@ -204,7 +182,6 @@ $(document).ready(function() {
 		});
 	}
 });
-
 // toggle function
 $.fn.clickToggle = function( f1, f2 ) {
 	return this.each( function() {
@@ -219,7 +196,4 @@ $.fn.clickToggle = function( f1, f2 ) {
 			return f1.apply(this, arguments);
 		});
 	});
-
 }
-
-
