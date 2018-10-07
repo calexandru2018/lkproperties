@@ -149,11 +149,11 @@
                 'noPhoto' => 'Without pictures at the moment',
                 'yes' => 'Yes',
                 'no' => 'No',
-                'ns' => 'Not Specified',
+                'ns' => 'N/S',
                 'beach' => 'Beach',
                 'pool' => 'Pool',
                 'propertyType' => [
-                    'apt' => 'Apartment',
+                    'apt' => 'Apart.',
                     'house' => 'House',
                     'villa' => 'Villa',
                     'bungalow' => 'Bungalow',

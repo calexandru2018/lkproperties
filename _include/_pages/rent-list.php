@@ -2,7 +2,7 @@
     $object = new RentList($CONN->db);
 ?>
 <div class="p-0 mx-0 pb-5 mx-sm-auto">
-    <div class="row mx-0 mb-5">
+    <div class="row mx-0 mb-5" id="card-holder">
         <div class="col-12 my-3 px-4 px-md-2">
             <div class="form-group float-right w-auto mb-0">
                 <select name="search_sortRent" class="form-control">
@@ -12,8 +12,10 @@
             </div>
         </div>
         <?php
-            $collector = $object->fetchAll($selectedLang);
+            $collector = $object->fetchAll($selectedLang, 3, 0);
+            $objectCounter = 0;
             for($c1 = 0; $c1 < count($collector); $c1++){
+                $objectCounter++;
                 if($collector[$c1]['viewType'] == 1){
                     $viewType = $lang['generalFiller']['beach'];
                 }elseif($collector[$c1]['viewType'] == 2){
@@ -64,4 +66,41 @@
             }
         ?>
     </div>
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="cssload-container invisible">
+                <div class="cssload-whirlpool mt-2"></div>
+            </div>
+            <button class="btn btn-primary" type="button" id="show-more" data-count="<?php echo $objectCounter; ?>">Show more</button>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.querySelector('#show-more').onclick = function(e){
+        console.clear();
+        var button = this;
+        var loader = this.previousElementSibling;
+        button.classList.add('invisible');
+        loader.classList.remove('invisible');
+        var elCount = this.getAttribute('data-count');
+        // console.log(elCount);
+        var formData = new FormData();
+        formData.append('itemCount', elCount);
+        formData.append('type', 1);
+        formData.append('lang', '<?php echo $selectedLang; ?>');
+        formData.append('path', '<?php echo $GLOBALS['absPath']; ?>');
+        fetch('ajax/load-more.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then((response) => response.text())
+        .then((data) => {
+            $('#card-holder').append(data);
+            button.classList.remove('invisible');
+            loader.classList.add('invisible');
+            button.setAttribute('data-count', $('#card-holder > div').length-1);
+            console.log(data);
+        });
+    };
+</script>

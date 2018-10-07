@@ -150,11 +150,11 @@
                 'noPhoto' => 'De momento sem imagens',
                 'yes' => 'Sim',
                 'no' => 'Não',
-                'ns' => 'Não Especificado',
+                'ns' => 'N/S',
                 'beach' => 'Praia',
                 'pool' => 'Piscina',
                 'propertyType' => [
-                    'apart' => 'Apartmento',
+                    'apt' => 'Apart.',
                     'house' => 'Casa',
                     'villa' => 'Vila',
                     'bungalow' => 'Bungalow',

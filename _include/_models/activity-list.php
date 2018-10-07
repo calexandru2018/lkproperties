@@ -71,6 +71,7 @@
                 return $output;
         }
         private function fetchGallery(int $id){
+            $output = [];
             $sql = '
                 select
                     fullsizeURL
