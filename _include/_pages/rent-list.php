@@ -34,7 +34,7 @@
                 echo '
                     <div class="col-12 col-sm-6 col-lg-4 my-3 px-4 px-md-2">
                         <div class="card w-100 h-100 mx-auto mx-0-md bg-light border-0">
-                            <a href="'.$GLOBALS['absPath'].$selectedLang.'/for-rent/'.$collector[$c1]['publicID'].'/'.urlPurifier($collector[$c1]['title']).'">
+                            <a href="'.$GLOBALS['absPath'].$selectedLang.'/for-rent-details/'.$collector[$c1]['publicID'].'/'.urlPurifier($collector[$c1]['title']).'">
                                 <img class="card-img-top" src="gallery/rental/'.$collector[$c1]['id'].'/thumbnail/'.$collector[$c1]['thumbnail'].'" alt="A placeholder.">
                             </a>
                             <div class="card-body px-0 bg-white text-justify">

@@ -19,7 +19,7 @@
             </div>
         </div>
         <?php 
-        var_dump($_GET);
+        // var_dump($_GET);
             $new = new FilterSearch($CONN->db);
             /* DEFAULT VALUES */
             if(isset($_GET) && count($_GET) > 1 && $_GET['show'] === 'filter'){
@@ -47,7 +47,7 @@
                         echo '
                             <div class="col-12 col-sm-6 col-lg-4 my-3 px-4 px-md-2">
                                 <div class="card w-100 h-100 mx-auto mx-0-md bg-light border-0">
-                                    <a href="'.$GLOBALS['absPath'].$selectedLang.'/'.(($collector[$c1]['forSale'] == 1) ? 'for-sell-details':'for-rent-details').'/'.$collector[$c1]['publicID'].'">
+                                    <a href="'.$GLOBALS['absPath'].$selectedLang.'/'.(($collector[$c1]['forSale'] == 1) ? 'for-sell-details':'for-rent-details').'/'.$collector[$c1]['publicID'].'/'.urlPurifier($collector[$c1]['title']).'">
                                         <img class="card-img-top" src="'.$GLOBALS['absPath'].'gallery/'.(($collector[$c1]['forSale'] == 1) ? 'sale':'rental').'/'.$collector[$c1]['id'].'/thumbnail/'.$collector[$c1]['thumbnail'].'" alt="Card image cap">
                                     </a>
                                     <div class="card-body px-0 bg-white text-justify">

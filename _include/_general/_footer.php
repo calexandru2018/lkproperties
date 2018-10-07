@@ -26,17 +26,11 @@
                     <span title="English">
                         <a href="<?php echo $GLOBALS['absPath'].queryBuilder($_SERVER['QUERY_STRING'], 'en'); ?>" data-language="en" lang="en" target ="_self">English</a>
                     </span>
-                   <!--  <a href="<?php echo $GLOBALS['absPath'].queryBuilder($_SERVER['QUERY_STRING'], 'en'); ?>" data-language="en" lang="en" target ="_self">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAACQUlEQVQoU4WPW0hUYRSFv6MZWb1kFpEXiLBCHaNikKFBSbOIkoRwbFKLtALN0tIiNS9IFGk3TBIrVDBMUAoTJaXSNBSlJmXsoigWkaFYT2M558x//hh9iOihvdmsh8VeF6W86oXcYA6jp3uUqRkAgdAFF5IMDF+uQAqBoSCTrBv9SM2D2Z9zBAR5EzXYxsQ+C8qDhgGZ6P0JGRvP+JdZ+t5+Q0iFI/vXo9y5DqoTmZVHRd0wmktgDlmJsbsKsgsob/2AknLppTwUYyB6rB38V0NEFFcq35ObFgwn0kGbg5pqzt20U+w7iufUBEtycqhptJNf2rsgEBnqz/jnOVINS/F7VYtnQbG7CyQng+aChodwOh3yixhyeHHmVAdbTAHUNL5BGRn/LoPW+aAoCz9/jcUCTic0N/9DSQm2j9MoTUcL5IGty2BoDDQNVPUP6jrS6cSlqkhVRdc0dDcvBIs2+XHtteM/CSIiEE4Nz/4+QAIKulvUve4EIzMokYefyNiIAGwDU+RlhhOyRqCez2bx/VrkNiPC7TZoA3Qmo3cympCDteQr5phVNLU8Qwm3PJIZ1o0kxQXjKClCeC8nY9pMXZkJERo27+j1zs72HfV0diWi3avG0dvJXeNZCi9WodxuscuTe4NxXs3HZkqlqWsSgQe3Cs1Iyx50XcOzsQNrWjv63CwpxzezyxTIj2PxFPskoORVd8m19XU8DorE1qOiuX7hEoK+5oO0xcQhXS52P2/FGF0Kupg/38AV5JZZeZpbyW9StBQBCrx1xAAAAABJRU5ErkJggg==" alt="English" />
-                    </a> -->
                 </div>
                 <div class="col-3">
                     <span title="Portuguese">
                         <a href="<?php echo $GLOBALS['absPath'].queryBuilder($_SERVER['QUERY_STRING'], 'pt'); ?>" data-language="pt" lang="pt" target ="_self">Português</a>
                     </span>
-                    <!-- <a href="<?php echo $GLOBALS['absPath'].queryBuilder($_SERVER['QUERY_STRING'], 'pt'); ?>" data-language="pt" lang="pt" target ="_self">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAB0ElEQVQoU32Sz0uUURSGn/uNfhMzRNLsgpnBwShKCCZq0yKQaiP9AbnTcKRZJFgINtAmQaJNtG8XuQtyoURCWNjChSBIS53GgmhGh7GRce6597vxzY/KFl44nHMv9304h/Mq7uCo8/cEQA/Yt+2n8HpcKIZxhfFC+3MQELgAqyxPP1qwBmcMGIMTadX/5vrCAorbuMLdR3yrficWsWQTlsGEkG1aTFnw5wVXFZwWnGic1i2ISibZX1pqA2ZGZ9ip7vD4quVU0+C/MvQ2BHdDML4QexaKQnEI6gBSKWrLy7RGmB6bplQpMXXJcO6dpWfkCbUDiL6eIzJUone2iVdvC/8A0mn2V1ZQ3MRNjT/ga6VIIWs488bgT7zgRzxJ3/McJ4a+4M1p/J8dcbeD/n5qq6soruMm701SrBQZTmvO+pbzH04Tiado3PqEcw0SExrv4GgHXiZDdW0NxTVcPp9nu7JNDMPIBWEwaujbFYK6EPl8SPz9UXG4FZXJUFlfR3EFl7ufY6u8hRhBtBA9qVl8qTFRwdvriLvzGwFjUQMD7G5soLiIG304hgmkBTDWYpwwvyjw/+5DH9jQH+0ob26iuIxjDzgEdCd7UP51vAO71v0NfCtA3yT2DLUAAAAASUVORK5CYII=" alt="Portuguese" />
-                    </a> -->
                 </div>
                 <div class="col-3">
                 </div>
@@ -64,10 +58,14 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
     function queryBuilder($string, $lang){
         $base = explode('&', $_SERVER['QUERY_STRING']);
         $urlExtension = '';
+        $urlVarHolder = [];
         $urlValueHolder = [];
         for($c = 2; $c < count($base); $c++){
             $tempHolder = explode('=', $base[$c]);
-            $urlValueHolder[] = $tempHolder[1];
+            if(count($tempHolder) > 1){
+                $urlVarHolder[] = $tempHolder[0];
+                $urlValueHolder[] = $tempHolder[1];
+            }
         }
         if(count($base) > 1 ){
             $showType = explode('=', $base[1]);
@@ -86,7 +84,7 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
                     break;
                 case 'faq': $urlExtension = '/faq';
                     break;
-                case 'filter': $urlExtension = '/filter/';
+                case 'filter': $urlExtension = '/filter';
                     break;
                 default: $urlExtension = '';
                     break;
@@ -95,9 +93,11 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
         $outputQuery = $lang.$urlExtension;
         for ($i=0; $i < count($urlValueHolder); $i++) {
             if($i == (count($urlValueHolder)-1)) 
-                $outputQuery = $outputQuery.$urlValueHolder[$i];
+                $outputQuery = $outputQuery.'&'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
+            else if($i == 0)
+                $outputQuery = $outputQuery.'?'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
             else
-                $outputQuery = $outputQuery.$urlValueHolder[$i].'/';
+                $outputQuery = $outputQuery.'&'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
         }
         return $outputQuery;
     }

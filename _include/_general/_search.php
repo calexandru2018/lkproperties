@@ -11,7 +11,6 @@
                 $poiArray = Array();
                 $cityArray = Array();
                 $poiSelected = '';
-                $citySelected = '';
                 foreach($_GET as $key => $value){
                     if(strpos($key, 'poi-') !== false)
                         $poiArray[] = $value;
@@ -218,21 +217,16 @@
         var userInp = collectInput(inp);
         var customURL = urlBuilder(userInp);
         var url_string = window.location.href;
-        console.log(url_string);
-    
-        if(url_string.includes('for-sale/')){
-            var new_url_string = url_string.split('/')
-            console.log(new_url_string);
-            url_string = new_url_string[5].replace('for-sale', '/');
-            
-        }else if(url_string.includes('/for-sale')){
-            url_string = url_string.replace('for-sale', '');
-        }       
+        
+        if(url_string.includes('for-sale')){
+            url_string = url_string.replace('/for-sale', '');
+        }
+        var url = new URL(url_string);
         if(url_string.includes('filter')){
             splittedURL = url_string.split('filter');
-            var new_url = splittedURL[0]+'filter'+customURL;
+            var new_url = splittedURL[0]+'filter?'+customURL;
         }else{
-            var new_url = url_string+'/filter'+customURL;
+            var new_url = url_string+'/filter?'+customURL;
         }
         window.location.href = new_url;
         console.log(new_url);

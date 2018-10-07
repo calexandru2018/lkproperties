@@ -221,7 +221,7 @@
                 }                
             }
             return $returnedObjects;
-            //return $baseSQL; 
+            // return $baseSQL; 
         }
 
         private function getMainImg(int $propertyID){
