@@ -108,7 +108,7 @@
         </div>
     </div>
     <div class="dropdown-divider"></div>
-    <div class="row my-md-5 pt-5 pt-md-3 text-muted">
+    <div class="row my-md-5 pt-3 text-muted">
         <div class="col-12">
             <div class="row">
                 <div class="col-12 col-md-12 text-center mb-2">
