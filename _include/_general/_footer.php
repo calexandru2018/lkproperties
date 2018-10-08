@@ -15,24 +15,24 @@
                 <?php echo $lang['footer']['developerInfo'];?>: <a href="https://se.linkedin.com/in/calexandru2018/en">Alexandru Cheltuitor</a>
             </small>
         </div>
-        <div class="col-12 text-center mb-5 order-1 order-md-1">
+        <div class="col-12 text-center mt-3 mb-5 order-1 order-md-1">
             <div class="row">
                 <div class="col-12">
                     <?php echo $lang['footer']['languages'];?>
                 </div>
-                <div class="col-3">
+                <div class="col-0 col-sm-3">
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-sm-3 mt-2">
                     <span title="English">
                         <a href="<?php echo $GLOBALS['absPath'].queryBuilder($_SERVER['QUERY_STRING'], 'en'); ?>" data-language="en" lang="en" target ="_self">English</a>
                     </span>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-sm-3 mt-2">
                     <span title="Portuguese">
                         <a href="<?php echo $GLOBALS['absPath'].queryBuilder($_SERVER['QUERY_STRING'], 'pt'); ?>" data-language="pt" lang="pt" target ="_self">Português</a>
                     </span>
                 </div>
-                <div class="col-3">
+                <div class="col-0 col-sm-3">
                 </div>
 <!--                 <div class="col-3">
                 </div>

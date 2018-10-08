@@ -47,7 +47,7 @@
             include_once('_include/_general/_search.php'); 
         }
     ?>
-    <main role="main" class="custom-container p-0 mb-md-5 text-muted" style="box-shadow: 0px 27px 70px -35px var(--gray);">
+    <main role="main" class="custom-container mb-md-5 text-muted" style="box-shadow: 0px 27px 70px -35px var(--gray);">
         <?php 
             if((isset($_GET['show']) || !empty($_GET['show'])) && (isset($_GET['lang']))){
                 switch ($_GET['show']){
