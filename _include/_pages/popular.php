@@ -14,7 +14,7 @@
         // print_r($_GET);
         // print_r($fetched[0]);
 ?>
-    <div class="custom-container mx-sm-auto px-2 pb-4 pb-md-5 rounded text-muted">
+    <div class="custom-container mx-sm-auto px-2 px-sm-0 pb-4 pb-md-5 rounded text-muted">
         <div class="d-flex flex-column">
             <div class="py-2">
                 <figure class="figure">
