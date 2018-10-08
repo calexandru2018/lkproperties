@@ -3,7 +3,7 @@
 ?>
 <div class="p-0 mx-0 pb-5 mx-sm-auto">
     <div class="row mx-0">
-        <div class="col-12 my-3 px-4 px-md-2">
+        <div class="col-12 my-3 px-2">
             <h1><?php echo $lang['realEstate']['title'];?></h1>
             <p>
                 <?php echo $lang['realEstate']['info'];?>
@@ -42,7 +42,7 @@
                         break;
                 }
                 echo '
-                    <div class="col-12 col-sm-6 col-lg-4 my-3 px-4 px-md-2">
+                    <div class="col-12 col-sm-6 col-lg-4 my-3 px-2">
                         <div class="card w-100 h-100 mx-auto mx-0-md bg-light border-0">
                             <a href="'.$GLOBALS['absPath'].$selectedLang.'/for-sale-details/'.$collector[$c1]['publicID'].'/'.urlPurifier($collector[$c1]['title']).'">
                                 <img class="card-img-top" src="'.$GLOBALS['absPath'].'gallery/sale/'.$collector[$c1]['id'].'/thumbnail/'.$collector[$c1]['thumbnail'].'" alt="Card image cap">
