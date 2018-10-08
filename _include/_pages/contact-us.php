@@ -1,4 +1,4 @@
-<div class="custom-container pb-4 pb-md-5 px-2 rounded text-muted">
+<div class="custom-container pb-4 pb-md-5 px-3 px-sm-0 rounded text-muted">
     <div class="row">
         <div class="col-12">
             <h2><?php echo $lang['contactUs']['question'];?></h2>

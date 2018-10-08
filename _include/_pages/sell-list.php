@@ -1,8 +1,8 @@
 <?php 
     $object = new SellList($CONN->db);
 ?>
-<div class="p-0 mx-0 pb-5 mx-sm-auto">
-    <div class="row mx-0">
+<div class="pb-5 px-3 px-sm-0">
+    <div class="row mb-5">
         <div class="col-12 my-3 px-2">
             <h1><?php echo $lang['realEstate']['title'];?></h1>
             <p>
@@ -10,7 +10,7 @@
             </p>
         </div>
     </div>
-    <div class="row mx-0 mb-5" id="card-holder">
+    <div class="row mb-5" id="card-holder">
        <div class="col-12 my-3 px-4 px-md-2">
             <div class="form-group float-right w-auto mb-0">
                 <select name="search_sortSell" class="form-control">
