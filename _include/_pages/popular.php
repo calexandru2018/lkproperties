@@ -50,7 +50,7 @@
         </div>
     </div>
     <section class="gallery-block grid-gallery pt-2 px-2 px-md-0 text-muted pb-4">
-        <div class="custom-container">
+        <div class="custom-container px-0">
             <div class="row">
                 <div class="col-12">
                     <div class="heading mb-2  text-left">

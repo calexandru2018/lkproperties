@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row mb-5" id="card-holder">
-       <div class="col-12 my-3 px-4 px-md-2">
+       <div class="col-12 my-3 px-2">
             <div class="form-group float-right w-auto mb-0">
                 <select name="search_sortSell" class="form-control">
                     <option value="asc"><?php echo $lang['sortBy']['name'].': '.$lang['sortBy']['asc'];?></option>
