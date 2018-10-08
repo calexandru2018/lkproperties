@@ -10,7 +10,7 @@
             </p>
         </div>
     </div>
-    <div class="row mx-0 mb-5">
+    <div class="row mx-0 mb-5" id="card-holder">
        <div class="col-12 my-3 px-4 px-md-2">
             <div class="form-group float-right w-auto mb-0">
                 <select name="search_sortSell" class="form-control">
@@ -20,7 +20,7 @@
             </div>
         </div>
         <?php
-            $collector = $object->fetchAll($selectedLang, 9, 0);
+            $collector = $object->fetchAll($selectedLang, 3, 0);
             $objectCounter = 0;
             for($c1 = 0; $c1 < count($collector); $c1++){
                 $objectCounter++;
@@ -79,13 +79,13 @@
             <div class="cssload-container invisible">
                 <div class="cssload-whirlpool mt-2"></div>
             </div>
-            <button class="btn btn-primary" type="button" id="show-more" data-count="<?php echo $objectCounter; ?>">Show more</button>
+            <button class="btn btn-primary" type="button" id="show-more" data-count="<?php echo $objectCounter; ?>"><?php echo $lang['generalFiller']['loadMore'];?></button>
         </div>
     </div>
 </div>
 <script>
     document.querySelector('#show-more').onclick = function(e){
         console.clear();
-        loadMore(this, this.previousElementSibling, '<?php echo $selectedLang; ?>', '<?php echo $GLOBALS['absPath']; ?>', 2);
+        loadMore(this, this.previousElementSibling, '<?php echo $selectedLang; ?>', '<?php echo $GLOBALS['absPath'].'../'; ?>', 2, '<?php echo $lang['generalFiller']['loadMoreLimitReached']; ?>');
     };
 </script>

@@ -15,9 +15,7 @@ function sendEmail(thisButton, successMessage){
                     errorCatcher.push(name[1]);
                 else
                     formData.append(name[1], el.value);
-                // console.log('Here: ', name[1], el.value);
         }else{
-            // console.log('There2:', name[1], el.value);
             errorCatcher.push(name[1]); 
         }
     });
@@ -31,7 +29,6 @@ function sendEmail(thisButton, successMessage){
         error.classList.add('invisible');
         thisButton.classList.add('invisible');
         loader.classList.remove('invisible');
-        // clearInput(collector);
         fetch('ajax/send-mail.php', {
             method: 'POST',
             body: formData
@@ -43,7 +40,6 @@ function sendEmail(thisButton, successMessage){
             loader.classList.add('invisible');
             thisButton.classList.remove('invisible');
             console.log(data);
-            
         });
     }else{
         error.classList.remove('invisible');
@@ -75,9 +71,6 @@ function urlBuilder(input){
     for (var key in input) {
         var name = key.split('_');
         url = url + '&' + name[1] + "=" + input[key];
-        /* 
-        pretty url
-        url = url + '/' + input[key]; */
     }
     return url;
 }
@@ -100,7 +93,7 @@ function collectInput(arrayContent){
     }
     return returnedObject;
 }
-function loadMore(button, loader, lang, path, type){
+function loadMore(button, loader, lang, path, type, message){
     button.classList.add('invisible');
     loader.classList.remove('invisible');
     var elCount = button.getAttribute('data-count');
@@ -110,7 +103,7 @@ function loadMore(button, loader, lang, path, type){
     formData.append('type', type);
     formData.append('lang', lang);
     formData.append('path', path);
-    fetch('ajax/load-more.php', {
+    fetch(((type == 2) ? '../':'') + 'ajax/load-more.php', {
         method: 'POST',
         body: formData
     })
@@ -118,15 +111,14 @@ function loadMore(button, loader, lang, path, type){
     .then((data) => {
         button.classList.remove('invisible');
         loader.classList.add('invisible');
-        if(data == ""){
-            button.innerHTML = 'Nothing more to load';
-            button.setAttribute('disable');
+        if(data.length <= 2){
+            button.innerHTML = message;
+            button.setAttribute('disabled', 'disabled');
+            button.removeEventListener('onclick', function(){});
         }else{
             $('#card-holder').append(data);
             button.setAttribute('data-count', $('#card-holder > div').length-1);
-            
         }
-        console.log(data);
-        
+        console.log(data.length);
     });
 }

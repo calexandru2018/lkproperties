@@ -71,13 +71,13 @@
             <div class="cssload-container invisible">
                 <div class="cssload-whirlpool mt-2"></div>
             </div>
-            <button class="btn btn-primary" type="button" id="show-more" data-count="<?php echo $objectCounter; ?>">Show more</button>
+            <button class="btn btn-primary" type="button" id="show-more" data-count="<?php echo $objectCounter; ?>"><?php echo $lang['generalFiller']['loadMore'];?></button>
         </div>
     </div>
 </div>
 <script>
     document.querySelector('#show-more').onclick = function(e){
         console.clear();
-        loadMore(this, this.previousElementSibling, '<?php echo $selectedLang; ?>', '<?php echo $GLOBALS['absPath']; ?>', 1);
+        loadMore(this, this.previousElementSibling, '<?php echo $selectedLang; ?>', '<?php echo $GLOBALS['absPath']; ?>', 1, '<?php echo $lang['generalFiller']['loadMoreLimitReached']; ?>');
     };
 </script>

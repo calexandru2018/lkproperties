@@ -159,7 +159,9 @@
                     'villa' => 'Vila',
                     'bungalow' => 'Bungalow',
                 ],
-                'messageSent' => 'Mensagem enviada!'
+                'messageSent' => 'Mensagem enviada!',
+                'loadMore' => 'Carregar mais',
+                'loadMoreLimitReached' => 'Nada mais a carregar' 
             ],
         'placeHolder' => 
             [

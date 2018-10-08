@@ -70,6 +70,21 @@
             }
             return $returnedObjects;
         }
+        public function getObjectsNumber(){
+            $sql = '
+                select 
+                    count(property_ID) as ammountOfObjects
+                from
+                    property
+                where 
+                    isForSale = 0
+                and
+                    isVisible = 1';
+
+            $queryCount = $this->db->query($sql);
+            $fetchCount = $queryCount->fetch_object();
+            return $fetchCount->ammountOfObjects;
+        }
 
         private function getPublicID(int $propertyID){
             $result = $this->db->query('

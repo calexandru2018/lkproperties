@@ -13,10 +13,18 @@
     if((int)$_POST['type'] == 1){
         include('../_include/_models/rent-list.php');
         $object = new RentList($CONN->db);
+        $gallery = 'rental';
+        $price = 'rentPriceHolder';
+        $pricePre = $lang[$price]['pre'];
+        $path = '';
     }
     elseif((int)$_POST['type'] == 2){
         include('../_include/_models/sell-list.php');
         $object = new SellList($CONN->db);
+        $gallery = 'sale';
+        $price = 'realEstate';
+        $pricePre = $lang['realEstate']['price'];
+        $path = '../';
     }else{
         include('../_include/_models/rent-list.php');
         $object = new RentList($CONN->db);
@@ -28,6 +36,12 @@
     $objectCounter = (int)$_POST['itemCount'];
     $post = '';
     for($c1 = 0; $c1 < count($collector); $c1++){
+        if($_POST['type'] == 1)
+            $priceVisualizer = $collector[$c1]['price'].'€/'.$lang['rentPriceHolder']['post'];
+        elseif ($_POST['type'] == 2) {
+            $priceVisualizer = $collector[$c1]['price'][0].'€';
+        }
+
         $objectCounter++;
         if($collector[$c1]['viewType'] == 1){
             $viewType = $lang['generalFiller']['beach'];
@@ -50,11 +64,11 @@
             <div class=" col-12 col-sm-6 col-lg-4 my-3 px-4 px-md-2">
                 <div class="card w-100 h-100 mx-auto mx-0-md bg-light border-0">
                     <a href="'.$_POST['path'].$_POST['lang'].'/for-rent-details/'.$collector[$c1]['publicID'].'/'.urlPurifier($collector[$c1]['title']).'">
-                        <img class="card-img-top" src="gallery/rental/'.$collector[$c1]['id'].'/thumbnail/'.$collector[$c1]['thumbnail'].'" alt="A placeholder.">
+                        <img class="card-img-top" src="'.$path.'gallery/'.$gallery.'/'.$collector[$c1]['id'].'/thumbnail/'.$collector[$c1]['thumbnail'].'" alt="A placeholder.">
                     </a>
                     <div class="card-body px-0 bg-white text-justify">
                         <h4 class="card-title">'.$collector[$c1]['title'].'</h4>
-                        <h5 class="display-5">'.$lang['rentPriceHolder']['pre'].' '.$collector[$c1]['price'].'€/'.$lang['rentPriceHolder']['post'].'</h5>
+                        <h5 class="display-5">'.$pricePre.' '.$priceVisualizer.'</h5>
                         <p class="card-text font-italic">'.$lang['generalFiller']['referenceID'].' '.$collector[$c1]['publicID'].'</p>
                         <p class="card-text">'.$collector[$c1]['description'].'</p>
                         <div class="row text-center">
