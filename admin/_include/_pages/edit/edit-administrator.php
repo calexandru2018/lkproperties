@@ -62,23 +62,24 @@
                         <div class="input-group">
                             <span class="input-group-addon">Previlégio</span>
                             <select class="js-example-basic-multiple bg-white" name="adminPriveliege" style="width: 100%;">
+                                <option value="1" <?php echo (($adminData->adminPrivilege == 1)? 'selected="selected"':''); ?>>Administrador</option>
+                                <option value="2" <?php echo (($adminData->adminPrivilege == 2)? 'selected=s"elected"':''); ?>>Gestor de Conteudo</option>
                                 <?php
-                                    if($_SESSION['admin_privilege'] == 1)
-                                        echo '<option value="2"'.(($adminData->adminPrivilege == 2)? "select=selected":"").'>Super Admin</option>';
+                                    if($_SESSION['admin_privilege'] == 99){
+                                        echo '<option value="99"'.(($adminData->adminPrivilege == 99)? 'selected="selected"':'').'>Super Admin</option>';
+                                    }
                                 ?>
-                                <option value="2" <?php echo (($adminData->adminPrivilege == 2)? 'select=selected':''); ?>>Gestor de Conteudo</option>
-                                <option value="3" <?php echo (($adminData->adminPrivilege == 3)? 'select=selected':''); ?>>Editor de Aluguer</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="adminIsActive" value="1" <?php echo (($adminData->isActive == 1)? 'checked=checked':''); ?>><span>Activar conta</span>
+                            <input type="checkbox" name="adminIsActive" value="1" <?php echo (($adminData->isActive == 1)? 'checked="checked"':''); ?>><span>Activar conta</span>
                         </label>
                     </div>
                     <div class="col-xs-6 col-md-6 text-center" style="margin-top: 2%; margin-bottom: 2%;">
                         <label class="fancy-checkbox">
-                            <input type="checkbox" name="adminIsPublic" value="1" <?php echo (($adminData->isPublicVisible == 1)? 'checked=checked':''); ?>><span>Tornar conta publica</span>
+                            <input type="checkbox" name="adminIsPublic" value="1" <?php echo (($adminData->isPublicVisible == 1)? 'checked="checked"':''); ?>><span>Tornar conta publica</span>
                         </label>
                     </div>
                     <div class="col-xs-12" style="margin-top: 2%; margin-bottom: 2%;">

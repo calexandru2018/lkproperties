@@ -44,11 +44,11 @@
                 $queryInsert = $this->db->query($sqlInsert);
                 if($queryInsert){
                     switch($adminData['adminPriveliege']){
-                        case 1: $adminPriv = 'Super Admin';
+                        case 1: $adminPriv = 'Administrador';
                             break;
                         case 2: $adminPriv = 'Gestor de Conteudo';
                             break;
-                        case 3: $adminPriv = 'Editor de Aluguer';
+                        case 99: $adminPriv = 'Super Admin';
                             break;
                     };
                     $arrayToReturn = [

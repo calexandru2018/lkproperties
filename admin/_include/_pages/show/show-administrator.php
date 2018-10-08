@@ -1,7 +1,7 @@
 <?php
     include_once('_include/_models/admin.php');
     $administrator = new Administrator($MAIN->db);
-    if($_SESSION['admin_privilege'] == 1){
+    if($_SESSION['admin_privilege'] == 1 || $_SESSION['admin_privilege'] == 99){
 ?>
 <h3 class="page-title">Gestão de Administradores</h3>
 <div class="panel">
@@ -48,7 +48,7 @@
                             <select class="js-example-basic-multiple bg-white" name="adminPriveliege" style="width: 100%;">
                                 <option value="" selected disable>Escolha um previlegio...</option>
                                 <option value="1">Administrador</option>
-                                <option value="2">Editor de Conteudo</option>
+                                <option value="2">Gestor de Conteudo</option>
                             </select>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                         break;
                                     case 2: $adminPriv = 'Gestor de Conteudo';
                                         break;
-                                    case 3: $adminPriv = 'Editor de Aluguer';
+                                    case 99: $adminPriv = 'Super Admin';
                                         break;
                                 };
                                 echo '<tr data-content-type="admin" data-content-id="'.$resp[$adminCounter]->admin_ID.'">';
