@@ -8,26 +8,23 @@
 
     $CONN = new Database();
 
-    $ammountToAdd = 3;
+    $ammountToAdd = 6;
 
     if((int)$_POST['type'] == 1){
         include('../_include/_models/rent-list.php');
         $object = new RentList($CONN->db);
     }
-    if((int)$_POST['type'] == 2){
+    elseif((int)$_POST['type'] == 2){
         include('../_include/_models/sell-list.php');
         $object = new SellList($CONN->db);
+    }else{
+        include('../_include/_models/rent-list.php');
+        $object = new RentList($CONN->db);
     }
 
     $totalObjectQuantity = $object->getObjectsNumber();
 
-if($_POST['itemCount'] == $ammountToAdd)
-    $val = 3;
-else
-    $val = $_POST['itemCount']+$ammountToAdd;
-
-
-    $collector = $object->fetchAll($_POST['lang'], $ammountToAdd, $val);
+    $collector = $object->fetchAll($_POST['lang'], $ammountToAdd, $_POST['itemCount']);
     $objectCounter = (int)$_POST['itemCount'];
     $post = '';
     for($c1 = 0; $c1 < count($collector); $c1++){
@@ -81,8 +78,6 @@ else
             </div>';
     }
     echo $post;
-    // echo $ammountToAdd.'-'.($_POST['itemCount']+$ammountToAdd);
-
     function urlPurifier($string){
         $unwanted_array = array(    
             'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',

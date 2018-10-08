@@ -20,8 +20,10 @@
             </div>
         </div>
         <?php
-            $collector = $object->fetchAll($selectedLang);
+            $collector = $object->fetchAll($selectedLang, 9, 0);
+            $objectCounter = 0;
             for($c1 = 0; $c1 < count($collector); $c1++){
+                $objectCounter++;
                 if($collector[$c1]['viewType'] == 1){
                     $viewType = $lang['generalFiller']['beach'];
                 }elseif($collector[$c1]['viewType'] == 2){
@@ -72,4 +74,18 @@
             }
         ?>                
     </div>
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="cssload-container invisible">
+                <div class="cssload-whirlpool mt-2"></div>
+            </div>
+            <button class="btn btn-primary" type="button" id="show-more" data-count="<?php echo $objectCounter; ?>">Show more</button>
+        </div>
+    </div>
 </div>
+<script>
+    document.querySelector('#show-more').onclick = function(e){
+        console.clear();
+        loadMore(this, this.previousElementSibling, '<?php echo $selectedLang; ?>', '<?php echo $GLOBALS['absPath']; ?>', 2);
+    };
+</script>

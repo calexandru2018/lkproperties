@@ -100,3 +100,33 @@ function collectInput(arrayContent){
     }
     return returnedObject;
 }
+function loadMore(button, loader, lang, path, type){
+    button.classList.add('invisible');
+    loader.classList.remove('invisible');
+    var elCount = button.getAttribute('data-count');
+    // console.log(elCount);
+    var formData = new FormData();
+    formData.append('itemCount', elCount);
+    formData.append('type', type);
+    formData.append('lang', lang);
+    formData.append('path', path);
+    fetch('ajax/load-more.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then((response) => response.text())
+    .then((data) => {
+        button.classList.remove('invisible');
+        loader.classList.add('invisible');
+        if(data == ""){
+            button.innerHTML = 'Nothing more to load';
+            button.setAttribute('disable');
+        }else{
+            $('#card-holder').append(data);
+            button.setAttribute('data-count', $('#card-holder > div').length-1);
+            
+        }
+        console.log(data);
+        
+    });
+}
