@@ -14,7 +14,7 @@
         // print_r($_GET);
         // print_r($fetched[0]);
 ?>
-    <div class="custom-container mx-sm-auto px-4 px-md-2 rounded text-muted">
+    <div class="custom-container mx-sm-auto px-2 pb-4 pb-md-5 rounded text-muted">
         <div class="d-flex flex-column">
             <div class="py-2">
                 <figure class="figure">
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <section class="gallery-block grid-gallery mb-5 pb-5 pt-2 px-2 px-md-0 text-muted">
+    <section class="gallery-block grid-gallery pt-2 px-2 px-md-0 text-muted pb-4">
         <div class="custom-container">
             <div class="row">
                 <div class="col-12">

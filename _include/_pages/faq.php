@@ -1,4 +1,4 @@
-<div class="container mx-sm-auto mb-5 pb-5  px-4 px-md-2 shadow-sm rounded text-muted">
+<div class="container mx-sm-auto pb-4 pb-md-5 px-2 shadow-sm rounded text-muted">
     <h1><?php echo $lang['faq']['title'];?></h1>
     <div>
         <?php echo $lang['faq']['info'];?>

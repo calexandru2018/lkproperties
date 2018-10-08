@@ -1,4 +1,4 @@
-<div class="custom-container mb-5 pb-5 px-4 px-md-2 rounded text-muted">
+<div class="custom-container pb-4 pb-md-5 px-2 rounded text-muted">
     <div class="row">
         <div class="col-12">
             <h2><?php echo $lang['contactUs']['question'];?></h2>
@@ -31,10 +31,10 @@
                         <small id="emailHelp" class="form-text"><?php echo $lang['contactUs']['infoSharing']; ?></small>
                     </div>
                     <div class="col-12 py-2">
-                        <p class="p-0 small float-left invisible text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
+                        <p class="p-0 small float-left d-none text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
                         <button class="btn btn-info float-right" id="send-info"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
-                        <div class="cssload-container float-right mt-3 invisible">
-                            <div class="cssload-whirlpool ml-3"></div>
+                        <div class="cssload-container float-right pl-5 mt-3 d-none">
+                            <div class="cssload-whirlpool"></div>
                         </div>
                     </div>
                 </div>
@@ -69,19 +69,19 @@
                         <small id="emailHelp" class="form-text"><?php echo $lang['contactUs']['infoSharing'];?>.</small>
                     </div>
                     <div class="col-12 py-2">
-                        <p class="p-0 small float-left invisible text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
+                        <p class="p-0 small float-left d-none text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
                         <button class="btn btn-info float-right" id="send-feedback"><?php echo $lang['placeHolder']['sendFeedback'];?></button>
-                        <div class="cssload-container float-right mt-3 invisible">
-                            <div class="cssload-whirlpool ml-3"></div>
+                        <div class="cssload-container float-right pl-5 mt-3 d-none">
+                            <div class="cssload-whirlpool"></div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>  
         <div class="col-12 col-md-6 px-0 pb-5 pb-md-0">
-            <div class="row h-100">
-                <div class="col-12">
-                    <div class="row pb-md-3 h-100 text-center">
+            <div class="row h-100 px-0 mx-0">
+                <div class="col-12 px-0">
+                    <div class="row pb-md-3 h-100 text-center mx-0">
                         <div class="col-6 pt-1 pb-2">
                             <a href="https://www.facebook.com/gerencialiliaungureanu/" target="_new">
                             <i class="fab fa-facebook fa-10x"></i>
@@ -142,7 +142,7 @@
                     }
                     for($i = 0; $i < $c; $i++){
                         echo'
-                            <div class="col-12 col-sm-'.(($colWidth == 4) ? 6 : $colWidth).' col-lg-'.$colWidth.' my-3">
+                            <div class="col-12 col-sm-'.(($colWidth == 4) ? 6 : $colWidth).' col-lg-'.$colWidth.' mt-3">
                                 <div class="row text-center">
                                     <div class="col-12">
                                         <img src="'.$GLOBALS['absPath'].'gallery/ourstaff/'.$adminList[$i]['url'].'" alt="" class="img-thumbnail img-fluid rounded-circle contact-us-img">
@@ -171,10 +171,10 @@
     });
     document.querySelector('#send-info').onclick = function(e){
         e.preventDefault();
-        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>');
+        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>', '<?php echo $GLOBALS['absPath']; ?>');
     };
     document.querySelector('#send-feedback').onclick = function(e){
         e.preventDefault();
-        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>');
+        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>', '<?php echo $GLOBALS['absPath']; ?>');
     };
 </script>

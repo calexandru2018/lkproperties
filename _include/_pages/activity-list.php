@@ -3,7 +3,7 @@
 
     $fetched = $new->fetchAll($selectedLang);
 ?>
-    <div class="custom-container mb-5 pb-5 px-4 px-md-2 rounded text-muted">
+    <div class="custom-container mb-4 mb-md-5 px-2 rounded text-muted">
         <div class="row">
             <div class="col-12 mb-1">
                 <div class="p-0">

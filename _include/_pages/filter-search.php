@@ -1,4 +1,4 @@
-<div class="p-0 mx-0 pb-5 mx-sm-auto">
+<div class="p-0 mx-0 pb-4 pb-md-5 mx-sm-auto">
     <div class="row mx-0 mb-5">
         <div class="col-12 my-3 px-2">
             <div class="form-group float-right w-auto mb-0">

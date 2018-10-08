@@ -1,4 +1,4 @@
-function sendEmail(thisButton, successMessage){
+function sendEmail(thisButton, successMessage, path){
     console.clear();
     var error = thisButton.previousElementSibling;
     var loader = thisButton.nextElementSibling;
@@ -26,10 +26,10 @@ function sendEmail(thisButton, successMessage){
     console.log('Error Catcher: ', errorCatcher);
     console.log(loader);
     if((typeof errorCatcher === 'undefined' || errorCatcher.length == 0) || (errorCatcher[0] == 'date' && errorCatcher.length == 1)){
-        error.classList.add('invisible');
-        thisButton.classList.add('invisible');
-        loader.classList.remove('invisible');
-        fetch('ajax/send-mail.php', {
+        error.classList.add('d-none');
+        thisButton.classList.add('d-none');
+        loader.classList.remove('d-none');
+        fetch(path + 'ajax/send-mail.php', {
             method: 'POST',
             body: formData
         })
@@ -37,12 +37,12 @@ function sendEmail(thisButton, successMessage){
         .then(data => {
             if(!data)
                 showSnackbar(successMessage)
-            loader.classList.add('invisible');
-            thisButton.classList.remove('invisible');
+            loader.classList.add('d-none');
+            thisButton.classList.remove('d-none');
             console.log(data);
         });
     }else{
-        error.classList.remove('invisible');
+        error.classList.remove('d-none');
     }
 }
 //Input Cleaner

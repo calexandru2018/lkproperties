@@ -24,11 +24,11 @@ if(isset($_POST) && !empty($_POST)){
             break;
         case '3':
             $email = 'feedback@lk-properties.pt';
-            $subject = 'Feedback: '.$_POST['subject'];
+            $subject = $_POST['subject'];
             break;
         case '4':
             $email = 'info@lk-properties.pt';
-            $subject = 'Info: '.$_POST['subject'];
+            $subject = $_POST['subject'];
             break;
         default:
             return false;

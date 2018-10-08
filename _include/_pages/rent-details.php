@@ -21,7 +21,7 @@
             break;
     }
 ?>
-<div class="custom-container mx-sm-auto px-4 px-md-2 pb-md-5 rounded text-muted">
+<div class="custom-container mx-sm-auto px-2 pb-4 pb-md-5 rounded text-muted">
     <div class="row mt-1">
         <div class="col-12">
             <img src="<?php echo $GLOBALS['absPath']; ?>gallery/rental/<?php echo (($fetched['objectGallery']) ? $fetched['id'].'/fullsize/'.$fetched['objectGallery'][0]:'') ?>" class="img-fluid rounded" alt="">
@@ -159,10 +159,10 @@
                         <small id="emailHelp" class="form-text text-white">*<?php echo $lang['contactUs']['infoSharing']; ?></small>
                     </div>
                     <div class="col-12 py-2">
-                        <p class="p-0 small float-left invisible text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
+                        <p class="p-0 small float-left d-none text-danger" id="errorMessage"><?php echo $lang['contactUs']['obligatory']; ?></p>
                         <button class="btn btn-info float-right" id="send-form"><?php echo $lang['placeHolder']['sendQuestion']; ?></button>
-                        <div class="cssload-container float-right mt-3 invisible">
-                            <div class="cssload-whirlpool ml-3"></div>
+                        <div class="cssload-container float-right pl-5 mt-3 mb-4 d-none">
+                            <div class="cssload-whirlpool"></div>
                         </div>
                     </div>
                 </div>
@@ -183,6 +183,6 @@
     /* Send email */
     document.getElementById('send-form').onclick = function(e){
         e.preventDefault();
-        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>');
+        sendEmail(this, '<?php echo $lang['generalFiller']['messageSent']; ?>', '<?php echo $GLOBALS['absPath']; ?>');
     };
 </script>
