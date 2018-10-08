@@ -172,12 +172,50 @@ a:hover {
   text-decoration: none;
 }
 
-.nav-buttons{
-  color: var(--gray) !important;
-  transition: 0.15s ease-in-out !important;
+/* CUSTOM CODE */
+
+.contact-us-img{
+  max-width: 273px !important;
 }
-.nav-buttons:hover{
-  color: var(--info) !important;
+#custom-ul>li{
+  z-index: 0;
+}
+footer{
+  background-color: #3e4551; 
+  /* color: #ffffff; */
+  color:#3e4551;
+}
+footer .footer-copyright{
+  background-color: rgba(0,0,0,.2); 
+  color: rgba(255,255,255,.6); 
+  overflow: hidden;
+}
+footer a{
+  color: #3e4551;
+  /* color: #ffffff; */
+  text-decoration: none;
+  -webkit-transition: width 2s; /* Safari */
+  transition: width 2s;
+}
+footer a:active{
+  color: #3e4551;
+  /* color: #ffffff; */
+  text-decoration: none;
+}
+footer a:hover{
+  color: #3e4551;
+  /* color: #ffffff67; */
+  text-decoration: none;
+}
+footer a:click{
+  color: #3e4551;
+  /* color: #ffffff; */
+  text-decoration: none;
+}
+footer a:visited{
+  /* color: #ffffff; */
+  color: #3e4551;
+  text-decoration: none;
 }
 
 .custom-focus{
@@ -232,7 +270,41 @@ a:hover {
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
   }
 }
+.select2, .select2-container, .select2-container--default, .select2-container--below{
+  max-width: 950px !important;
+}
+.select2-selection, .select2-selection--single{
+  height: 100% !important;
+}
+.select2-selection__rendered{
+  padding-top: 5px;
+}
+.select2-selection__arrow{
+  margin-top: 5px;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default .select2-selection--multiple {
+  outline: none !important;
+  border: none!important;
+  background-color: var(--light)!important;
+}
+.noScroll { /* ...or body.dialogShowing */
+  overflow-y: hidden !important;
+}
+@media (min-width: 720px) {
+  .noScroll { /* ...or body.dialogShowing */
+    overflow-y: auto !important;
+  }
+}
 
+/* CUSTOM CODE */
+
+.nav-buttons{
+  color: var(--gray) !important;
+  transition: 0.15s ease-in-out !important;
+}
+.nav-buttons:hover{
+  color: var(--info) !important;
+}
 a:not([href]):not([tabindex]) {
   color: inherit;
   text-decoration: none;
@@ -644,6 +716,9 @@ pre code {
   .custom-container {
     max-width: 720px;
   }
+  .select2, .select2-container, .select2-container--default, .select2-container--below{
+    max-width: 180px;
+  } 
 }
 
 @media (min-width: 992px) {
@@ -8986,6 +9061,54 @@ a.text-dark:hover, a.text-dark:focus {
   visibility: hidden !important;
 }
 
+/* The snackbar - position it at the bottom and in the middle of the screen */
+
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: rgba(40,167,69, 0.7) !important;
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 15px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  top: 50%;
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+ However, delay the fade out process for 2.5 seconds */
+ -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+ animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {top: 0; opacity: 0;} 
+  to {top: 50%; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {top: 0; opacity: 0;}
+  to {top: 50%; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {top: 50%; opacity: 1;} 
+  to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {top: 50%; opacity: 1;}
+  to {top: 0; opacity: 0;}
+}
+/* Animations to fade the snackbar in and out */
+
 @media print {
   *,
   *::before,
@@ -9052,3 +9175,89 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.cssload-container{
+	position:relative;
+}
+	
+.cssload-whirlpool,
+.cssload-whirlpool::before,
+.cssload-whirlpool::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: 1px solid rgb(204,204,204);
+	border-left-color: rgb(0,0,0);
+	border-radius: 549px;
+		-o-border-radius: 549px;
+		-ms-border-radius: 549px;
+		-webkit-border-radius: 549px;
+		-moz-border-radius: 549px;
+}
+
+.cssload-whirlpool {
+	margin: -14px 0 0 -14px;
+	height: 27px;
+	width: 27px;
+	animation: cssload-rotate 950ms linear infinite;
+		-o-animation: cssload-rotate 950ms linear infinite;
+		-ms-animation: cssload-rotate 950ms linear infinite;
+		-webkit-animation: cssload-rotate 950ms linear infinite;
+		-moz-animation: cssload-rotate 950ms linear infinite;
+}
+
+.cssload-whirlpool::before {
+	content: "";
+	margin: -13px 0 0 -13px;
+	height: 24px;
+	width: 24px;
+	animation: cssload-rotate 950ms linear infinite;
+		-o-animation: cssload-rotate 950ms linear infinite;
+		-ms-animation: cssload-rotate 950ms linear infinite;
+		-webkit-animation: cssload-rotate 950ms linear infinite;
+		-moz-animation: cssload-rotate 950ms linear infinite;
+}
+
+.cssload-whirlpool::after {
+	content: "";
+	margin: -16px 0 0 -16px;
+	height: 31px;
+	width: 31px;
+	animation: cssload-rotate 1900ms linear infinite;
+		-o-animation: cssload-rotate 1900ms linear infinite;
+		-ms-animation: cssload-rotate 1900ms linear infinite;
+		-webkit-animation: cssload-rotate 1900ms linear infinite;
+		-moz-animation: cssload-rotate 1900ms linear infinite;
+}
+
+@keyframes cssload-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@-o-keyframes cssload-rotate {
+	100% {
+		-o-transform: rotate(360deg);
+	}
+}
+
+@-ms-keyframes cssload-rotate {
+	100% {
+		-ms-transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes cssload-rotate {
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes cssload-rotate {
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+/* range slider */
+.rangeSlider,.rangeSlider__fill{display:block;-webkit-box-shadow:inset 0 1px 3px rgba(0,0,0,.3);box-shadow:inset 0 1px 3px rgba(0,0,0,.3);border-radius:10px}.rangeSlider{position:relative;background:#7f8c8d}.rangeSlider__horizontal{/*height:20px*/height:10px;width:100%}.rangeSlider__vertical{height:100%;width:20px}.rangeSlider--disabled{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=40);opacity:.4}.rangeSlider__fill{/*background:#16a085*/background:var(--info);position:absolute;z-index:2}.rangeSlider__fill__horizontal{height:100%;top:0;left:0}.rangeSlider__fill__vertical{width:100%;bottom:0;left:0}.rangeSlider__handle{border:1px solid #ccc;cursor:pointer;display:inline-block;/*width:40px;height:40px;*/width:20px;height:20px;position:absolute;z-index:3;background:#fff -webkit-gradient(linear,left top,left bottom,from(hsla(0,0%,100%,0)),to(rgba(0,0,0,.1)));background:#fff -o-linear-gradient(hsla(0,0%,100%,0),rgba(0,0,0,.1));background:#fff linear-gradient(hsla(0,0%,100%,0),rgba(0,0,0,.1));-webkit-box-shadow:0 0 8px rgba(0,0,0,.3);box-shadow:0 0 8px rgba(0,0,0,.3);border-radius:50%}.rangeSlider__handle__horizontal{/*top:-10px*/top:-5px}.rangeSlider__handle__vertical{left:-10px;bottom:0}.rangeSlider__handle:after{content:"";display:block;width:18px;height:18px;margin:auto;position:absolute;top:0;right:0;bottom:0;left:0;background-image:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.13)),to(hsla(0,0%,100%,0)));background-image:-o-linear-gradient(rgba(0,0,0,.13),hsla(0,0%,100%,0));background-image:linear-gradient(rgba(0,0,0,.13),hsla(0,0%,100%,0));border-radius:50%}.rangeSlider__handle:active{background-image:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.1)),to(rgba(0,0,0,.12)));background-image:-o-linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.12));background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.12))}input[type=range]:focus+.rangeSlider .rangeSlider__handle{-webkit-box-shadow:0 0 8px rgba(142,68,173,.9);box-shadow:0 0 8px rgba(142,68,173,.9)}.rangeSlider__buffer{z-index:1;position:absolute;top:3px;height:14px;background:#2c3e50;border-radius:10px}
+/*# sourceMappingURL=range-slider.css.map*/
