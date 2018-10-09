@@ -34,20 +34,6 @@
                 </div>
                 <div class="col-0 col-sm-3">
                 </div>
-<!--                 <div class="col-3">
-                </div>
-                <div class="col-3">
-                    <a href="?lang=fr">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAB5UlEQVQoU11Sv2uUQRB9G9ET1IOYi94dEVGw0EJJlUBIoniFv4hGCRZaGIRIECJyQhQOlUDgJKIQNYiijaKFf4GFlYWFWEhqhTQplKjHneHb3dkZmf3yHZKF4W2x7817s2OqTxYF/x0mxtRIHiEEWGsjEhGMMdhb6QW3ALIAAWAARgVGh8pRQljALOjbvw0iqa4iM0fc+Po5hDzYOYj3WLk5syYwWEZz1SOE9PHAgc2RkJG1uzrJL8yBnYU4C3QV8LNWh6k+WpQzgyU0/noE5ihy5NCWtu1MRGPk52fB1kHIwmzvxo+ZBzDXHn6V0eESGq3UAXFApTeNICrI6kSFA7bO3Y7d2XmYQjeW649hJu99kbGjPfjTdPBKIMHJ/s4YRUtPdt90twrxLs7A7Chi+f5TmMuzn+V8ZRd+Ny0oMIgYpwe62iR1ot0Vc7UpBB2g8+jYWcTS/EuYC3c+ycVju/GrYeFVwAecHSq0J6/kzEHu1tU0gvfoKJaxtPAK5tz0R7l0ag9WGhZEAZ4YY4dTgfWVuzGRfqP32FDqwfdnb2COX/8gEyP71vLr0ghO9He2vzDbAcVcvQYmgoS0vr14BzN85b2sJoQkcVBsJQ5vp0twzsEnCVwI8Z4kCQ6Oj8fty7ZQB/wPRpt9H0JFi4QAAAAASUVORK5CYII=" alt="Francois" />
-                    </a>
-                </div>
-                <div class="col-3">
-                    <a href="?lang=it">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAABv0lEQVQoU22Sz0uUQRjHP7MkRKiHWjtIP0jqD+jgpYO0mmUUeOxciAchlsoUeyEp2aQOgQR5EAy8CHUQuuylS4cuHYKgs27anrLsXbWWd56ZJ96ZNKJ94MsM8+MzzzzP1zCH0iSGBwTqI3UKFOKS91HSpNh/Bu/BZ390EAwVNBlM/h5WT6W3gjE5QFHVsKde0BcjqNo4d5adm68xPEaT0j2+7NZx3uGcY75vno62jnB5X79SdO4qqhlqLebIcRq3qhhm0anSFBu7G4h3iFgWzi+0Bjy9hLosZGEOnyAdfxMBE6UJ1nfWESeICIulxRaAH+iTAdRnqLeY4kkak28xzKC3B+7websWAU5Y6l9qDZjti18Qi+k6RZq8wzCNlgfL1LZrZC4LGSxfWP4f8HMLfXRu/wuFYg9b999jSNCxoTHW0rXwupWMlxdf0dnW+W8Rc8DDXhQLTjBdPWw++IBhEh29PMpquop1FiuWlaGVFoDv6PTZCPAOc/Q032Y+Yiij14dvIN4GgEjexue0H2iP/d9rZd7GZ8MoDpwDdXytfMJwF6URHRgc2YTqeJXuQ93BgXlNwrhZ49iVa8GsufbiN1SBWvqjgHUUAAAAAElFTkSuQmCC" alt="Italiano" />
-                    </a>
-                </div>
-                <div class="col-3">
-                </div> -->
             </div>
         </div>
     </div>  

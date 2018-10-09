@@ -12,9 +12,6 @@
         );
         return strtolower(strtr(str_replace(' ', '-', $string), $unwanted_array));
     }
-   /*  if(!isset($_GET['lang']) || empty($_GET['lang']) || (!isset($_SESSION['crsf_token']) || empty($_SESSION['crsf_token']))){
-        $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
-        header('Location: '.$GLOBALS['absPath'].'en'); */
     if(!isset($_GET['lang'])){
         $selectedLang = 'en';
     }else{
@@ -39,7 +36,7 @@
 <body>
     <?php require_once('_include/_general/_navbar.php'); ?>
     <?php 
-        if(!empty($_GET['lang']) && (count($_GET) == 1)){
+        if(empty($_GET['lang']) || (count($_GET) == 1)){
             include_once('_include/_general/_home.php');            
             include_once('_include/_general/_search.php'); 
         }
