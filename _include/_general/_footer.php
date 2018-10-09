@@ -40,7 +40,6 @@
 </footer>
 <?php 
 $base = explode('&', $_SERVER['QUERY_STRING']);
-
     function queryBuilder($string, $lang){
         $base = explode('&', $_SERVER['QUERY_STRING']);
         $urlExtension = '';
