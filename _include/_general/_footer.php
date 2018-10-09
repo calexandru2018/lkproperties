@@ -38,13 +38,14 @@
         </div>
     </div>  
 </footer>
-<?php 
-$base = explode('&', $_SERVER['QUERY_STRING']);
+<?php
     function queryBuilder($string, $lang){
-        $base = explode('&', $_SERVER['QUERY_STRING']);
+        $base = explode('&', $string);
         $urlExtension = '';
         $urlVarHolder = [];
         $urlValueHolder = [];
+        $counter = 0;
+        
         for($c = 2; $c < count($base); $c++){
             $tempHolder = explode('=', $base[$c]);
             if(count($tempHolder) > 1){
@@ -55,9 +56,11 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
         if(count($base) > 1 ){
             $showType = explode('=', $base[1]);
             switch($showType[1]){
-                case 'for-rent-details': $urlExtension = '/for-rent/';
+                case 'for-rent-details': $urlExtension = '/for-rent-details/';
                     break;
-                case 'for-sell-details': $urlExtension = '/for-sale/';
+                case 'for-sell-details': $urlExtension = '/for-sale-details/';
+                    break;
+                case 'for-sale': $urlExtension = '/for-sale';
                     break;
                 case 'contact-us': $urlExtension = '/contact-us';
                     break;
@@ -76,13 +79,23 @@ $base = explode('&', $_SERVER['QUERY_STRING']);
             }
         }
         $outputQuery = $lang.$urlExtension;
-        for ($i=0; $i < count($urlValueHolder); $i++) {
-            if($i == (count($urlValueHolder)-1)) 
-                $outputQuery = $outputQuery.'&'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
-            else if($i == 0)
-                $outputQuery = $outputQuery.'?'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
-            else
-                $outputQuery = $outputQuery.'&'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
+
+        if($urlExtension === '/filter'){
+            for ($i=0; $i < count($urlValueHolder); $i++) {
+                if($i == (count($urlValueHolder)-1)) 
+                    $outputQuery = $outputQuery.'&'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
+                else if($i == 0)
+                    $outputQuery = $outputQuery.'?'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
+                else
+                    $outputQuery = $outputQuery.'&'.$urlVarHolder[$i].'='.$urlValueHolder[$i];
+            }
+        }else{
+            for ($i=0; $i < count($urlValueHolder); $i++) {
+                if($i == (count($urlValueHolder)-1)) 
+                    $outputQuery = $outputQuery.$urlValueHolder[$i];
+                else
+                    $outputQuery = $outputQuery.$urlValueHolder[$i].'/';
+            }
         }
         return $outputQuery;
     }
