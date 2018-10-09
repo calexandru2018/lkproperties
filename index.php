@@ -1,6 +1,7 @@
 <?php
     session_start();
     $GLOBALS['absPath'] = '/lkproperties/';
+    //$GLOBALS['absPath'] = 'https://lk-properties.pt/';
     function urlPurifier($string){
         $unwanted_array = array(    
             'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
@@ -11,9 +12,11 @@
         );
         return strtolower(strtr(str_replace(' ', '-', $string), $unwanted_array));
     }
-    if(!isset($_GET['lang']) || empty($_GET['lang']) || (!isset($_SESSION['crsf_token']) || empty($_SESSION['crsf_token']))){
+   /*  if(!isset($_GET['lang']) || empty($_GET['lang']) || (!isset($_SESSION['crsf_token']) || empty($_SESSION['crsf_token']))){
         $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
-        header('Location: '.$GLOBALS['absPath'].'en');
+        header('Location: '.$GLOBALS['absPath'].'en'); */
+    if(!isset($_GET['lang'])){
+        $selectedLang = 'en';
     }else{
         switch($_GET['lang']){
             case 'en': $selectedLang = 'en';
