@@ -129,8 +129,18 @@ function acceptCookie(button){
         method: 'POST',
         body: formData
     })
-    .then((response) => response.text())
-    .then((data) => {
-        button.closest('.modal').classList.remove('d-inline')
+    .then(() => {
+        fadeOut(button.closest('.modal'));
     });
+}
+function fadeOut(el){
+    el.style.opacity = 1;
+
+    (function fade() {
+        if ((el.style.opacity -= .1) < 0) {
+        el.style.display = "none";
+        } else {
+        requestAnimationFrame(fade);
+        }
+    })();
 }
