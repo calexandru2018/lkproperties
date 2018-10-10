@@ -39,7 +39,7 @@
 <body>
     <?php 
         if(!isset($_COOKIE['acceptCookie']) || (isset($_COOKIE['acceptCookie']) && $_COOKIE['acceptCookie'] == '0')){
-            include('_include/_general/_cookie-prompt.html');
+            include('_include/_general/_cookie-prompt.php');
         }
         require_once('_include/_general/_navbar.php'); ?>
     <?php 

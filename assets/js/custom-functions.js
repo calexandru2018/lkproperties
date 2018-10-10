@@ -131,8 +131,6 @@ function acceptCookie(button){
     })
     .then((response) => response.text())
     .then((data) => {
-        console.log(data);
-        
         button.closest('.modal').classList.remove('d-inline')
     });
 }
