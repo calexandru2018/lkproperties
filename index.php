@@ -1,5 +1,8 @@
 <?php
-    session_start();
+    if(!isset($_COOKIE['acceptCookie'])){
+        setcookie('acceptCookie', '0',  time()+60*60*24*30, "/lkproperties");
+        // setcookie('acceptCookie', 'en',  time()+60*60*24*30, '/', '', true);
+    }
     $GLOBALS['absPath'] = '/lkproperties/';
     //$GLOBALS['absPath'] = 'https://lk-properties.pt/';
     function urlPurifier($string){
@@ -34,7 +37,11 @@
 	<?php require_once('_include/_general/_head.php'); ?>
 </head>
 <body>
-    <?php require_once('_include/_general/_navbar.php'); ?>
+    <?php 
+        if(!isset($_COOKIE['acceptCookie']) || (isset($_COOKIE['acceptCookie']) && $_COOKIE['acceptCookie'] == '0')){
+            include('_include/_general/_cookie-prompt.html');
+        }
+        require_once('_include/_general/_navbar.php'); ?>
     <?php 
         if(empty($_GET['lang']) || (count($_GET) == 1)){
             include_once('_include/_general/_home.php');            

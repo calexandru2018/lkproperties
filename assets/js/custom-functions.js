@@ -122,3 +122,17 @@ function loadMore(button, loader, lang, path, type, message){
         console.log(data.length);
     });
 }
+function acceptCookie(button){
+    var formData = new FormData()
+    formData.append('accept-cookie', 1);
+    fetch('/lkproperties/ajax/cookie-update.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then((response) => response.text())
+    .then((data) => {
+        console.log(data);
+        
+        button.closest('.modal').classList.remove('d-inline')
+    });
+}
