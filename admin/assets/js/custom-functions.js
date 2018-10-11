@@ -212,7 +212,7 @@ function addContent(type, debugMode, postAsync){
             if(response.data == true){
                 thisBtn.closest('div').remove();
             }
-            // console.log(response);
+            console.log(response);
         })
         .catch(function(error){
             console.log(error);

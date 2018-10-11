@@ -142,10 +142,8 @@
                     where 
                         admin_ID = "'.$adminID.'"
                 ';
-                
                 if($queryFetchURL = $this->db->query($sqlSearchURL)){
                     $queryFetchResult = $queryFetchURL->fetch_object();
-                    if($queryFetchResult->thumbnailURL == 'null' || $queryFetchResult->thumbnailURL == 'NULL'){
                         if(!$deleteAll){
                         $sqlDeletePhoto = '
                         update 
@@ -165,9 +163,8 @@
                         }else{
                             return false;
                         }
-                    }else{
-                        return true;
-                    }
+                }else{
+                    echo 1;
                 }
             }
         /* DATABASE FUNCTIONS */
