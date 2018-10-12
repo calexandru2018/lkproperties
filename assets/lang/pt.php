@@ -194,6 +194,44 @@
             'cookieModalTitle' => 'Atencão',
             'cookieModalInformation' => 'Ao continuar a usar este site, você concorda com o uso de cookies.',
             'cookieModalButton' => 'Estou de acordo e aceito'
-        ]
+        ],
+        'head' => 
+        [
+            'index' => 
+            [
+                'title' => 'Agência Imobiliária com sede em Portugal, Algarve',
+                'description' => 'LK Properties é uma agência imobiliária que aluga, vende e compra imóveis. Estamos localizados na bela região a sul de Portugal, Algarve.'
+            ],
+            'popular-poi' => 
+            [
+                'title' => 'Local popular para visitar',
+                'description' => 'A nossa colecção mais popular de locais que pode inspirá-lo a visitar em Portugal. Temos imóveis espalhados por todo Portugal Continental.'
+            ],
+            'popular-city' => 
+            [
+                'title' => 'Cidade popular para visitar',
+                'description' => 'A nossa colecção mais popular de cidades que lhe pode inspirar a visitar em Portugal. Temos imóveis espalhados por todo Portugal Continental.'
+            ],
+            'activity' => 
+            [
+                'title' => 'Actividades',
+                'description' => 'Pode encontrar diferentes tipos de actividades para si ou para a sua família, que estão espalhadas pelo território português. Desde parques aquáticos, museus até eventos, zoológicos e muito mais.'
+            ],
+            'faq' => 
+            [
+                'title' => 'Para perguntas e respostas',
+                'description' => 'Perguntas e respostas relacionadas com o aluguel, compra ou venda de imóveis. Da mesma forma poderá obter resposta acerca do tipo de pagamento aceite, entre outros.'
+            ],
+            'for-sale' => 
+            [
+                'title' => 'Compra ou venda de imóveis',
+                'description' => 'Tem uma lista ao seu dispor de todas as propriedades para venda. Se estiver interessado em vender ou comprar o seu imóvel em Portugal, entre em contacto connosco.'
+            ],
+            'contact-us' => 
+            [
+                'title' => 'Contactos',
+                'description' => 'Diferentes formas de entrar em contato conosco. Preencha o nosso formulário ou use as seguintes plataformas: Facebook, Instagram, Twitter, LinkedIn. LK Properties Portugal.'
+            ],
+        ]  
     ];
 ?>

@@ -25,5 +25,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <title>LK-Properties</title>
+    
+<?php
+    $headVar = "index";
+
+    if((isset($_GET['lang']) && (count($_GET) == 1)) || (!isset($_GET['lang']) && (count($_GET) == 0))){
+        $headVar = 'index';
+    }elseif(isset($_GET['show']) && $_GET['show'] == 'popular-poi'){
+        $headVar = 'popular-poi';
+    }elseif(isset($_GET['show']) && $_GET['show'] == 'popular-city'){
+        $headVar = 'popular-city';
+    }elseif(isset($_GET['show']) && $_GET['show'] == 'activities'){
+        $headVar = 'activity';
+    }elseif(isset($_GET['show']) && $_GET['show'] == 'faq'){
+        $headVar = 'faq';
+    }elseif(isset($_GET['show']) && $_GET['show'] == 'for-sale'){
+        $headVar = 'for-sale';
+    }elseif(isset($_GET['show']) && $_GET['show'] == 'contact-us'){
+        $headVar = 'contact-us';
+    }else{
+        $headVar = 'index';
+    }
+/*     if((!empty($_GET['show']) && ($_GET['show'] == 'contact-us' || $_GET['show'] == 'for-sale' || $_GET['show'] == 'filter'))){
+        include_once('_include/_general/_home.php'); 
+    }
+    if(!empty($_GET['show']) && ($_GET['show'] == 'for-sale' || $_GET['show'] == 'filter')){
+        include_once('_include/_general/_search.php'); 
+    } */
+?>
+    <title>LK Properties - <?php echo $lang['head'][$headVar]['title'] ;?></title>
+    <meta name="description" content="<?php echo $lang['head'][$headVar]['description'] ;?>"/>
 </head>
