@@ -46,12 +46,6 @@
     }else{
         $headVar = 'index';
     }
-/*     if((!empty($_GET['show']) && ($_GET['show'] == 'contact-us' || $_GET['show'] == 'for-sale' || $_GET['show'] == 'filter'))){
-        include_once('_include/_general/_home.php'); 
-    }
-    if(!empty($_GET['show']) && ($_GET['show'] == 'for-sale' || $_GET['show'] == 'filter')){
-        include_once('_include/_general/_search.php'); 
-    } */
 ?>
     <title>LK Properties - <?php echo $lang['head'][$headVar]['title'] ;?></title>
     <meta name="description" content="<?php echo $lang['head'][$headVar]['description'] ;?>"/>
