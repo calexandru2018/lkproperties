@@ -130,7 +130,7 @@ function acceptCookie(button){
         body: formData
     })
     .then(() => {
-        fadeOut(button.closest('.modal'));
+        fadeOut(button.closest('.cookie-notice'));
     });
 }
 function fadeOut(el){
@@ -142,5 +142,4 @@ function fadeOut(el){
             requestAnimationFrame(fade);
         }
     })();
-    el.classList.remove('d-inline');
 }
