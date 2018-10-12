@@ -38,11 +38,8 @@
 </head>
 <body>
     <?php 
-        if(!isset($_COOKIE['acceptCookie']) || (isset($_COOKIE['acceptCookie']) && $_COOKIE['acceptCookie'] == '0')){
-            include('_include/_general/_cookie-prompt.php');
-        }
-        require_once('_include/_general/_navbar.php'); ?>
-    <?php 
+        require_once('_include/_general/_navbar.php');
+
         if(empty($_GET['lang']) || (count($_GET) == 1)){
             include_once('_include/_general/_home.php');            
             include_once('_include/_general/_search.php'); 
@@ -99,6 +96,11 @@
     <script src="<?php echo $GLOBALS['absPath']; ?>assets/js/range-slider.min.js"></script> 
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="<?php echo $GLOBALS['absPath']; ?>assets/js/custom-functions.js"></script>
+    <?php         
+        if(!isset($_COOKIE['acceptCookie']) || (isset($_COOKIE['acceptCookie']) && $_COOKIE['acceptCookie'] == '0')){
+            include('_include/_general/_cookie-prompt.php');
+        }; 
+    ?>
 </body>
 </html>
 <?php

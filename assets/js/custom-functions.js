@@ -143,3 +143,9 @@ function fadeOut(el){
         }
     })();
 }
+$(document).ready(function(){
+    if ($(".cookie-notice")[0]){
+        var height = $('.cookie-notice').height();
+        $('main').css('margin-bottom', height*2);
+    }
+});
