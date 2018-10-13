@@ -198,38 +198,38 @@
         [
             'index' => 
             [
-                'title' => 'Real Estate Agency based in Portugal, Algarve',
-                'description' => 'LK Properties is a real estate agency. We rent, sell and buy real estate. We are located in the beautiful southern part of Portugal, Algarve.'
+                'title' => 'Real estate agency based in Portugal,Algarve',
+                'description' => 'LK Properties owns a wide array of real-estate. Are you looking for an amazing yet simple apartment ? Or perhaps in search of a more luxurious experience ? Either way, we have it!'
             ],
             'popular-poi' => 
             [
-                'title' => 'Popular location to visit',
-                'description' => 'Our most popular collection of locations that might inspire you to visit in Portugal. We have real-estates spread all across Continental Portugal.'
+                'title' => 'Most popular locations to visit in Portugal',
+                'description' => 'Our most popular collection of locations that might inspire you to visit in Portugal. We at LK Properties have real-estates spread all across Portugal.'
             ],
             'popular-city' => 
             [
-                'title' => 'Popular city to visit',
-                'description' => 'Our most popular collection of cities that might inspire you to visit in Portugal. We have real-estates spread all across Continental Portugal.'
+                'title' => 'Most popular cities to visit in Portugal',
+                'description' => 'Our most popular collection of cities that might inspire you to visit in Portugal. We at LK Properties have real-estates spread all across Portugal.'
             ],
             'activity' => 
             [
-                'title' => 'Activities',
-                'description' => 'Find different type of activities for you or your family, spread throughout Portugal. Aqua parks, museums, events, zoos and much more.'
+                'title' => 'Various activities for you or your family',
+                'description' => 'No need to search further, we have a solution for your adventurous needs. Here can you find various interesting activities that are located near our real-estates.'
             ],
             'faq' => 
             [
-                'title' => 'For Answers and Questions',
-                'description' => 'A list with the most common questions. You can expect to find answers related to renting, buying or selling real-estate, the type of payment that we accept and other.'
+                'title' => 'We do our best to answer common questions',
+                'description' => 'A list with the most common questions can be found here. All about renting, buying or selling real-estate, accepted payment methods and more can be found here.'
             ],
             'for-sale' => 
             [
-                'title' => 'Buy or Sell Real Estate',
-                'description' => 'Here can you find a list of all the properties that are for sell. If you are interested in selling or buying your property in Portugal, send us a e-mail and we\'ll answer as soon as possible.'
+                'title' => 'Collection of properties that are for sell',
+                'description' => 'Were you thinking in selling your property in Portugal ? If so, then we could help you with the process of it. Contact us and we\'ll reply as soon as possible.'
             ],
             'contact-us' => 
             [
-                'title' => 'Contact Us',
-                'description' => 'You can get in touch with us in varied ways, either by filling in the form or contacting us through Facebook, Instagram, Twitter and even LinkedIn. LK Properties Portugal.'
+                'title' => 'Who we are and how to get in touch with us',
+                'description' => 'Get in touch with us either by filling in the form or reaching our social media on Facebook, Instagram, Twitter and even LinkedIn. LK Properties Portugal, Algarve.'
             ],
         ]  
     ];
