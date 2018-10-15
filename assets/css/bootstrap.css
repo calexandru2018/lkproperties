@@ -298,7 +298,13 @@ footer a:visited{
     overflow-y: auto !important;
   }
 }
-
+.home-img-responsive{
+  width: 100%;
+  height: 400px;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  object-position: center center;
+}
 /* CUSTOM CODE */
 
 .nav-buttons{
