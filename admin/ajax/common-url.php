@@ -1,4 +1,4 @@
 <?php 
-    $commonBaseURL = $_SERVER['DOCUMENT_ROOT'].'/lkproperties';
-    //$commonBaseURL = $_SERVER['DOCUMENT_ROOT'];
+    //$commonBaseURL = $_SERVER['DOCUMENT_ROOT'].'/lkproperties';
+    $commonBaseURL = $_SERVER['DOCUMENT_ROOT'];
 ?>

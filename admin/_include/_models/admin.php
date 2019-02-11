@@ -164,7 +164,7 @@
                             return false;
                         }
                 }else{
-                    echo 1;
+                    return true;
                 }
             }
         /* DATABASE FUNCTIONS */

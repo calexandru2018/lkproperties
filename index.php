@@ -1,7 +1,7 @@
 <?php
     if(!isset($_COOKIE['acceptCookie'])){
         setcookie('acceptCookie', '0',  time()+60*60*24*30, "/lkproperties");
-        // setcookie('acceptCookie', 'en',  time()+60*60*24*30, '/', '', true);
+        //setcookie('acceptCookie', '0',  time()+60*60*24*30, '/', '', true);
     }
     $GLOBALS['absPath'] = '/lkproperties/';
     //$GLOBALS['absPath'] = 'https://lk-properties.pt/';
@@ -37,9 +37,13 @@
 	<?php require_once('_include/_general/_head.php'); ?>
 </head>
 <body>
-    <?php 
-        require_once('_include/_general/_navbar.php');
 
+    <?php 
+        if(!isset($_COOKIE['acceptCookie']) || (isset($_COOKIE['acceptCookie']) && $_COOKIE['acceptCookie'] == '0')){
+            include('_include/_general/_cookie-prompt.php');
+        }
+        require_once('_include/_general/_navbar.php'); ?>
+    <?php 
         if(empty($_GET['lang']) || (count($_GET) == 1)){
             include_once('_include/_general/_home.php');            
             include_once('_include/_general/_search.php'); 
@@ -96,11 +100,6 @@
     <script src="<?php echo $GLOBALS['absPath']; ?>assets/js/range-slider.min.js"></script> 
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="<?php echo $GLOBALS['absPath']; ?>assets/js/custom-functions.js"></script>
-    <?php         
-        if(!isset($_COOKIE['acceptCookie']) || (isset($_COOKIE['acceptCookie']) && $_COOKIE['acceptCookie'] == '0')){
-            include('_include/_general/_cookie-prompt.php');
-        }; 
-    ?>
 </body>
 </html>
 <?php

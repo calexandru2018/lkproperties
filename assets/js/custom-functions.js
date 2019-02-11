@@ -29,7 +29,7 @@ function sendEmail(thisButton, successMessage, path){
         error.classList.add('d-none');
         thisButton.classList.add('d-none');
         loader.classList.remove('d-none');
-        fetch(path + 'ajax/send-mail.php', {
+        fetch('https://lk-properties.pt/ajax/send-mail.php', {
             method: 'POST',
             body: formData
         })
@@ -103,7 +103,7 @@ function loadMore(button, loader, lang, path, type, message){
     formData.append('type', type);
     formData.append('lang', lang);
     formData.append('path', path);
-    fetch(((type == 2) ? '../':'') + 'ajax/load-more.php', {
+    fetch('https://lk-properties.pt/ajax/load-more.php', {
         method: 'POST',
         body: formData
     })
@@ -125,12 +125,14 @@ function loadMore(button, loader, lang, path, type, message){
 function acceptCookie(button){
     var formData = new FormData()
     formData.append('accept-cookie', 1);
-    fetch('/lkproperties/ajax/cookie-update.php', {
+    fetch('https://lk-properties.pt/ajax/cookie-update.php', {
         method: 'POST',
         body: formData
     })
-    .then(() => {
+    .then((response) => response.text())
+    .then((data) => {
         fadeOut(button.closest('.cookie-notice'));
+        console.log(data);
     });
 }
 function fadeOut(el){
